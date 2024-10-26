@@ -1,0 +1,890 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.ClearEvent.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/ClearEvent.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\ClearEvent.src ../src/kernel/ClearEvent.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/ClearEvent.c'
+
+	.section	.text ,cluster('$group_OS_ClearEvent')
+	.global	OS_ClearEvent
+
+; ../src/kernel/ClearEvent.c	     1  /**
+; ../src/kernel/ClearEvent.c	     2  * @file 					ClearEvent.c
+; ../src/kernel/ClearEvent.c	     3  * @author 					Ahmed Aref Omaira
+; ../src/kernel/ClearEvent.c	     4  * @version 					1.0.0
+; ../src/kernel/ClearEvent.c	     5  * @date 					20/03/2023
+; ../src/kernel/ClearEvent.c	     6  * @platform   				NA
+; ../src/kernel/ClearEvent.c	     7  * @variant					NA
+; ../src/kernel/ClearEvent.c	     8  * @vendor					CryptOS
+; ../src/kernel/ClearEvent.c	     9  * @specification		 	OSEK-VDX
+; ../src/kernel/ClearEvent.c	    10  * @brief SetEvent		 	Task API source code implementation .
+; ../src/kernel/ClearEvent.c	    11  *
+; ../src/kernel/ClearEvent.c	    12  * Detailed description of the service:
+; ../src/kernel/ClearEvent.c	    13  * -The service may be called from an interrupt service routine and from the task level, but not from hook routines.
+; ../src/kernel/ClearEvent.c	    14  * -The events of task <TaskID> are set according to the event mask <Mask>.
+; ../src/kernel/ClearEvent.c	    15  * -Calling SetEvent causes the task <TaskID> to be transferred to the ready state if it was waiting for at least one of the events specified in <Mask>.
+; ../src/kernel/ClearEvent.c	    16  * -Any events not set in the event mask remain unchanged.
+; ../src/kernel/ClearEvent.c	    17  * -The service only returns in the extended status state when an error occurs; otherwise, E_OK is returned.
+; ../src/kernel/ClearEvent.c	    18  *
+; ../src/kernel/ClearEvent.c	    19  *
+; ../src/kernel/ClearEvent.c	    20  */
+; ../src/kernel/ClearEvent.c	    21  
+; ../src/kernel/ClearEvent.c	    22  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/ClearEvent.c	    23  
+; ../src/kernel/ClearEvent.c	    24  /**********************************************************************************/
+; ../src/kernel/ClearEvent.c	    25  /**				    			Include Headers			         				 **/
+; ../src/kernel/ClearEvent.c	    26  /**********************************************************************************/
+; ../src/kernel/ClearEvent.c	    27  #include <OS_kernel.h>
+; ../src/kernel/ClearEvent.c	    28  
+; ../src/kernel/ClearEvent.c	    29  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    30  /*  			    			    Macros				         				   */
+; ../src/kernel/ClearEvent.c	    31  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    32  
+; ../src/kernel/ClearEvent.c	    33  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/ClearEvent.c	    34  
+; ../src/kernel/ClearEvent.c	    35  /***************************** Autosar version Check ********************************/
+; ../src/kernel/ClearEvent.c	    36  
+; ../src/kernel/ClearEvent.c	    37  /******************************* DET Version Check **********************************/
+; ../src/kernel/ClearEvent.c	    38  
+; ../src/kernel/ClearEvent.c	    39  /************************** Internal Module Specific Macros ********************************/
+; ../src/kernel/ClearEvent.c	    40  /**
+; ../src/kernel/ClearEvent.c	    41   * @name InternalModuleSpecificMacros
+; ../src/kernel/ClearEvent.c	    42   * @{
+; ../src/kernel/ClearEvent.c	    43   */
+; ../src/kernel/ClearEvent.c	    44  
+; ../src/kernel/ClearEvent.c	    45  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/kernel/ClearEvent.c	    46  
+; ../src/kernel/ClearEvent.c	    47  /************************************************************************************/
+; ../src/kernel/ClearEvent.c	    48  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/ClearEvent.c	    49  /************************************************************************************/
+; ../src/kernel/ClearEvent.c	    50  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/ClearEvent.c	    51  /**
+; ../src/kernel/ClearEvent.c	    52   * @name InternalModuleSpecificTypeDefinitions
+; ../src/kernel/ClearEvent.c	    53   * @{
+; ../src/kernel/ClearEvent.c	    54   */
+; ../src/kernel/ClearEvent.c	    55  
+; ../src/kernel/ClearEvent.c	    56  /** @} */ /*End of InternalModuleSpecificTypeDefinitions*/
+; ../src/kernel/ClearEvent.c	    57  
+; ../src/kernel/ClearEvent.c	    58  /***************************************************************************************/
+; ../src/kernel/ClearEvent.c	    59  /*                            External Global Variables                                */
+; ../src/kernel/ClearEvent.c	    60  /***************************************************************************************/
+; ../src/kernel/ClearEvent.c	    61  /**
+; ../src/kernel/ClearEvent.c	    62   * @name ExternalGlobalVariables
+; ../src/kernel/ClearEvent.c	    63   * @{
+; ../src/kernel/ClearEvent.c	    64   */
+; ../src/kernel/ClearEvent.c	    65  
+; ../src/kernel/ClearEvent.c	    66  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/kernel/ClearEvent.c	    67  
+; ../src/kernel/ClearEvent.c	    68  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    69  /*				    			External constants		         				   */
+; ../src/kernel/ClearEvent.c	    70  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    71  /**
+; ../src/kernel/ClearEvent.c	    72   * @name External constants
+; ../src/kernel/ClearEvent.c	    73   * @{
+; ../src/kernel/ClearEvent.c	    74   */
+; ../src/kernel/ClearEvent.c	    75  
+; ../src/kernel/ClearEvent.c	    76  /** @} */ /*End of External constants*/
+; ../src/kernel/ClearEvent.c	    77  
+; ../src/kernel/ClearEvent.c	    78  /***************************************************************************************/
+; ../src/kernel/ClearEvent.c	    79  /*                              Internal Global Variables                              */
+; ../src/kernel/ClearEvent.c	    80  /***************************************************************************************/
+; ../src/kernel/ClearEvent.c	    81  /**
+; ../src/kernel/ClearEvent.c	    82   * @name InternalGlobalVariables
+; ../src/kernel/ClearEvent.c	    83   * @{
+; ../src/kernel/ClearEvent.c	    84   */
+; ../src/kernel/ClearEvent.c	    85  
+; ../src/kernel/ClearEvent.c	    86  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/kernel/ClearEvent.c	    87  
+; ../src/kernel/ClearEvent.c	    88  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    89  /*				    			Internal constants		         				   */
+; ../src/kernel/ClearEvent.c	    90  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    91  /**
+; ../src/kernel/ClearEvent.c	    92   * @name InternalConstants
+; ../src/kernel/ClearEvent.c	    93   * @{
+; ../src/kernel/ClearEvent.c	    94   */
+; ../src/kernel/ClearEvent.c	    95  
+; ../src/kernel/ClearEvent.c	    96  /** @} */ /*End of InternalConstants*/
+; ../src/kernel/ClearEvent.c	    97  
+; ../src/kernel/ClearEvent.c	    98  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	    99  /*                        External Function Declration                             */
+; ../src/kernel/ClearEvent.c	   100  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   101  /**
+; ../src/kernel/ClearEvent.c	   102   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/ClearEvent.c	   103   * @{
+; ../src/kernel/ClearEvent.c	   104   */
+; ../src/kernel/ClearEvent.c	   105  /**
+; ../src/kernel/ClearEvent.c	   106   *
+; ../src/kernel/ClearEvent.c	   107   * Detailed Description : The events of task <TaskID> are set according to the event mask <Mask>. Calling SetEvent causes the task <TaskID> to be transferred to the ready state,
+; ../src/kernel/ClearEvent.c	   108   * if it was waiting for at least one of the events specified in <Mask>.
+; ../src/kernel/ClearEvent.c	   109   *
+; ../src/kernel/ClearEvent.c	   110   * @service name    SetEvent
+; ../src/kernel/ClearEvent.c	   111   * @syntax          FUNC(StatusType, OS_CODE) SetEvent
+; ../src/kernel/ClearEvent.c	   112   *                  (
+; ../src/kernel/ClearEvent.c	   113   *                      CONST(TaskType, AUTOMATIC) TaskID,
+; ../src/kernel/ClearEvent.c	   114   *                      CONST(EventTaskType, AUTOMATIC) Mask
+; ../src/kernel/ClearEvent.c	   115   *                  )
+; ../src/kernel/ClearEvent.c	   116   *
+; ../src/kernel/ClearEvent.c	   117   * @service ID      -
+; ../src/kernel/ClearEvent.c	   118   * @sync/async      Synchronous
+; ../src/kernel/ClearEvent.c	   119   * @reentrancy      Non-Reentrant
+; ../src/kernel/ClearEvent.c	   120   * @param[in]       MASK    -   Mask of the events to be set
+; ../src/kernel/ClearEvent.c	   121   * @param[out]      None
+; ../src/kernel/ClearEvent.c	   122   * @return          StatusType     Returns the status which differs according to error checking type
+; ../src/kernel/ClearEvent.c	   123   *                                   Standard:      No error, E_OK
+; ../src/kernel/ClearEvent.c	   124   *                                   Extended:      If TaskID is invalid, E_OS_ID is returned
+; ../src/kernel/ClearEvent.c	   125   *                                                  If referenced task is not an extended task, E_OS_ACCESS is returned
+; ../src/kernel/ClearEvent.c	   126   *                                                  If referenced task is in the suspended state, E_OS_STATE is returned
+; ../src/kernel/ClearEvent.c	   127   * @see             NA
+; ../src/kernel/ClearEvent.c	   128   * @note            Conformance:        ECC1, ECC2
+; ../src/kernel/ClearEvent.c	   129   * @warning         NA
+; ../src/kernel/ClearEvent.c	   130   */
+; ../src/kernel/ClearEvent.c	   131  FUNC(StatusType,OS_CODE) OS_ClearEvent
+; ../src/kernel/ClearEvent.c	   132  (
+; ../src/kernel/ClearEvent.c	   133      CONST(EventMaskType, AUTOMATIC) Mask
+; ../src/kernel/ClearEvent.c	   134  );
+; ../src/kernel/ClearEvent.c	   135  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/kernel/ClearEvent.c	   136  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   137  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/ClearEvent.c	   138  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   139  FUNC(StatusType,OS_CODE) OS_ClearEvent
+; Function OS_ClearEvent
+.L15:
+	.thumb
+	.align	4
+OS_ClearEvent:	.type	func
+
+.L6:
+	push	{r4}
+.L22:
+
+; ../src/kernel/ClearEvent.c	   140  (
+; ../src/kernel/ClearEvent.c	   141      CONST(EventMaskType, AUTOMATIC) Mask
+; ../src/kernel/ClearEvent.c	   142  )
+; ../src/kernel/ClearEvent.c	   143  {
+; ../src/kernel/ClearEvent.c	   144      /* Local Variables Declaration */
+; ../src/kernel/ClearEvent.c	   145      /* Init the return value to E_OK error state */
+; ../src/kernel/ClearEvent.c	   146      VAR(StatusType, AUTOMATIC) ReturnVal = E_OK;
+	movs	r2,#0
+.L25:
+
+; ../src/kernel/ClearEvent.c	   147  
+; ../src/kernel/ClearEvent.c	   148      
+; ../src/kernel/ClearEvent.c	   149  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/ClearEvent.c	   150  
+; ../src/kernel/ClearEvent.c	   151      /* [SWS_OS_12066] */
+; ../src/kernel/ClearEvent.c	   152      /* On calling the ClearEvent service, if the call was not from task level, 
+; ../src/kernel/ClearEvent.c	   153      then it shall return E_OS_CALLEVEL error code. */
+; ../src/kernel/ClearEvent.c	   154      if((OsStateType)OS_STATE_TASK != Kernel.OsState){
+; ../src/kernel/ClearEvent.c	   155          /* Set the return value to OS_STATE error state */
+; ../src/kernel/ClearEvent.c	   156          ReturnVal = E_OS_CALLEVEL;
+; ../src/kernel/ClearEvent.c	   157      }
+; ../src/kernel/ClearEvent.c	   158      /* [SWS_OS_12065] */
+; ../src/kernel/ClearEvent.c	   159      /* On calling the ClearEvent service, if the error checking was extended and the calling task is not an extended task, 
+; ../src/kernel/ClearEvent.c	   160      then it shall return E_OS_ACCESS error code. */
+; ../src/kernel/ClearEvent.c	   161      else if(EXTENDED != Kernel.TaskRunning->TaskFlags->Type)
+; ../src/kernel/ClearEvent.c	   162      {
+; ../src/kernel/ClearEvent.c	   163          /* Set the return value to OS_ACCESS error state */
+; ../src/kernel/ClearEvent.c	   164          ReturnVal = E_OS_ACCESS;
+; ../src/kernel/ClearEvent.c	   165      }
+; ../src/kernel/ClearEvent.c	   166      /* [SWS_OS_12064] */
+; ../src/kernel/ClearEvent.c	   167      /* On calling the ClearEvent service, if the error checking was extended and 
+; ../src/kernel/ClearEvent.c	   168      the calling task is not the owner of the event,then it shall returns E_OS_ACCESS error code.*/
+; ../src/kernel/ClearEvent.c	   169      else if(!(Mask & Kernel.TaskRunning->EventsOwned))
+; ../src/kernel/ClearEvent.c	   170      {
+; ../src/kernel/ClearEvent.c	   171          /* Set the return value to OS_ACCESS error state */
+; ../src/kernel/ClearEvent.c	   172          ReturnVal = E_OS_ACCESS;
+; ../src/kernel/ClearEvent.c	   173      }
+; ../src/kernel/ClearEvent.c	   174      else
+; ../src/kernel/ClearEvent.c	   175      {
+; ../src/kernel/ClearEvent.c	   176          /* ReturnVal = E_OK */
+; ../src/kernel/ClearEvent.c	   177      }
+; ../src/kernel/ClearEvent.c	   178  #endif /* (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED) */
+; ../src/kernel/ClearEvent.c	   179  
+; ../src/kernel/ClearEvent.c	   180      /* [SWS_OS_12063] */
+; ../src/kernel/ClearEvent.c	   181      /* On calling the ClearEvent service, if the error checking was standard 
+; ../src/kernel/ClearEvent.c	   182      then it shall return E_OK indicating that there is no error occurred. */
+; ../src/kernel/ClearEvent.c	   183  	if (E_OK == ReturnVal)
+	bne	.L2
+.L39:
+
+; ../src/kernel/ClearEvent.c	   184      {
+; ../src/kernel/ClearEvent.c	   185          /*	SuspendAllInterrupts(); */
+; ../src/kernel/ClearEvent.c	   186  
+; ../src/kernel/ClearEvent.c	   187          /* [SWS_OS_12062], [SWS_OS_12061], [SWS_OS_12060] */
+; ../src/kernel/ClearEvent.c	   188          /* On calling the ClearEvent service, any events not set in the event mask remains unchanged. */
+; ../src/kernel/ClearEvent.c	   189          /* On calling the ClearEvent service, the task calling this service must own the event to be cleared. */
+; ../src/kernel/ClearEvent.c	   190          /* On calling the ClearEvent service, events of the extended calling the clear event 
+; ../src/kernel/ClearEvent.c	   191          are cleared according to the event (Mask) parameter passed to the service. */
+; ../src/kernel/ClearEvent.c	   192          Kernel.TaskRunning->TaskDynamics->EventsSet &= (EventMaskType)~((Mask) & (Kernel.TaskRunning->EventsOwned));
+	ldr	r1,.L4
+	ldr	r1,[r1,#4]
+.L40:
+	ldr	r3,[r1,#20]
+.L41:
+	ldr	r4,[r3,#12]!
+.L42:
+	ldr	r1,[r1,#24]
+.L43:
+	ands	r0,r0,r1
+.L24:
+	bics	r4,r4,r0
+	str	r4,[r3,#0]
+.L2:
+
+; ../src/kernel/ClearEvent.c	   193  
+; ../src/kernel/ClearEvent.c	   194          /* ResumeAllInterrupts(); */
+; ../src/kernel/ClearEvent.c	   195      }
+; ../src/kernel/ClearEvent.c	   196          
+; ../src/kernel/ClearEvent.c	   197          /*check for HOOK_ERRORHOOK */
+; ../src/kernel/ClearEvent.c	   198          
+; ../src/kernel/ClearEvent.c	   199          /* Return the return value */
+; ../src/kernel/ClearEvent.c	   200          return ReturnVal;
+	mov	r0,r2
+.L26:
+
+; ../src/kernel/ClearEvent.c	   201  }
+	pop	{r4}
+.L23:
+	bx	lr
+.L18:
+	.align	4
+.L4:
+	.dw	Kernel
+.L16:
+	.size	OS_ClearEvent,$-OS_ClearEvent
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_ClearEvent','',4
+	.extern	Kernel
+	.section	.debug_info
+.L8:
+	.dw	3413
+	.dh	3
+	.dw	.L9
+	.db	4
+.L7:
+	.db	1
+	.db	'../src/kernel/ClearEvent.c',0
+	.dw	.L27,.L28
+	.db	12,1
+	.dw	.L10
+.L17:
+	.db	2
+	.db	'unsigned char',0,1,8,2
+	.db	'unsigned int',0,4,7
+.L19:
+	.db	3
+	.dw	70
+	.db	4,1,5
+	.dw	91
+	.db	6
+	.db	'__codeptr',0,1,1,1
+	.dw	93
+	.db	2
+	.db	'int',0,4,5,7,2,87,10,4,8
+	.db	'x',0
+	.dw	116
+	.db	4,2,35,0,0,6
+	.db	'Os_ContexType',0,2,90,2
+	.dw	123
+	.db	6
+	.db	'boolean',0,3,242,1,23
+	.dw	53
+	.db	6
+	.db	'uint8',0,3,247,1,23
+	.dw	53
+	.db	2
+	.db	'unsigned short int',0,2,7,6
+	.db	'uint16',0,3,252,1,24
+	.dw	194
+	.db	6
+	.db	'uint32',0,3,129,2,22
+	.dw	70
+	.db	6
+	.db	'StatusType',0,4,191,1,23
+	.dw	53
+	.db	6
+	.db	'Std_ReturnType',0,4,235,2,15
+	.dw	53
+	.db	6
+	.db	'Std_TransformerClass',0,4,238,2,15
+	.dw	53
+	.db	6
+	.db	'Std_TransformerForwardCode',0,4,241,2,15
+	.dw	53
+	.db	6
+	.db	'TaskType',0,5,183,1,29
+	.dw	53
+	.db	6
+	.db	'TaskStateType',0,5,189,1,29
+	.dw	53
+	.db	6
+	.db	'TaskPriorityType',0,5,195,1,29
+	.dw	53
+	.db	6
+	.db	'ResourceType',0,5,198,1,29
+	.dw	53
+	.db	6
+	.db	'EventMaskType',0,5,201,1,30
+	.dw	70
+	.db	6
+	.db	'AppModeType',0,5,207,1,28
+	.dw	53
+	.db	6
+	.db	'OsStateType',0,5,210,1,28
+	.dw	53
+	.db	6
+	.db	'TickType',0,5,214,1,30
+	.dw	70
+	.db	9
+	.db	'AlarmBaseType_s',0,5,230,1,8,12,8
+	.db	'maxallowedvalue',0
+	.dw	70
+	.db	4,2,35,0,8
+	.db	'ticksperbase',0
+	.dw	70
+	.db	4,2,35,4,8
+	.db	'mincycle',0
+	.dw	70
+	.db	4,2,35,8,0,6
+	.db	'AlarmBaseType',0,5,220,1,32
+	.dw	530
+	.db	6
+	.db	'AlarmType',0,5,226,1,28
+	.dw	53
+	.db	9
+	.db	'Os_InernalResourceDynamic_s',0,6,66,8,2,8
+	.db	'TakenTaskPriority',0
+	.dw	53
+	.db	1,2,35,0,8
+	.db	'TakenFlag',0
+	.dw	53
+	.db	1,2,35,1,0,6
+	.db	'Os_InernalResourceDynamic',0,6,55,44
+	.dw	660
+	.db	3
+	.dw	53
+	.db	5
+	.dw	660
+	.db	9
+	.db	'Os_InteranlResource_s',0,6,79,8,8,8
+	.db	'CeilingPriority',0
+	.dw	774
+	.db	1,2,35,0,8
+	.db	'InternalResourceDynamics',0
+	.dw	779
+	.db	4,2,35,4,0,6
+	.db	'Os_InteranlResource',0,6,57,38
+	.dw	784
+	.db	3
+	.dw	53
+	.db	3
+	.dw	53
+	.db	5
+	.dw	.L29-.L8
+	.db	9
+	.db	'Os_ResourceDynamic_s',0,6,105,8,8,8
+	.db	'OwnerTaskPriority',0
+	.dw	53
+	.db	1,2,35,0,8
+	.db	'OwnerTaskID',0
+	.dw	53
+	.db	1,2,35,1,8
+	.db	'LinkedResource',0
+	.dw	909
+	.db	4,2,35,4,0,5
+	.dw	914
+.L29:
+	.db	9
+	.db	'Os_Resource_s',0,6,92,8,8,8
+	.db	'CeilingPriority',0
+	.dw	899
+	.db	1,2,35,0,8
+	.db	'ResourceID',0
+	.dw	904
+	.db	1,2,35,1,8
+	.db	'ResourceDynamics',0
+	.dw	1013
+	.db	4,2,35,4,0,6
+	.db	'Os_Resource',0,6,59,30
+	.dw	1018
+	.db	6
+	.db	'Os_ResourceDynamic',0,6,61,37
+	.dw	914
+	.db	5
+	.dw	70
+	.db	6
+	.db	'StackPtrType',0,7,143,1,30
+	.dw	1156
+	.db	6
+	.db	'StackSizeType',0,7,145,1,31
+	.dw	70
+	.db	6
+	.db	'TaskActivationCounterType',0,7,147,1,30
+	.dw	53
+	.db	6
+	.db	'QueueIndexType',0,7,149,1,30
+	.dw	53
+	.db	10,1,1,5
+	.dw	1265
+	.db	6
+	.db	'EntryFunctionPtrType',0,7,151,1,9
+	.dw	1268
+	.db	9
+	.db	'TaskFlagsType_s',0,7,172,1,8,2,8
+	.db	'Type',0
+	.dw	53
+	.db	1,2,35,0,8
+	.db	'TaskSchedulingPolicy',0
+	.dw	53
+	.db	1,2,35,1,0,6
+	.db	'TaskFlagsType',0,7,155,1,32
+	.dw	1303
+	.db	9
+	.db	'TaskStackType_s',0,7,243,1,8,12,8
+	.db	'StackBase',0
+	.dw	1161
+	.db	4,2,35,0,8
+	.db	'CurrentStackPtr',0
+	.dw	1161
+	.db	4,2,35,4,8
+	.db	'StackSize',0
+	.dw	70
+	.db	4,2,35,8,0,6
+	.db	'TaskStackType',0,7,157,1,32
+	.dw	1393
+	.db	5
+	.dw	70
+	.db	5
+	.dw	123
+	.db	9
+	.db	'Os_TaskDynamic_s',0,7,214,1,8,24,8
+	.db	'Context',0
+	.dw	1507
+	.db	4,2,35,0,8
+	.db	'Resources',0
+	.dw	909
+	.db	4,2,35,4,8
+	.db	'PriorityQueueIndex',0
+	.dw	53
+	.db	1,2,35,8,8
+	.db	'EventsSet',0
+	.dw	70
+	.db	4,2,35,12,8
+	.db	'EventsWaiting',0
+	.dw	70
+	.db	4,2,35,16,8
+	.db	'TaskCurrentPriority',0
+	.dw	53
+	.db	1,2,35,20,8
+	.db	'TaskState',0
+	.dw	53
+	.db	1,2,35,21,8
+	.db	'PendingActivationRequests',0
+	.dw	53
+	.db	1,2,35,22,0,6
+	.db	'Os_TaskDynamic',0,7,159,1,33
+	.dw	1512
+	.db	3
+	.dw	53
+	.db	3
+	.dw	53
+	.db	3
+	.dw	53
+	.db	3
+	.dw	53
+	.db	5
+	.dw	1303
+	.db	5
+	.dw	1393
+	.db	3
+	.dw	1273
+	.db	5
+	.dw	784
+	.db	5
+	.dw	1512
+	.db	9
+	.db	'Os_Task_s',0,7,186,1,8,28,8
+	.db	'TaskStaticPriority',0
+	.dw	1749
+	.db	1,2,35,0,8
+	.db	'TaskID',0
+	.dw	1754
+	.db	1,2,35,1,8
+	.db	'ApplicationMode',0
+	.dw	1759
+	.db	1,2,35,2,8
+	.db	'NumOfActivationRequests',0
+	.dw	1764
+	.db	1,2,35,3,8
+	.db	'TaskFlags',0
+	.dw	1769
+	.db	4,2,35,4,8
+	.db	'TaskStack',0
+	.dw	1774
+	.db	4,2,35,8,8
+	.db	'EntryPoint',0
+	.dw	1779
+	.db	4,2,35,12,8
+	.db	'InternalResource',0
+	.dw	1784
+	.db	4,2,35,16,8
+	.db	'TaskDynamics',0
+	.dw	1789
+	.db	4,2,35,20,8
+	.db	'EventsOwned',0
+	.dw	70
+	.db	4,2,35,24,0,6
+	.db	'Os_Task',0,7,161,1,26
+	.dw	1794
+	.db	5
+	.dw	1265
+	.db	5
+	.dw	1794
+	.db	9
+	.db	'Os_CpuLoad_s',0,7,155,2,8,8,8
+	.db	'IdleTime',0
+	.dw	70
+	.db	4,2,35,0,8
+	.db	'CurrentCpuLoad',0
+	.dw	53
+	.db	1,2,35,4,8
+	.db	'PeakCpuLoad',0
+	.dw	53
+	.db	1,2,35,5,0,5
+	.dw	2067
+	.db	9
+	.db	'Os_Kernel_s',0,7,129,2,8,24,8
+	.db	'TaskQueueHead',0
+	.dw	2062
+	.db	4,2,35,0,8
+	.db	'TaskRunning',0
+	.dw	2062
+	.db	4,2,35,4,8
+	.db	'TaskPreempted',0
+	.dw	2062
+	.db	4,2,35,8,8
+	.db	'CpuLoad',0
+	.dw	2150
+	.db	4,2,35,12,8
+	.db	'OsState',0
+	.dw	53
+	.db	1,2,35,16,8
+	.db	'ForceScheduling',0
+	.dw	53
+	.db	1,2,35,17,8
+	.db	'SchedulerNeeded',0
+	.dw	53
+	.db	1,2,35,18,8
+	.db	'DispatcherNeeded',0
+	.dw	53
+	.db	1,2,35,19,8
+	.db	'NewContext',0
+	.dw	53
+	.db	1,2,35,20,0,6
+	.db	'Os_Kernel',0,7,163,1,28
+	.dw	2155
+	.db	6
+	.db	'Os_CpuLoad',0,7,165,1,29
+	.dw	2067
+	.db	3
+	.dw	70
+	.db	3
+	.dw	70
+	.db	3
+	.dw	70
+	.db	3
+	.dw	53
+	.db	3
+	.dw	70
+	.db	9
+	.db	'Os_Counter_s',0,8,44,8,28,8
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2410
+	.db	4,2,35,0,8
+	.db	'OsCounterMinCycle',0
+	.dw	2415
+	.db	4,2,35,4,8
+	.db	'OsCounterTicksPerBase',0
+	.dw	2420
+	.db	4,2,35,8,8
+	.db	'OsCounterType',0
+	.dw	2425
+	.db	1,2,35,12,8
+	.db	'OsSecondsPerTick',0
+	.dw	2430
+	.db	4,2,35,16,8
+	.db	'OsCounterCurrentTicks',0
+	.dw	70
+	.db	4,2,35,20,8
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	53
+	.db	1,2,35,24,0,6
+	.db	'Os_Counter',0,8,42,29
+	.dw	2435
+	.db	9
+	.db	'Os_AlarmActivateTask_s',0,9,140,1,8,1,8
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	53
+	.db	1,2,35,0,0,5
+	.dw	2679
+	.db	9
+	.db	'Os_AlarmSetEvent_s',0,9,146,1,8,8,8
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	53
+	.db	1,2,35,0,8
+	.db	'OsAlarmSetEventRef',0
+	.dw	70
+	.db	4,2,35,4,0,5
+	.dw	2746
+	.db	6
+	.db	'CallbackFuncPtrType',0,9,88,9
+	.dw	1268
+	.db	3
+	.dw	2837
+	.db	11
+	.db	'Os_AlarmAction_u',0,9,92,7,4,8
+	.db	'OsAlarmActivateTask',0
+	.dw	2741
+	.db	4,2,35,0,8
+	.db	'OsAlarmSetEventTask',0
+	.dw	2832
+	.db	4,2,35,0,8
+	.db	'OsAlarmCallbackName',0
+	.dw	2865
+	.db	4,2,35,0,0,5
+	.dw	2435
+	.db	5
+	.dw	.L30-.L8
+.L30:
+	.db	9
+	.db	'Os_Alarm_s',0,9,104,8,36,8
+	.db	'OsAlarmAction',0
+	.dw	2870
+	.db	4,2,35,0,8
+	.db	'OsAlarmActionType',0
+	.dw	53
+	.db	1,2,35,4,8
+	.db	'OsAlarmExpiryTime',0
+	.dw	70
+	.db	4,2,35,8,8
+	.db	'OsAlarmCycleTime',0
+	.dw	70
+	.db	4,2,35,12,8
+	.db	'OsAlarmState',0
+	.dw	53
+	.db	1,2,35,16,8
+	.db	'OsAlarmCounterRef',0
+	.dw	2980
+	.db	4,2,35,20,8
+	.db	'OsAlarmNext',0
+	.dw	2985
+	.db	4,2,35,24,8
+	.db	'OsAlarmPrevious',0
+	.dw	2985
+	.db	4,2,35,28,8
+	.db	'OsAlarmAlarmTime',0
+	.dw	53
+	.db	1,2,35,32,8
+	.db	'OsAlarmAutoStartType',0
+	.dw	53
+	.db	1,2,35,33,0,6
+	.db	'Os_Alarm',0,9,73,45
+	.dw	2990
+	.db	5
+	.dw	1265
+	.db	6
+	.db	'Os_AlarmAction',0,9,76,45
+	.dw	2870
+	.db	6
+	.db	'Os_AlarmActivateTask',0,9,79,41
+	.dw	2679
+	.db	6
+	.db	'Os_AlarmSetEvent',0,9,82,38
+	.dw	2746
+	.db	12
+	.db	'Kernel',0,10,40,18
+	.dw	2155
+	.db	1,1,6
+	.db	'QueueSize',0,11,183,1,29
+	.dw	53
+	.db	6
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	53
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L9:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,21,0,54
+	.db	15,0,0,5,15,0,73,19,0,0,6,22,0,3,8,58,15,59,15,57,15,73,19,0,0,7,19,1,58,15,59,15,57,15,11,15,0,0,8,13
+	.db	0,3,8,73,19,11,15,56,9,0,0,9,19,1,3,8,58,15,59,15,57,15,11,15,0,0,10,21,0,54,15,39,12,0,0,11,23,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,12,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L10:
+	.dw	.L32-.L31
+.L31:
+	.dh	3
+	.dw	.L34-.L33
+.L33:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/ClearEvent.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L34:
+.L32:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ClearEvent')
+.L11:
+	.dw	149
+	.dh	3
+	.dw	.L12
+	.db	4,1
+	.db	'../src/kernel/ClearEvent.c',0
+	.dw	.L27,.L28
+	.db	12,1
+	.dw	.L14,.L13
+	.db	2
+	.dw	.L7
+	.db	3
+	.db	'OS_ClearEvent',0,1,139,1,26
+	.dw	.L17
+	.db	1,1,1
+	.dw	.L6,.L18,.L5
+	.db	4
+	.db	'Mask',0,1,141,1,37
+	.dw	.L19,.L20
+	.db	5
+	.dw	.L6,.L18
+	.db	6
+	.db	'ReturnVal',0,1,146,1,32
+	.dw	.L17,.L21
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ClearEvent')
+.L12:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ClearEvent')
+.L13:
+	.dw	.L36-.L35
+.L35:
+	.dh	3
+	.dw	.L38-.L37
+.L37:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/ClearEvent.c',0,0,0,0,0
+.L38:
+	.db	5,26,7,0,5,2
+	.dw	.L6
+	.db	3,138,1,1,5,44,9
+	.dh	.L22-.L6
+	.db	3,7,1,5,2,9
+	.dh	.L25-.L22
+	.db	3,37,1,5,15,7,9
+	.dh	.L39-.L25
+	.db	3,9,1,5,27,9
+	.dh	.L40-.L39
+	.db	1,5,41,9
+	.dh	.L41-.L40
+	.db	1,5,101,9
+	.dh	.L42-.L41
+	.db	1,5,80,9
+	.dh	.L43-.L42
+	.db	1,5,53,9
+	.dh	.L24-.L43
+	.db	1,5,9,9
+	.dh	.L2-.L24
+	.db	3,8,1,5,1,9
+	.dh	.L26-.L2
+	.db	3,1,1,9
+	.dh	.L16-.L26
+	.db	0,1,1
+.L36:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ClearEvent')
+.L14:
+	.dw	-1,.L15,0,.L16-.L15,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L27:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L28:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ClearEvent')
+.L20:
+	.dw	-1,.L6,0,.L24-.L6
+	.dh	1
+	.db	80
+	.dw	0,0
+.L5:
+	.dw	-1,.L6,0,.L22-.L6
+	.dh	2
+	.db	125,0
+	.dw	.L22-.L6,.L23-.L6
+	.dh	2
+	.db	125,4
+	.dw	.L23-.L6,.L18-.L6
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L21:
+	.dw	-1,.L6,.L25-.L6,.L18-.L6
+	.dh	1
+	.db	82
+	.dw	.L26-.L6,.L18-.L6
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L44:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ClearEvent')
+	.dw	64
+	.dw	.L44,.L6,.L18-.L6
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L22-.L6)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L23-.L22)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/ClearEvent.c	   202  
+; ../src/kernel/ClearEvent.c	   203  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   204  /*                        Internal Function Declration                             */
+; ../src/kernel/ClearEvent.c	   205  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   206  
+; ../src/kernel/ClearEvent.c	   207  /***********************************************************************************/
+; ../src/kernel/ClearEvent.c	   208  /*				              End Of File			         				       */
+; ../src/kernel/ClearEvent.c	   209  /***********************************************************************************/
+
+	; Module end
+	.end

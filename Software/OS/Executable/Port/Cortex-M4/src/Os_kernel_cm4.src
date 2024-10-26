@@ -1,0 +1,1574 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/Port/Cortex-M4/src/.Os_kernel_cm4.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Port/Cortex-M4/src/Os_kernel_cm4.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Port\\Cortex-M4\\src\\Os_kernel_cm4.src ../Port/Cortex-M4/src/Os_kernel_cm4.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../Port/Cortex-M4/src/Os_kernel_cm4.c'
+
+	.section	.text ,cluster('$group_OS_StartTask')
+	.global	OS_StartTask
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     1  /** 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     2   * @file Os_kernel_cm4.c
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     3   * @author Mahmoud Ismail 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     4   * @version 1.0.0
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     5   * @date 6-3-2024
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     6   * @platform Aurix TC39x- HSM Core    
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     7   * @brief This files contains Cortex-M3 dependent code for OS kernel.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     8   * 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	     9   * 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    10  */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    11  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    12  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    13  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    14                                              
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    15  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    16  /**********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    17  /*                               INCLUDE HEADERS	                              */  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    18  /**********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    19  /* Include Kernel Header File */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    20  #include <Os_kernel.h>
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    21  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    22  /* Ifx Compiler definition file */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    23  #include <Ifx_Compiler.h>
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    24  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    25  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    26  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    27  /*                                  MACROS                                         */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    28  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    29  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    30  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    31  /************************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    32  /*                                 TypeDefnitions                                   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    33  /************************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    34  /***************************  Configuration Types     *******************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    35  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    36  /*************************** Module Specific Typedefs *******************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    37  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    38  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    39  /*				    			External constants		         				   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    40  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    41  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    42  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    43  /*				    	  External data	shared global varaibles	         	       */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    44  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    45  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    46  /* Pointer to the previous task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    47  Os_Task *PTask;
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    48  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    49  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    50  /*                        External Function Declration                             */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    51  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    52  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    53  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    54  /*				    	 External Functions Definition		      				   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    55  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    56  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    57  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    58  StackPtrType UpdateTaskPSP(StackPtrType PSP);
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    59  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    60  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    61  void OS_StartTask(void *PrevTask)
+; Function OS_StartTask
+.L40:
+	.thumb
+	.align	4
+OS_StartTask:	.type	func
+
+.L13:
+	push	{lr}
+.L89:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    62  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    63  	/* Set the previous task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    64  	PTask = (Os_Task *) PrevTask;
+	ldr	r1,.L8
+.L126:
+	str	r0,[r1,#0]
+.L127:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    65  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    66  	/* Create the stack frame for the task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    67  	Os_CreateStackFrame();
+	bl	Os_CreateStackFrame
+.L90:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    68  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    69  	/* Dispatch the task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    70  	OS_DISPATCH();
+	movs	r0,#-536813568
+	ldr	r1,[r0,#3332]
+	orrs	r1,r1,#268435456
+	str	r1,[r0,#3332]
+.L128:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    71  }
+	pop	{pc}
+.L81:
+	.align	4
+.L8:
+	.dw	PTask
+.L41:
+	.size	OS_StartTask,$-OS_StartTask
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_ResumeTask')
+	.global	OS_ResumeTask
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    72  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    73  void OS_ResumeTask(void *PrevTask)
+; Function OS_ResumeTask
+.L46:
+	.thumb
+	.align	4
+OS_ResumeTask:	.type	func
+
+.L15:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    74  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    75  	/* Set the previous task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    76  	PTask = (Os_Task *) PrevTask;
+	ldr	r1,.L9
+.L133:
+	str	r0,[r1,#0]
+.L134:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    77  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    78  	/* Dispatch the task */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    79  	OS_DISPATCH();
+	mov	r0,#-536813568
+.L91:
+	ldr	r1,[r0,#3332]
+	orr	r1,r1,#268435456
+	str	r1,[r0,#3332]
+.L135:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    80  }
+	bx	lr
+.L84:
+	.align	4
+.L9:
+	.dw	PTask
+.L47:
+	.size	OS_ResumeTask,$-OS_ResumeTask
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_Os_CreateStackFrame')
+	.global	Os_CreateStackFrame
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    81  	
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    82  /**
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    83   * @brief Creates the stack frame for a task.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    84   *
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    85   * This function sets up the initial stack frame for a task by initializing the stack pointer,
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    86   * setting the initial values of the registers, and configuring the program counter (PC) and
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    87   * link register (LR) registers.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    88   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    89  void Os_CreateStackFrame(void)
+; Function Os_CreateStackFrame
+.L34:
+	.thumb
+	.align	4
+Os_CreateStackFrame:	.type	func
+
+.L17:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    90  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    91      /* Set the initial value of the stack pointer to the top of the stack */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    92      StackPtrType CurrentStackPtr = Kernel.TaskRunning->TaskStack->StackBase;
+	ldr	r1,.L10
+	ldr	r0,.L10+4
+	ldr	r2,[r0,#4]
+.L109:
+	ldr	r2,[r2,#8]
+.L110:
+	ldr	r2,[r2,#0]
+.L92:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    93  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    94      /* Decrement the stack first */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    95      (CurrentStackPtr)--;
+	subs	r2,r2,#4
+.L111:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    96      /* xPSR: Set the initial value of the XPSR register to 0x01000000 */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    97      /* Bit-24 Must be 1 (thumb bit) */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    98      (*CurrentStackPtr) = (uint32)0x01000000;  
+	movs	r3,#16777216
+.L112:
+	str	r3,[r2],#-4
+.L113:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	    99  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   100      /* Decrement the stack */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   101      (CurrentStackPtr)--;
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   102      /* PC: Set the initial value of the PC register to the task entry point */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   103      (*CurrentStackPtr) = (uint32)Kernel.TaskRunning->EntryPoint;
+	ldr	r0,[r0,#4]
+.L114:
+	ldr	r0,[r0,#12]
+.L115:
+	str	r0,[r2],#-4
+.L116:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   104  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   105      /* Decrement the stack */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   106      (CurrentStackPtr)--;
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   107      /* LR = 0xFFFFFFFD (EXC_RETURN)Return to thread with PSP */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   108      (*CurrentStackPtr) = (uint32)0xFFFFFFFD;  /* LR: Set the initial value of the LR register to 0x00000000 */
+	mvn	r0,#2
+.L117:
+	str	r0,[r2,#0]
+.L77:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   109  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   110      /* Set initial value of the R0-R12 registers to 0x00000000 */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   111      for(uint8 i = 0; i < 13; i++)
+	movs	r0,#0
+.L93:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   112      {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   113          /* Decrement the stack */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   114          (CurrentStackPtr)--;
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   115          /* R0-R12: Set the initial value of the R0-R12 registers to 0x00000000 */ 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   116          (*CurrentStackPtr) = (uint32)0x00000000;
+	movs	r3,#0
+.L118:
+	b	.L2
+.L3:
+	str	r3,[r2,#-4]!
+.L119:
+	adds	r0,r0,#1
+.L2:
+	cmp	r0,#13
+	blt	.L3
+.L78:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   117      }
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   118  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   119      /* Set the stack pointer to the top of the stack */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   120      Kernel.TaskRunning->TaskStack->CurrentStackPtr = CurrentStackPtr;
+	ldr	r0,[r1,#0]
+.L94:
+	ldr	r0,[r0,#8]
+.L120:
+	str	r2,[r0,#4]
+.L121:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   121  }
+	bx	lr
+.L74:
+	.align	4
+.L10:
+	.dw	Kernel+4
+	.dw	Kernel
+.L35:
+	.size	Os_CreateStackFrame,$-Os_CreateStackFrame
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_UpdateTaskPSP')
+	.global	UpdateTaskPSP
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   122  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   123  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   124  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   125  /**
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   126   * @brief Updates the Process Stack Pointer (PSP) of the current task and returns the updated PSP.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   127   *
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   128   * This function updates the Stack Base of the task at the head of the task queue with the given PSP.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   129   * It then returns the Stack Base of the currently running task.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   130   *
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   131   * @param PSP The Process Stack Pointer to be updated.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   132   * @return The updated Stack Base of the currently running task.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   133   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   134  StackPtrType UpdateTaskPSP(StackPtrType PSP)
+; Function UpdateTaskPSP
+.L70:
+	.thumb
+	.align	4
+UpdateTaskPSP:	.type	func
+
+.L19:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   135  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   136  	if((Kernel.TaskPreempted != NULL_PTR))
+	ldr	r1,.L11
+.L156:
+	ldr	r2,[r1,#8]
+.L157:
+	cbz	r2,.L4
+.L158:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   137  		Kernel.TaskPreempted->TaskStack->CurrentStackPtr = PSP;
+	ldr	r2,[r2,#8]
+.L159:
+	str	r0,[r2,#4]
+.L4:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   138  	
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   139  	return (Kernel.TaskRunning->TaskStack->CurrentStackPtr);
+	ldr	r0,[r1,#4]
+.L95:
+	ldr	r0,[r0,#8]
+.L160:
+	ldr	r0,[r0,#4]
+.L161:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   140  }
+	bx	lr
+.L86:
+	.align	4
+.L11:
+	.dw	Kernel
+.L71:
+	.size	UpdateTaskPSP,$-UpdateTaskPSP
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_CoretexIdle')
+	.global	OS_CoretexIdle
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   141  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   142  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   143  /**
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   144   * @brief Cortex-M4 idle function.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   145   * 
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   146   * This function is responsible for putting the Cortex-M4 processor into a low power mode
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   147   * while waiting for interrupts. It enters a while loop and executes the "wfi" assembly
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   148   * instruction, which stands for "wait for interrupt". This instruction puts the processor
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   149   * into a low power mode until an interrupt occurs.
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   150   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   151  void OS_CoretexIdle(void)
+; Function OS_CoretexIdle
+.L52:
+	.thumb
+	.align	4
+OS_CoretexIdle:	.type	func
+
+.L21:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   152  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   153  	while(1)
+	b	.L6
+.L7:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   154  	{
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   155  		/* Enter low power mode */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   156  		__asm("wfi");
+	wfi
+.L6:
+	movs	r0,#1
+.L140:
+	bne	.L7
+.L141:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   157  	}	
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   158  }
+	bx	lr
+.L53:
+	.size	OS_CoretexIdle,$-OS_CoretexIdle
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_EnterKernel')
+	.global	OS_EnterKernel
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   159  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   160  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   161  void OS_EnterKernel(void)
+; Function OS_EnterKernel
+.L58:
+	.thumb
+	.align	4
+OS_EnterKernel:	.type	func
+
+.L23:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   162  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   163  	__asm volatile("svc 0");
+	svc 0
+.L146:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   164  }
+	bx	lr
+.L59:
+	.size	OS_EnterKernel,$-OS_EnterKernel
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_LeaveKernel')
+	.global	OS_LeaveKernel
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   165  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   166  void OS_LeaveKernel(void)
+; Function OS_LeaveKernel
+.L64:
+	.thumb
+	.align	4
+OS_LeaveKernel:	.type	func
+
+.L25:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   167  {
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   168  	 IFX_SWITCH_TO_USER_MODE();
+	MRS R0,CONTROL 
+	 ORR R0,R0,#0x01 
+	 MSR CONTROL,R0 
+.L151:
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   169  }
+	bx	lr
+.L65:
+	.size	OS_LeaveKernel,$-OS_LeaveKernel
+	; End of function
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_PTask')
+	.global	PTask
+	.align	4
+PTask:	.type	object
+	.size	PTask,4
+	.ds	4
+	.endsec	; End of section
+
+	.calls	'OS_StartTask','Os_CreateStackFrame'
+	.calls	'OS_StartTask','',4
+	.calls	'OS_ResumeTask','',0
+	.calls	'Os_CreateStackFrame','',0
+	.calls	'UpdateTaskPSP','',0
+	.calls	'OS_CoretexIdle','',0
+	.calls	'OS_EnterKernel','',0
+	.calls	'OS_LeaveKernel','',0
+	.extern	Kernel
+	.section	.debug_info
+.L27:
+	.dw	3376
+	.dh	3
+	.dw	.L28
+	.db	4
+.L26:
+	.db	1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L29
+	.db	2
+	.db	'unsigned int',0,4,7,3
+	.dw	30
+	.db	3
+	.dw	30
+.L75:
+	.db	4
+	.db	'StackPtrType',0,1,143,1,30
+	.dw	51
+.L79:
+	.db	2
+	.db	'unsigned char',0,1,8,5
+	.db	'void',0
+.L82:
+	.db	3
+	.dw	95
+	.db	6,1,3
+	.dw	106
+	.db	4
+	.db	'__codeptr',0,2,1,1
+	.dw	108
+	.db	2
+	.db	'int',0,4,5,7,3,87,10,4,8
+	.db	'x',0
+	.dw	131
+	.db	4,2,35,0,0,4
+	.db	'Os_ContexType',0,3,90,2
+	.dw	138
+	.db	4
+	.db	'boolean',0,4,242,1,23
+	.dw	78
+	.db	4
+	.db	'uint8',0,4,247,1,23
+	.dw	78
+	.db	2
+	.db	'unsigned short int',0,2,7,4
+	.db	'uint16',0,4,252,1,24
+	.dw	209
+	.db	4
+	.db	'uint32',0,4,129,2,22
+	.dw	30
+	.db	4
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	78
+	.db	4
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	78
+	.db	4
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	78
+	.db	4
+	.db	'TaskType',0,6,183,1,29
+	.dw	78
+	.db	4
+	.db	'TaskStateType',0,6,189,1,29
+	.dw	78
+	.db	4
+	.db	'TaskPriorityType',0,6,195,1,29
+	.dw	78
+	.db	4
+	.db	'ResourceType',0,6,198,1,29
+	.dw	78
+	.db	4
+	.db	'EventMaskType',0,6,201,1,30
+	.dw	30
+	.db	4
+	.db	'AppModeType',0,6,207,1,28
+	.dw	78
+	.db	4
+	.db	'OsStateType',0,6,210,1,28
+	.dw	78
+	.db	4
+	.db	'TickType',0,6,214,1,30
+	.dw	30
+	.db	9
+	.db	'AlarmBaseType_s',0,6,230,1,8,12,8
+	.db	'maxallowedvalue',0
+	.dw	30
+	.db	4,2,35,0,8
+	.db	'ticksperbase',0
+	.dw	30
+	.db	4,2,35,4,8
+	.db	'mincycle',0
+	.dw	30
+	.db	4,2,35,8,0,4
+	.db	'AlarmBaseType',0,6,220,1,32
+	.dw	525
+	.db	4
+	.db	'AlarmType',0,6,226,1,28
+	.dw	78
+	.db	9
+	.db	'Os_InernalResourceDynamic_s',0,7,66,8,2,8
+	.db	'TakenTaskPriority',0
+	.dw	78
+	.db	1,2,35,0,8
+	.db	'TakenFlag',0
+	.dw	78
+	.db	1,2,35,1,0,4
+	.db	'Os_InernalResourceDynamic',0,7,55,44
+	.dw	655
+	.db	10
+	.dw	78
+	.db	3
+	.dw	655
+	.db	9
+	.db	'Os_InteranlResource_s',0,7,79,8,8,8
+	.db	'CeilingPriority',0
+	.dw	769
+	.db	1,2,35,0,8
+	.db	'InternalResourceDynamics',0
+	.dw	774
+	.db	4,2,35,4,0,4
+	.db	'Os_InteranlResource',0,7,57,38
+	.dw	779
+	.db	10
+	.dw	78
+	.db	10
+	.dw	78
+	.db	3
+	.dw	.L99-.L27
+	.db	9
+	.db	'Os_ResourceDynamic_s',0,7,105,8,8,8
+	.db	'OwnerTaskPriority',0
+	.dw	78
+	.db	1,2,35,0,8
+	.db	'OwnerTaskID',0
+	.dw	78
+	.db	1,2,35,1,8
+	.db	'LinkedResource',0
+	.dw	904
+	.db	4,2,35,4,0,3
+	.dw	909
+.L99:
+	.db	9
+	.db	'Os_Resource_s',0,7,92,8,8,8
+	.db	'CeilingPriority',0
+	.dw	894
+	.db	1,2,35,0,8
+	.db	'ResourceID',0
+	.dw	899
+	.db	1,2,35,1,8
+	.db	'ResourceDynamics',0
+	.dw	1008
+	.db	4,2,35,4,0,4
+	.db	'Os_Resource',0,7,59,30
+	.dw	1013
+	.db	4
+	.db	'Os_ResourceDynamic',0,7,61,37
+	.dw	909
+	.db	4
+	.db	'StackSizeType',0,1,145,1,31
+	.dw	30
+	.db	4
+	.db	'TaskActivationCounterType',0,1,147,1,30
+	.dw	78
+	.db	4
+	.db	'QueueIndexType',0,1,149,1,30
+	.dw	78
+	.db	11,1,1,3
+	.dw	1233
+	.db	4
+	.db	'EntryFunctionPtrType',0,1,151,1,9
+	.dw	1236
+	.db	9
+	.db	'TaskFlagsType_s',0,1,172,1,8,2,8
+	.db	'Type',0
+	.dw	78
+	.db	1,2,35,0,8
+	.db	'TaskSchedulingPolicy',0
+	.dw	78
+	.db	1,2,35,1,0,4
+	.db	'TaskFlagsType',0,1,155,1,32
+	.dw	1271
+	.db	9
+	.db	'TaskStackType_s',0,1,243,1,8,12,8
+	.db	'StackBase',0
+	.dw	56
+	.db	4,2,35,0,8
+	.db	'CurrentStackPtr',0
+	.dw	56
+	.db	4,2,35,4,8
+	.db	'StackSize',0
+	.dw	30
+	.db	4,2,35,8,0,4
+	.db	'TaskStackType',0,1,157,1,32
+	.dw	1361
+	.db	3
+	.dw	138
+	.db	9
+	.db	'Os_TaskDynamic_s',0,1,214,1,8,24,8
+	.db	'Context',0
+	.dw	1470
+	.db	4,2,35,0,8
+	.db	'Resources',0
+	.dw	904
+	.db	4,2,35,4,8
+	.db	'PriorityQueueIndex',0
+	.dw	78
+	.db	1,2,35,8,8
+	.db	'EventsSet',0
+	.dw	30
+	.db	4,2,35,12,8
+	.db	'EventsWaiting',0
+	.dw	30
+	.db	4,2,35,16,8
+	.db	'TaskCurrentPriority',0
+	.dw	78
+	.db	1,2,35,20,8
+	.db	'TaskState',0
+	.dw	78
+	.db	1,2,35,21,8
+	.db	'PendingActivationRequests',0
+	.dw	78
+	.db	1,2,35,22,0,4
+	.db	'Os_TaskDynamic',0,1,159,1,33
+	.dw	1475
+	.db	10
+	.dw	78
+	.db	10
+	.dw	78
+	.db	10
+	.dw	78
+	.db	10
+	.dw	78
+	.db	3
+	.dw	1271
+	.db	3
+	.dw	1361
+	.db	10
+	.dw	1241
+	.db	3
+	.dw	779
+	.db	3
+	.dw	1475
+	.db	9
+	.db	'Os_Task_s',0,1,186,1,8,28,8
+	.db	'TaskStaticPriority',0
+	.dw	1712
+	.db	1,2,35,0,8
+	.db	'TaskID',0
+	.dw	1717
+	.db	1,2,35,1,8
+	.db	'ApplicationMode',0
+	.dw	1722
+	.db	1,2,35,2,8
+	.db	'NumOfActivationRequests',0
+	.dw	1727
+	.db	1,2,35,3,8
+	.db	'TaskFlags',0
+	.dw	1732
+	.db	4,2,35,4,8
+	.db	'TaskStack',0
+	.dw	1737
+	.db	4,2,35,8,8
+	.db	'EntryPoint',0
+	.dw	1742
+	.db	4,2,35,12,8
+	.db	'InternalResource',0
+	.dw	1747
+	.db	4,2,35,16,8
+	.db	'TaskDynamics',0
+	.dw	1752
+	.db	4,2,35,20,8
+	.db	'EventsOwned',0
+	.dw	30
+	.db	4,2,35,24,0,4
+	.db	'Os_Task',0,1,161,1,26
+	.dw	1757
+	.db	3
+	.dw	1233
+.L88:
+	.db	3
+	.dw	1757
+	.db	9
+	.db	'Os_CpuLoad_s',0,1,155,2,8,8,8
+	.db	'IdleTime',0
+	.dw	30
+	.db	4,2,35,0,8
+	.db	'CurrentCpuLoad',0
+	.dw	78
+	.db	1,2,35,4,8
+	.db	'PeakCpuLoad',0
+	.dw	78
+	.db	1,2,35,5,0,3
+	.dw	2030
+	.db	9
+	.db	'Os_Kernel_s',0,1,129,2,8,24,8
+	.db	'TaskQueueHead',0
+	.dw	2025
+	.db	4,2,35,0,8
+	.db	'TaskRunning',0
+	.dw	2025
+	.db	4,2,35,4,8
+	.db	'TaskPreempted',0
+	.dw	2025
+	.db	4,2,35,8,8
+	.db	'CpuLoad',0
+	.dw	2113
+	.db	4,2,35,12,8
+	.db	'OsState',0
+	.dw	78
+	.db	1,2,35,16,8
+	.db	'ForceScheduling',0
+	.dw	78
+	.db	1,2,35,17,8
+	.db	'SchedulerNeeded',0
+	.dw	78
+	.db	1,2,35,18,8
+	.db	'DispatcherNeeded',0
+	.dw	78
+	.db	1,2,35,19,8
+	.db	'NewContext',0
+	.dw	78
+	.db	1,2,35,20,0,4
+	.db	'Os_Kernel',0,1,163,1,28
+	.dw	2118
+	.db	4
+	.db	'Os_CpuLoad',0,1,165,1,29
+	.dw	2030
+	.db	10
+	.dw	30
+	.db	10
+	.dw	30
+	.db	10
+	.dw	30
+	.db	10
+	.dw	78
+	.db	10
+	.dw	30
+	.db	9
+	.db	'Os_Counter_s',0,8,44,8,28,8
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2373
+	.db	4,2,35,0,8
+	.db	'OsCounterMinCycle',0
+	.dw	2378
+	.db	4,2,35,4,8
+	.db	'OsCounterTicksPerBase',0
+	.dw	2383
+	.db	4,2,35,8,8
+	.db	'OsCounterType',0
+	.dw	2388
+	.db	1,2,35,12,8
+	.db	'OsSecondsPerTick',0
+	.dw	2393
+	.db	4,2,35,16,8
+	.db	'OsCounterCurrentTicks',0
+	.dw	30
+	.db	4,2,35,20,8
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	78
+	.db	1,2,35,24,0,4
+	.db	'Os_Counter',0,8,42,29
+	.dw	2398
+	.db	9
+	.db	'Os_AlarmActivateTask_s',0,9,140,1,8,1,8
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	78
+	.db	1,2,35,0,0,3
+	.dw	2642
+	.db	9
+	.db	'Os_AlarmSetEvent_s',0,9,146,1,8,8,8
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	78
+	.db	1,2,35,0,8
+	.db	'OsAlarmSetEventRef',0
+	.dw	30
+	.db	4,2,35,4,0,3
+	.dw	2709
+	.db	4
+	.db	'CallbackFuncPtrType',0,9,88,9
+	.dw	1236
+	.db	10
+	.dw	2800
+	.db	12
+	.db	'Os_AlarmAction_u',0,9,92,7,4,8
+	.db	'OsAlarmActivateTask',0
+	.dw	2704
+	.db	4,2,35,0,8
+	.db	'OsAlarmSetEventTask',0
+	.dw	2795
+	.db	4,2,35,0,8
+	.db	'OsAlarmCallbackName',0
+	.dw	2828
+	.db	4,2,35,0,0,3
+	.dw	2398
+	.db	3
+	.dw	.L100-.L27
+.L100:
+	.db	9
+	.db	'Os_Alarm_s',0,9,104,8,36,8
+	.db	'OsAlarmAction',0
+	.dw	2833
+	.db	4,2,35,0,8
+	.db	'OsAlarmActionType',0
+	.dw	78
+	.db	1,2,35,4,8
+	.db	'OsAlarmExpiryTime',0
+	.dw	30
+	.db	4,2,35,8,8
+	.db	'OsAlarmCycleTime',0
+	.dw	30
+	.db	4,2,35,12,8
+	.db	'OsAlarmState',0
+	.dw	78
+	.db	1,2,35,16,8
+	.db	'OsAlarmCounterRef',0
+	.dw	2943
+	.db	4,2,35,20,8
+	.db	'OsAlarmNext',0
+	.dw	2948
+	.db	4,2,35,24,8
+	.db	'OsAlarmPrevious',0
+	.dw	2948
+	.db	4,2,35,28,8
+	.db	'OsAlarmAlarmTime',0
+	.dw	78
+	.db	1,2,35,32,8
+	.db	'OsAlarmAutoStartType',0
+	.dw	78
+	.db	1,2,35,33,0,4
+	.db	'Os_Alarm',0,9,73,45
+	.dw	2953
+	.db	3
+	.dw	1233
+	.db	4
+	.db	'Os_AlarmAction',0,9,76,45
+	.dw	2833
+	.db	4
+	.db	'Os_AlarmActivateTask',0,9,79,41
+	.dw	2642
+	.db	4
+	.db	'Os_AlarmSetEvent',0,9,82,38
+	.dw	2709
+	.db	13
+	.db	'Kernel',0,10,40,18
+	.dw	2118
+	.db	1,1,4
+	.db	'QueueSize',0,11,183,1,29
+	.dw	78
+	.db	4
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	78
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L28:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,15,0,73,19,0,0,4,22,0,3
+	.db	8,58,15,59,15,57,15,73,19,0,0,5,59,0,3,8,0,0,6,21,0,54,15,0,0,7,19,1,58,15,59,15,57,15,11,15,0,0,8,13
+	.db	0,3,8,73,19,11,15,56,9,0,0,9,19,1,3,8,58,15,59,15,57,15,11,15,0,0,10,38,0,73,19,0,0,11,21,0,54,15,39,12
+	.db	0,0,12,23,1,3,8,58,15,59,15,57,15,11,15,0,0,13,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L29:
+	.dw	.L102-.L101
+.L101:
+	.dh	3
+	.dw	.L104-.L103
+.L103:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L104:
+.L102:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_Os_CreateStackFrame')
+.L30:
+	.dw	138
+	.dh	3
+	.dw	.L31
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L33,.L32
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'Os_CreateStackFrame',0,1,89,6,1,1,1
+	.dw	.L17,.L74,.L16
+	.db	4
+	.dw	.L17,.L74
+	.db	5
+	.db	'CurrentStackPtr',0,1,92,18
+	.dw	.L75,.L76
+	.db	4
+	.dw	.L77,.L78
+	.db	5
+	.db	'i',0,1,111,15
+	.dw	.L79,.L80
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_Os_CreateStackFrame')
+.L31:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_Os_CreateStackFrame')
+.L32:
+	.dw	.L106-.L105
+.L105:
+	.dh	3
+	.dw	.L108-.L107
+.L107:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L108:
+	.db	5,42,7,0,5,2
+	.dw	.L17
+	.db	3,219,0,1,5,54,9
+	.dh	.L109-.L17
+	.db	1,5,65,9
+	.dh	.L110-.L109
+	.db	1,5,22,9
+	.dh	.L92-.L110
+	.db	3,3,1,5,26,9
+	.dh	.L111-.L92
+	.db	3,3,1,5,24,9
+	.dh	.L112-.L111
+	.db	1,5,40,9
+	.dh	.L113-.L112
+	.db	3,5,1,5,52,9
+	.dh	.L114-.L113
+	.db	1,5,24,9
+	.dh	.L115-.L114
+	.db	1,5,34,9
+	.dh	.L116-.L115
+	.db	3,5,1,5,24,9
+	.dh	.L117-.L116
+	.db	1,5,19,9
+	.dh	.L77-.L117
+	.db	3,3,1,5,30,9
+	.dh	.L93-.L77
+	.db	3,5,1,5,28,9
+	.dh	.L118-.L93
+	.db	3,123,1,9
+	.dh	.L3-.L118
+	.db	3,5,1,5,31,9
+	.dh	.L119-.L3
+	.db	3,123,1,5,28,9
+	.dh	.L2-.L119
+	.db	1,5,11,9
+	.dh	.L78-.L2
+	.db	3,9,1,5,23,9
+	.dh	.L94-.L78
+	.db	1,5,52,9
+	.dh	.L120-.L94
+	.db	1,5,1,9
+	.dh	.L121-.L120
+	.db	3,1,1,7,9
+	.dh	.L35-.L121
+	.db	0,1,1
+.L106:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_Os_CreateStackFrame')
+.L33:
+	.dw	-1,.L34,0,.L35-.L34,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_StartTask')
+.L36:
+	.dw	99
+	.dh	3
+	.dw	.L37
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L39,.L38
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'OS_StartTask',0,1,61,6,1,1,1
+	.dw	.L13,.L81,.L12
+	.db	4
+	.db	'PrevTask',0,1,61,25
+	.dw	.L82,.L83
+	.db	5
+	.dw	.L13,.L81
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_StartTask')
+.L37:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_StartTask')
+.L38:
+	.dw	.L123-.L122
+.L122:
+	.dh	3
+	.dw	.L125-.L124
+.L124:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L125:
+	.db	5,6,7,0,5,2
+	.dw	.L13
+	.db	3,60,1,5,2,9
+	.dh	.L89-.L13
+	.db	3,3,1,5,8,9
+	.dh	.L126-.L89
+	.db	1,5,21,9
+	.dh	.L127-.L126
+	.db	3,3,1,5,2,9
+	.dh	.L90-.L127
+	.db	3,3,1,5,1,9
+	.dh	.L128-.L90
+	.db	3,1,1,7,9
+	.dh	.L41-.L128
+	.db	0,1,1
+.L123:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_StartTask')
+.L39:
+	.dw	-1,.L40,0,.L41-.L40,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ResumeTask')
+.L42:
+	.dw	100
+	.dh	3
+	.dw	.L43
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L45,.L44
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'OS_ResumeTask',0,1,73,6,1,1,1
+	.dw	.L15,.L84,.L14
+	.db	4
+	.db	'PrevTask',0,1,73,26
+	.dw	.L82,.L85
+	.db	5
+	.dw	.L15,.L84
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ResumeTask')
+.L43:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ResumeTask')
+.L44:
+	.dw	.L130-.L129
+.L129:
+	.dh	3
+	.dw	.L132-.L131
+.L131:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L132:
+	.db	5,2,7,0,5,2
+	.dw	.L15
+	.db	3,203,0,1,5,8,9
+	.dh	.L133-.L15
+	.db	1,5,2,9
+	.dh	.L134-.L133
+	.db	3,3,1,5,1,9
+	.dh	.L135-.L134
+	.db	3,1,1,7,9
+	.dh	.L47-.L135
+	.db	0,1,1
+.L130:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ResumeTask')
+.L45:
+	.dw	-1,.L46,0,.L47-.L46,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_CoretexIdle')
+.L48:
+	.dw	81
+	.dh	3
+	.dw	.L49
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L51,.L50
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'OS_CoretexIdle',0,1,151,1,6,1,1,1
+	.dw	.L21,.L53,.L20
+	.db	4
+	.dw	.L21,.L53
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_CoretexIdle')
+.L49:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_CoretexIdle')
+.L50:
+	.dw	.L137-.L136
+.L136:
+	.dh	3
+	.dw	.L139-.L138
+.L138:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L139:
+	.db	5,9,7,0,5,2
+	.dw	.L21
+	.db	3,152,1,1,5,3,9
+	.dh	.L7-.L21
+	.db	3,3,1,5,8,9
+	.dh	.L6-.L7
+	.db	3,125,1,5,9,9
+	.dh	.L140-.L6
+	.db	1,5,1,7,9
+	.dh	.L141-.L140
+	.db	3,5,1,7,9
+	.dh	.L53-.L141
+	.db	0,1,1
+.L137:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_CoretexIdle')
+.L51:
+	.dw	-1,.L52,0,.L53-.L52,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_EnterKernel')
+.L54:
+	.dw	81
+	.dh	3
+	.dw	.L55
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L57,.L56
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'OS_EnterKernel',0,1,161,1,6,1,1,1
+	.dw	.L23,.L59,.L22
+	.db	4
+	.dw	.L23,.L59
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_EnterKernel')
+.L55:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_EnterKernel')
+.L56:
+	.dw	.L143-.L142
+.L142:
+	.dh	3
+	.dw	.L145-.L144
+.L144:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L145:
+	.db	5,2,7,0,5,2
+	.dw	.L23
+	.db	3,162,1,1,5,1,9
+	.dh	.L146-.L23
+	.db	3,1,1,7,9
+	.dh	.L59-.L146
+	.db	0,1,1
+.L143:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_EnterKernel')
+.L57:
+	.dw	-1,.L58,0,.L59-.L58,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_LeaveKernel')
+.L60:
+	.dw	81
+	.dh	3
+	.dw	.L61
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L63,.L62
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'OS_LeaveKernel',0,1,166,1,6,1,1,1
+	.dw	.L25,.L65,.L24
+	.db	4
+	.dw	.L25,.L65
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_LeaveKernel')
+.L61:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_LeaveKernel')
+.L62:
+	.dw	.L148-.L147
+.L147:
+	.dh	3
+	.dw	.L150-.L149
+.L149:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L150:
+	.db	5,3,7,0,5,2
+	.dw	.L25
+	.db	3,167,1,1,5,1,9
+	.dh	.L151-.L25
+	.db	3,1,1,7,9
+	.dh	.L65-.L151
+	.db	0,1,1
+.L148:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_LeaveKernel')
+.L63:
+	.dw	-1,.L64,0,.L65-.L64,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_UpdateTaskPSP')
+.L66:
+	.dw	101
+	.dh	3
+	.dw	.L67
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1
+	.dw	.L69,.L68
+	.db	2
+	.dw	.L26
+	.db	3
+	.db	'UpdateTaskPSP',0,1,134,1,14
+	.dw	.L75
+	.db	1,1,1
+	.dw	.L19,.L86,.L18
+	.db	4
+	.db	'PSP',0,1,134,1,41
+	.dw	.L75,.L87
+	.db	5
+	.dw	.L19,.L86
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_UpdateTaskPSP')
+.L67:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_UpdateTaskPSP')
+.L68:
+	.dw	.L153-.L152
+.L152:
+	.dh	3
+	.dw	.L155-.L154
+.L154:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0,0,0,0,0
+.L155:
+	.db	5,6,7,0,5,2
+	.dw	.L19
+	.db	3,135,1,1,5,12,9
+	.dh	.L156-.L19
+	.db	1,5,2,9
+	.dh	.L157-.L156
+	.db	1,5,23,7,9
+	.dh	.L158-.L157
+	.db	3,1,1,5,52,9
+	.dh	.L159-.L158
+	.db	1,5,16,9
+	.dh	.L4-.L159
+	.db	3,2,1,5,28,9
+	.dh	.L95-.L4
+	.db	1,5,39,9
+	.dh	.L160-.L95
+	.db	1,5,1,9
+	.dh	.L161-.L160
+	.db	3,1,1,7,9
+	.dh	.L71-.L161
+	.db	0,1,1
+.L153:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_UpdateTaskPSP')
+.L69:
+	.dw	-1,.L70,0,.L71-.L70,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_PTask')
+.L72:
+	.dw	49
+	.dh	3
+	.dw	.L73
+	.db	4,1
+	.dw	.L96,.L97,.L98
+	.db	12,1,2
+	.dw	.L26
+	.db	3
+	.db	'PTask',0,2,47,10
+	.dw	.L88
+	.db	1,5,3
+	.dw	PTask
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_PTask')
+.L73:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L96:
+	.db	'../Port/Cortex-M4/src/Os_kernel_cm4.c',0
+.L97:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L98:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_CoretexIdle')
+.L20:
+	.dw	-1,.L21,0,.L53-.L21
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_EnterKernel')
+.L22:
+	.dw	-1,.L23,0,.L59-.L23
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_LeaveKernel')
+.L24:
+	.dw	-1,.L25,0,.L65-.L25
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ResumeTask')
+.L14:
+	.dw	-1,.L15,0,.L84-.L15
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L85:
+	.dw	-1,.L15,0,.L91-.L15
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_StartTask')
+.L12:
+	.dw	-1,.L13,0,.L89-.L13
+	.dh	2
+	.db	125,0
+	.dw	.L89-.L13,.L81-.L13
+	.dh	2
+	.db	125,4
+	.dw	.L81-.L13,.L81-.L13
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L83:
+	.dw	-1,.L13,0,.L90-.L13
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_Os_CreateStackFrame')
+.L76:
+	.dw	-1,.L17,.L92-.L17,.L74-.L17
+	.dh	1
+	.db	82
+	.dw	0,0
+.L16:
+	.dw	-1,.L17,0,.L74-.L17
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L80:
+	.dw	-1,.L17,.L93-.L17,.L94-.L17
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_UpdateTaskPSP')
+.L87:
+	.dw	-1,.L19,0,.L95-.L19
+	.dh	1
+	.db	80
+	.dw	0,0
+.L18:
+	.dw	-1,.L19,0,.L86-.L19
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L162:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_StartTask')
+	.dw	64
+	.dw	.L162,.L13,.L81-.L13
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L89-.L13)/2
+	.db	19,2,22,13,3,19,125,4,17,14,126,4
+	.dw	(.L81-.L89)/2
+	.db	19,0,8,13,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ResumeTask')
+	.dw	40
+	.dw	.L162,.L15,.L84-.L15
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_Os_CreateStackFrame')
+	.dw	36
+	.dw	.L162,.L17,.L74-.L17
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_UpdateTaskPSP')
+	.dw	40
+	.dw	.L162,.L19,.L86-.L19
+	.db	8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_CoretexIdle')
+	.dw	44
+	.dw	.L162,.L21,.L53-.L21
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_EnterKernel')
+	.dw	44
+	.dw	.L162,.L23,.L59-.L23
+	.db	8,0,8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_LeaveKernel')
+	.dw	44
+	.dw	.L162,.L25,.L65-.L25
+	.db	8,0,8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   170  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   171  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   172  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   173  /*                        Internal Function Declration                             */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   174  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   175  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   176  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   177  /*				    	 Internal Functions Definition		      				   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   178  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   179  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   180  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   181  /*				    			 End Of File			         				   */
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   182  /***********************************************************************************/
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   183  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   184  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   185  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   186  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   187  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   188  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   189  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   190  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   191  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   192  
+; ../Port/Cortex-M4/src/Os_kernel_cm4.c	   193  
+
+	; Module end
+	.end

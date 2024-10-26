@@ -1,0 +1,1008 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.ActivateTask.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/ActivateTask.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\ActivateTask.src ../src/kernel/ActivateTask.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/ActivateTask.c'
+
+	.section	.text ,cluster('$group_OS_ActivateTask')
+	.global	OS_ActivateTask
+
+; ../src/kernel/ActivateTask.c	     1  /**
+; ../src/kernel/ActivateTask.c	     2   * @file ActivateTask.c
+; ../src/kernel/ActivateTask.c	     3   * @author Qamar Elgohary
+; ../src/kernel/ActivateTask.c	     4   * @version 1.0.0
+; ../src/kernel/ActivateTask.c	     5   * @date 02-12-2023
+; ../src/kernel/ActivateTask.c	     6   * @platform
+; ../src/kernel/ActivateTask.c	     7   * @variant
+; ../src/kernel/ActivateTask.c	     8   * @vendor Siemens
+; ../src/kernel/ActivateTask.c	     9   * @specification
+; ../src/kernel/ActivateTask.c	    10   * @brief ActivateTask Service transfers the task specified from suspended state to ready state.
+; ../src/kernel/ActivateTask.c	    11   *
+; ../src/kernel/ActivateTask.c	    12  */
+; ../src/kernel/ActivateTask.c	    13  
+; ../src/kernel/ActivateTask.c	    14  
+; ../src/kernel/ActivateTask.c	    15  /**********************************************************************************/
+; ../src/kernel/ActivateTask.c	    16  /**				    			Include Headers			         				 **/
+; ../src/kernel/ActivateTask.c	    17  /**********************************************************************************/
+; ../src/kernel/ActivateTask.c	    18  #include <OS_kernel.h>
+; ../src/kernel/ActivateTask.c	    19  
+; ../src/kernel/ActivateTask.c	    20  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    21  /*  			    			    Macros				         				   */
+; ../src/kernel/ActivateTask.c	    22  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    23  
+; ../src/kernel/ActivateTask.c	    24  
+; ../src/kernel/ActivateTask.c	    25  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/ActivateTask.c	    26  
+; ../src/kernel/ActivateTask.c	    27  
+; ../src/kernel/ActivateTask.c	    28  /************************** Module Specific Macros ********************************/
+; ../src/kernel/ActivateTask.c	    29  
+; ../src/kernel/ActivateTask.c	    30  
+; ../src/kernel/ActivateTask.c	    31  /************************************************************************************/
+; ../src/kernel/ActivateTask.c	    32  /*				    			Type Definitions		         			        */
+; ../src/kernel/ActivateTask.c	    33  /************************************************************************************/
+; ../src/kernel/ActivateTask.c	    34  
+; ../src/kernel/ActivateTask.c	    35  
+; ../src/kernel/ActivateTask.c	    36  
+; ../src/kernel/ActivateTask.c	    37  
+; ../src/kernel/ActivateTask.c	    38  /***************************************************************************************/
+; ../src/kernel/ActivateTask.c	    39  /*                              Extern Global Variables                                */
+; ../src/kernel/ActivateTask.c	    40  /***************************************************************************************/
+; ../src/kernel/ActivateTask.c	    41  
+; ../src/kernel/ActivateTask.c	    42  
+; ../src/kernel/ActivateTask.c	    43  /***************************************************************************************/
+; ../src/kernel/ActivateTask.c	    44  /*                              Internal Global Variables                              */
+; ../src/kernel/ActivateTask.c	    45  /***************************************************************************************/
+; ../src/kernel/ActivateTask.c	    46  
+; ../src/kernel/ActivateTask.c	    47  
+; ../src/kernel/ActivateTask.c	    48  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    49  /*				    			Internal constants		         				   */
+; ../src/kernel/ActivateTask.c	    50  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    51  
+; ../src/kernel/ActivateTask.c	    52  
+; ../src/kernel/ActivateTask.c	    53  /************************************************************************************/
+; ../src/kernel/ActivateTask.c	    54  /*				    		Internal function declarations         				    */
+; ../src/kernel/ActivateTask.c	    55  /************************************************************************************/
+; ../src/kernel/ActivateTask.c	    56  
+; ../src/kernel/ActivateTask.c	    57  
+; ../src/kernel/ActivateTask.c	    58  
+; ../src/kernel/ActivateTask.c	    59  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    60  /*				    	 Internal Functions Definition		      				   */
+; ../src/kernel/ActivateTask.c	    61  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    62  
+; ../src/kernel/ActivateTask.c	    63  
+; ../src/kernel/ActivateTask.c	    64  
+; ../src/kernel/ActivateTask.c	    65  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    66  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/ActivateTask.c	    67  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	    68  
+; ../src/kernel/ActivateTask.c	    69  /**
+; ../src/kernel/ActivateTask.c	    70   * @brief ActivateTask API definition
+; ../src/kernel/ActivateTask.c	    71   * The task <TaskID> is transferred from the suspended state into the ready state
+; ../src/kernel/ActivateTask.c	    72   *
+; ../src/kernel/ActivateTask.c	    73   *
+; ../src/kernel/ActivateTask.c	    74   * @service name    OS_ActivateTask
+; ../src/kernel/ActivateTask.c	    75   * @syntax          FUNC(StatusType, OS_CODE) OS_ActivateTask
+; ../src/kernel/ActivateTask.c	    76   *                  (
+; ../src/kernel/ActivateTask.c	    77   *                      CONST(TaskType, AUTOMATIC) TaskID
+; ../src/kernel/ActivateTask.c	    78   *                  );
+; ../src/kernel/ActivateTask.c	    79   * @service ID      0xD1u
+; ../src/kernel/ActivateTask.c	    80   * @sync/async      Synchronous
+; ../src/kernel/ActivateTask.c	    81   * @reentrancy      Reentrant
+; ../src/kernel/ActivateTask.c	    82   * @param[in]       TaskID              TaskID Task reference
+; ../src/kernel/ActivateTask.c	    83   * @param[out]      -
+; ../src/kernel/ActivateTask.c	    84   * @return          StatusType          Indicates the error status
+; ../src/kernel/ActivateTask.c	    85   *        Standard:
+; ../src/kernel/ActivateTask.c	    86   *                • E_OK                No error
+; ../src/kernel/ActivateTask.c	    87   *                • E_OS_LIMIT          Too many task activations of <TaskID>
+; ../src/kernel/ActivateTask.c	    88   *        Extended:
+; ../src/kernel/ActivateTask.c	    89   *                • E_OS_ID             Task <TaskID> is invalid
+; ../src/kernel/ActivateTask.c	    90   * @see             -
+; ../src/kernel/ActivateTask.c	    91   * @note            Conformance:        BCC1, BCC2, ECC1, ECC2
+; ../src/kernel/ActivateTask.c	    92   * @warning         -
+; ../src/kernel/ActivateTask.c	    93   */
+; ../src/kernel/ActivateTask.c	    94  
+; ../src/kernel/ActivateTask.c	    95  FUNC(StatusType, OS_CODE) OS_ActivateTask
+; Function OS_ActivateTask
+.L20:
+	.thumb
+	.align	4
+OS_ActivateTask:	.type	func
+
+.L11:
+	push	{r4,r5,lr}
+.L29:
+
+; ../src/kernel/ActivateTask.c	    96  (
+; ../src/kernel/ActivateTask.c	    97      CONST(TaskType, AUTOMATIC) TaskID
+; ../src/kernel/ActivateTask.c	    98  )
+; ../src/kernel/ActivateTask.c	    99  {
+; ../src/kernel/ActivateTask.c	   100      /* init the error to no error */
+; ../src/kernel/ActivateTask.c	   101      VAR(StatusType, memclass) ErrorState 		= E_OK;
+	movs	r4,#0
+.L31:
+
+; ../src/kernel/ActivateTask.c	   102  	  /* Create pointer to an instance of Os_Task struct*/
+; ../src/kernel/ActivateTask.c	   103      P2VAR(Os_Task, memclass ,ptrclass) Task = NULL_PTR;
+; ../src/kernel/ActivateTask.c	   104  
+; ../src/kernel/ActivateTask.c	   105      /* Lock the kernel to
+; ../src/kernel/ActivateTask.c	   106       * allow the system to check for resource availability before activating the task
+; ../src/kernel/ActivateTask.c	   107       * ensure consistent system state
+; ../src/kernel/ActivateTask.c	   108       * prevent unauthorized task activation.
+; ../src/kernel/ActivateTask.c	   109       */
+; ../src/kernel/ActivateTask.c	   110  
+; ../src/kernel/ActivateTask.c	   111      /* Store information for error hook routine  */
+; ../src/kernel/ActivateTask.c	   112  
+; ../src/kernel/ActivateTask.c	   113      /* [SWS_OS_00005] If the ID is invalid, E_OS_ID is returned */
+; ../src/kernel/ActivateTask.c	   114  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/ActivateTask.c	   115  
+; ../src/kernel/ActivateTask.c	   116  		if(TaskID >= TASK_COUNT)
+; ../src/kernel/ActivateTask.c	   117      {
+; ../src/kernel/ActivateTask.c	   118          ErrorState = E_OS_ID;
+; ../src/kernel/ActivateTask.c	   119      }
+; ../src/kernel/ActivateTask.c	   120  		else
+; ../src/kernel/ActivateTask.c	   121  
+; ../src/kernel/ActivateTask.c	   122  #endif /*(ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/ActivateTask.c	   123  
+; ../src/kernel/ActivateTask.c	   124  	/*	SuspendAllInterrupts(); */
+; ../src/kernel/ActivateTask.c	   125  
+; ../src/kernel/ActivateTask.c	   126      /* Access struct of TaskID */
+; ../src/kernel/ActivateTask.c	   127      Task = &Tasks[TaskID];
+	movs	r1,#28
+.L50:
+	ldr	r2,.L9
+.L51:
+	mla	r5,r0,r1,r2
+.L32:
+
+; ../src/kernel/ActivateTask.c	   128  
+; ../src/kernel/ActivateTask.c	   129  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/ActivateTask.c	   130  	if (E_OK == ErrorState)
+; ../src/kernel/ActivateTask.c	   131  #endif /*(ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/ActivateTask.c	   132      {
+; ../src/kernel/ActivateTask.c	   133          /* [SWS_OS_10036] [SWS_OS_10035] The number of multiple requests in parallel is defined in a basic task specific attribute during system generation number of task activations = 1 if you have an extended task */
+; ../src/kernel/ActivateTask.c	   134          if (Task->TaskDynamics->PendingActivationRequests < Task->NumOfActivationRequests)
+	ldr	r0,[r5,#20]
+.L30:
+	ldrb	r1,[r0,#22]
+.L52:
+	ldrb	r2,[r5,#3]
+.L53:
+	cmp	r1,r2
+	bge	.L2
+.L54:
+
+; ../src/kernel/ActivateTask.c	   135          {
+; ../src/kernel/ActivateTask.c	   136              /*Get Task state and check if task is SUSPENDED*/
+; ../src/kernel/ActivateTask.c	   137              if ((TaskStateType)SUSPENDED == Task->TaskDynamics->TaskState )
+	ldrb	r0,[r0,#21]
+.L55:
+	cmp	r0,#3
+	bne	.L3
+.L56:
+
+; ../src/kernel/ActivateTask.c	   138              {
+; ../src/kernel/ActivateTask.c	   139                      /*[SWS_OS_10027] Activation of a task changes its state from suspended to ready state. */
+; ../src/kernel/ActivateTask.c	   140                      OS_ChangeTaskState(Task,NEW);
+	mov	r0,r5
+.L33:
+	movs	r1,#4
+	bl	OS_ChangeTaskState
+.L34:
+
+; ../src/kernel/ActivateTask.c	   141                      ReadyQueueAddRear(Task);
+	mov	r0,r5
+.L35:
+	bl	ReadyQueueAddRear
+.L36:
+
+; ../src/kernel/ActivateTask.c	   142  
+; ../src/kernel/ActivateTask.c	   143                      if(EXTENDED == Task->TaskFlags->Type)
+	ldr	r0,[r5,#4]
+.L57:
+	ldrb	r0,[r0,#0]
+.L58:
+	cbnz	r0,.L4
+.L59:
+
+; ../src/kernel/ActivateTask.c	   144                      {
+; ../src/kernel/ActivateTask.c	   145                              /* [SWS_OS_10121] clear all the events of extended task when it is transferred from suspended state into ready state. */
+; ../src/kernel/ActivateTask.c	   146                              Task->TaskDynamics->EventsWaiting = 0;
+	ldr	r0,[r5,#20]
+.L60:
+	str	r4,[r0,#16]
+.L4:
+.L3:
+
+; ../src/kernel/ActivateTask.c	   147                      }
+; ../src/kernel/ActivateTask.c	   148  
+; ../src/kernel/ActivateTask.c	   149              }
+; ../src/kernel/ActivateTask.c	   150  //						if(Task->TaskDynamics->PendingActivationRequests == 1)
+; ../src/kernel/ActivateTask.c	   151  //						{
+; ../src/kernel/ActivateTask.c	   152  //							ReadyQueueAddRear(Task);
+; ../src/kernel/ActivateTask.c	   153  //						}
+; ../src/kernel/ActivateTask.c	   154  
+; ../src/kernel/ActivateTask.c	   155              /*[SWS_OS_10038], [SWS_OS_10041] If Task is not suspended, the activation will only be recorded and performed later. */
+; ../src/kernel/ActivateTask.c	   156              Task->TaskDynamics->PendingActivationRequests++;
+	ldr	r0,[r5,#20]
+.L61:
+	ldrb	r1,[r0,#22]!
+.L62:
+	adds	r1,r1,#1
+	strb	r1,[r0,#0]
+.L63:
+	b	.L5
+.L2:
+
+; ../src/kernel/ActivateTask.c	   157  
+; ../src/kernel/ActivateTask.c	   158              /*[SWS_OS_10037] Task activation will not immediately change the state of the task in case of multiple activation requests. */
+; ../src/kernel/ActivateTask.c	   159              
+; ../src/kernel/ActivateTask.c	   160  
+; ../src/kernel/ActivateTask.c	   161          }
+; ../src/kernel/ActivateTask.c	   162          else
+; ../src/kernel/ActivateTask.c	   163          {
+; ../src/kernel/ActivateTask.c	   164              /*[SWS_OS_00006], [SWS_OS_10123] In case of too many task activations, E_OS_LIMIT is returned.*/
+; ../src/kernel/ActivateTask.c	   165              ErrorState = E_OS_LIMIT;
+	movs	r4,#4
+.L5:
+
+; ../src/kernel/ActivateTask.c	   166  
+; ../src/kernel/ActivateTask.c	   167          }
+; ../src/kernel/ActivateTask.c	   168  
+; ../src/kernel/ActivateTask.c	   169  
+; ../src/kernel/ActivateTask.c	   170      }
+; ../src/kernel/ActivateTask.c	   171      /* ResumeAllInterrupts(); */
+; ../src/kernel/ActivateTask.c	   172  
+; ../src/kernel/ActivateTask.c	   173  
+; ../src/kernel/ActivateTask.c	   174      /*[SWS_OS_10042] The scheduler is activated whenever a task switch is possible according to the implemented scheduling policy. */
+; ../src/kernel/ActivateTask.c	   175      if( (E_OK == ErrorState) && (OS_STATE_BOOT!= Kernel.OsState))
+	cbnz	r4,.L6
+.L64:
+	ldr	r0,.L9+4
+.L65:
+	ldrb	r1,[r0,#16]
+.L66:
+	cbz	r1,.L7
+.L67:
+
+; ../src/kernel/ActivateTask.c	   176      {
+; ../src/kernel/ActivateTask.c	   177  			Kernel.SchedulerNeeded = TRUE;
+	movs	r1,#1
+.L68:
+	strb	r1,[r0,#18]
+.L7:
+.L6:
+
+; ../src/kernel/ActivateTask.c	   178      }
+; ../src/kernel/ActivateTask.c	   179  	return ErrorState;
+	mov	r0,r4
+.L37:
+
+; ../src/kernel/ActivateTask.c	   180  }
+	pop	{r4,r5,pc}
+.L23:
+	.align	4
+.L9:
+	.dw	Tasks
+	.dw	Kernel
+.L21:
+	.size	OS_ActivateTask,$-OS_ActivateTask
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_ActivateTask','OS_ChangeTaskState'
+	.calls	'OS_ActivateTask','ReadyQueueAddRear'
+	.calls	'OS_ActivateTask','',12
+	.extern	OS_ChangeTaskState
+	.extern	Tasks
+	.extern	Kernel
+	.extern	ReadyQueueAddRear
+	.section	.debug_info
+.L13:
+	.dw	3562
+	.dh	3
+	.dw	.L14
+	.db	4
+.L12:
+	.db	1
+	.db	'../src/kernel/ActivateTask.c',0
+	.dw	.L38,.L39
+	.db	12,1
+	.dw	.L15
+.L22:
+	.db	2
+	.db	'unsigned char',0,1,8,3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	4
+	.db	'TaskFlagsType_s',0,1,172,1,8,2,5
+	.db	'Type',0
+	.dw	55
+	.db	1,2,35,0,5
+	.db	'TaskSchedulingPolicy',0
+	.dw	55
+	.db	1,2,35,1,0,6
+	.dw	92
+	.db	2
+	.db	'unsigned int',0,4,7,6
+	.dw	164
+	.db	7
+	.db	'StackPtrType',0,1,143,1,30
+	.dw	180
+	.db	4
+	.db	'TaskStackType_s',0,1,243,1,8,12,5
+	.db	'StackBase',0
+	.dw	185
+	.db	4,2,35,0,5
+	.db	'CurrentStackPtr',0
+	.dw	185
+	.db	4,2,35,4,5
+	.db	'StackSize',0
+	.dw	164
+	.db	4,2,35,8,0,6
+	.dw	207
+	.db	8,1,1,6
+	.dw	298
+	.db	7
+	.db	'EntryFunctionPtrType',0,1,151,1,9
+	.dw	301
+	.db	3
+	.dw	306
+	.db	3
+	.dw	55
+	.db	4
+	.db	'Os_InernalResourceDynamic_s',0,2,66,8,2,5
+	.db	'TakenTaskPriority',0
+	.dw	55
+	.db	1,2,35,0,5
+	.db	'TakenFlag',0
+	.dw	55
+	.db	1,2,35,1,0,6
+	.dw	346
+	.db	4
+	.db	'Os_InteranlResource_s',0,2,79,8,8,5
+	.db	'CeilingPriority',0
+	.dw	341
+	.db	1,2,35,0,5
+	.db	'InternalResourceDynamics',0
+	.dw	426
+	.db	4,2,35,4,0,6
+	.dw	431
+	.db	2
+	.db	'int',0,4,5,9,3,87,10,4,5
+	.db	'x',0
+	.dw	523
+	.db	4,2,35,0,0,6
+	.dw	530
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	4
+	.db	'Os_ResourceDynamic_s',0,2,105,8,8,5
+	.db	'OwnerTaskPriority',0
+	.dw	55
+	.db	1,2,35,0,5
+	.db	'OwnerTaskID',0
+	.dw	55
+	.db	1,2,35,1,5
+	.db	'LinkedResource',0
+	.dw	.L40-.L13
+	.db	4,2,35,4,0,6
+	.dw	562
+	.db	4
+	.db	'Os_Resource_s',0,2,92,8,8,5
+	.db	'CeilingPriority',0
+	.dw	552
+	.db	1,2,35,0,5
+	.db	'ResourceID',0
+	.dw	557
+	.db	1,2,35,1,5
+	.db	'ResourceDynamics',0
+	.dw	661
+	.db	4,2,35,4,0
+.L40:
+	.db	6
+	.dw	666
+	.db	4
+	.db	'Os_TaskDynamic_s',0,1,214,1,8,24,5
+	.db	'Context',0
+	.dw	547
+	.db	4,2,35,0,5
+	.db	'Resources',0
+	.dw	757
+	.db	4,2,35,4,5
+	.db	'PriorityQueueIndex',0
+	.dw	55
+	.db	1,2,35,8,5
+	.db	'EventsSet',0
+	.dw	164
+	.db	4,2,35,12,5
+	.db	'EventsWaiting',0
+	.dw	164
+	.db	4,2,35,16,5
+	.db	'TaskCurrentPriority',0
+	.dw	55
+	.db	1,2,35,20,5
+	.db	'TaskState',0
+	.dw	55
+	.db	1,2,35,21,5
+	.db	'PendingActivationRequests',0
+	.dw	55
+	.db	1,2,35,22,0,6
+	.dw	762
+	.db	4
+	.db	'Os_Task_s',0,1,186,1,8,28,5
+	.db	'TaskStaticPriority',0
+	.dw	72
+	.db	1,2,35,0,5
+	.db	'TaskID',0
+	.dw	77
+	.db	1,2,35,1,5
+	.db	'ApplicationMode',0
+	.dw	82
+	.db	1,2,35,2,5
+	.db	'NumOfActivationRequests',0
+	.dw	87
+	.db	1,2,35,3,5
+	.db	'TaskFlags',0
+	.dw	159
+	.db	4,2,35,4,5
+	.db	'TaskStack',0
+	.dw	293
+	.db	4,2,35,8,5
+	.db	'EntryPoint',0
+	.dw	336
+	.db	4,2,35,12,5
+	.db	'InternalResource',0
+	.dw	518
+	.db	4,2,35,16,5
+	.db	'TaskDynamics',0
+	.dw	975
+	.db	4,2,35,20,5
+	.db	'EventsOwned',0
+	.dw	164
+	.db	4,2,35,24,0,3
+	.dw	980
+	.db	6
+	.dw	1226
+	.db	3
+	.dw	55
+	.db	10
+	.db	'OS_ChangeTaskState',0,1,201,2,13,1,1,1,1,11
+	.db	'Task',0,1,203,2,38
+	.dw	1231
+	.db	11
+	.db	'State',0,1,204,2,33
+	.dw	1236
+	.db	0,6
+	.dw	164
+	.db	6
+	.dw	298
+.L24:
+	.db	3
+	.dw	55
+.L27:
+	.db	6
+	.dw	980
+	.db	12
+	.db	'ReadyQueueAddRear',0,4,188,1,34
+	.dw	55
+	.db	1,1,1,1,11
+	.db	'TaskRef',0,4,190,1,43
+	.dw	1314
+	.db	0,13,1,6
+	.dw	1368
+	.db	7
+	.db	'__codeptr',0,5,1,1
+	.dw	1370
+	.db	7
+	.db	'Os_ContexType',0,3,90,2
+	.dw	530
+	.db	7
+	.db	'boolean',0,6,242,1,23
+	.dw	55
+	.db	7
+	.db	'uint8',0,6,247,1,23
+	.dw	55
+	.db	2
+	.db	'unsigned short int',0,2,7,7
+	.db	'uint16',0,6,252,1,24
+	.dw	1447
+	.db	7
+	.db	'uint32',0,6,129,2,22
+	.dw	164
+	.db	7
+	.db	'StatusType',0,7,191,1,23
+	.dw	55
+	.db	7
+	.db	'Std_ReturnType',0,7,235,2,15
+	.dw	55
+	.db	7
+	.db	'Std_TransformerClass',0,7,238,2,15
+	.dw	55
+	.db	7
+	.db	'Std_TransformerForwardCode',0,7,241,2,15
+	.dw	55
+	.db	7
+	.db	'TaskType',0,8,183,1,29
+	.dw	55
+	.db	7
+	.db	'TaskStateType',0,8,189,1,29
+	.dw	55
+	.db	7
+	.db	'TaskPriorityType',0,8,195,1,29
+	.dw	55
+	.db	7
+	.db	'ResourceType',0,8,198,1,29
+	.dw	55
+	.db	7
+	.db	'EventMaskType',0,8,201,1,30
+	.dw	164
+	.db	7
+	.db	'AppModeType',0,8,207,1,28
+	.dw	55
+	.db	7
+	.db	'OsStateType',0,8,210,1,28
+	.dw	55
+	.db	7
+	.db	'TickType',0,8,214,1,30
+	.dw	164
+	.db	4
+	.db	'AlarmBaseType_s',0,8,230,1,8,12,5
+	.db	'maxallowedvalue',0
+	.dw	164
+	.db	4,2,35,0,5
+	.db	'ticksperbase',0
+	.dw	164
+	.db	4,2,35,4,5
+	.db	'mincycle',0
+	.dw	164
+	.db	4,2,35,8,0,7
+	.db	'AlarmBaseType',0,8,220,1,32
+	.dw	1783
+	.db	7
+	.db	'AlarmType',0,8,226,1,28
+	.dw	55
+	.db	7
+	.db	'Os_InernalResourceDynamic',0,2,55,44
+	.dw	346
+	.db	7
+	.db	'Os_InteranlResource',0,2,57,38
+	.dw	431
+	.db	7
+	.db	'Os_Resource',0,2,59,30
+	.dw	666
+	.db	7
+	.db	'Os_ResourceDynamic',0,2,61,37
+	.dw	562
+	.db	7
+	.db	'StackSizeType',0,1,145,1,31
+	.dw	164
+	.db	7
+	.db	'TaskActivationCounterType',0,1,147,1,30
+	.dw	55
+	.db	7
+	.db	'QueueIndexType',0,1,149,1,30
+	.dw	55
+	.db	7
+	.db	'TaskFlagsType',0,1,155,1,32
+	.dw	92
+	.db	7
+	.db	'TaskStackType',0,1,157,1,32
+	.dw	207
+	.db	7
+	.db	'Os_TaskDynamic',0,1,159,1,33
+	.dw	762
+	.db	7
+	.db	'Os_Task',0,1,161,1,26
+	.dw	980
+	.db	4
+	.db	'Os_CpuLoad_s',0,1,155,2,8,8,5
+	.db	'IdleTime',0
+	.dw	164
+	.db	4,2,35,0,5
+	.db	'CurrentCpuLoad',0
+	.dw	55
+	.db	1,2,35,4,5
+	.db	'PeakCpuLoad',0
+	.dw	55
+	.db	1,2,35,5,0,6
+	.dw	2191
+	.db	4
+	.db	'Os_Kernel_s',0,1,129,2,8,24,5
+	.db	'TaskQueueHead',0
+	.dw	1314
+	.db	4,2,35,0,5
+	.db	'TaskRunning',0
+	.dw	1314
+	.db	4,2,35,4,5
+	.db	'TaskPreempted',0
+	.dw	1314
+	.db	4,2,35,8,5
+	.db	'CpuLoad',0
+	.dw	2274
+	.db	4,2,35,12,5
+	.db	'OsState',0
+	.dw	55
+	.db	1,2,35,16,5
+	.db	'ForceScheduling',0
+	.dw	55
+	.db	1,2,35,17,5
+	.db	'SchedulerNeeded',0
+	.dw	55
+	.db	1,2,35,18,5
+	.db	'DispatcherNeeded',0
+	.dw	55
+	.db	1,2,35,19,5
+	.db	'NewContext',0
+	.dw	55
+	.db	1,2,35,20,0,7
+	.db	'Os_Kernel',0,1,163,1,28
+	.dw	2279
+	.db	7
+	.db	'Os_CpuLoad',0,1,165,1,29
+	.dw	2191
+	.db	3
+	.dw	164
+	.db	3
+	.dw	164
+	.db	3
+	.dw	164
+	.db	3
+	.dw	55
+	.db	3
+	.dw	164
+	.db	4
+	.db	'Os_Counter_s',0,9,44,8,28,5
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2534
+	.db	4,2,35,0,5
+	.db	'OsCounterMinCycle',0
+	.dw	2539
+	.db	4,2,35,4,5
+	.db	'OsCounterTicksPerBase',0
+	.dw	2544
+	.db	4,2,35,8,5
+	.db	'OsCounterType',0
+	.dw	2549
+	.db	1,2,35,12,5
+	.db	'OsSecondsPerTick',0
+	.dw	2554
+	.db	4,2,35,16,5
+	.db	'OsCounterCurrentTicks',0
+	.dw	164
+	.db	4,2,35,20,5
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	55
+	.db	1,2,35,24,0,7
+	.db	'Os_Counter',0,9,42,29
+	.dw	2559
+	.db	4
+	.db	'Os_AlarmActivateTask_s',0,10,140,1,8,1,5
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	55
+	.db	1,2,35,0,0,6
+	.dw	2803
+	.db	4
+	.db	'Os_AlarmSetEvent_s',0,10,146,1,8,8,5
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	55
+	.db	1,2,35,0,5
+	.db	'OsAlarmSetEventRef',0
+	.dw	164
+	.db	4,2,35,4,0,6
+	.dw	2870
+	.db	7
+	.db	'CallbackFuncPtrType',0,10,88,9
+	.dw	301
+	.db	3
+	.dw	2961
+	.db	14
+	.db	'Os_AlarmAction_u',0,10,92,7,4,5
+	.db	'OsAlarmActivateTask',0
+	.dw	2865
+	.db	4,2,35,0,5
+	.db	'OsAlarmSetEventTask',0
+	.dw	2956
+	.db	4,2,35,0,5
+	.db	'OsAlarmCallbackName',0
+	.dw	2989
+	.db	4,2,35,0,0,6
+	.dw	2559
+	.db	6
+	.dw	.L41-.L13
+.L41:
+	.db	4
+	.db	'Os_Alarm_s',0,10,104,8,36,5
+	.db	'OsAlarmAction',0
+	.dw	2994
+	.db	4,2,35,0,5
+	.db	'OsAlarmActionType',0
+	.dw	55
+	.db	1,2,35,4,5
+	.db	'OsAlarmExpiryTime',0
+	.dw	164
+	.db	4,2,35,8,5
+	.db	'OsAlarmCycleTime',0
+	.dw	164
+	.db	4,2,35,12,5
+	.db	'OsAlarmState',0
+	.dw	55
+	.db	1,2,35,16,5
+	.db	'OsAlarmCounterRef',0
+	.dw	3104
+	.db	4,2,35,20,5
+	.db	'OsAlarmNext',0
+	.dw	3109
+	.db	4,2,35,24,5
+	.db	'OsAlarmPrevious',0
+	.dw	3109
+	.db	4,2,35,28,5
+	.db	'OsAlarmAlarmTime',0
+	.dw	55
+	.db	1,2,35,32,5
+	.db	'OsAlarmAutoStartType',0
+	.dw	55
+	.db	1,2,35,33,0,7
+	.db	'Os_Alarm',0,10,73,45
+	.dw	3114
+	.db	6
+	.dw	298
+	.db	7
+	.db	'Os_AlarmAction',0,10,76,45
+	.dw	2994
+	.db	7
+	.db	'Os_AlarmActivateTask',0,10,79,41
+	.dw	2803
+	.db	7
+	.db	'Os_AlarmSetEvent',0,10,82,38
+	.dw	2870
+	.db	15,112
+	.dw	980
+	.db	16,3,0,17
+	.db	'Tasks',0,11,38,20
+	.dw	3484
+	.db	1,1,17
+	.db	'Kernel',0,11,40,18
+	.dw	2279
+	.db	1,1,7
+	.db	'QueueSize',0,12,183,1,29
+	.dw	55
+	.db	7
+	.db	'QueueIndex',0,12,186,1,29
+	.dw	55
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L14:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,19,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,5,13,0,3,8,73,19,11,15,56,9,0,0,6,15,0,73,19,0,0,7,22,0,3,8,58,15,59,15,57
+	.db	15,73,19,0,0,8,21,0,54,15,39,12,0,0,9,19,1,58,15,59,15,57,15,11,15,0,0,10,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,60,12,0,0,11,5,0,3,8,58,15,59,15,57,15,73,19,0,0,12,46,1,3,8,58,15,59,15,57,15,73,19,54
+	.db	15,39,12,63,12,60,12,0,0,13,21,0,54,15,0,0,14,23,1,3,8,58,15,59,15,57,15,11,15,0,0,15,1,1,11,15,73,19
+	.db	0,0,16,33,0,47,15,0,0,17,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L15:
+	.dw	.L43-.L42
+.L42:
+	.dh	3
+	.dw	.L45-.L44
+.L44:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\include\\Internal\\SchedulingQueues.h',0,0,0,0
+	.db	'../src/kernel/ActivateTask.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L45:
+.L43:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ActivateTask')
+.L16:
+	.dw	170
+	.dh	3
+	.dw	.L17
+	.db	4,1
+	.db	'../src/kernel/ActivateTask.c',0
+	.dw	.L38,.L39
+	.db	12,1
+	.dw	.L19,.L18
+	.db	2
+	.dw	.L12
+	.db	3
+	.db	'OS_ActivateTask',0,1,95,27
+	.dw	.L22
+	.db	1,1,1
+	.dw	.L11,.L23,.L10
+	.db	4
+	.db	'TaskID',0,1,97,32
+	.dw	.L24,.L25
+	.db	5
+	.dw	.L11,.L23
+	.db	6
+	.db	'ErrorState',0,1,101,31
+	.dw	.L22,.L26
+	.db	6
+	.db	'Task',0,1,103,40
+	.dw	.L27,.L28
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ActivateTask')
+.L17:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ActivateTask')
+.L18:
+	.dw	.L47-.L46
+.L46:
+	.dh	3
+	.dw	.L49-.L48
+.L48:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/ActivateTask.c',0,0,0,0,0
+.L49:
+	.db	5,27,7,0,5,2
+	.dw	.L11
+	.db	3,222,0,1,5,46,9
+	.dh	.L29-.L11
+	.db	3,6,1,5,18,9
+	.dh	.L31-.L29
+	.db	3,26,1,5,13,9
+	.dh	.L50-.L31
+	.db	1,5,18,9
+	.dh	.L51-.L50
+	.db	1,5,17,9
+	.dh	.L32-.L51
+	.db	3,7,1,5,31,9
+	.dh	.L30-.L32
+	.db	1,5,65,9
+	.dh	.L52-.L30
+	.db	1,5,9,9
+	.dh	.L53-.L52
+	.db	1,5,63,9
+	.dh	.L54-.L53
+	.db	3,3,1,5,13,9
+	.dh	.L55-.L54
+	.db	1,5,45,9
+	.dh	.L56-.L55
+	.db	3,3,1,5,39,9
+	.dh	.L34-.L56
+	.db	3,1,1,5,40,9
+	.dh	.L36-.L34
+	.db	3,2,1,5,51,9
+	.dh	.L57-.L36
+	.db	1,5,21,9
+	.dh	.L58-.L57
+	.db	1,5,33,7,9
+	.dh	.L59-.L58
+	.db	3,3,1,5,63,9
+	.dh	.L60-.L59
+	.db	1,5,17,9
+	.dh	.L3-.L60
+	.db	3,10,1,5,31,9
+	.dh	.L61-.L3
+	.db	1,5,58,9
+	.dh	.L62-.L61
+	.db	1,5,60,9
+	.dh	.L63-.L62
+	.db	1,5,26,9
+	.dh	.L2-.L63
+	.db	3,9,1,5,9,9
+	.dh	.L5-.L2
+	.db	3,10,1,5,50,7,9
+	.dh	.L64-.L5
+	.db	1,5,56,9
+	.dh	.L65-.L64
+	.db	1,5,47,9
+	.dh	.L66-.L65
+	.db	1,5,29,7,9
+	.dh	.L67-.L66
+	.db	3,2,1,5,27,9
+	.dh	.L68-.L67
+	.db	1,5,2,9
+	.dh	.L6-.L68
+	.db	3,2,1,5,1,9
+	.dh	.L37-.L6
+	.db	3,1,1,7,9
+	.dh	.L21-.L37
+	.db	0,1,1
+.L47:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ActivateTask')
+.L19:
+	.dw	-1,.L20,0,.L21-.L20,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L38:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L39:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ActivateTask')
+.L26:
+	.dw	-1,.L11,.L31-.L11,.L23-.L11
+	.dh	1
+	.db	84
+	.dw	.L37-.L11,.L23-.L11
+	.dh	1
+	.db	80
+	.dw	0,0
+.L10:
+	.dw	-1,.L11,0,.L29-.L11
+	.dh	2
+	.db	125,0
+	.dw	.L29-.L11,.L23-.L11
+	.dh	2
+	.db	125,12
+	.dw	.L23-.L11,.L23-.L11
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L28:
+	.dw	-1,.L11,.L32-.L11,.L23-.L11
+	.dh	1
+	.db	85
+	.dw	.L33-.L11,.L34-.L11
+	.dh	1
+	.db	80
+	.dw	.L35-.L11,.L36-.L11
+	.dh	1
+	.db	80
+	.dw	0,0
+.L25:
+	.dw	-1,.L11,0,.L30-.L11
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L69:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ActivateTask')
+	.dw	48
+	.dw	.L69,.L11,.L23-.L11
+	.db	4
+	.dw	(.L29-.L11)/2
+	.db	19,6,22,13,3,19,125,12,17,14,126,17,5,124,17,4,122,4
+	.dw	(.L23-.L29)/2
+	.db	19,0,8,13,197,196,0,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/ActivateTask.c	   181  
+; ../src/kernel/ActivateTask.c	   182  /***********************************************************************************/
+; ../src/kernel/ActivateTask.c	   183  /*				    			 End Of File			         				   */
+; ../src/kernel/ActivateTask.c	   183  /***********************************************************************************/
+
+	; Module end
+	.end

@@ -1,0 +1,736 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255"
+	.compiler_invocation	"carm --dep-file=../Executable/Application/src/.CryOSServicesQueues.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../TC399x/HSM/Application/KeyM/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../../TC399x/Host Core\\CryptoKeyManagement\\inc -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Application/src/CryOSServicesQueues.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Application\\src\\CryOSServicesQueues.src ../../TC399x/HSM/Application/src/CryOSServicesQueues.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255'
+	.source '../../TC399x/HSM/Application/src/CryOSServicesQueues.c'
+
+	.section	.text ,cluster('$group_CryOs_ServiceQueueInit')
+	.global	CryOs_ServiceQueueInit
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     1  /**
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     2   * @file CryOSServicesQueues.c
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     3   * @author Ahmed Aref Omaira
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     5   * @date 4-5-2023
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     6   * @platform
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     7   * @variant
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     8   * @vendor
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	     9   * @specification
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    10   * @brief CryOS Services Queues Implementation.
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    11   */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    12  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    13  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    14  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    15  /**********************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    16  /**				    			Include Headers			         				 **/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    17  /**********************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    18  #include "CryOSServicesQueues.h"
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    19  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    20  /***********************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    21  /*  			    			    Macros				         				   */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    22  /***********************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    23  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    24  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    25  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    26  /*				    	Internal Type Definitions		         			         */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    27  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    28  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    29  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    30  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    31  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    32  /*                            External Global Variables                              */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    33  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    34  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    35  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    36  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    37  /*				    			External constants		         				     */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    38  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    39  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    40  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    41  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    42  /*                              Internal Global Variables                            */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    43  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    44  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    45  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    46  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    47  /*				    			Internal constants		         				     */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    48  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    49  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    50  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    51  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    52  /*                        External Function Declration                               */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    53  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    54  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    55  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    56  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    57  /*				    	 External Functions Definition		      				     */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    58  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    59  void CryOs_ServiceQueueInit(void){
+; Function CryOs_ServiceQueueInit
+.L19:
+	.thumb
+	.align	4
+CryOs_ServiceQueueInit:	.type	func
+
+.L6:
+	push	{r4,lr}
+.L34:
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    60      for (unsigned char localIterator = 0; localIterator < MAX_QUEUE_NUMBER; localIterator++){
+	movs	r4,#0
+.L45:
+	b	.L2
+.L3:
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    61          CircularBufferCreate(CryOsQueues[localIterator].Queue, cryOs_ServiceQueueBufferArray[localIterator], CryOs_ServiceQueueBufferArraySize[localIterator]);
+	movs	r0,#12
+.L62:
+	ldr	r1,.L4
+.L63:
+	mla	r0,r4,r0,r1
+.L64:
+	ldr	r0,[r0,#0]
+.L65:
+	ldr	r1,.L4+4
+.L66:
+	ldr	r1,[r1,r4,lsl #2]
+.L67:
+	ldr	r2,.L4+8
+.L68:
+	ldrb	r2,[r4,r2]
+	bl	CircularBufferCreate
+.L69:
+	adds	r4,r4,#1
+.L2:
+	cmp	r4,#3
+	blt	.L3
+.L35:
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    62      }
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    63  }
+	pop	{r4,pc}
+.L33:
+	.align	4
+.L4:
+	.dw	CryOsQueues
+	.dw	cryOs_ServiceQueueBufferArray
+	.dw	CryOs_ServiceQueueBufferArraySize
+.L20:
+	.size	CryOs_ServiceQueueInit,$-CryOs_ServiceQueueInit
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_CryOs_ServiceQueueAdd')
+	.global	CryOs_ServiceQueueAdd
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    64  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    65  void CryOs_ServiceQueueAdd(CryOs_QueueType* Queue, CryOSServiceStructure_t* ServiceStructure){
+; Function CryOs_ServiceQueueAdd
+.L25:
+	.thumb
+	.align	4
+CryOs_ServiceQueueAdd:	.type	func
+
+.L8:
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    66      CircularBufferInsert(Queue->Queue, ServiceStructure);
+	ldr	r0,[r0,#0]
+.L46:
+	b	CircularBufferInsert
+.L26:
+	.size	CryOs_ServiceQueueAdd,$-CryOs_ServiceQueueAdd
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_CryOs_ServiceQueueGet')
+	.global	CryOs_ServiceQueueGet
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    67  }
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    68  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    69  void CryOs_ServiceQueueGet(CryOs_QueueType* Queue, CryOSServiceStructure_t** ServiceStructure){
+; Function CryOs_ServiceQueueGet
+.L31:
+	.thumb
+	.align	4
+CryOs_ServiceQueueGet:	.type	func
+
+.L10:
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    70      CircularBufferRemove(Queue->Queue, ServiceStructure);
+	ldr	r0,[r0,#0]
+.L47:
+	b	CircularBufferRemove
+.L32:
+	.size	CryOs_ServiceQueueGet,$-CryOs_ServiceQueueGet
+	; End of function
+	.endsec	; End of section
+
+	.calls	'CryOs_ServiceQueueInit','CircularBufferCreate'
+	.calls	'CryOs_ServiceQueueAdd','CircularBufferInsert'
+	.calls	'CryOs_ServiceQueueGet','CircularBufferRemove'
+	.calls	'CryOs_ServiceQueueInit','',8
+	.calls	'CryOs_ServiceQueueAdd','',0
+	.calls	'CryOs_ServiceQueueGet','',0
+	.extern	CircularBufferCreate
+	.extern	CircularBufferInsert
+	.extern	CircularBufferRemove
+	.extern	CryOs_ServiceQueueBufferArraySize
+	.extern	cryOs_ServiceQueueBufferArray
+	.extern	CryOsQueues
+	.section	.debug_info
+.L12:
+	.dw	1875
+	.dh	3
+	.dw	.L13
+	.db	4
+.L11:
+	.db	1
+	.dw	.L48,.L49,.L50
+	.db	12,1
+	.dw	.L14
+	.db	2
+	.db	'CircularBufferStatus_e',0,1,46,6,4,3
+	.db	'CIRCULAR_BUFFER_STATUS_OK',0,0,3
+	.db	'CIRCULAR_BUFFER_STATUS_FULL',0,1,3
+	.db	'CIRCULAR_BUFFER_STATUS_EMPTY',0,2,3
+	.db	'CIRCULAR_BUFFER_STATUS_NULL_POINTER',0,3,0,4
+	.db	'unsigned int',0,4,7,5
+	.dw	186
+	.db	6,2,112,9,68,7
+	.db	'requestSrc',0
+	.dw	186
+	.db	4,2,35,0,7
+	.db	'requestId',0
+	.dw	186
+	.db	4,2,35,4,7
+	.db	'requestPriority',0
+	.dw	186
+	.db	4,2,35,8,7
+	.db	'requestState',0
+	.dw	186
+	.db	4,2,35,12,7
+	.db	'requestEndedFlag',0
+	.dw	186
+	.db	4,2,35,16,7
+	.db	'keyId',0
+	.dw	186
+	.db	4,2,35,20,7
+	.db	'primitiveAlgorithmSecondaryFamily',0
+	.dw	186
+	.db	4,2,35,24,7
+	.db	'primitiveAlgorithmMode',0
+	.dw	186
+	.db	4,2,35,28,7
+	.db	'primitiveAlgorithmFamily',0
+	.dw	186
+	.db	4,2,35,32,7
+	.db	'primitiveService',0
+	.dw	186
+	.db	4,2,35,36,7
+	.db	'messagePtr',0
+	.dw	202
+	.db	4,2,35,40,7
+	.db	'messageLength',0
+	.dw	186
+	.db	4,2,35,44,7
+	.db	'resultPtr',0
+	.dw	202
+	.db	4,2,35,48,7
+	.db	'resultLengthPtr',0
+	.dw	202
+	.db	4,2,35,52,7
+	.db	'verificationMessagePtr',0
+	.dw	202
+	.db	4,2,35,56,7
+	.db	'verificationMessageLength',0
+	.dw	186
+	.db	4,2,35,60,7
+	.db	'verificationResultPtr',0
+	.dw	202
+	.db	4,2,35,64,0
+.L40:
+	.db	5
+	.dw	207
+.L43:
+	.db	5
+	.dw	660
+.L36:
+	.db	4
+	.db	'unsigned char',0,1,8,8
+	.db	'CircularBufferHandler_s',0,1,58,8,12,7
+	.db	'BufferBase',0
+	.dw	665
+	.db	4,2,35,0,7
+	.db	'BufferCurrentSize',0
+	.dw	670
+	.db	1,2,35,4,7
+	.db	'BufferMaxSize',0
+	.dw	670
+	.db	1,2,35,5,7
+	.db	'HeadIndex',0
+	.dw	670
+	.db	1,2,35,6,7
+	.db	'TailIndex',0
+	.dw	670
+	.db	1,2,35,7,7
+	.db	'CurrentHighestPriority',0
+	.dw	670
+	.db	1,2,35,8,7
+	.db	'CurrentLowestPriority',0
+	.dw	670
+	.db	1,2,35,9,0,5
+	.dw	687
+	.db	9
+	.db	'CircularBufferCreate',0,1,103,31
+	.dw	30
+	.db	1,1,1,1,10
+	.db	'CircularBuffer',0,1,104,30
+	.dw	888
+	.db	10
+	.db	'CircularBufferBase',0,1,105,31
+	.dw	665
+	.db	10
+	.db	'CircularBufferMaxSize',0,1,106,26
+	.dw	670
+	.db	0,9
+	.db	'CircularBufferInsert',0,1,108,31
+	.dw	30
+	.db	1,1,1,1,10
+	.db	'CircularBuffer',0,1,109,30
+	.dw	888
+	.db	10
+	.db	'CircularBufferElement',0,1,110,30
+	.dw	660
+	.db	0,9
+	.db	'CircularBufferRemove',0,1,113,31
+	.dw	30
+	.db	1,1,1,1,10
+	.db	'CircularBuffer',0,1,114,34
+	.dw	888
+	.db	10
+	.db	'removedElement',0,1,115,35
+	.dw	665
+	.db	0,6,3,72,10,8,7
+	.db	'InstanceId',0
+	.dw	670
+	.db	1,2,35,0,7
+	.db	'State',0
+	.dw	670
+	.db	1,2,35,1,7
+	.db	'ServiceStructure',0
+	.dw	660
+	.db	4,2,35,4,0,5
+	.dw	1174
+	.db	6,3,80,9,12,7
+	.db	'Queue',0
+	.dw	888
+	.db	4,2,35,0,7
+	.db	'Instance',0
+	.dw	1241
+	.db	4,2,35,4,7
+	.db	'ServiceId',0
+	.dw	670
+	.db	1,2,35,8,7
+	.db	'MaxNumOfInstances',0
+	.dw	670
+	.db	1,2,35,9,7
+	.db	'AlgorithmType',0
+	.dw	670
+	.db	1,2,35,10,0
+.L38:
+	.db	5
+	.dw	1246
+	.db	11,1,5
+	.dw	1359
+	.db	12
+	.db	'__codeptr',0,4,1,1
+	.dw	1361
+	.db	12
+	.db	'uint8',0,5,247,1,23
+	.dw	670
+	.db	4
+	.db	'unsigned short int',0,2,7,12
+	.db	'uint16',0,5,252,1,24
+	.dw	1399
+	.db	12
+	.db	'uint32',0,5,129,2,22
+	.dw	186
+	.db	12
+	.db	'Std_ReturnType',0,6,235,2,15
+	.dw	670
+	.db	12
+	.db	'Std_TransformerClass',0,6,238,2,15
+	.dw	670
+	.db	12
+	.db	'Std_TransformerForwardCode',0,6,241,2,15
+	.dw	670
+	.db	12
+	.db	'CryOSServiceStructure_t',0,2,147,1,3
+	.dw	207
+	.db	12
+	.db	'CircularBufferSize_t',0,1,32,23
+	.dw	670
+	.db	12
+	.db	'CircularBufferIndex_t',0,1,35,23
+	.dw	670
+	.db	12
+	.db	'CircularBufferHandler_t',0,1,38,40
+	.dw	687
+	.db	12
+	.db	'CircularBufferStatus_t',0,1,54,37
+	.dw	30
+	.db	12
+	.db	'CryptoInstance',0,3,78,2
+	.dw	1174
+	.db	12
+	.db	'CryOs_QueueType',0,3,88,2
+	.dw	1246
+	.db	13,3
+	.dw	670
+	.db	14,2,0,15
+	.db	'CryOs_ServiceQueueBufferArraySize',0,3,101,22
+	.dw	1745
+	.db	1,1,13,12
+	.dw	665
+	.db	14,2,0,15
+	.db	'cryOs_ServiceQueueBufferArray',0,3,110,34
+	.dw	1798
+	.db	1,1,13,36
+	.dw	1246
+	.db	14,2,0,15
+	.db	'CryOsQueues',0,3,119,24
+	.dw	1847
+	.db	1,1,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L13:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,4,1,3,8,58,15,59,15,57,15,11,15,0,0,3,40,0,3,8,28,13
+	.db	0,0,4,36,0,3,8,11,15,62,15,0,0,5,15,0,73,19,0,0,6,19,1,58,15,59,15,57,15,11,15,0,0,7,13,0,3,8,73,19,11
+	.db	15,56,9,0,0,8,19,1,3,8,58,15,59,15,57,15,11,15,0,0,9,46,1,3,8,58,15,59,15,57,15,73,19,54,15,39,12,63,12
+	.db	60,12,0,0,10,5,0,3,8,58,15,59,15,57,15,73,19,0,0,11,21,0,54,15,0,0,12,22,0,3,8,58,15,59,15,57,15,73,19
+	.db	0,0,13,1,1,11,15,73,19,0,0,14,33,0,47,15,0,0,15,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L14:
+	.dw	.L55-.L54
+.L54:
+	.dh	3
+	.dw	.L57-.L56
+.L56:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\..\\TC399x\\HSM\\Application\\inc\\CircularBuffer.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Application\\inc\\CryOSServicesStructure.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Application\\inc\\CryOSServicesQueues_cfg.h',0,0,0,0
+	.db	'../../TC399x/HSM/Application/src/CryOSServicesQueues.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0,0
+.L57:
+.L55:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_CryOs_ServiceQueueInit')
+.L15:
+	.dw	125
+	.dh	3
+	.dw	.L16
+	.db	4,1
+	.dw	.L48,.L49,.L50
+	.db	12,1
+	.dw	.L18,.L17
+	.db	2
+	.dw	.L11
+	.db	3
+	.db	'CryOs_ServiceQueueInit',0,1,59,6,1,1,1
+	.dw	.L6,.L33,.L5
+	.db	4
+	.dw	.L6,.L33
+	.db	4
+	.dw	.L34,.L35
+	.db	5
+	.db	'localIterator',0,1,60,24
+	.dw	.L36,.L37
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_CryOs_ServiceQueueInit')
+.L16:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,1,17,1,18,1,0,0,5,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_CryOs_ServiceQueueInit')
+.L17:
+	.dw	.L59-.L58
+.L58:
+	.dh	3
+	.dw	.L61-.L60
+.L60:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Application/src/CryOSServicesQueues.c',0,0,0,0,0
+.L61:
+	.db	5,6,7,0,5,2
+	.dw	.L6
+	.db	3,58,1,5,40,9
+	.dh	.L34-.L6
+	.db	3,1,1,5,75,9
+	.dh	.L45-.L34
+	.db	1,5,41,9
+	.dh	.L3-.L45
+	.db	3,1,1,5,30,9
+	.dh	.L62-.L3
+	.db	1,5,41,9
+	.dh	.L63-.L62
+	.db	1,5,56,9
+	.dh	.L64-.L63
+	.db	1,5,64,9
+	.dh	.L65-.L64
+	.db	1,5,93,9
+	.dh	.L66-.L65
+	.db	1,5,110,9
+	.dh	.L67-.L66
+	.db	1,5,143,1,9
+	.dh	.L68-.L67
+	.db	1,5,90,9
+	.dh	.L69-.L68
+	.db	3,127,1,5,75,9
+	.dh	.L2-.L69
+	.db	1,5,1,9
+	.dh	.L35-.L2
+	.db	3,3,1,7,9
+	.dh	.L20-.L35
+	.db	0,1,1
+.L59:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_CryOs_ServiceQueueInit')
+.L18:
+	.dw	-1,.L19,0,.L20-.L19,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_CryOs_ServiceQueueAdd')
+.L21:
+	.dw	134
+	.dh	3
+	.dw	.L22
+	.db	4,1
+	.dw	.L48,.L49,.L50
+	.db	12,1
+	.dw	.L24,.L23
+	.db	2
+	.dw	.L11
+	.db	3
+	.db	'CryOs_ServiceQueueAdd',0,1,65,6,1,1,1
+	.dw	.L8,.L26,.L7
+	.db	4
+	.db	'Queue',0,1,65,45
+	.dw	.L38,.L39
+	.db	4
+	.db	'ServiceStructure',0,1,65,77
+	.dw	.L40,.L41
+	.db	5
+	.dw	.L8,.L26
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_CryOs_ServiceQueueAdd')
+.L22:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_CryOs_ServiceQueueAdd')
+.L23:
+	.dw	.L71-.L70
+.L70:
+	.dh	3
+	.dw	.L73-.L72
+.L72:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Application/src/CryOSServicesQueues.c',0,0,0,0,0
+.L73:
+	.db	5,31,7,0,5,2
+	.dw	.L8
+	.db	3,193,0,1,5,40,9
+	.dh	.L46-.L8
+	.db	1,5,1,7,9
+	.dh	.L26-.L46
+	.db	3,1,0,1,1
+.L71:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_CryOs_ServiceQueueAdd')
+.L24:
+	.dw	-1,.L25,0,.L26-.L25,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_CryOs_ServiceQueueGet')
+.L27:
+	.dw	134
+	.dh	3
+	.dw	.L28
+	.db	4,1
+	.dw	.L48,.L49,.L50
+	.db	12,1
+	.dw	.L30,.L29
+	.db	2
+	.dw	.L11
+	.db	3
+	.db	'CryOs_ServiceQueueGet',0,1,69,6,1,1,1
+	.dw	.L10,.L32,.L9
+	.db	4
+	.db	'Queue',0,1,69,45
+	.dw	.L38,.L42
+	.db	4
+	.db	'ServiceStructure',0,1,69,78
+	.dw	.L43,.L44
+	.db	5
+	.dw	.L10,.L32
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_CryOs_ServiceQueueGet')
+.L28:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_CryOs_ServiceQueueGet')
+.L29:
+	.dw	.L75-.L74
+.L74:
+	.dh	3
+	.dw	.L77-.L76
+.L76:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Application/src/CryOSServicesQueues.c',0,0,0,0,0
+.L77:
+	.db	5,31,7,0,5,2
+	.dw	.L10
+	.db	3,197,0,1,5,40,9
+	.dh	.L47-.L10
+	.db	1,5,1,7,9
+	.dh	.L32-.L47
+	.db	3,1,0,1,1
+.L75:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_CryOs_ServiceQueueGet')
+.L30:
+	.dw	-1,.L31,0,.L32-.L31,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L50:
+	.db	'D:\\CryptOS Repository\\Software\\OS\\Makefile\\',0
+.L49:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L48:
+	.db	'../../TC399x/HSM/Application/src/CryOSServicesQueues.c',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_CryOs_ServiceQueueAdd')
+.L7:
+	.dw	-1,.L8,0,.L26-.L8
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L39:
+	.dw	-1,.L8,0,.L46-.L8
+	.dh	1
+	.db	80
+	.dw	0,0
+.L41:
+	.dw	-1,.L8,0,.L26-.L8
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_CryOs_ServiceQueueGet')
+.L9:
+	.dw	-1,.L10,0,.L32-.L10
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L42:
+	.dw	-1,.L10,0,.L47-.L10
+	.dh	1
+	.db	80
+	.dw	0,0
+.L44:
+	.dw	-1,.L10,0,.L32-.L10
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_CryOs_ServiceQueueInit')
+.L5:
+	.dw	-1,.L6,0,.L34-.L6
+	.dh	2
+	.db	125,0
+	.dw	.L34-.L6,.L33-.L6
+	.dh	2
+	.db	125,8
+	.dw	.L33-.L6,.L33-.L6
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L37:
+	.dw	-1,.L6,.L45-.L6,.L33-.L6
+	.dh	1
+	.db	84
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L78:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_CryOs_ServiceQueueInit')
+	.dw	44
+	.dw	.L78,.L6,.L33-.L6
+	.db	4
+	.dw	(.L34-.L6)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L33-.L34)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_CryOs_ServiceQueueAdd')
+	.dw	12
+	.dw	.L78,.L8,.L26-.L8
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_CryOs_ServiceQueueGet')
+	.dw	12
+	.dw	.L78,.L10,.L32-.L10
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    71  }
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    72  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    73  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    74  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    75  /*                        Internal Function Declration                               */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    76  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    77  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    78  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    79  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    80  /*				    	 Internal Functions Definition		      				     */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    81  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    82  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    83  
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    84  /*************************************************************************************/
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    85  /*				    			 End Of File			         				     */
+; ../../TC399x/HSM/Application/src/CryOSServicesQueues.c	    85  /*************************************************************************************/
+
+	; Module end
+	.end

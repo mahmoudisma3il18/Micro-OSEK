@@ -1,0 +1,99 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/AES/src/.AES_Cfg.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/AES/src/AES_Cfg.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\AES\\src\\AES_Cfg.src ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255'
+	.source '../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c'
+
+	.section	.debug_info
+.L3:
+	.dw	170
+	.dh	3
+	.dw	.L4
+	.db	4
+.L2:
+	.db	1
+	.db	'../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c',0
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.db	'D:\\CryptOS Repository\\Software\\OS\\Makefile\\',0,12,1
+	.dw	.L5
+	.db	2,1,3
+	.dw	148
+	.db	4
+	.db	'__codeptr',0,1,1,1
+	.dw	150
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L4:
+	.db	1,17,1,3,8,37,8,27,8,19,15,128,70,12,16,6,0,0,2,21,0,54,15,0,0,3,15,0,73,19,0,0,4,22,0,3,8,58,15,59,15
+	.db	57,15,73,19,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L5:
+	.dw	.L10-.L9
+.L9:
+	.dh	3
+	.dw	.L12-.L11
+.L11:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c',0,0,0,0,0
+.L12:
+.L10:
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     1  /**
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     2   * @file 	AES.c
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     3   * @author  Shiry Ezzat
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     5   * @date	21-03-2024
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     6   * @platform    --
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     7   * @variant		--
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     8   * @vendor		--
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	     9   * @specification --
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    10   * @brief
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    11   */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    12  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    13  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    14  /*                               INCLUDE HEADERS	                              */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    15  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    16  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    17  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    18  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    19  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    20  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    21  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    22  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    23  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    24  /*                                 TypeDefnitions                                  */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    25  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    26  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    27  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    28  /*                        Internal Function Declration                             */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    29  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    30  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    31  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    32  /*                        External Function Declration                             */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    33  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    34  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    35  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    36  /*				                External constants		         				   */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    37  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    38  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    39  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    40  /*			              External data	shared global varaibles	         	       */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    41  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    42  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    43  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    44  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    45  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    46  
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    47  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    48  /*				                 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/AES/src/AES_Cfg.c	    49  /***********************************************************************************/
+
+	; Module end
+	.end

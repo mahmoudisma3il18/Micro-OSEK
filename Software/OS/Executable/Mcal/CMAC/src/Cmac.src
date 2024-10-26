@@ -1,0 +1,1666 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/CMAC/src/.Cmac.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/CMAC/src/Cmac.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\CMAC\\src\\Cmac.src ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../../TC399x/HSM/Mcal/CMAC/src/Cmac.c'
+
+	.section	.text ,cluster('$group_LS_oneBitCmac')
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     1  /**
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     2   * @file 	Cmac.c
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     3   * @author   Radwa Mahmoud &  Mohamed Sayed
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     5   * @date	27-4-2024
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     6   * @platform    --
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     7   * @variant		--
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     8   * @vendor		CryptOS
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	     9   * @specification --
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    10   * @brief   Cmac Source File.
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    11   *
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    12   *
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    13   *
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    14   */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    15  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    16  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    17  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    18  /*------------------------- MISRA-C violations in c files -----------------------*/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    19  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    20  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    21  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    22  /*                               INCLUDE HEADERS	                              */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    23  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    24  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    25  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    26  #include "Cmac.h"
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    27  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    28  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    29  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    30  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    31  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    32  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    33  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    34  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    35  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    36  /*                                 Type Definitions                                  */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    37  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    38  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    39  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    40  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    41  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    42  /*                        Internal Function Declaration                             */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    43  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    44  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    45  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    46  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    47  /*                        External Function Declaration                             */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    48  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    49  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    50  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    51  /*				    			External constants		         				   */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    52  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    53  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    54  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    55  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    56  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    57  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    58  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    59  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    60  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    61  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    62  /* left shift one bit function */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    63  static void LS_oneBitCmac(unsigned char *input,  unsigned char *output)
+; Function LS_oneBitCmac
+.L48:
+	.thumb
+	.align	4
+LS_oneBitCmac:	.type	func
+
+.L31:
+	push	{r4}
+.L123:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    64  {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    65  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    66      unsigned char carry = 0;
+	movs	r3,#0
+.L79:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    67  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    68      // Perform left shift by one bit on the input
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    69      // and handle any overflow bit
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    70      for (int i = 15; i >= 0; i--) {
+	movs	r2,#15
+.L126:
+	b	.L2
+.L3:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    71          output[i] = input[i] << 1;
+	ldrb	r4,[r0,r2]
+.L182:
+	movs	r4,r4,lsl #1
+.L183:
+	strb	r4,[r1,r2]
+.L184:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    72          output[i] |= carry;
+	ldrb	r4,[r1,r2]
+.L185:
+	orrs	r4,r4,r3
+	strb	r4,[r1,r2]
+.L186:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    73          carry = (input[i] & 0x80) ? 1 : 0; // Check if the most significant bit is set
+	ldrb	r3,[r0,r2]
+.L125:
+	tst	r3,#128
+.L187:
+	ite	ne
+	movne	r3,#1
+.L127:
+	moveq	r3,#0
+.L5:
+	subs	r2,r2,#1
+.L2:
+	cmp	r2,#0
+	bge	.L3
+.L80:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    74      }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    75  }
+	pop	{r4}
+.L124:
+	bx	lr
+.L49:
+	.size	LS_oneBitCmac,$-LS_oneBitCmac
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_BlockXorCmac')
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    76  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    77  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    78  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    79  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    80  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    81  static void BlockXorCmac(unsigned char* FirstBlock, unsigned char* SecondBlock, unsigned char* OutputBolock)
+; Function BlockXorCmac
+.L54:
+	.thumb
+	.align	4
+BlockXorCmac:	.type	func
+
+.L33:
+	push	{r4,r5}
+.L86:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    82  {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    83  	for(int LocalIndex = 0; LocalIndex < CMAC_BLOCK_SIZE ; LocalIndex++)
+	movs	r3,#0
+.L129:
+	b	.L6
+.L7:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    84  	{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    85  		 OutputBolock[LocalIndex] = FirstBlock[LocalIndex] ^ SecondBlock[LocalIndex];
+	ldrb	r4,[r0,r3]
+.L192:
+	ldrb	r5,[r1,r3]
+.L193:
+	eors	r4,r4,r5
+.L194:
+	strb	r4,[r2,r3]
+.L195:
+	adds	r3,r3,#1
+.L6:
+	cmp	r3,#16
+	blt	.L7
+.L87:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    86  	}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    87  }
+	pop	{r4,r5}
+.L128:
+	bx	lr
+.L55:
+	.size	BlockXorCmac,$-BlockXorCmac
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_generate_subkey')
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    88  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    89  /**
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    90   * @brief
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    91   * @description
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    92   * @service name    			generate_subkey
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    93   * @syntax
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    94   * @service ID     	 			-
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    95   * @sync/async      			Synchronous
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    96   * @reentrancy      			Non-Reentrant
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    97   * @param[in]
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    98   * @param[out]      -
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	    99   * @return
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   100   * @see
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   101   * @note
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   102   * @warning         -
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   103   */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   104  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   105  static void generate_subkey(unsigned char *key, unsigned char *K1, unsigned char *K2)
+; Function generate_subkey
+.L60:
+	.thumb
+	.align	4
+generate_subkey:	.type	func
+
+.L35:
+	push	{r4,r5,lr}
+.L130:
+	sub	sp,sp,#16
+.L131:
+	mov	r4,r1
+.L135:
+	mov	r5,r2
+.L136:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   106  {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   107      unsigned char L[CMAC_BLOCK_SIZE];
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   108  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   109      /* Compute L by performing an AES function call with const_Zero and the provided key
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   110         The result is stored in L */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   111      /* L --> output of Aes encryption :const_Zero , key AES_function_call(const_Zero, key, L); */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   112  	
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   113      /* aes_128_encrypt(const_Zero, L, key); */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   114  	
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   115      /* Generate K1 by performing a one-bit left shift on L */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   116      LS_oneBitCmac(L, K1);
+	mov	r0,sp
+.L134:
+	bl	LS_oneBitCmac
+.L133:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   117  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   118      /* If the most significant bit of L is set, XOR K1 with const_Rb */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   119      if (L[0] & 0x80) {
+	ldrb	r0,[sp,#0]
+.L200:
+	tst	r0,#128
+	beq	.L8
+.L201:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   120          BlockXorCmac(K1, const_Rb, K1);
+	mov	r0,r4
+.L137:
+	mov	r2,r4
+.L138:
+	ldr	r1,.L29
+.L139:
+	bl	BlockXorCmac
+.L8:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   121      }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   122  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   123      /* Generate K2 by performing a one-bit left shift on K1 */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   124      LS_oneBitCmac(K1, K2);
+	mov	r0,r4
+.L140:
+	mov	r1,r5
+.L142:
+	bl	LS_oneBitCmac
+.L141:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   125  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   126      /* If the most significant bit of K1 is set, XOR K2 with const_Rb */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   127      if (K1[0] & 0x80) {
+	ldrb	r0,[r4,#0]
+.L202:
+	tst	r0,#128
+	beq	.L9
+.L203:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   128          BlockXorCmac(K2, const_Rb, K2);
+	mov	r0,r5
+.L143:
+	mov	r2,r5
+.L144:
+	ldr	r1,.L29
+.L145:
+	bl	BlockXorCmac
+.L9:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   129      }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   130  }
+	add	sp,sp,#16
+.L132:
+	pop	{r4,r5,pc}
+.L89:
+	.align	4
+.L29:
+	.dw	const_Rb
+.L61:
+	.size	generate_subkey,$-generate_subkey
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_Cmac_Generate')
+	.global	Cmac_Generate
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   131  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   132  unsigned char Cmac_Generate(unsigned char* Key, unsigned char* Message, unsigned int MessageLen, unsigned char* CMAC)
+; Function Cmac_Generate
+.L66:
+	.thumb
+	.align	4
+Cmac_Generate:	.type	func
+
+.L37:
+	push	{r4,r5,r6,r7,r8,r11,lr}
+.L146:
+	sub	sp,sp,#64
+.L147:
+	mov	r11,sp
+	mov	r6,r2
+.L152:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   133  {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   134  	unsigned char RetVal = 0;
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   135  	unsigned char K1[CMAC_BLOCK_SIZE];
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   136  	unsigned char K2[CMAC_BLOCK_SIZE];
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   137      unsigned char X[CMAC_BLOCK_SIZE] =
+	add	r2,sp,#32
+.L151:
+	movs	r5,#0
+.L154:
+	str	r5,[r2,#0]
+	str	r5,[r2,#4]
+	str	r5,[r2,#8]
+	str	r5,[r2,#12]
+.L208:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   138  	{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   139          0x00, 0x00, 0x00, 0x00,
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   140          0x00, 0x00, 0x00, 0x00,
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   141          0x00, 0x00, 0x00, 0x00,
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   142          0x00, 0x00, 0x00, 0x00
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   143      };
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   144  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   145  	unsigned char Y[CMAC_BLOCK_SIZE];
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   146  	unsigned char Flag = 0;
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   147  	int NumberOfBlocks;
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   148  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   149      if (Key == 0 || Message== 0 || CMAC == 0)
+	cmp	r0,#0
+.L209:
+	it	ne
+	cmpne	r1,#0
+	beq	.L12
+.L210:
+	cbnz	r3,.L13
+.L12:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   150  	{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   151          RetVal = 1;
+	movs	r5,#1
+.L13:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   152      }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   153  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   154  	if(RetVal == 0)
+	cmp	r5,#0
+	bne	.L14
+.L211:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   155  	{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   156  	    generate_subkey(Key, K1, K2);
+	mov	r1,r11
+.L150:
+	add	r2,r11,#16
+	bl	generate_subkey
+.L149:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   157  		NumberOfBlocks = (MessageLen + (CMAC_BLOCK_SIZE - 1)) / CMAC_BLOCK_SIZE   ;
+	add	r0,r6,#15
+	movs	r4,r0,lsr #4
+.L155:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   158  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   159  		if(0 == NumberOfBlocks)
+	bne	.L15
+.L212:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   160  		{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   161  			NumberOfBlocks = 1;
+	movs	r4,#1
+.L213:
+	b	.L16
+.L15:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   162  			Flag = 0;
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   163  		}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   164  		else
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   165  		{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   166  			Flag = ((MessageLen % CMAC_BLOCK_SIZE) == 0) ? 1 : 0;
+	tst	r6,#15
+	bne	.L17
+.L214:
+	movs	r1,#1
+.L156:
+	b	.L18
+.L17:
+.L16:
+	movs	r1,#0
+.L18:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   167  		}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   168  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   169          unsigned char M[NumberOfBlocks][CMAC_BLOCK_SIZE];
+	movs	r0,r4,lsl #4
+	mov	r2,sp
+	adds	r0,r0,#7
+	bics	r0,r0,#3
+	sub	sp,sp,r0
+	str	r2,[sp,#0]
+	add	r8,sp,#4
+.L158:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   170  		/*memset(M[0], 0, NumberOfBlocks * CMAC_BLOCK_SIZE);*/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   171  		/*memcpy(M[0], Message, MessageLen);*/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   172  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   173  	    if(Flag)
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   174  		{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   175  			BlockXorCmac(M[NumberOfBlocks - 1], K1, M[NumberOfBlocks - 1]);
+	movs	r0,r4,lsl #4
+	subs	r0,r0,#16
+.L215:
+	add	r6,r8,r0
+.L153:
+	cbz	r1,.L19
+.L216:
+	mov	r1,r11
+.L157:
+	b	.L20
+.L19:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   176  		}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   177  		else
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   178  		{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   179  			/*memset(M[0] + MessageLen, 0x80, 1);*/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   180  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   181  			BlockXorCmac(M[NumberOfBlocks - 1], K2, M[NumberOfBlocks - 1]);
+	add	r1,r11,#16
+.L20:
+	mov	r0,r6
+	mov	r2,r6
+.L109:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   182  		}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   183  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   184  		for(int LocalIndex = 0; LocalIndex < NumberOfBlocks - 1 ; LocalIndex++)
+	movs	r7,#0
+.L159:
+	b	.L21
+.L22:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   185  		{
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   186  			BlockXorCmac(X, M[LocalIndex], Y);
+	add	r0,r11,#32
+.L217:
+	add	r1,r8,r7,lsl #4
+.L218:
+	add	r2,r11,#48
+.L219:
+	adds	r7,r7,#1
+.L21:
+	bl	BlockXorCmac
+.L220:
+	subs	r0,r4,#1
+.L221:
+	cmp	r7,r0
+	blt	.L22
+.L110:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   187  			
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   188            /*  aes_128_encrypt(Y, X, Key); */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   189  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   190  		}
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   191  		BlockXorCmac(X, M[NumberOfBlocks - 1], Y);
+	add	r0,r11,#32
+.L222:
+	add	r2,r11,#48
+	mov	r1,r6
+	bl	BlockXorCmac
+.L223:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   192  		
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   193  		/* aes_128_encrypt(Y, CMAC, Key); */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   194  	}
+	ldr	sp,[r8,#-4]
+.L14:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   195  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   196  	return RetVal;
+	mov	r0,r5
+.L160:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   197  }
+	add	sp,sp,#64
+.L148:
+	pop	{r4,r5,r6,r7,r8,r11,pc}
+.L67:
+	.size	Cmac_Generate,$-Cmac_Generate
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_CMAC_Verify')
+	.global	CMAC_Verify
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   198  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   199  /**
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   200   * @brief
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   201   * @description
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   202   * @service name    			CMAC_Verify
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   203   * @syntax
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   204   * @service ID     	 			-
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   205   * @sync/async      			Synchronous
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   206   * @reentrancy      			Non-Reentrant
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   207   * @param[in]
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   208   * @param[out]      -
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   209   * @return
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   210   * @see
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   211   * @note
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   212   * @warning         -
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   213   */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   214  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   215  unsigned char CMAC_Verify(unsigned char* Message, unsigned char MessageLen, unsigned char* CMAC, unsigned char* key)
+; Function CMAC_Verify
+.L72:
+	.thumb
+	.align	4
+CMAC_Verify:	.type	func
+
+.L39:
+	push	{r4,r5,lr}
+.L161:
+	sub	sp,sp,#16
+.L162:
+	mov	lr,r0
+.L168:
+	mov	r4,r1
+.L169:
+	mov	r5,r2
+.L170:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   216  {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   217      unsigned char Validity = CMAC_VALID;
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   218      unsigned char result[CMAC_BLOCK_SIZE];
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   219  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   220      // Generate the CMAC using the provided key, message, and message length
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   221      Cmac_Generate(key, Message, MessageLen, (unsigned char*) result);
+	mov	r0,r3
+.L165:
+	mov	r1,lr
+.L166:
+	mov	r2,r4
+.L164:
+	mov	r3,sp
+.L167:
+	bl	Cmac_Generate
+.L119:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   222  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   223      // Compare the calculated CMAC with the provided CMAC
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   224      for (int i = 0; i < CMAC_BLOCK_SIZE; i++)
+	movs	r1,#0
+.L120:
+	movs	r0,#1
+.L121:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   225      {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   226          // If any bit of calculated CMAC differs from the provided CMAC, set validity to INVALID
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   227          if ((result[i] =! CMAC[i]))
+	mov	r3,sp
+.L228:
+	b	.L24
+.L25:
+	ldrb	r2,[r5,r1]
+.L229:
+	rsbs	r2,r2,#1
+	it	lo
+	movlo	r2,#0
+.L230:
+	strb	r2,[r1,r3]
+.L231:
+	cbz	r2,.L26
+.L232:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   228          {
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   229              Validity = CMAC_INVALID;
+	movs	r0,#0
+.L233:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   230              break;
+	b	.L27
+.L26:
+	adds	r1,r1,#1
+.L24:
+	cmp	r1,#16
+	blt	.L25
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   231          }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   232      }
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   233      return Validity;
+.L27:
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   234  }
+	add	sp,sp,#16
+.L163:
+	pop	{r4,r5,pc}
+.L73:
+	.size	CMAC_Verify,$-CMAC_Verify
+	; End of function
+	.endsec	; End of section
+
+	.section	.rodata ,cluster('$group_.1.ini')
+	.align	4
+.1.ini:	.type	object
+	.size	.1.ini,16
+	.bs	16,0
+	.endsec	; End of section
+
+	.calls	'generate_subkey','LS_oneBitCmac'
+	.calls	'generate_subkey','BlockXorCmac'
+	.calls	'Cmac_Generate','generate_subkey'
+	.calls	'Cmac_Generate','BlockXorCmac'
+	.calls	'CMAC_Verify','Cmac_Generate'
+	.calls	'LS_oneBitCmac','',4
+	.calls	'BlockXorCmac','',8
+	.calls	'generate_subkey','',28
+	.calls	'Cmac_Generate','',92
+	.calls	'CMAC_Verify','',28
+	.extern	const_Rb
+	.section	.debug_info
+.L41:
+	.dw	204
+	.dh	3
+	.dw	.L42
+	.db	4
+.L40:
+	.db	1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L43
+	.db	2
+	.db	'void',0,3
+	.dw	30
+	.db	4
+	.db	'__free',0,1,1,1,1,5
+	.dw	36
+	.db	0,6
+	.dw	36
+.L97:
+	.db	7
+	.db	'unsigned int',0,4,7,8
+	.db	'__alloc',0
+	.dw	59
+	.db	1,1,1,1,5
+	.dw	64
+	.db	0
+.L77:
+	.db	7
+	.db	'unsigned char',0,1,8
+.L74:
+	.db	3
+	.dw	103
+.L81:
+	.db	7
+	.db	'int',0,4,5
+.L93:
+	.db	9,16
+	.dw	103
+	.db	10,15,0
+.L107:
+	.db	3
+	.dw	132
+	.db	11
+	.db	'__size_t',0,1,1,1
+	.dw	64
+	.db	12,1,3
+	.dw	163
+	.db	11
+	.db	'__codeptr',0,1,1,1
+	.dw	165
+	.db	13
+	.db	'const_Rb',0,2,68,23
+	.dw	132
+	.db	1,1,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L42:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,59,0,3,8,0,0,3,15,0,73,19,0,0,4,46,1,3,8,54,15,39,12
+	.db	63,12,60,12,0,0,5,5,0,73,19,0,0,6,53,0,73,19,0,0,7,36,0,3,8,11,15,62,15,0,0,8,46,1,3,8,73,19,54,15,39
+	.db	12,63,12,60,12,0,0,9,1,1,11,15,73,19,0,0,10,33,0,47,15,0,0,11,22,0,3,8,58,15,59,15,57,15,73,19,0,0,12
+	.db	21,0,54,15,0,0,13,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L43:
+	.dw	.L175-.L174
+.L174:
+	.dh	3
+	.dw	.L177-.L176
+.L176:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\CMAC\\inc\\Cmac_cfg.h',0,0,0,0,0
+.L177:
+.L175:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_LS_oneBitCmac')
+.L44:
+	.dw	158
+	.dh	3
+	.dw	.L45
+	.db	4,1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L47,.L46
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'LS_oneBitCmac',0,1,63,13,1,1
+	.dw	.L31,.L49,.L30
+	.db	4
+	.db	'input',0,1,63,42
+	.dw	.L74,.L75
+	.db	4
+	.db	'output',0,1,63,65
+	.dw	.L74,.L76
+	.db	5
+	.dw	.L31,.L49
+	.db	6
+	.db	'carry',0,1,66,19
+	.dw	.L77,.L78
+	.db	5
+	.dw	.L79,.L80
+	.db	6
+	.db	'i',0,1,70,14
+	.dw	.L81,.L82
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_LS_oneBitCmac')
+.L45:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_LS_oneBitCmac')
+.L46:
+	.dw	.L179-.L178
+.L178:
+	.dh	3
+	.dw	.L181-.L180
+.L180:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0,0
+.L181:
+	.db	5,13,7,0,5,2
+	.dw	.L31
+	.db	3,62,1,5,27,9
+	.dh	.L123-.L31
+	.db	3,3,1,5,18,9
+	.dh	.L79-.L123
+	.db	3,4,1,5,28,9
+	.dh	.L126-.L79
+	.db	1,5,26,9
+	.dh	.L3-.L126
+	.db	3,1,1,5,30,9
+	.dh	.L182-.L3
+	.db	1,5,19,9
+	.dh	.L183-.L182
+	.db	1,5,15,9
+	.dh	.L184-.L183
+	.db	3,1,1,5,19,9
+	.dh	.L185-.L184
+	.db	1,5,23,9
+	.dh	.L186-.L185
+	.db	3,1,1,5,17,9
+	.dh	.L125-.L186
+	.db	1,5,37,9
+	.dh	.L187-.L125
+	.db	1,5,41,9
+	.dh	.L127-.L187
+	.db	1,5,31,9
+	.dh	.L5-.L127
+	.db	3,125,1,5,28,9
+	.dh	.L2-.L5
+	.db	1,5,1,9
+	.dh	.L80-.L2
+	.db	3,5,1,9
+	.dh	.L49-.L80
+	.db	0,1,1
+.L179:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_LS_oneBitCmac')
+.L47:
+	.dw	-1,.L48,0,.L49-.L48,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_BlockXorCmac')
+.L50:
+	.dw	183
+	.dh	3
+	.dw	.L51
+	.db	4,1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L53,.L52
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'BlockXorCmac',0,1,81,13,1,1
+	.dw	.L33,.L55,.L32
+	.db	4
+	.db	'FirstBlock',0,1,81,41
+	.dw	.L74,.L83
+	.db	4
+	.db	'SecondBlock',0,1,81,68
+	.dw	.L74,.L84
+	.db	4
+	.db	'OutputBolock',0,1,81,96
+	.dw	.L74,.L85
+	.db	5
+	.dw	.L33,.L55
+	.db	5
+	.dw	.L86,.L87
+	.db	6
+	.db	'LocalIndex',0,1,83,10
+	.dw	.L81,.L88
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_BlockXorCmac')
+.L51:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_BlockXorCmac')
+.L52:
+	.dw	.L189-.L188
+.L188:
+	.dh	3
+	.dw	.L191-.L190
+.L190:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0,0
+.L191:
+	.db	5,13,7,0,5,2
+	.dw	.L33
+	.db	3,208,0,1,5,23,9
+	.dh	.L86-.L33
+	.db	3,2,1,5,55,9
+	.dh	.L129-.L86
+	.db	1,5,41,9
+	.dh	.L7-.L129
+	.db	3,2,1,5,67,9
+	.dh	.L192-.L7
+	.db	1,5,54,9
+	.dh	.L193-.L192
+	.db	1,5,29,9
+	.dh	.L194-.L193
+	.db	1,5,67,9
+	.dh	.L195-.L194
+	.db	3,126,1,5,55,9
+	.dh	.L6-.L195
+	.db	1,5,1,9
+	.dh	.L87-.L6
+	.db	3,4,1,9
+	.dh	.L55-.L87
+	.db	0,1,1
+.L189:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_BlockXorCmac')
+.L53:
+	.dw	-1,.L54,0,.L55-.L54,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_generate_subkey')
+.L56:
+	.dw	141
+	.dh	3
+	.dw	.L57
+	.db	4,1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L59,.L58
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'generate_subkey',0,1,105,13,1,1
+	.dw	.L35,.L89,.L34
+	.db	4
+	.db	'key',0,1,105,44
+	.dw	.L74,.L90
+	.db	4
+	.db	'K1',0,1,105,64
+	.dw	.L74,.L91
+	.db	4
+	.db	'K2',0,1,105,83
+	.dw	.L74,.L92
+	.db	5
+	.dw	.L35,.L89
+	.db	6
+	.db	'L',0,1,107,19
+	.dw	.L93,.L94
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_generate_subkey')
+.L57:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_generate_subkey')
+.L58:
+	.dw	.L197-.L196
+.L196:
+	.dh	3
+	.dw	.L199-.L198
+.L198:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0,0
+.L199:
+	.db	5,13,7,0,5,2
+	.dw	.L35
+	.db	3,232,0,1,5,19,9
+	.dh	.L136-.L35
+	.db	3,11,1,5,22,9
+	.dh	.L134-.L136
+	.db	1,5,10,9
+	.dh	.L133-.L134
+	.db	3,3,1,5,5,9
+	.dh	.L200-.L133
+	.db	1,5,36,9
+	.dh	.L201-.L200
+	.db	3,1,1,5,26,9
+	.dh	.L138-.L201
+	.db	1,5,36,9
+	.dh	.L139-.L138
+	.db	1,5,23,9
+	.dh	.L8-.L139
+	.db	3,4,1,5,11,9
+	.dh	.L141-.L8
+	.db	3,3,1,5,5,9
+	.dh	.L202-.L141
+	.db	1,5,36,9
+	.dh	.L203-.L202
+	.db	3,1,1,5,26,9
+	.dh	.L144-.L203
+	.db	1,5,36,9
+	.dh	.L145-.L144
+	.db	1,5,1,9
+	.dh	.L9-.L145
+	.db	3,2,1,9
+	.dh	.L61-.L9
+	.db	0,1,1
+.L197:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_generate_subkey')
+.L59:
+	.dw	-1,.L60,0,.L61-.L60,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_Cmac_Generate')
+.L62:
+	.dw	352
+	.dh	3
+	.dw	.L63
+	.db	4,1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L65,.L64
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'Cmac_Generate',0,1,132,1,15
+	.dw	.L77
+	.db	1,1,1
+	.dw	.L37,.L67,.L36
+	.db	4
+	.db	'Key',0,1,132,1,44
+	.dw	.L74,.L95
+	.db	4
+	.db	'Message',0,1,132,1,64
+	.dw	.L74,.L96
+	.db	4
+	.db	'MessageLen',0,1,132,1,86
+	.dw	.L97,.L98
+	.db	4
+	.db	'CMAC',0,1,132,1,113
+	.dw	.L74,.L99
+	.db	5
+	.dw	.L37,.L67
+	.db	6
+	.db	'RetVal',0,1,134,1,16
+	.dw	.L77,.L100
+	.db	6
+	.db	'K1',0,1,135,1,16
+	.dw	.L93,.L101
+	.db	6
+	.db	'K2',0,1,136,1,16
+	.dw	.L93,.L102
+	.db	6
+	.db	'X',0,1,137,1,19
+	.dw	.L93,.L103
+	.db	6
+	.db	'Y',0,1,145,1,16
+	.dw	.L93,.L104
+	.db	6
+	.db	'Flag',0,1,146,1,16
+	.dw	.L77,.L105
+	.db	6
+	.db	'NumberOfBlocks',0,1,147,1,6
+	.dw	.L81,.L106
+	.db	5
+	.dw	.L18,.L14
+	.db	6
+	.db	'M',0,1,169,1,23
+	.dw	.L107,.L108
+	.db	5
+	.dw	.L109,.L110
+	.db	6
+	.db	'LocalIndex',0,1,184,1,11
+	.dw	.L81,.L111
+	.db	0,0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_Cmac_Generate')
+.L63:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_Cmac_Generate')
+.L64:
+	.dw	.L205-.L204
+.L204:
+	.dh	3
+	.dw	.L207-.L206
+.L206:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0,0
+.L207:
+	.db	5,15,7,0,5,2
+	.dw	.L37
+	.db	3,131,1,1,5,19,9
+	.dh	.L152-.L37
+	.db	3,5,1,5,25,9
+	.dh	.L151-.L152
+	.db	3,125,1,5,38,9
+	.dh	.L154-.L151
+	.db	3,3,1,5,9,9
+	.dh	.L208-.L154
+	.db	3,12,1,5,28,9
+	.dh	.L209-.L208
+	.db	1,5,41,9
+	.dh	.L210-.L209
+	.db	1,5,18,7,9
+	.dh	.L12-.L210
+	.db	3,2,1,5,2,9
+	.dh	.L13-.L12
+	.db	3,3,1,5,27,9
+	.dh	.L211-.L13
+	.db	3,2,1,5,31,9
+	.dh	.L150-.L211
+	.db	1,5,32,9
+	.dh	.L149-.L150
+	.db	3,1,1,5,3,9
+	.dh	.L155-.L149
+	.db	3,2,1,5,21,7,9
+	.dh	.L212-.L155
+	.db	3,2,1,5,22,9
+	.dh	.L213-.L212
+	.db	1,5,11,9
+	.dh	.L15-.L213
+	.db	3,5,1,5,51,9
+	.dh	.L214-.L15
+	.db	1,5,53,9
+	.dh	.L156-.L214
+	.db	1,5,55,9
+	.dh	.L16-.L156
+	.db	1,5,56,9
+	.dh	.L18-.L16
+	.db	3,3,1,5,61,9
+	.dh	.L158-.L18
+	.db	3,6,1,5,45,9
+	.dh	.L215-.L158
+	.db	1,5,6,9
+	.dh	.L153-.L215
+	.db	3,126,1,5,40,7,9
+	.dh	.L216-.L153
+	.db	3,2,1,5,66,9
+	.dh	.L157-.L216
+	.db	1,5,40,9
+	.dh	.L19-.L157
+	.db	3,6,1,5,45,9
+	.dh	.L20-.L19
+	.db	1,5,24,9
+	.dh	.L109-.L20
+	.db	3,3,1,5,59,9
+	.dh	.L159-.L109
+	.db	1,5,17,9
+	.dh	.L22-.L159
+	.db	3,2,1,5,21,9
+	.dh	.L217-.L22
+	.db	1,5,35,9
+	.dh	.L218-.L217
+	.db	1,5,71,9
+	.dh	.L219-.L218
+	.db	3,126,1,5,35,9
+	.dh	.L21-.L219
+	.db	3,2,1,5,55,9
+	.dh	.L220-.L21
+	.db	3,126,1,5,59,9
+	.dh	.L221-.L220
+	.db	1,5,16,9
+	.dh	.L110-.L221
+	.db	3,7,1,5,42,9
+	.dh	.L222-.L110
+	.db	1,5,2,9
+	.dh	.L223-.L222
+	.db	3,3,1,9
+	.dh	.L14-.L223
+	.db	3,2,1,5,1,9
+	.dh	.L160-.L14
+	.db	3,1,1,9
+	.dh	.L67-.L160
+	.db	0,1,1
+.L205:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_Cmac_Generate')
+.L65:
+	.dw	-1,.L66,0,.L67-.L66,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_CMAC_Verify')
+.L68:
+	.dw	226
+	.dh	3
+	.dw	.L69
+	.db	4,1
+	.dw	.L171,.L172,.L173
+	.db	12,1
+	.dw	.L71,.L70
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'CMAC_Verify',0,1,215,1,15
+	.dw	.L77
+	.db	1,1,1
+	.dw	.L39,.L73,.L38
+	.db	4
+	.db	'Message',0,1,215,1,42
+	.dw	.L74,.L112
+	.db	4
+	.db	'MessageLen',0,1,215,1,65
+	.dw	.L77,.L113
+	.db	4
+	.db	'CMAC',0,1,215,1,92
+	.dw	.L74,.L114
+	.db	4
+	.db	'key',0,1,215,1,113
+	.dw	.L74,.L115
+	.db	5
+	.dw	.L39,.L73
+	.db	6
+	.db	'Validity',0,1,217,1,19
+	.dw	.L77,.L116
+	.db	6
+	.db	'result',0,1,218,1,19
+	.dw	.L93,.L117
+	.db	7
+	.dw	.L118
+	.db	6
+	.db	'i',0,1,224,1,14
+	.dw	.L81,.L122
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_CMAC_Verify')
+.L69:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,7,11,1,85,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_CMAC_Verify')
+.L70:
+	.dw	.L225-.L224
+.L224:
+	.dh	3
+	.dw	.L227-.L226
+.L226:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0,0,0,0,0
+.L227:
+	.db	5,15,7,0,5,2
+	.dw	.L39
+	.db	3,214,1,1,5,62,9
+	.dh	.L170-.L39
+	.db	3,6,1,5,18,9
+	.dh	.L119-.L170
+	.db	3,3,1,5,30,9
+	.dh	.L120-.L119
+	.db	3,121,1,5,14,9
+	.dh	.L121-.L120
+	.db	3,10,1,5,40,9
+	.dh	.L228-.L121
+	.db	3,125,1,5,31,9
+	.dh	.L25-.L228
+	.db	3,3,1,5,25,9
+	.dh	.L229-.L25
+	.db	1,5,24,9
+	.dh	.L230-.L229
+	.db	1,5,9,9
+	.dh	.L231-.L230
+	.db	1,5,24,7,9
+	.dh	.L232-.L231
+	.db	3,2,1,5,13,9
+	.dh	.L233-.L232
+	.db	3,1,1,5,43,9
+	.dh	.L26-.L233
+	.db	3,122,1,5,40,9
+	.dh	.L24-.L26
+	.db	1,5,1,9
+	.dh	.L27-.L24
+	.db	3,10,1,9
+	.dh	.L73-.L27
+	.db	0,1,1
+.L225:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_CMAC_Verify')
+.L71:
+	.dw	-1,.L72,0,.L73-.L72,0,0
+.L118:
+	.dw	-1,.L39,.L119-.L39,.L120-.L39,.L121-.L39,.L27-.L39,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L172:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L171:
+	.db	'../../TC399x/HSM/Mcal/CMAC/src/Cmac.c',0
+.L173:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_BlockXorCmac')
+.L32:
+	.dw	-1,.L33,0,.L86-.L33
+	.dh	2
+	.db	125,0
+	.dw	.L86-.L33,.L128-.L33
+	.dh	2
+	.db	125,8
+	.dw	.L128-.L33,.L55-.L33
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L83:
+	.dw	-1,.L33,0,.L55-.L33
+	.dh	1
+	.db	80
+	.dw	0,0
+.L88:
+	.dw	-1,.L33,.L129-.L33,.L55-.L33
+	.dh	1
+	.db	83
+	.dw	0,0
+.L85:
+	.dw	-1,.L33,0,.L55-.L33
+	.dh	1
+	.db	82
+	.dw	0,0
+.L84:
+	.dw	-1,.L33,0,.L55-.L33
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_CMAC_Verify')
+.L114:
+	.dw	-1,.L39,0,.L164-.L39
+	.dh	1
+	.db	82
+	.dw	.L170-.L39,.L73-.L39
+	.dh	1
+	.db	85
+	.dw	0,0
+.L38:
+	.dw	-1,.L39,0,.L161-.L39
+	.dh	2
+	.db	125,0
+	.dw	.L161-.L39,.L162-.L39
+	.dh	2
+	.db	125,12
+	.dw	.L162-.L39,.L163-.L39
+	.dh	2
+	.db	125,28
+	.dw	.L163-.L39,.L73-.L39
+	.dh	2
+	.db	125,12
+	.dw	.L73-.L39,.L73-.L39
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L112:
+	.dw	-1,.L39,0,.L165-.L39
+	.dh	1
+	.db	80
+	.dw	.L168-.L39,.L119-.L39
+	.dh	1
+	.db	94
+	.dw	.L166-.L39,.L119-.L39
+	.dh	1
+	.db	81
+	.dw	0,0
+.L113:
+	.dw	-1,.L39,0,.L166-.L39
+	.dh	1
+	.db	81
+	.dw	.L169-.L39,.L73-.L39
+	.dh	1
+	.db	84
+	.dw	.L164-.L39,.L119-.L39
+	.dh	1
+	.db	82
+	.dw	0,0
+.L116:
+	.dw	-1,.L39,.L121-.L39,.L73-.L39
+	.dh	1
+	.db	80
+	.dw	0,0
+.L122:
+	.dw	-1,.L39,.L120-.L39,.L73-.L39
+	.dh	1
+	.db	81
+	.dw	0,0
+.L115:
+	.dw	-1,.L39,0,.L167-.L39
+	.dh	1
+	.db	83
+	.dw	.L165-.L39,.L119-.L39
+	.dh	1
+	.db	80
+	.dw	0,0
+.L117:
+	.dw	-1,.L39,0,.L73-.L39
+	.dh	2
+	.db	145,100
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_Cmac_Generate')
+.L99:
+	.dw	-1,.L37,0,.L149-.L37
+	.dh	1
+	.db	83
+	.dw	0,0
+.L36:
+	.dw	-1,.L37,0,.L146-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L146-.L37,.L147-.L37
+	.dh	2
+	.db	125,28
+	.dw	.L147-.L37,.L148-.L37
+	.dh	3
+	.db	125,220,0
+	.dw	.L148-.L37,.L67-.L37
+	.dh	2
+	.db	125,28
+	.dw	.L67-.L37,.L67-.L37
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L105:
+	.dw	-1,.L37,.L156-.L37,.L16-.L37
+	.dh	1
+	.db	81
+	.dw	.L18-.L37,.L157-.L37
+	.dh	1
+	.db	81
+	.dw	.L19-.L37,.L20-.L37
+	.dh	1
+	.db	81
+	.dw	0,0
+.L101:
+	.dw	-1,.L37,0,.L67-.L37
+	.dh	3
+	.db	145,164,127
+	.dw	0,0
+.L102:
+	.dw	-1,.L37,0,.L67-.L37
+	.dh	3
+	.db	145,180,127
+	.dw	0,0
+.L95:
+	.dw	-1,.L37,0,.L149-.L37
+	.dh	1
+	.db	80
+	.dw	0,0
+.L111:
+	.dw	-1,.L37,.L159-.L37,.L14-.L37
+	.dh	1
+	.db	87
+	.dw	0,0
+.L108:
+	.dw	-1,.L37,.L158-.L37,.L14-.L37
+	.dh	1
+	.db	88
+	.dw	0,0
+.L96:
+	.dw	-1,.L37,0,.L150-.L37
+	.dh	1
+	.db	81
+	.dw	0,0
+.L98:
+	.dw	-1,.L37,0,.L151-.L37
+	.dh	1
+	.db	82
+	.dw	.L152-.L37,.L153-.L37
+	.dh	1
+	.db	86
+	.dw	0,0
+.L106:
+	.dw	-1,.L37,.L155-.L37,.L14-.L37
+	.dh	1
+	.db	84
+	.dw	0,0
+.L100:
+	.dw	-1,.L37,.L154-.L37,.L67-.L37
+	.dh	1
+	.db	85
+	.dw	.L160-.L37,.L67-.L37
+	.dh	1
+	.db	80
+	.dw	0,0
+.L103:
+	.dw	-1,.L37,0,.L67-.L37
+	.dh	2
+	.db	145,68
+	.dw	0,0
+.L104:
+	.dw	-1,.L37,0,.L67-.L37
+	.dh	2
+	.db	145,84
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_LS_oneBitCmac')
+.L30:
+	.dw	-1,.L31,0,.L123-.L31
+	.dh	2
+	.db	125,0
+	.dw	.L123-.L31,.L124-.L31
+	.dh	2
+	.db	125,4
+	.dw	.L124-.L31,.L49-.L31
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L78:
+	.dw	-1,.L31,.L79-.L31,.L125-.L31
+	.dh	1
+	.db	83
+	.dw	.L127-.L31,.L49-.L31
+	.dh	1
+	.db	83
+	.dw	0,0
+.L82:
+	.dw	-1,.L31,.L126-.L31,.L49-.L31
+	.dh	1
+	.db	82
+	.dw	0,0
+.L75:
+	.dw	-1,.L31,0,.L49-.L31
+	.dh	1
+	.db	80
+	.dw	0,0
+.L76:
+	.dw	-1,.L31,0,.L49-.L31
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_generate_subkey')
+.L91:
+	.dw	-1,.L35,0,.L133-.L35
+	.dh	1
+	.db	81
+	.dw	.L135-.L35,.L89-.L35
+	.dh	1
+	.db	84
+	.dw	.L137-.L35,.L138-.L35
+	.dh	1
+	.db	80
+	.dw	.L138-.L35,.L8-.L35
+	.dh	1
+	.db	82
+	.dw	.L139-.L35,.L8-.L35
+	.dh	1
+	.db	80
+	.dw	.L140-.L35,.L141-.L35
+	.dh	1
+	.db	80
+	.dw	0,0
+.L92:
+	.dw	-1,.L35,0,.L133-.L35
+	.dh	1
+	.db	82
+	.dw	.L136-.L35,.L89-.L35
+	.dh	1
+	.db	85
+	.dw	.L142-.L35,.L141-.L35
+	.dh	1
+	.db	81
+	.dw	.L143-.L35,.L144-.L35
+	.dh	1
+	.db	80
+	.dw	.L144-.L35,.L9-.L35
+	.dh	1
+	.db	82
+	.dw	.L145-.L35,.L9-.L35
+	.dh	1
+	.db	80
+	.dw	0,0
+.L94:
+	.dw	-1,.L35,0,.L89-.L35
+	.dh	2
+	.db	145,100
+	.dw	0,0
+.L34:
+	.dw	-1,.L35,0,.L130-.L35
+	.dh	2
+	.db	125,0
+	.dw	.L130-.L35,.L131-.L35
+	.dh	2
+	.db	125,12
+	.dw	.L131-.L35,.L132-.L35
+	.dh	2
+	.db	125,28
+	.dw	.L132-.L35,.L89-.L35
+	.dh	2
+	.db	125,12
+	.dw	.L89-.L35,.L89-.L35
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L90:
+	.dw	-1,.L35,0,.L134-.L35
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L234:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_LS_oneBitCmac')
+	.dw	64
+	.dw	.L234,.L31,.L49-.L31
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L123-.L31)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L124-.L123)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_BlockXorCmac')
+	.dw	68
+	.dw	.L234,.L33,.L55-.L33
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L86-.L33)/2
+	.db	19,4,22,13,3,19,125,8,17,5,126,17,4,124,4
+	.dw	(.L128-.L86)/2
+	.db	19,0,8,13,197,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_generate_subkey')
+	.dw	96
+	.dw	.L234,.L35,.L89-.L35
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L130-.L35)/2
+	.db	19,6,22,13,3,19,125,12,17,14,126,17,5,124,17,4,122,4
+	.dw	(.L131-.L130)/2
+	.db	19,14,22,13,3,19,125,28,4
+	.dw	(.L132-.L131)/2
+	.db	19,6,22,13,3,19,125,12,4
+	.dw	(.L89-.L132)/2
+	.db	19,0,8,13,197,196,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_Cmac_Generate')
+	.dw	112
+	.dw	.L234,.L37,.L67-.L37
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L146-.L37)/2
+	.db	19,14,22,13,3,19,125,28,17,14,126,17,11,124,17,8,122,17,7,120,17,6,118,17,5,116,17,4,114,4
+	.dw	(.L147-.L146)/2
+	.db	19,46,22,13,4,19,125,220,0,4
+	.dw	(.L148-.L147)/2
+	.db	19,14,22,13,3,19,125,28,4
+	.dw	(.L67-.L148)/2
+	.db	19,0,8,13,203,200,199,198,197,196
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_CMAC_Verify')
+	.dw	96
+	.dw	.L234,.L39,.L73-.L39
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L161-.L39)/2
+	.db	19,6,22,13,3,19,125,12,17,14,126,17,5,124,17,4,122,4
+	.dw	(.L162-.L161)/2
+	.db	19,14,22,13,3,19,125,28,4
+	.dw	(.L163-.L162)/2
+	.db	19,6,22,13,3,19,125,12,4
+	.dw	(.L73-.L163)/2
+	.db	19,0,8,13,197,196,0
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   235  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   236  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   237  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   238  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   239  /*                       	  Internal Function Definition                         */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   240  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   241  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   242  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   243  
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   244  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   245  /*				    			 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/CMAC/src/Cmac.c	   246  /***********************************************************************************/
+
+	; Module end
+	.end

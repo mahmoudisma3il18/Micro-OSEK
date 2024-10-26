@@ -1,0 +1,2031 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/HMAC/src/.HMAC.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../TC399x/HSM/Application/KeyM/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../../TC399x/Host Core\\CryptoKeyManagement\\inc -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/HMAC/src/HMAC.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\HMAC\\src\\HMAC.src ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255'
+	.source '../../TC399x/HSM/Mcal/HMAC/src/HMAC.c'
+
+	.section	.text ,cluster('$group_HashBasedMAC_Generate')
+	.global	HashBasedMAC_Generate
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     1  /** 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     2   * @file 	HMAC.c
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     3   * @author  Ahmed Aref, Qamar El gohary & Hanna Ashraf
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     5   * @date	27-4-2024
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     6   * @platform    -- 	
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     7   * @variant		--
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     8   * @vendor		Cryptos
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	     9   * @specification --
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    10   * @brief   HMAC Software Library Implementation Source File.
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    11   * 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    12   * 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    13   * 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    14  */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    15  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    16  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    17  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    18  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    19  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    20  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    21  /*                               INCLUDE HEADERS	                              */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    22  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    23  #include "HMAC.h"
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    24  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    25  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    26  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    27  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    28  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    29  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    30  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    31  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    32  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    33  /*                                 TypeDefnitions                                  */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    34  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    35  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    36  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    37  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    38  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    39  /*                        Internal Function Declration                             */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    40  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    41  static void HmacSha256_KeyNodeGenerate (unsigned char* keyPtr, unsigned long keyLengthInBytes, unsigned long blockSizeInBytes,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    42                         unsigned char* keyNodePtr );
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    43  static void HmacSha256_BlockXOR(unsigned char* firstBlock, unsigned char* secondBlock, unsigned char* outputBlock);
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    44  static void HmacSha256_BlockCopy(unsigned char* source, unsigned char* destination, unsigned long numberOfBytes);
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    45  static void HmacSha256_BlockConcatenate(unsigned char* source, unsigned char* destination, unsigned long destinationStartIndex, 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    46                         unsigned long numberOfBytesToConcatenate);
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    47  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    48  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    49  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    50  /*                        External Function Declration                             */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    51  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    52  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    53  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    54  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    55  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    56  /*				    			External constants		         				   */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    57  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    58  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    59  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    60  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    61  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    62  /*				    	  External data	shared global varaibles	         	       */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    63  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    64  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    65  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    66  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    67  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    68  /*				    	  External data	shared global varaibles	         	       */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    69  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    70  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    71  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    72  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    73  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    74  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    75  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    76  void HashBasedMAC_Generate(const unsigned char* dataPtr, unsigned long dataLength, unsigned char* macPtr, unsigned long* macLengthPtr,
+; Function HashBasedMAC_Generate
+.L72:
+	.thumb
+	.align	4
+HashBasedMAC_Generate:	.type	func
+
+.L29:
+	push	{r4,r5,r6,r7,r8,r9,r11,lr}
+.L138:
+	sub	sp,sp,#488
+.L139:
+	mov	r11,sp
+	mov	r5,r0
+.L145:
+	mov	r6,r1
+.L146:
+	mov	r7,r2
+.L147:
+	mov	r9,r3
+.L148:
+	ldr	r8,[r11,#520]
+.L149:
+	ldr	r4,[r11,#524]
+.L150:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    77             const unsigned char* keyPtr, unsigned long keyLength){
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    78      /* Inner pad : The constant which equals x36 repeated as many times as block size in bytes (for SHA256 64 bytes). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    79      unsigned char ipad [SHA256_BLOCKSIZE_INBYTES] = {
+	mov	r0,r11
+.L142:
+	ldr	r1,.L27
+.L141:
+	movs	r2,#64
+.L144:
+	bl	__aeabi_memcpy8
+.L143:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    80              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    81              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    82              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    83              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    84              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    85              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    86              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    87              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    88              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    89              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    90              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    91              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    92              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    93              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    94              0x36,0x36,0x36,0x36,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    95              0x36,0x36,0x36,0x36
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    96      };
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    97      /* Outer pad : The constant which equals x5C repeated as many times as block size in bytes (for SHA256 64 bytes). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    98      unsigned char opad [SHA256_BLOCKSIZE_INBYTES] = {
+	add	r0,r11,#64
+.L240:
+	ldr	r1,.L27+4
+.L241:
+	movs	r2,#64
+	bl	__aeabi_memcpy8
+.L242:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	    99              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   100              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   101              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   102              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   103              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   104              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   105              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   106              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   107              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   108              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   109              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   110              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   111              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   112              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   113              0x5C,0x5C,0x5C,0x5C,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   114              0x5C,0x5C,0x5C,0x5C
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   115      };
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   116  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   117      /* K0 : The key K after any necessary pre-processing to form a B byte key. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   118      unsigned char keyNode[SHA256_BLOCKSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   119      /* K0 ⊕ ipad */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   120      unsigned char keyNodeXORedWithIpad[SHA256_BLOCKSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   121      /* (K0 ⊕ ipad) || text. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   122      unsigned char firstHashInput[SHA256_BLOCKSIZE_INBYTES + dataLength];
+	mov	r1,sp
+	add	r0,r6,#71
+	bics	r0,r0,#3
+	sub	sp,sp,r0
+	str	r1,[sp,#0]
+.L243:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   123      /* H((K0 ⊕ ipad) || text). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   124      unsigned char firstHashOutput[SHA256_OUTPUTSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   125      /* H((K0 ⊕ ipad) || text) size. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   126      unsigned long firstHashOutputSize;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   127      /* K0 ⊕ opad */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   128      unsigned char keyNodeXORedWithOpad[SHA256_BLOCKSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   129      /* (K0 ⊕ opad) || H((K0 ⊕ ipad) || text) */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   130      unsigned char secondHashInput[SHA256_BLOCKSIZE_INBYTES+SHA256_OUTPUTSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   131      /* H((K0 ⊕ opad) || H((K0 ⊕ ipad) || text)). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   132      unsigned char secondHashOutput[SHA256_OUTPUTSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   133      /* H((K0 ⊕ opad) || H((K0 ⊕ ipad) || text)) size. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   134      unsigned long secondHashOutputSize = 0;
+	movs	r0,#0
+.L244:
+	str	r0,[r11,#484]
+.L245:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   135  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   136  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   137      /* Calculate the K0 value */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   138      HmacSha256_KeyNodeGenerate(keyPtr,keyLength,SHA256_BLOCKSIZE_INBYTES,keyNode);
+	add	r3,r11,#128
+	mov	r0,r8
+.L152:
+	mov	r1,r4
+.L154:
+	movs	r2,#64
+.L246:
+	bl	HmacSha256_KeyNodeGenerate
+.L153:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   139  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   140      /* Exclusive-Or K0 with ipad to produce a B-byte string: K0 ⊕ ipad. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   141      HmacSha256_BlockXOR(keyNode, ipad,keyNodeXORedWithIpad);
+	add	r0,r11,#128
+.L247:
+	mov	r1,r11
+.L248:
+	add	r2,r11,#192
+	bl	HmacSha256_BlockXOR
+.L249:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   142  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   143      /* Copy the result from the keyNodeXORedWithIpad to the first hash input array. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   144      HmacSha256_BlockCopy(keyNodeXORedWithIpad,firstHashInput,SHA256_BLOCKSIZE_INBYTES);
+	add	r0,r11,#192
+.L250:
+	add	r4,sp,#4
+.L151:
+	mov	r1,r4
+.L155:
+	movs	r2,#64
+	bl	HmacSha256_BlockCopy
+.L156:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   145  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   146      /* Append the stream of data 'text' to the string resulting from the previous step : (K0 ⊕ ipad) || text. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   147      HmacSha256_BlockConcatenate(dataPtr,firstHashInput,SHA256_BLOCKSIZE_INBYTES,dataLength);
+	mov	r0,r5
+.L157:
+	mov	r1,r4
+.L159:
+	mov	r3,r6
+.L160:
+	movs	r2,#64
+.L251:
+	bl	HmacSha256_BlockConcatenate
+.L158:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   148  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   149      /*  Apply H to the stream generated in the previous step: H((K0 ⊕ ipad) || text). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   150      SHA256_HashCalculate((unsigned char*)firstHashInput,(unsigned char*)firstHashOutput,
+	add	r1,r11,#256
+.L252:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   151                           (unsigned long)(SHA256_BLOCKSIZE_INBYTES+dataLength),(unsigned long*) &firstHashOutputSize);
+	add	r2,r6,#64
+.L253:
+	add	r3,r11,#288
+	mov	r0,r4
+.L161:
+	bl	SHA256_HashCalculate
+.L162:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   152  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   153      /* Exclusive-Or K0 with opad to produce a B-byte string: K0 ⊕ opad. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   154      HmacSha256_BlockXOR(keyNode, opad,keyNodeXORedWithOpad);
+	add	r0,r11,#128
+.L254:
+	add	r1,r11,#64
+.L255:
+	add	r2,r11,#292
+	bl	HmacSha256_BlockXOR
+.L256:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   155  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   156      /* Copy the result from the keyNodeXORedWithOpad to the second hash input array. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   157      HmacSha256_BlockCopy(keyNodeXORedWithOpad,secondHashInput,SHA256_BLOCKSIZE_INBYTES);
+	add	r0,r11,#292
+.L257:
+	add	r1,r11,#356
+.L258:
+	movs	r2,#64
+	bl	HmacSha256_BlockCopy
+.L259:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   158  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   159      /* Append the result from step previous step to the results from the one before: (K0 ⊕ opad) || H((K0 ⊕ ipad) || text). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   160      HmacSha256_BlockConcatenate(firstHashOutput,secondHashInput,SHA256_BLOCKSIZE_INBYTES,firstHashOutputSize);
+	add	r0,r11,#256
+.L260:
+	add	r1,r11,#356
+.L261:
+	ldr	r3,[r11,#288]
+.L262:
+	movs	r2,#64
+.L263:
+	bl	HmacSha256_BlockConcatenate
+.L264:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   161  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   162      /*Apply H to the result from the previous step: H((K0 ⊕ opad )|| H((K0 ⊕ ipad) || text)). */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   163      SHA256_HashCalculate((unsigned char*)secondHashInput,(unsigned char*)secondHashOutput,
+	add	r0,r11,#356
+.L265:
+	add	r1,r11,#452
+.L266:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   164                           (unsigned long)(SHA256_BLOCKSIZE_INBYTES+SHA256_OUTPUTSIZE_INBYTES),(unsigned long*) &secondHashOutputSize);
+	add	r3,r11,#484
+.L267:
+	movs	r2,#96
+.L268:
+	bl	SHA256_HashCalculate
+.L269:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   165  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   166      /* Copy the result from the second hash output to the mac pointer. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   167      HmacSha256_BlockCopy(secondHashOutput,macPtr,SHA256_OUTPUTSIZE_INBYTES);
+	add	r0,r11,#452
+.L270:
+	mov	r1,r7
+.L163:
+	movs	r2,#32
+	bl	HmacSha256_BlockCopy
+.L164:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   168  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   169      /* Set the mac length to the size of the output of the second hash. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   170      *macLengthPtr = secondHashOutputSize;
+	ldr	r0,[r11,#484]
+.L271:
+	str	r0,[r9,#0]
+.L272:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   171  }
+	ldr	sp,[r4,#-4]
+	add	sp,sp,#488
+.L140:
+	pop	{r4,r5,r6,r7,r8,r9,r11,pc}
+.L105:
+	.align	4
+.L27:
+	.dw	.1.ini
+	.dw	.2.ini
+.L73:
+	.size	HashBasedMAC_Generate,$-HashBasedMAC_Generate
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HMAC_Verify')
+	.global	HMAC_Verify
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   172  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   173  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   174  /**
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   175   * @brief 		 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   176   * @description
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   177   * @service name    			HMAC_Verify
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   178   * @syntax
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   179   * @service ID     	 			-
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   180   * @sync/async      			Synchronous
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   181   * @reentrancy      			Non-Reentrant
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   182   * @param[in] 
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   183   * @param[out]      -
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   184   * @return          			
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   185   * @see
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   186   * @note             
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   187   * @warning         -
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   188   */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   189  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   190  unsigned char HMAC_Verify(unsigned char* Message, unsigned long MessageLen, unsigned char* HMAC, unsigned char* key, unsigned long keyLength)
+; Function HMAC_Verify
+.L78:
+	.thumb
+	.align	4
+HMAC_Verify:	.type	func
+
+.L31:
+	push	{r4}
+.L165:
+	sub	sp,sp,#32
+.L166:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   191  {
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   192      State Validity = VALID;
+	movs	r0,#1
+.L169:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   193      unsigned char result[HMAC_OUTPUTBLOCKSIZE_INBYTES];
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   194      unsigned long localIterator = 0;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   195  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   196      /* Generate the HMAC using the provided key, message, and message length */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   197      //HashBasedMAC_Generate(&Message, MessageLen,(unsigned char*)result, &key, keyLength,);
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   198  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   199      // Compare the calculated HMAC with the provided HMAC
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   200      for (localIterator = 0; localIterator < HMAC_OUTPUTBLOCKSIZE_INBYTES; localIterator++) 
+	movs	r1,#0
+.L170:
+	b	.L4
+.L5:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   201      {
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   202          // If any bit of calculated HMAC differs from the provided HMAC, set validity to INVALID
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   203          if (result[localIterator] ^ HMAC[localIterator])
+	mov	r3,sp
+.L277:
+	ldrb	r3,[r1,r3]
+.L278:
+	ldrb	r4,[r2,r1]
+.L279:
+	eors	r3,r3,r4
+.L280:
+	beq	.L6
+.L281:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   204          {
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   205              Validity = INVALID;
+	movs	r0,#0
+.L282:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   206              break;
+	b	.L7
+.L6:
+	adds	r1,r1,#1
+.L4:
+	cmp	r1,#32
+	blo	.L5
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   207          }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   208      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   209      return Validity;
+.L7:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   210  }
+	add	sp,sp,#32
+.L167:
+	pop	{r4}
+.L168:
+	bx	lr
+.L79:
+	.size	HMAC_Verify,$-HMAC_Verify
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HmacSha256_KeyNodeGenerate')
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   211  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   212  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   213  /*                       	  Internal Function Definition                         */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   214  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   215   static void HmacSha256_KeyNodeGenerate (unsigned char* keyPtr, unsigned long keyLengthInBytes, unsigned long blockSizeInBytes,
+; Function HmacSha256_KeyNodeGenerate
+.L48:
+	.thumb
+	.align	4
+HmacSha256_KeyNodeGenerate:	.type	func
+
+.L33:
+	push	{r4,lr}
+.L171:
+	sub	sp,sp,#4
+.L172:
+	mov	r2,r1
+.L174:
+	mov	r4,r3
+.L177:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   216                         unsigned char* keyNodePtr ){
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   217  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   218      unsigned long numberOfBytesInBlock = blockSizeInBytes;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   219      unsigned long localIterator = 0;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   220  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   221      /* If the key length < block size, we need to add 0s until the key node length equals the block size. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   222      if (keyLengthInBytes < blockSizeInBytes){
+	cmp	r1,#64
+	bhs	.L9
+.L201:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   223         for (localIterator = 0; localIterator < blockSizeInBytes ; localIterator++){
+	movs	r1,#0
+.L175:
+	b	.L10
+.L11:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   224              if(localIterator < keyLengthInBytes){
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   225                  * keyNodePtr++ = * keyPtr++;
+	add	lr,r4,#1
+.L202:
+	cmp	r1,r2
+.L203:
+	ite	lo
+	ldrblo	r3,[r0],#1
+.L204:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   226              }else{
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   227                  * keyNodePtr++ = KEYNODE_PADDING_VALUE;
+	movhs	r3,#0
+.L13:
+	strb	r3,[r4,#0]
+.L205:
+	mov	r4,lr
+.L206:
+	adds	r1,r1,#1
+.L10:
+	cmp	r1,#64
+	blo	.L11
+	b	.L14
+.L9:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   228              }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   229          }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   230      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   231      /* If the key length > block size, we first hash the key, and then add 0s until key node length equals the block size. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   232      else if (keyLengthInBytes > blockSizeInBytes){
+	cmp	r2,#64
+	bls	.L15
+.L88:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   233          unsigned long hashOutputSizeInBytes = 0;
+	movs	r1,#0
+.L178:
+	str	r1,[sp,#0]
+.L207:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   234          SHA256_HashCalculate((unsigned char*)keyPtr, (unsigned char*)  keyNodePtr ,
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   235                               (unsigned long)keyLengthInBytes , (unsigned long*) &hashOutputSizeInBytes);
+	mov	r1,r4
+.L179:
+	mov	r3,sp
+	bl	SHA256_HashCalculate
+.L176:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   236          for(localIterator = hashOutputSizeInBytes ; localIterator < blockSizeInBytes; localIterator++){
+	ldr	r0,[sp,#0]
+.L180:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   237              keyNodePtr[localIterator] = KEYNODE_PADDING_VALUE;
+	movs	r1,#0
+.L208:
+	b	.L16
+.L17:
+	strb	r1,[r4,r0]
+.L209:
+	adds	r0,r0,#1
+.L16:
+	cmp	r0,#64
+	blo	.L17
+.L89:
+	b	.L18
+.L15:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   238          }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   239      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   240      /* If the key length == block size, we copy the key to key node as it is. */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   241      else{
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   242          for (localIterator = 0 ; localIterator < keyLengthInBytes ; localIterator++){
+	movs	r1,#0
+.L181:
+	b	.L19
+.L20:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   243              * keyNodePtr++ = * keyPtr++;
+	ldrb	r3,[r0],#1
+.L210:
+	strb	r3,[r4],#1
+.L211:
+	adds	r1,r1,#1
+.L19:
+	cmp	r1,r2
+	blo	.L20
+.L18:
+.L14:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   244          }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   245      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   246  }
+	add	sp,sp,#4
+.L173:
+	pop	{r4,pc}
+.L49:
+	.size	HmacSha256_KeyNodeGenerate,$-HmacSha256_KeyNodeGenerate
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HmacSha256_BlockXOR')
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   247  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   248   static void HmacSha256_BlockXOR(unsigned char* firstBlock, unsigned char* secondBlock, unsigned char* outputBlock)
+; Function HmacSha256_BlockXOR
+.L54:
+	.thumb
+	.align	4
+HmacSha256_BlockXOR:	.type	func
+
+.L35:
+	push	{r4,r5}
+.L182:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   249  {
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   250      unsigned long localIterator = 0 ;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   251      for(localIterator = 0; localIterator < SHA256_BLOCKSIZE_INBYTES ; localIterator++)
+	movs	r3,#0
+.L184:
+	b	.L21
+.L22:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   252      {
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   253          outputBlock[localIterator] = firstBlock[localIterator] ^ secondBlock[localIterator];
+	ldrb	r4,[r0,r3]
+.L216:
+	ldrb	r5,[r1,r3]
+.L217:
+	eors	r4,r4,r5
+.L218:
+	strb	r4,[r2,r3]
+.L219:
+	adds	r3,r3,#1
+.L21:
+	cmp	r3,#64
+	blo	.L22
+.L220:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   254      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   255  }
+	pop	{r4,r5}
+.L183:
+	bx	lr
+.L55:
+	.size	HmacSha256_BlockXOR,$-HmacSha256_BlockXOR
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HmacSha256_BlockCopy')
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   256  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   257  static void HmacSha256_BlockCopy(unsigned char* source, unsigned char* destination, unsigned long numberOfBytes) {
+; Function HmacSha256_BlockCopy
+.L60:
+	.thumb
+	.align	4
+HmacSha256_BlockCopy:	.type	func
+
+.L37:
+	push	{r4}
+.L185:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   258      unsigned long localIterator = 0;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   259      for (localIterator = 0; localIterator < numberOfBytes; localIterator++) {
+	movs	r3,#0
+.L187:
+	b	.L23
+.L24:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   260          destination[localIterator] = source[localIterator];
+	ldrb	r4,[r0,r3]
+.L225:
+	strb	r4,[r1,r3]
+.L226:
+	adds	r3,r3,#1
+.L23:
+	cmp	r3,r2
+	blo	.L24
+.L227:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   261      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   262  }
+	pop	{r4}
+.L186:
+	bx	lr
+.L61:
+	.size	HmacSha256_BlockCopy,$-HmacSha256_BlockCopy
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HmacSha256_BlockConcatenate')
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   263  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   264   static void HmacSha256_BlockConcatenate(unsigned char* source, unsigned char* destination, unsigned long destinationStartIndex, unsigned long numberOfBytesToConcatenate) {
+; Function HmacSha256_BlockConcatenate
+.L66:
+	.thumb
+	.align	4
+HmacSha256_BlockConcatenate:	.type	func
+
+.L39:
+	push	{r4,r5,lr}
+.L188:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   265      unsigned localIterator = 0;
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   266      for (localIterator = 0; localIterator < numberOfBytesToConcatenate;localIterator++){
+	movs	r4,#0
+.L189:
+	b	.L25
+.L26:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   267          destination[destinationStartIndex+localIterator] = source[localIterator];
+	add	lr,r2,r4
+.L232:
+	ldrb	r5,[r0,r4]
+.L233:
+	strb	r5,[r1,lr]
+.L234:
+	adds	r4,r4,#1
+.L25:
+	cmp	r4,r3
+	blo	.L26
+.L235:
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   268      }
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   269  }
+	pop	{r4,r5,pc}
+.L67:
+	.size	HmacSha256_BlockConcatenate,$-HmacSha256_BlockConcatenate
+	; End of function
+	.endsec	; End of section
+
+	.section	.rodata ,cluster('$group_.1.ini')
+	.align	4
+.1.ini:	.type	object
+	.size	.1.ini,64
+	.db	'6666666666666666666666666666666666666666666666666666666666666666'
+	.endsec	; End of section
+
+	.section	.rodata ,cluster('$group_.2.ini')
+	.align	4
+.2.ini:	.type	object
+	.size	.2.ini,64
+	.db	'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\'
+	.endsec	; End of section
+
+	.calls	'HashBasedMAC_Generate','__aeabi_memcpy8'
+	.calls	'HashBasedMAC_Generate','HmacSha256_KeyNodeGenerate'
+	.calls	'HashBasedMAC_Generate','HmacSha256_BlockXOR'
+	.calls	'HashBasedMAC_Generate','HmacSha256_BlockCopy'
+	.calls	'HashBasedMAC_Generate','HmacSha256_BlockConcatenate'
+	.calls	'HashBasedMAC_Generate','SHA256_HashCalculate'
+	.calls	'HmacSha256_KeyNodeGenerate','SHA256_HashCalculate'
+	.calls	'HashBasedMAC_Generate','',520
+	.calls	'HMAC_Verify','',36
+	.calls	'HmacSha256_KeyNodeGenerate','',12
+	.calls	'HmacSha256_BlockXOR','',8
+	.calls	'HmacSha256_BlockCopy','',4
+	.calls	'HmacSha256_BlockConcatenate','',12
+	.extern	SHA256_HashCalculate
+	.extern	__aeabi_memcpy8
+	.section	.debug_info
+.L41:
+	.dw	528
+	.dh	3
+	.dw	.L42
+	.db	4
+.L40:
+	.db	1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L43
+	.db	2
+	.db	'void',0,3
+	.dw	30
+	.db	4
+	.db	'__free',0,1,1,1,1,5
+	.dw	36
+	.db	0,6
+	.dw	36
+.L103:
+	.db	7
+	.db	'unsigned int',0,4,7,8
+	.db	'__alloc',0
+	.dw	59
+	.db	1,1,1,1,5
+	.dw	64
+	.db	0,3
+	.dw	64
+	.db	9
+	.db	'SHA256_HashCalculate',0,1,196,2,7,1,1,1,1,10
+	.db	'Hash_input',0,1,196,2,37
+	.dw	103
+	.db	10
+	.db	'Hash_output',0,1,196,2,59
+	.dw	103
+	.db	10
+	.db	'Input_size',0,1,196,2,79
+	.dw	64
+	.db	10
+	.db	'Output_size',0,1,196,2,100
+	.dw	103
+	.db	0
+.L128:
+	.db	7
+	.db	'unsigned char',0,1,8
+.L80:
+	.db	3
+	.dw	221
+.L82:
+	.db	7
+	.db	'unsigned long int',0,4,7,11
+	.dw	221
+.L106:
+	.db	3
+	.dw	264
+.L110:
+	.db	3
+	.dw	243
+.L114:
+	.db	12,64
+	.dw	221
+	.db	13,63,0
+.L120:
+	.db	12,32
+	.dw	221
+	.db	13,31,0
+.L124:
+	.db	12,96
+	.dw	221
+	.db	13,95,0
+.L134:
+	.db	14,2,44,9,4,15
+	.db	'INVALID',0,0,15
+	.db	'VALID',0,1,0,16
+	.db	'__size_t',0,3,1,1
+	.dw	64
+	.db	17,1,3
+	.dw	347
+	.db	16
+	.db	'__codeptr',0,3,1,1
+	.dw	349
+	.db	16
+	.db	'uint8',0,4,247,1,23
+	.dw	221
+	.db	7
+	.db	'unsigned short int',0,2,7,16
+	.db	'uint16',0,4,252,1,24
+	.dw	387
+	.db	16
+	.db	'uint32',0,4,129,2,22
+	.dw	64
+	.db	16
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	221
+	.db	16
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	221
+	.db	16
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	221
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L42:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,59,0,3,8,0,0,3,15,0,73,19,0,0,4,46,1,3,8,54,15,39,12
+	.db	63,12,60,12,0,0,5,5,0,73,19,0,0,6,53,0,73,19,0,0,7,36,0,3,8,11,15,62,15,0,0,8,46,1,3,8,73,19,54,15,39
+	.db	12,63,12,60,12,0,0,9,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,10,5,0,3,8,58,15,59,15,57
+	.db	15,73,19,0,0,11,38,0,73,19,0,0,12,1,1,11,15,73,19,0,0,13,33,0,47,15,0,0,14,4,1,58,15,59,15,57,15,11,15
+	.db	0,0,15,40,0,3,8,28,13,0,0,16,22,0,3,8,58,15,59,15,57,15,73,19,0,0,17,21,0,54,15,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L43:
+	.dw	.L194-.L193
+.L193:
+	.dh	3
+	.dw	.L196-.L195
+.L195:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\Hash\\inc\\Hash.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\HMAC\\inc\\HMAC.h',0,0,0,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0,0
+.L196:
+.L194:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HmacSha256_KeyNodeGenerate')
+.L44:
+	.dw	303
+	.dh	3
+	.dw	.L45
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L47,.L46
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HmacSha256_KeyNodeGenerate',0,1,215,1,14,1,1
+	.dw	.L33,.L49,.L32
+	.db	4
+	.db	'keyPtr',0,1,215,1,57
+	.dw	.L80,.L81
+	.db	4
+	.db	'keyLengthInBytes',0,1,215,1,79
+	.dw	.L82,.L83
+	.db	4
+	.db	'blockSizeInBytes',0,1,215,1,111
+	.dw	.L82,.L84
+	.db	4
+	.db	'keyNodePtr',0,1,216,1,39
+	.dw	.L80,.L85
+	.db	5
+	.dw	.L33,.L49
+	.db	6
+	.db	'numberOfBytesInBlock',0,1,218,1,19
+	.dw	.L82,.L86
+	.db	6
+	.db	'localIterator',0,1,219,1,19
+	.dw	.L82,.L87
+	.db	5
+	.dw	.L88,.L89
+	.db	6
+	.db	'hashOutputSizeInBytes',0,1,233,1,23
+	.dw	.L82,.L90
+	.db	0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HmacSha256_KeyNodeGenerate')
+.L45:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HmacSha256_KeyNodeGenerate')
+.L46:
+	.dw	.L198-.L197
+.L197:
+	.dh	3
+	.dw	.L200-.L199
+.L199:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L200:
+	.db	5,14,7,0,5,2
+	.dw	.L33
+	.db	3,214,1,1,5,5,9
+	.dh	.L177-.L33
+	.db	3,7,1,5,29,9
+	.dh	.L201-.L177
+	.db	3,1,1,5,65,9
+	.dh	.L175-.L201
+	.db	1,5,29,9
+	.dh	.L11-.L175
+	.db	3,2,1,5,13,9
+	.dh	.L202-.L11
+	.db	3,127,1,5,34,9
+	.dh	.L203-.L202
+	.db	3,1,1,9
+	.dh	.L204-.L203
+	.db	3,2,1,5,32,9
+	.dh	.L13-.L204
+	.db	1,5,29,9
+	.dh	.L205-.L13
+	.db	1,5,80,9
+	.dh	.L206-.L205
+	.db	3,124,1,5,65,9
+	.dh	.L10-.L206
+	.db	1,5,10,9
+	.dh	.L9-.L10
+	.db	3,9,1,5,47,9
+	.dh	.L88-.L9
+	.db	3,1,1,5,45,9
+	.dh	.L178-.L88
+	.db	1,5,82,9
+	.dh	.L207-.L178
+	.db	3,2,1,5,29,9
+	.dh	.L176-.L207
+	.db	3,1,1,5,41,9
+	.dh	.L180-.L176
+	.db	3,1,1,5,85,9
+	.dh	.L208-.L180
+	.db	3,127,1,5,39,9
+	.dh	.L17-.L208
+	.db	3,1,1,5,100,9
+	.dh	.L209-.L17
+	.db	3,127,1,5,85,9
+	.dh	.L16-.L209
+	.db	1,5,30,9
+	.dh	.L15-.L16
+	.db	3,6,1,5,67,9
+	.dh	.L181-.L15
+	.db	1,5,30,9
+	.dh	.L20-.L181
+	.db	3,1,1,5,28,9
+	.dh	.L210-.L20
+	.db	1,5,82,9
+	.dh	.L211-.L210
+	.db	3,127,1,5,67,9
+	.dh	.L19-.L211
+	.db	1,5,1,9
+	.dh	.L14-.L19
+	.db	3,4,1,9
+	.dh	.L49-.L14
+	.db	0,1,1
+.L198:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HmacSha256_KeyNodeGenerate')
+.L47:
+	.dw	-1,.L48,0,.L49-.L48,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HmacSha256_BlockXOR')
+.L50:
+	.dw	187
+	.dh	3
+	.dw	.L51
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L53,.L52
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HmacSha256_BlockXOR',0,1,248,1,14,1,1
+	.dw	.L35,.L55,.L34
+	.db	4
+	.db	'firstBlock',0,1,248,1,49
+	.dw	.L80,.L91
+	.db	4
+	.db	'secondBlock',0,1,248,1,76
+	.dw	.L80,.L92
+	.db	4
+	.db	'outputBlock',0,1,248,1,104
+	.dw	.L80,.L93
+	.db	5
+	.dw	.L35,.L55
+	.db	6
+	.db	'localIterator',0,1,250,1,19
+	.dw	.L82,.L94
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HmacSha256_BlockXOR')
+.L51:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HmacSha256_BlockXOR')
+.L52:
+	.dw	.L213-.L212
+.L212:
+	.dh	3
+	.dw	.L215-.L214
+.L214:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L215:
+	.db	5,14,7,0,5,2
+	.dw	.L35
+	.db	3,247,1,1,5,25,9
+	.dh	.L182-.L35
+	.db	3,3,1,5,69,9
+	.dh	.L184-.L182
+	.db	1,5,48,9
+	.dh	.L22-.L184
+	.db	3,2,1,5,77,9
+	.dh	.L216-.L22
+	.db	1,5,64,9
+	.dh	.L217-.L216
+	.db	1,5,36,9
+	.dh	.L218-.L217
+	.db	1,5,84,9
+	.dh	.L219-.L218
+	.db	3,126,1,5,69,9
+	.dh	.L21-.L219
+	.db	1,5,1,9
+	.dh	.L220-.L21
+	.db	3,4,1,9
+	.dh	.L55-.L220
+	.db	0,1,1
+.L213:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HmacSha256_BlockXOR')
+.L53:
+	.dw	-1,.L54,0,.L55-.L54,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HmacSha256_BlockCopy')
+.L56:
+	.dw	186
+	.dh	3
+	.dw	.L57
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L59,.L58
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HmacSha256_BlockCopy',0,1,129,2,13,1,1
+	.dw	.L37,.L61,.L36
+	.db	4
+	.db	'source',0,1,129,2,49
+	.dw	.L80,.L95
+	.db	4
+	.db	'destination',0,1,129,2,72
+	.dw	.L80,.L96
+	.db	4
+	.db	'numberOfBytes',0,1,129,2,99
+	.dw	.L82,.L97
+	.db	5
+	.dw	.L37,.L61
+	.db	6
+	.db	'localIterator',0,1,130,2,19
+	.dw	.L82,.L98
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HmacSha256_BlockCopy')
+.L57:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HmacSha256_BlockCopy')
+.L58:
+	.dw	.L222-.L221
+.L221:
+	.dh	3
+	.dw	.L224-.L223
+.L223:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L224:
+	.db	5,13,7,0,5,2
+	.dw	.L37
+	.db	3,128,2,1,5,26,9
+	.dh	.L185-.L37
+	.db	3,2,1,5,58,9
+	.dh	.L187-.L185
+	.db	1,5,44,9
+	.dh	.L24-.L187
+	.db	3,1,1,5,36,9
+	.dh	.L225-.L24
+	.db	1,5,73,9
+	.dh	.L226-.L225
+	.db	3,127,1,5,58,9
+	.dh	.L23-.L226
+	.db	1,5,1,9
+	.dh	.L227-.L23
+	.db	3,3,1,9
+	.dh	.L61-.L227
+	.db	0,1,1
+.L222:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HmacSha256_BlockCopy')
+.L59:
+	.dw	-1,.L60,0,.L61-.L60,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HmacSha256_BlockConcatenate')
+.L62:
+	.dw	242
+	.dh	3
+	.dw	.L63
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L65,.L64
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HmacSha256_BlockConcatenate',0,1,136,2,14,1,1
+	.dw	.L39,.L67,.L38
+	.db	4
+	.db	'source',0,1,136,2,57
+	.dw	.L80,.L99
+	.db	4
+	.db	'destination',0,1,136,2,80
+	.dw	.L80,.L100
+	.db	4
+	.db	'destinationStartIndex',0,1,136,2,107
+	.dw	.L82,.L101
+	.db	4
+	.db	'numberOfBytesToConcatenate',0,1,136,2,144,1
+	.dw	.L82,.L102
+	.db	5
+	.dw	.L39,.L67
+	.db	6
+	.db	'localIterator',0,1,137,2,14
+	.dw	.L103,.L104
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HmacSha256_BlockConcatenate')
+.L63:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52,0,3,8
+	.db	58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HmacSha256_BlockConcatenate')
+.L64:
+	.dw	.L229-.L228
+.L228:
+	.dh	3
+	.dw	.L231-.L230
+.L230:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L231:
+	.db	5,14,7,0,5,2
+	.dw	.L39
+	.db	3,135,2,1,5,26,9
+	.dh	.L188-.L39
+	.db	3,2,1,5,71,9
+	.dh	.L189-.L188
+	.db	1,5,42,9
+	.dh	.L26-.L189
+	.db	3,1,1,5,66,9
+	.dh	.L232-.L26
+	.db	1,5,58,9
+	.dh	.L233-.L232
+	.db	1,5,85,9
+	.dh	.L234-.L233
+	.db	3,127,1,5,71,9
+	.dh	.L25-.L234
+	.db	1,5,1,9
+	.dh	.L235-.L25
+	.db	3,3,1,7,9
+	.dh	.L67-.L235
+	.db	0,1,1
+.L229:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HmacSha256_BlockConcatenate')
+.L65:
+	.dw	-1,.L66,0,.L67-.L66,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HashBasedMAC_Generate')
+.L68:
+	.dw	517
+	.dh	3
+	.dw	.L69
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L71,.L70
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HashBasedMAC_Generate',0,1,76,6,1,1,1
+	.dw	.L29,.L105,.L28
+	.db	4
+	.db	'dataPtr',0,1,76,49
+	.dw	.L106,.L107
+	.db	4
+	.db	'dataLength',0,1,76,72
+	.dw	.L82,.L108
+	.db	4
+	.db	'macPtr',0,1,76,99
+	.dw	.L80,.L109
+	.db	4
+	.db	'macLengthPtr',0,1,76,122
+	.dw	.L110,.L111
+	.db	4
+	.db	'keyPtr',0,1,77,33
+	.dw	.L106,.L112
+	.db	4
+	.db	'keyLength',0,1,77,55
+	.dw	.L82,.L113
+	.db	5
+	.dw	.L29,.L105
+	.db	6
+	.db	'ipad',0,1,79,19
+	.dw	.L114,.L115
+	.db	6
+	.db	'opad',0,1,98,19
+	.dw	.L114,.L116
+	.db	6
+	.db	'keyNode',0,1,118,19
+	.dw	.L114,.L117
+	.db	6
+	.db	'keyNodeXORedWithIpad',0,1,120,19
+	.dw	.L114,.L118
+	.db	6
+	.db	'firstHashInput',0,1,122,19
+	.dw	.L80,.L119
+	.db	6
+	.db	'firstHashOutput',0,1,124,19
+	.dw	.L120,.L121
+	.db	6
+	.db	'firstHashOutputSize',0,1,126,19
+	.dw	.L82,.L122
+	.db	6
+	.db	'keyNodeXORedWithOpad',0,1,128,1,19
+	.dw	.L114,.L123
+	.db	6
+	.db	'secondHashInput',0,1,130,1,19
+	.dw	.L124,.L125
+	.db	6
+	.db	'secondHashOutput',0,1,132,1,19
+	.dw	.L120,.L126
+	.db	6
+	.db	'secondHashOutputSize',0,1,134,1,19
+	.dw	.L82,.L127
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HashBasedMAC_Generate')
+.L69:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52
+	.db	0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HashBasedMAC_Generate')
+.L70:
+	.dw	.L237-.L236
+.L236:
+	.dh	3
+	.dw	.L239-.L238
+.L238:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L239:
+	.db	5,6,7,0,5,2
+	.dw	.L29
+	.db	3,203,0,1,5,19,9
+	.dh	.L150-.L29
+	.db	3,3,1,5,53,9
+	.dh	.L142-.L150
+	.db	1,5,51,9
+	.dh	.L141-.L142
+	.db	1,5,19,9
+	.dh	.L143-.L141
+	.db	3,19,1,5,53,9
+	.dh	.L240-.L143
+	.db	1,5,51,9
+	.dh	.L241-.L240
+	.db	1,5,71,9
+	.dh	.L242-.L241
+	.db	3,24,1,5,42,9
+	.dh	.L243-.L242
+	.db	3,12,1,5,40,9
+	.dh	.L244-.L243
+	.db	1,5,74,9
+	.dh	.L245-.L244
+	.db	3,4,1,5,49,9
+	.dh	.L154-.L245
+	.db	1,5,74,9
+	.dh	.L246-.L154
+	.db	1,5,25,9
+	.dh	.L153-.L246
+	.db	3,3,1,5,34,9
+	.dh	.L247-.L153
+	.db	1,5,39,9
+	.dh	.L248-.L247
+	.db	1,5,26,9
+	.dh	.L249-.L248
+	.db	3,3,1,5,71,9
+	.dh	.L250-.L249
+	.db	3,106,1,5,62,9
+	.dh	.L151-.L250
+	.db	3,22,1,5,81,9
+	.dh	.L156-.L151
+	.db	3,3,1,5,56,9
+	.dh	.L160-.L156
+	.db	1,5,81,9
+	.dh	.L251-.L160
+	.db	1,5,73,9
+	.dh	.L158-.L251
+	.db	3,3,1,5,66,9
+	.dh	.L252-.L158
+	.db	3,1,1,5,97,9
+	.dh	.L253-.L252
+	.db	1,5,25,9
+	.dh	.L162-.L253
+	.db	3,3,1,5,34,9
+	.dh	.L254-.L162
+	.db	1,5,39,9
+	.dh	.L255-.L254
+	.db	1,5,26,9
+	.dh	.L256-.L255
+	.db	3,3,1,5,47,9
+	.dh	.L257-.L256
+	.db	1,5,63,9
+	.dh	.L258-.L257
+	.db	1,5,33,9
+	.dh	.L259-.L258
+	.db	3,3,1,5,49,9
+	.dh	.L260-.L259
+	.db	1,5,90,9
+	.dh	.L261-.L260
+	.db	1,5,65,9
+	.dh	.L262-.L261
+	.db	1,5,90,9
+	.dh	.L263-.L262
+	.db	1,5,42,9
+	.dh	.L264-.L263
+	.db	3,3,1,5,74,9
+	.dh	.L265-.L264
+	.db	1,5,112,9
+	.dh	.L266-.L265
+	.db	3,1,1,5,66,9
+	.dh	.L267-.L266
+	.db	1,5,112,9
+	.dh	.L268-.L267
+	.db	1,5,26,9
+	.dh	.L269-.L268
+	.db	3,3,1,5,50,9
+	.dh	.L270-.L269
+	.db	1,5,21,9
+	.dh	.L164-.L270
+	.db	3,3,1,5,19,9
+	.dh	.L271-.L164
+	.db	1,5,1,9
+	.dh	.L272-.L271
+	.db	3,1,1,9
+	.dh	.L73-.L272
+	.db	0,1,1
+.L237:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HashBasedMAC_Generate')
+.L71:
+	.dw	-1,.L72,0,.L73-.L72,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HMAC_Verify')
+.L74:
+	.dw	256
+	.dh	3
+	.dw	.L75
+	.db	4,1
+	.dw	.L190,.L191,.L192
+	.db	12,1
+	.dw	.L77,.L76
+	.db	2
+	.dw	.L40
+	.db	3
+	.db	'HMAC_Verify',0,1,190,1,15
+	.dw	.L128
+	.db	1,1,1
+	.dw	.L31,.L79,.L30
+	.db	4
+	.db	'Message',0,1,190,1,42
+	.dw	.L80,.L129
+	.db	4
+	.db	'MessageLen',0,1,190,1,65
+	.dw	.L82,.L130
+	.db	4
+	.db	'HMAC',0,1,190,1,92
+	.dw	.L80,.L131
+	.db	4
+	.db	'key',0,1,190,1,113
+	.dw	.L80,.L132
+	.db	4
+	.db	'keyLength',0,1,190,1,132,1
+	.dw	.L82,.L133
+	.db	5
+	.dw	.L31,.L79
+	.db	6
+	.db	'Validity',0,1,192,1,11
+	.dw	.L134,.L135
+	.db	6
+	.db	'result',0,1,193,1,19
+	.dw	.L120,.L136
+	.db	6
+	.db	'localIterator',0,1,194,1,19
+	.dw	.L82,.L137
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HMAC_Verify')
+.L75:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HMAC_Verify')
+.L76:
+	.dw	.L274-.L273
+.L273:
+	.dh	3
+	.dw	.L276-.L275
+.L275:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0,0,0,0,0
+.L276:
+	.db	5,15,7,0,5,2
+	.dw	.L31
+	.db	3,189,1,1,5,22,9
+	.dh	.L166-.L31
+	.db	3,2,1,5,26,9
+	.dh	.L169-.L166
+	.db	3,8,1,5,73,9
+	.dh	.L170-.L169
+	.db	1,5,13,9
+	.dh	.L5-.L170
+	.db	3,3,1,5,19,9
+	.dh	.L277-.L5
+	.db	1,5,41,9
+	.dh	.L278-.L277
+	.db	1,5,35,9
+	.dh	.L279-.L278
+	.db	1,5,9,9
+	.dh	.L280-.L279
+	.db	1,5,24,7,9
+	.dh	.L281-.L280
+	.db	3,2,1,5,13,9
+	.dh	.L282-.L281
+	.db	3,1,1,5,88,9
+	.dh	.L6-.L282
+	.db	3,122,1,5,73,9
+	.dh	.L4-.L6
+	.db	1,5,1,9
+	.dh	.L7-.L4
+	.db	3,10,1,9
+	.dh	.L79-.L7
+	.db	0,1,1
+.L274:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HMAC_Verify')
+.L77:
+	.dw	-1,.L78,0,.L79-.L78,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L190:
+	.db	'../../TC399x/HSM/Mcal/HMAC/src/HMAC.c',0
+.L191:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L192:
+	.db	'D:\\CryptOS Repository\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HMAC_Verify')
+.L131:
+	.dw	-1,.L31,0,.L79-.L31
+	.dh	1
+	.db	82
+	.dw	0,0
+.L30:
+	.dw	-1,.L31,0,.L165-.L31
+	.dh	2
+	.db	125,0
+	.dw	.L165-.L31,.L166-.L31
+	.dh	2
+	.db	125,4
+	.dw	.L166-.L31,.L167-.L31
+	.dh	2
+	.db	125,36
+	.dw	.L167-.L31,.L168-.L31
+	.dh	2
+	.db	125,4
+	.dw	.L168-.L31,.L79-.L31
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L129:
+	.dw	-1,.L31,0,.L169-.L31
+	.dh	1
+	.db	80
+	.dw	0,0
+.L130:
+	.dw	-1,.L31,0,.L170-.L31
+	.dh	1
+	.db	81
+	.dw	0,0
+.L135:
+	.dw	-1,.L31,.L169-.L31,.L79-.L31
+	.dh	1
+	.db	80
+	.dw	0,0
+.L132:
+	.dw	-1,.L31,0,.L5-.L31
+	.dh	1
+	.db	83
+	.dw	0,0
+.L133:
+	.dw	-1,.L31,0,.L79-.L31
+	.dh	2
+	.db	145,0
+	.dw	0,0
+.L137:
+	.dw	-1,.L31,.L170-.L31,.L79-.L31
+	.dh	1
+	.db	81
+	.dw	0,0
+.L136:
+	.dw	-1,.L31,0,.L79-.L31
+	.dh	2
+	.db	145,92
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HashBasedMAC_Generate')
+.L28:
+	.dw	-1,.L29,0,.L138-.L29
+	.dh	2
+	.db	125,0
+	.dw	.L138-.L29,.L139-.L29
+	.dh	2
+	.db	125,32
+	.dw	.L139-.L29,.L140-.L29
+	.dh	3
+	.db	125,136,4
+	.dw	.L140-.L29,.L105-.L29
+	.dh	2
+	.db	125,32
+	.dw	.L105-.L29,.L105-.L29
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L108:
+	.dw	-1,.L29,0,.L141-.L29
+	.dh	1
+	.db	81
+	.dw	.L146-.L29,.L105-.L29
+	.dh	1
+	.db	86
+	.dw	.L160-.L29,.L158-.L29
+	.dh	1
+	.db	83
+	.dw	0,0
+.L107:
+	.dw	-1,.L29,0,.L142-.L29
+	.dh	1
+	.db	80
+	.dw	.L145-.L29,.L105-.L29
+	.dh	1
+	.db	85
+	.dw	.L157-.L29,.L158-.L29
+	.dh	1
+	.db	80
+	.dw	0,0
+.L119:
+	.dw	-1,.L29,.L151-.L29,.L105-.L29
+	.dh	1
+	.db	84
+	.dw	.L155-.L29,.L156-.L29
+	.dh	1
+	.db	81
+	.dw	.L159-.L29,.L158-.L29
+	.dh	1
+	.db	81
+	.dw	.L161-.L29,.L162-.L29
+	.dh	1
+	.db	80
+	.dw	0,0
+.L121:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,248,125
+	.dw	0,0
+.L122:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,152,126
+	.dw	0,0
+.L115:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,248,123
+	.dw	0,0
+.L113:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	2
+	.db	145,4
+	.dw	0,.L105-.L29
+	.dh	2
+	.db	145,4
+	.dw	.L150-.L29,.L151-.L29
+	.dh	1
+	.db	84
+	.dw	.L154-.L29,.L153-.L29
+	.dh	1
+	.db	81
+	.dw	0,0
+.L117:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,248,124
+	.dw	0,0
+.L118:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,184,125
+	.dw	0,0
+.L123:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,156,126
+	.dw	0,0
+.L112:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	2
+	.db	145,0
+	.dw	0,.L105-.L29
+	.dh	2
+	.db	145,0
+	.dw	.L149-.L29,.L105-.L29
+	.dh	1
+	.db	88
+	.dw	.L152-.L29,.L153-.L29
+	.dh	1
+	.db	80
+	.dw	0,0
+.L111:
+	.dw	-1,.L29,0,.L143-.L29
+	.dh	1
+	.db	83
+	.dw	.L148-.L29,.L105-.L29
+	.dh	1
+	.db	89
+	.dw	0,0
+.L109:
+	.dw	-1,.L29,0,.L144-.L29
+	.dh	1
+	.db	82
+	.dw	.L147-.L29,.L105-.L29
+	.dh	1
+	.db	87
+	.dw	.L163-.L29,.L164-.L29
+	.dh	1
+	.db	81
+	.dw	0,0
+.L116:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,184,124
+	.dw	0,0
+.L125:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,220,126
+	.dw	0,0
+.L126:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	3
+	.db	145,188,127
+	.dw	0,0
+.L127:
+	.dw	-1,.L29,0,.L105-.L29
+	.dh	2
+	.db	145,92
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HmacSha256_BlockConcatenate')
+.L38:
+	.dw	-1,.L39,0,.L188-.L39
+	.dh	2
+	.db	125,0
+	.dw	.L188-.L39,.L67-.L39
+	.dh	2
+	.db	125,12
+	.dw	.L67-.L39,.L67-.L39
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L100:
+	.dw	-1,.L39,0,.L67-.L39
+	.dh	1
+	.db	81
+	.dw	0,0
+.L101:
+	.dw	-1,.L39,0,.L67-.L39
+	.dh	1
+	.db	82
+	.dw	0,0
+.L104:
+	.dw	-1,.L39,.L189-.L39,.L67-.L39
+	.dh	1
+	.db	84
+	.dw	0,0
+.L102:
+	.dw	-1,.L39,0,.L67-.L39
+	.dh	1
+	.db	83
+	.dw	0,0
+.L99:
+	.dw	-1,.L39,0,.L67-.L39
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HmacSha256_BlockCopy')
+.L36:
+	.dw	-1,.L37,0,.L185-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L185-.L37,.L186-.L37
+	.dh	2
+	.db	125,4
+	.dw	.L186-.L37,.L61-.L37
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L96:
+	.dw	-1,.L37,0,.L61-.L37
+	.dh	1
+	.db	81
+	.dw	0,0
+.L98:
+	.dw	-1,.L37,.L187-.L37,.L61-.L37
+	.dh	1
+	.db	83
+	.dw	0,0
+.L97:
+	.dw	-1,.L37,0,.L61-.L37
+	.dh	1
+	.db	82
+	.dw	0,0
+.L95:
+	.dw	-1,.L37,0,.L61-.L37
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HmacSha256_BlockXOR')
+.L34:
+	.dw	-1,.L35,0,.L182-.L35
+	.dh	2
+	.db	125,0
+	.dw	.L182-.L35,.L183-.L35
+	.dh	2
+	.db	125,8
+	.dw	.L183-.L35,.L55-.L35
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L91:
+	.dw	-1,.L35,0,.L55-.L35
+	.dh	1
+	.db	80
+	.dw	0,0
+.L94:
+	.dw	-1,.L35,.L184-.L35,.L55-.L35
+	.dh	1
+	.db	83
+	.dw	0,0
+.L93:
+	.dw	-1,.L35,0,.L55-.L35
+	.dh	1
+	.db	82
+	.dw	0,0
+.L92:
+	.dw	-1,.L35,0,.L55-.L35
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HmacSha256_KeyNodeGenerate')
+.L32:
+	.dw	-1,.L33,0,.L171-.L33
+	.dh	2
+	.db	125,0
+	.dw	.L171-.L33,.L172-.L33
+	.dh	2
+	.db	125,8
+	.dw	.L172-.L33,.L173-.L33
+	.dh	2
+	.db	125,12
+	.dw	.L173-.L33,.L49-.L33
+	.dh	2
+	.db	125,8
+	.dw	.L49-.L33,.L49-.L33
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L84:
+	.dw	-1,.L33,0,.L174-.L33
+	.dh	1
+	.db	82
+	.dw	0,0
+.L90:
+	.dw	-1,.L33,0,.L49-.L33
+	.dh	2
+	.db	145,116
+	.dw	0,0
+.L83:
+	.dw	-1,.L33,0,.L175-.L33
+	.dh	1
+	.db	81
+	.dw	.L174-.L33,.L176-.L33
+	.dh	1
+	.db	82
+	.dw	.L9-.L33,.L178-.L33
+	.dh	1
+	.db	81
+	.dw	.L15-.L33,.L14-.L33
+	.dh	1
+	.db	82
+	.dw	.L15-.L33,.L181-.L33
+	.dh	1
+	.db	81
+	.dw	0,0
+.L85:
+	.dw	-1,.L33,0,.L11-.L33
+	.dh	1
+	.db	83
+	.dw	.L177-.L33,.L49-.L33
+	.dh	1
+	.db	84
+	.dw	.L9-.L33,.L179-.L33
+	.dh	1
+	.db	83
+	.dw	.L179-.L33,.L176-.L33
+	.dh	1
+	.db	81
+	.dw	.L15-.L33,.L20-.L33
+	.dh	1
+	.db	83
+	.dw	0,0
+.L81:
+	.dw	-1,.L33,0,.L176-.L33
+	.dh	1
+	.db	80
+	.dw	.L15-.L33,.L14-.L33
+	.dh	1
+	.db	80
+	.dw	0,0
+.L87:
+	.dw	-1,.L33,.L175-.L33,.L9-.L33
+	.dh	1
+	.db	81
+	.dw	.L180-.L33,.L15-.L33
+	.dh	1
+	.db	80
+	.dw	.L181-.L33,.L14-.L33
+	.dh	1
+	.db	81
+	.dw	0,0
+.L86:
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L283:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HashBasedMAC_Generate')
+	.dw	96
+	.dw	.L283,.L29,.L105-.L29
+	.db	4
+	.dw	(.L138-.L29)/2
+	.db	19,16,22,13,3,19,125,32,17,14,126,17,11,124,17,9,122,17,8,120,17,7,118,17,6,116,17,5,114,17,4,112,4
+	.dw	(.L139-.L138)/2
+	.db	19,132,2,22,13,4,19,125,136,4,4
+	.dw	(.L140-.L139)/2
+	.db	19,16,22,13,3,19,125,32,4
+	.dw	(.L105-.L140)/2
+	.db	19,0,8,13,203,201,200,199,198,197,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HMAC_Verify')
+	.dw	88
+	.dw	.L283,.L31,.L79-.L31
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L165-.L31)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L166-.L165)/2
+	.db	19,18,22,13,3,19,125,36,4
+	.dw	(.L167-.L166)/2
+	.db	19,2,22,13,3,19,125,4,4
+	.dw	(.L168-.L167)/2
+	.db	19,0,8,13,196
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HmacSha256_KeyNodeGenerate')
+	.dw	68
+	.dw	.L283,.L33,.L49-.L33
+	.db	4
+	.dw	(.L171-.L33)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L172-.L171)/2
+	.db	19,6,22,13,3,19,125,12,4
+	.dw	(.L173-.L172)/2
+	.db	19,4,22,13,3,19,125,8,4
+	.dw	(.L49-.L173)/2
+	.db	19,0,8,13,196,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HmacSha256_BlockXOR')
+	.dw	68
+	.dw	.L283,.L35,.L55-.L35
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L182-.L35)/2
+	.db	19,4,22,13,3,19,125,8,17,5,126,17,4,124,4
+	.dw	(.L183-.L182)/2
+	.db	19,0,8,13,197,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HmacSha256_BlockCopy')
+	.dw	64
+	.dw	.L283,.L37,.L61-.L37
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L185-.L37)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L186-.L185)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HmacSha256_BlockConcatenate')
+	.dw	72
+	.dw	.L283,.L39,.L67-.L39
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L188-.L39)/2
+	.db	19,6,22,13,3,19,125,12,17,14,126,17,5,124,17,4,122,4
+	.dw	(.L67-.L188)/2
+	.db	19,0,8,13,197,196,0,0,0
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   270  
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   271  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   272  /*				    			 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/HMAC/src/HMAC.c	   272  /***********************************************************************************/
+
+	; Module end
+	.end

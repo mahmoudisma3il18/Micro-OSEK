@@ -1,0 +1,4014 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/Bridge/src/.Hsm_Bridge.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/Bridge/src/Hsm_Bridge.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\Bridge\\src\\Hsm_Bridge.src ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255'
+	.source '../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c'
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+	.global	HSM_BRIDGE_InterruptsEnable
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     1  /** 
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     2   * @file 	Hsm_Bridge.c
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     3   * @author  Ahmed Aref Omaira
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     5   * @date	1-3-2024
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     6   * @platform    -- 	
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     7   * @variant		--
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     8   * @vendor		Cryptos
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	     9   * @specification --
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    10   * @brief   HSM Bridge Peripheral source file.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    11   * 
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    12   * 
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    13   * 
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    14  */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    15  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    16  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    17  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    18  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    19  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    20  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    21  /*                               INCLUDE HEADERS	                              */  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    22  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    23  #include "Hsm_Bridge.h"
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    24  #include "NVIC.h"
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    25  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    26  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    27  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    28  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    29  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    30  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    31  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    32  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    33  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    34  /*                                 TypeDefnitions                                  */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    35  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    36  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    37  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    38  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    39  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    40  /*                        Internal Function Declration                             */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    41  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    42  /*****************************  Communication Unit APIs  ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    43  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    44   * @brief Resets the interrupt request from the host to the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    45   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    46   * This function resets the interrupt request from the host to the HSM
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    47   * by writing the value of HT2HSMF.HT2HSMF to itself.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    48   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    49   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    50   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    51  void HSM_BRIDGE_ResetHostInterruptRequest(void);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    52  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    53  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    54   * @brief Enables an interrupt request from the host to the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    55   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    56   * This function enables an interrupt request from the host to the HSM
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    57   * by setting the appropriate value in the HT2HSMIE register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    58   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    59   * @param[in] HostToHsmInterruptEnable The value to set in the HT2HSMIE register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    60   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    61   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    62  void HSM_BRIDGE_HostToHsmInterruptEnable(uint32 HostToHsmInterruptEnable);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    63  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    64  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    65   * @brief Generates an interrupt request from the HSM to the Host.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    66   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    67   * This function generates an interrupt request from the HSM to the Host
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    68   * by setting the appropriate value in the HSM2HTF register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    69   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    70   * @param[in] HsmToHostInterruptRequest The value to set in the HSM2HTF register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    71   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    72   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    73  void HSM_BRIDGE_GenerateHostInterruptRequest(uint32 HsmToHostInterruptRequest);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    74  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    75  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    76   * @brief Sends a message from the HSM to the host.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    77   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    78   * This function sends a message from the HSM to the host
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    79   * by writing the message value to the HSM2HTS register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    80   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    81   * @param[in] HsmToHostMessage The message value to send from the HSM to the host
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    82   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    83   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    84  void HSM_BRIDGE_SendMessage(uint32 HsmToHostMessage);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    85  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    86  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    87   * @brief Receives a message from the host to the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    88   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    89   * This function receives a message from the host to the HSM
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    90   * by reading the value from the HT2HSMS register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    91   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    92   * @param[out] HostToHsmMessagePtr Pointer to store the received message
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    93   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    94   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    95  void HSM_BRIDGE_ReceiveHostMessage(uint32 *HostToHsmMessagePtr);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    96  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    97  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    98   * @brief Retrieves the interrupt flag register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	    99   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   100   * This function retrieves the interrupt flag register from the HSM Bridge
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   101   * and stores it in the provided pointer.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   102   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   103   * @service name    HSM_BRIDGE_GetInterruptFlagRegister
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   104   * @syntax          void HSM_BRIDGE_GetInterruptFlagRegister(uint32 *InterruptFlagRegisterPtr);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   105   * @service ID      -
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   106   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   107   * @reentrancy      Reentrant
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   108   * @param[in]       InterruptFlagRegisterPtr   Pointer to store the retrieved interrupt flag register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   109   * @param[out]      InterruptFlagRegisterPtr   Updated with the retrieved interrupt flag register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   110   * @return          void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   111   * @see             -
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   112   * @note            This function retrieves the interrupt flag register from the HSM Bridge and stores it in the provided pointer.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   113   * @warning         -
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   114   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   115  void HSM_BRIDGE_GetInterruptFlagRegister(uint32 *InterruptFlagRegisterPtr);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   116  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   117  /*******************************  Clock Divider APIs  ******************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   118  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   119   * @brief Sets the clock divider value.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   120   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   121   * This function sets the clock divider value by writing the specified value
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   122   * to the appropriate register.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   123   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   124   * @param[in] ClockDividerValue Value to set the clock divider to
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   125   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   126   * @warning This function can only be called from the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   127   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   128  void HSM_BRIDGE_SetClockDivider(uint8 ClockDividerValue);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   129  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   130  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   131   * @brief Retrieves the clock divider value.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   132   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   133   * This function retrieves the clock divider value from the appropriate register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   134   * and stores it in the provided pointer.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   135   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   136   * @param[out] ClockDividerValuePtr Updated with the retrieved clock divider value
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   137   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   138   * @warning This function can be called only from the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   139   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   140  void HSM_BRIDGE_GetClockDivider(uint8 *ClockDividerValuePtr);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   141  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   142  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   143  /****************************  System Control Unit APIs  ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   144  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   145  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   146  /****************************  Error Control Unit APIs   ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   147  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   148  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   149   * @brief Retrieves the error status.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   150   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   151   * This function retrieves the error status from the appropriate register
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   152   * and stores it in the provided pointer.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   153   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   154   * @param[out] ErrorStatusPtr Updated with the retrieved error status
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   155   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   156   * @warning This function can only be called from the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   157   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   158  void HSM_BRIDGE_GetErrorStatus(uint32 *ErrorStatusPtr);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   159  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   160  /**
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   161   * @brief Enables the bridge error interrupt.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   162   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   163   * This function enables the bridge error interrupt based on the provided flag value.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   164   *
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   165   * @param[in] BridgeErrorInterruptEnable Flag indicating whether to enable or disable the bridge error interrupt
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   166   * @return void
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   167   * @warning This function can only be called from the HSM.
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   168   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   169  void HSM_BRIDGE_BridgeErrorInterruptEnable(uint32 BridgeErrorInterruptEnable);
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   170  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   171  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   172  /**************************  External Interrupt Unit APIs    ************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   173  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   174  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   175  /***********************  Single Access to Host Memories APIs ***********************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   176  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   177  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   178  /*************************  Sensor Interrupt and Reset APIs   ***********************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   179  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   180  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   181  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   182  /*                        External Function Declration                             */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   183  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   184  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   185  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   186  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   187  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   188  /*				    			External constants		         				   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   189  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   190  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   191  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   192  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   193  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   194  /*				    	  External data	shared global varaibles	         	       */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   195  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   196  /* Bridge Configuration Struct Declration */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   197  extern HSM_BRIDGE_CONFIGURATION_T BridgeModuleHsmConfiguration;
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   198  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   199  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   200  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   201  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   202  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   203  void HSM_BRIDGE_InterruptsEnable(void){
+; Function HSM_BRIDGE_InterruptsEnable
+.L42:
+	.thumb
+	.align	4
+HSM_BRIDGE_InterruptsEnable:	.type	func
+
+.L6:
+	push	{lr}
+.L146:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   204      /* 1. Enable the Bridge interrupt */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   205      NVIC_EnableIRQ((IRQn_Type)Bridge_IRQn);
+	movs	r0,#3
+	bl	NVIC_EnableIRQ
+.L170:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   206      /* 2. Enable the Bridge error interrupt */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   207      NVIC_EnableIRQ((IRQn_Type)BridgeErr_IRQn);
+	movs	r0,#4
+	bl	NVIC_EnableIRQ
+.L171:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   208  };
+	pop	{pc}
+.L43:
+	.size	HSM_BRIDGE_InterruptsEnable,$-HSM_BRIDGE_InterruptsEnable
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_Init')
+	.global	HSM_BRIDGE_Init
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   209  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   210  void HSM_BRIDGE_Init(HSM_BRIDGE_CONFIGURATION_T *ptrBridgeModuleHsmConfiguration){
+; Function HSM_BRIDGE_Init
+.L48:
+	.thumb
+	.align	4
+HSM_BRIDGE_Init:	.type	func
+
+.L8:
+	push	{lr}
+.L147:
+	mov	r3,r0
+.L149:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   211      /* 1. Configuring the host to HSM enabled interrupts */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   212      HSM_BRIDGE_HostToHsmInterruptEnable(ptrBridgeModuleHsmConfiguration->HostToHsmEnabeledInterrupts);
+	ldr	r0,[r3,#0]
+.L148:
+	bl	HSM_BRIDGE_HostToHsmInterruptEnable
+.L176:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   213      /* 2. Configuring the HSM core operating frequency */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   214      HSM_BRIDGE_SetClockDivider(ptrBridgeModuleHsmConfiguration->HsmCoreOperatingFrequency);
+	ldrb	r0,[r3,#4]
+	bl	HSM_BRIDGE_SetClockDivider
+.L177:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   215      /* 3. Configuring the HSM error enabled interrupts */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   216      HSM_BRIDGE_BridgeErrorInterruptEnable(ptrBridgeModuleHsmConfiguration->HsmErrorEnabeledInterrupts);
+	ldr	r0,[r3,#8]
+	bl	HSM_BRIDGE_BridgeErrorInterruptEnable
+.L178:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   217  };
+	pop	{pc}
+.L49:
+	.size	HSM_BRIDGE_Init,$-HSM_BRIDGE_Init
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+	.global	HSM_BRIDGE_NotifyCryptographicServiceFinshed
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   218  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   219  void HSM_BRIDGE_NotifyCryptographicServiceFinshed(uint8 requestedId, uint8 requestedServiceId){
+; Function HSM_BRIDGE_NotifyCryptographicServiceFinshed
+.L54:
+	.thumb
+	.align	4
+HSM_BRIDGE_NotifyCryptographicServiceFinshed:	.type	func
+
+.L10:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   220      /* Send the ID of the finished service*/    
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   221  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   222  };
+	bx	lr
+.L55:
+	.size	HSM_BRIDGE_NotifyCryptographicServiceFinshed,$-HSM_BRIDGE_NotifyCryptographicServiceFinshed
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_BridgeService_Handler')
+	.global	BridgeService_Handler
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   223  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   224  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   225  /*                       	  Internal Function Definition                         */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   226  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   227  /*************************** Bridge IRQ Handlers Definition ************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   228  void BridgeService_Handler(void) {
+; Function BridgeService_Handler
+.L120:
+	.thumb
+	.align	4
+BridgeService_Handler:	.type	func
+
+.L12:
+	push	{r4,lr}
+.L150:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   229      
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   230      BridgeModuleHsmConfiguration.HsmBridgeServiceCallBackfunctionPointer();
+	ldr	r0,.L4
+	ldr	r4,[r0,#12]
+.L247:
+	blx	r4
+.L248:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   231      
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   232  };
+	pop	{r4,pc}
+.L145:
+	.align	4
+.L4:
+	.dw	BridgeModuleHsmConfiguration
+.L121:
+	.size	BridgeService_Handler,$-BridgeService_Handler
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_BridgeError_Handler')
+	.global	BridgeError_Handler
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   233  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   234  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   235  void BridgeError_Handler(void){
+; Function BridgeError_Handler
+.L126:
+	.thumb
+	.align	4
+BridgeError_Handler:	.type	func
+
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   236   while(1){
+.L3:
+	movs	r0,#1
+.L253:
+	bne	.L3
+.L254:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   237      /* Do nothing */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   238   }
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   239  };
+	bx	lr
+.L127:
+	.size	BridgeError_Handler,$-BridgeError_Handler
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+	.global	HSM_BRIDGE_ResetHostInterruptRequest
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   240  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   241  /*************************** Registers Functions Definition ************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   242  /*****************************  Communication Unit APIs  ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   243  void HSM_BRIDGE_ResetHostInterruptRequest(void){
+; Function HSM_BRIDGE_ResetHostInterruptRequest
+.L72:
+	.thumb
+	.align	4
+HSM_BRIDGE_ResetHostInterruptRequest:	.type	func
+
+.L15:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   244      /* Reset the interrupt request from the host to the HSM. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   245      HSM_BRIDGE->HT2HSMF.HT2HSMF = HSM_BRIDGE->HT2HSMF.HT2HSMF;
+	movw	r0,#@lsh(-268173280)
+	movt	r0,#@msh(-268173280)
+	ldr	r1,[r0,#0]
+.L199:
+	str	r1,[r0,#0]
+.L200:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   246  };
+	bx	lr
+.L73:
+	.size	HSM_BRIDGE_ResetHostInterruptRequest,$-HSM_BRIDGE_ResetHostInterruptRequest
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+	.global	HSM_BRIDGE_HostToHsmInterruptEnable
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   247  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   248  void HSM_BRIDGE_HostToHsmInterruptEnable (uint32 HostToHsmInterruptEnable){
+; Function HSM_BRIDGE_HostToHsmInterruptEnable
+.L78:
+	.thumb
+	.align	4
+HSM_BRIDGE_HostToHsmInterruptEnable:	.type	func
+
+.L17:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   249      /* Enable an interrupt request from the host to the HSM. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   250      HSM_BRIDGE->HT2HSMIE.HT2HSMIE = HostToHsmInterruptEnable;
+	movw	r1,#@lsh(-268173276)
+	movt	r1,#@msh(-268173276)
+.L205:
+	str	r0,[r1,#0]
+.L206:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   251  };
+	bx	lr
+.L79:
+	.size	HSM_BRIDGE_HostToHsmInterruptEnable,$-HSM_BRIDGE_HostToHsmInterruptEnable
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+	.global	HSM_BRIDGE_GenerateHostInterruptRequest
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   252  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   253  void HSM_BRIDGE_GenerateHostInterruptRequest (uint32 HsmToHostInterruptRequest){
+; Function HSM_BRIDGE_GenerateHostInterruptRequest
+.L84:
+	.thumb
+	.align	4
+HSM_BRIDGE_GenerateHostInterruptRequest:	.type	func
+
+.L19:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   254      /* Generate an interrupt request from the HSM to the Host. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   255      HSM_BRIDGE->HSM2HTF.HSM2HTF = HsmToHostInterruptRequest;
+	movw	r1,#@lsh(-268173272)
+	movt	r1,#@msh(-268173272)
+.L211:
+	str	r0,[r1,#0]
+.L212:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   256  }
+	bx	lr
+.L85:
+	.size	HSM_BRIDGE_GenerateHostInterruptRequest,$-HSM_BRIDGE_GenerateHostInterruptRequest
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_SendMessage')
+	.global	HSM_BRIDGE_SendMessage
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   257  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   258  void HSM_BRIDGE_SendMessage (uint32 HsmToHostMessage){
+; Function HSM_BRIDGE_SendMessage
+.L90:
+	.thumb
+	.align	4
+HSM_BRIDGE_SendMessage:	.type	func
+
+.L21:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   259      /* Write a message from the HSM to the host. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   260      HSM_BRIDGE->HSM2HTS.HSM2HTS = HsmToHostMessage;
+	movw	r1,#@lsh(-268173260)
+	movt	r1,#@msh(-268173260)
+.L217:
+	str	r0,[r1,#0]
+.L218:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   261  };
+	bx	lr
+.L91:
+	.size	HSM_BRIDGE_SendMessage,$-HSM_BRIDGE_SendMessage
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+	.global	HSM_BRIDGE_ReceiveHostMessage
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   262  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   263  void HSM_BRIDGE_ReceiveHostMessage(uint32 *HostToHsmMessagePtr){    
+; Function HSM_BRIDGE_ReceiveHostMessage
+.L60:
+	.thumb
+	.align	4
+HSM_BRIDGE_ReceiveHostMessage:	.type	func
+
+.L23:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   264      /* Read the message from the host to the HSM. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   265      *HostToHsmMessagePtr = HSM_BRIDGE->HT2HSMS.HT2HSMS;
+	movw	r1,#@lsh(-268173256)
+	movt	r1,#@msh(-268173256)
+	ldr	r1,[r1,#0]
+.L187:
+	str	r1,[r0,#0]
+.L188:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   266  };
+	bx	lr
+.L61:
+	.size	HSM_BRIDGE_ReceiveHostMessage,$-HSM_BRIDGE_ReceiveHostMessage
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+	.global	HSM_BRIDGE_GetInterruptFlagRegister
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   267  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   268  void HSM_BRIDGE_GetInterruptFlagRegister (uint32 *InterruptFlagRegisterPtr){
+; Function HSM_BRIDGE_GetInterruptFlagRegister
+.L66:
+	.thumb
+	.align	4
+HSM_BRIDGE_GetInterruptFlagRegister:	.type	func
+
+.L25:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   269      /* Retrieve the interrupt flag register and store it in the provided pointer. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   270      *InterruptFlagRegisterPtr = HSM_BRIDGE->HT2HSMF.HT2HSMF;
+	movw	r1,#@lsh(-268173280)
+	movt	r1,#@msh(-268173280)
+	ldr	r1,[r1,#0]
+.L193:
+	str	r1,[r0,#0]
+.L194:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   271  };
+	bx	lr
+.L67:
+	.size	HSM_BRIDGE_GetInterruptFlagRegister,$-HSM_BRIDGE_GetInterruptFlagRegister
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+	.global	HSM_BRIDGE_GetErrorStatus
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   272  /****************************  System Control Unit APIs  ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   273  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   274  /****************************  Error Control Unit APIs   ***************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   275  void HSM_BRIDGE_GetErrorStatus(uint32 *ErrorStatusPtr){
+; Function HSM_BRIDGE_GetErrorStatus
+.L108:
+	.thumb
+	.align	4
+HSM_BRIDGE_GetErrorStatus:	.type	func
+
+.L27:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   276      /* Retrieve the error status and store it in the provided pointer. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   277      *ErrorStatusPtr = HSM_BRIDGE->ERRCTRL.ERRCTRL;
+	movw	r1,#@lsh(-268173184)
+	movt	r1,#@msh(-268173184)
+	ldr	r1,[r1,#0]
+.L235:
+	str	r1,[r0,#0]
+.L236:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   278  };
+	bx	lr
+.L109:
+	.size	HSM_BRIDGE_GetErrorStatus,$-HSM_BRIDGE_GetErrorStatus
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+	.global	HSM_BRIDGE_BridgeErrorInterruptEnable
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   279  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   280  void HSM_BRIDGE_BridgeErrorInterruptEnable (uint32 BridgeErrorInterruptEnable){
+; Function HSM_BRIDGE_BridgeErrorInterruptEnable
+.L114:
+	.thumb
+	.align	4
+HSM_BRIDGE_BridgeErrorInterruptEnable:	.type	func
+
+.L29:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   281      /* Enable the error interrupt. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   282      HSM_BRIDGE->ERRIE.ERRIE = BridgeErrorInterruptEnable;
+	movw	r1,#@lsh(-268173180)
+	movt	r1,#@msh(-268173180)
+.L241:
+	str	r0,[r1,#0]
+.L242:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   283  };
+	bx	lr
+.L115:
+	.size	HSM_BRIDGE_BridgeErrorInterruptEnable,$-HSM_BRIDGE_BridgeErrorInterruptEnable
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+	.global	HSM_BRIDGE_SetClockDivider
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   284  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   285  /**************************  External Interrupt Unit APIs   ************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   286  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   287  /***********************  Single Access to Host Memories APIs  *********************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   288  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   289  /*******************************  Clock Divider APIs  ******************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   290  void HSM_BRIDGE_SetClockDivider(uint8 ClockDividerValue){
+; Function HSM_BRIDGE_SetClockDivider
+.L96:
+	.thumb
+	.align	4
+HSM_BRIDGE_SetClockDivider:	.type	func
+
+.L31:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   291      /* Set the clock divider value. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   292      HSM_BRIDGE->CLKCTRL.BRIDGE_CLKCTRL_REG_S.CLKDIV = ClockDividerValue;
+	movw	r1,#@lsh(-268173248)
+	movt	r1,#@msh(-268173248)
+	ldr	r2,[r1,#0]
+.L223:
+	bfi	r2,r0,#0,#2
+	str	r2,[r1,#0]
+.L224:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   293  };
+	bx	lr
+.L97:
+	.size	HSM_BRIDGE_SetClockDivider,$-HSM_BRIDGE_SetClockDivider
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+	.global	HSM_BRIDGE_GetClockDivider
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   294  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   295  void HSM_BRIDGE_GetClockDivider(uint8 *ClockDividerValuePtr){
+; Function HSM_BRIDGE_GetClockDivider
+.L102:
+	.thumb
+	.align	4
+HSM_BRIDGE_GetClockDivider:	.type	func
+
+.L33:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   296      /* Retrieve the clock divider value and store it in the provided pointer. */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   297      *ClockDividerValuePtr = HSM_BRIDGE->CLKCTRL.BRIDGE_CLKCTRL_REG_S.CLKDIV;
+	movw	r1,#@lsh(-268173248)
+	movt	r1,#@msh(-268173248)
+	ldr	r1,[r1,#0]
+	and	r1,r1,#3
+.L229:
+	strb	r1,[r0,#0]
+.L230:
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   298  };
+	bx	lr
+.L103:
+	.size	HSM_BRIDGE_GetClockDivider,$-HSM_BRIDGE_GetClockDivider
+	; End of function
+	.endsec	; End of section
+
+	.calls	'HSM_BRIDGE_InterruptsEnable','NVIC_EnableIRQ'
+	.calls	'HSM_BRIDGE_Init','HSM_BRIDGE_HostToHsmInterruptEnable'
+	.calls	'HSM_BRIDGE_Init','HSM_BRIDGE_SetClockDivider'
+	.calls	'HSM_BRIDGE_Init','HSM_BRIDGE_BridgeErrorInterruptEnable'
+	.calls	'BridgeService_Handler','__INDIRECT__'
+	.calls	'HSM_BRIDGE_InterruptsEnable','',4
+	.calls	'HSM_BRIDGE_Init','',4
+	.calls	'HSM_BRIDGE_NotifyCryptographicServiceFinshed','',0
+	.calls	'BridgeService_Handler','',8
+	.calls	'BridgeError_Handler','',0
+	.calls	'HSM_BRIDGE_ResetHostInterruptRequest','',0
+	.calls	'HSM_BRIDGE_HostToHsmInterruptEnable','',0
+	.calls	'HSM_BRIDGE_GenerateHostInterruptRequest','',0
+	.calls	'HSM_BRIDGE_SendMessage','',0
+	.calls	'HSM_BRIDGE_ReceiveHostMessage','',0
+	.calls	'HSM_BRIDGE_GetInterruptFlagRegister','',0
+	.calls	'HSM_BRIDGE_GetErrorStatus','',0
+	.calls	'HSM_BRIDGE_BridgeErrorInterruptEnable','',0
+	.calls	'HSM_BRIDGE_SetClockDivider','',0
+	.calls	'HSM_BRIDGE_GetClockDivider','',0
+	.extern	BridgeModuleHsmConfiguration
+	.extern	NVIC_EnableIRQ
+	.extern	__INDIRECT__
+	.section	.debug_info
+.L35:
+	.dw	10562
+	.dh	3
+	.dw	.L36
+	.db	4
+.L34:
+	.db	1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L37
+.L136:
+	.db	2
+	.db	'unsigned int',0,4,7
+.L130:
+	.db	2
+	.db	'unsigned char',0,1,8,3,1,1,4
+	.dw	63
+	.db	5,1,62,9,16,6
+	.db	'HostToHsmEnabeledInterrupts',0
+	.dw	30
+	.db	4,2,35,0,6
+	.db	'HsmCoreOperatingFrequency',0
+	.dw	46
+	.db	1,2,35,4,6
+	.db	'HsmErrorEnabeledInterrupts',0
+	.dw	30
+	.db	4,2,35,8,6
+	.db	'HsmBridgeServiceCallBackfunctionPointer',0
+	.dw	66
+	.db	4,2,35,12,0
+.L128:
+	.db	4
+	.dw	71
+.L133:
+	.db	4
+	.dw	30
+	.db	7
+	.db	'IRQn',0,2,34,14,4,8
+	.db	'NonMaskableInt_IRQn',0,114,8
+	.db	'HardFault_IRQn',0,115,8
+	.db	'MemoryManagement_IR',0,116,8
+	.db	'BusFault_IRQn',0,117,8
+	.db	'UsageFault_IRQn',0,118,8
+	.db	'SVCall_IRQn',0,123,8
+	.db	'DebugMonitor_IRQn',0,124,8
+	.db	'PendSV_IRQn',0,126,8
+	.db	'SysTick_IRQn',0,127,8
+	.db	'TIM0_IRQn',0,0,8
+	.db	'TIM1_IRQn',0,1,8
+	.db	'TRNG_IRQn',0,2,8
+	.db	'Bridge_IRQn',0,3,8
+	.db	'BridgeErr_IRQn',0,4,8
+	.db	'SensInt_IRQn',0,5,8
+	.db	'ExtInt_IRQn',0,6,8
+	.db	'PKCRdy_IRQn',0,8,8
+	.db	'PKCErr_IRQn',0,9,0,9
+	.db	'NVIC_EnableIRQ',0,2,106,13,1,1,1,1,10
+	.db	'IRQn',0,2,106,38
+	.dw	244
+	.db	0
+.L141:
+	.db	4
+	.dw	46
+	.db	11
+	.db	'__INDIRECT__',0,3,1,1,1,1,1,12,1,4
+	.dw	599
+	.db	13
+	.db	'__codeptr',0,3,1,1
+	.dw	601
+	.db	13
+	.db	'uint8',0,4,247,1,23
+	.dw	46
+	.db	2
+	.db	'unsigned short int',0,2,7,13
+	.db	'uint16',0,4,252,1,24
+	.dw	639
+	.db	13
+	.db	'uint32',0,4,129,2,22
+	.dw	30
+	.db	13
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	46
+	.db	13
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	46
+	.db	13
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	46
+	.db	13
+	.db	'WORD',0,6,38,16
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,45,5,4,15
+	.db	'MOD_REV',0,4
+	.dw	801
+	.db	8,24,2,35,0,15
+	.db	'MOD_TYPE',0,4
+	.dw	806
+	.db	8,16,2,35,0,15
+	.db	'MOD_NUMBER',0,4
+	.dw	811
+	.db	16,0,2,35,0,0,16,6,43,9,4,6
+	.db	'HSM_ID',0
+	.dw	796
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HSM_ID_REG_S',0
+	.dw	816
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HSM_ID_REG_t',0,6,50,2
+	.dw	883
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,55,5,4,15
+	.db	'F0',0,4
+	.dw	967
+	.db	1,31,2,35,0,15
+	.db	'F1',0,4
+	.dw	972
+	.db	1,30,2,35,0,15
+	.db	'F2',0,4
+	.dw	977
+	.db	1,29,2,35,0,15
+	.db	'F3',0,4
+	.dw	982
+	.db	1,28,2,35,0,15
+	.db	'F4',0,4
+	.dw	987
+	.db	1,27,2,35,0,15
+	.db	'F5',0,4
+	.dw	992
+	.db	1,26,2,35,0,15
+	.db	'F6',0,4
+	.dw	997
+	.db	1,25,2,35,0,15
+	.db	'F7',0,4
+	.dw	1002
+	.db	1,24,2,35,0,15
+	.db	'F8',0,4
+	.dw	1007
+	.db	1,23,2,35,0,15
+	.db	'F9',0,4
+	.dw	1012
+	.db	1,22,2,35,0,15
+	.db	'F10',0,4
+	.dw	1017
+	.db	1,21,2,35,0,15
+	.db	'F11',0,4
+	.dw	1022
+	.db	1,20,2,35,0,15
+	.db	'F12',0,4
+	.dw	1027
+	.db	1,19,2,35,0,15
+	.db	'F13',0,4
+	.dw	1032
+	.db	1,18,2,35,0,15
+	.db	'F14',0,4
+	.dw	1037
+	.db	1,17,2,35,0,15
+	.db	'F15',0,4
+	.dw	1042
+	.db	1,16,2,35,0,15
+	.db	'F16',0,4
+	.dw	1047
+	.db	1,15,2,35,0,15
+	.db	'F17',0,4
+	.dw	1052
+	.db	1,14,2,35,0,15
+	.db	'F18',0,4
+	.dw	1057
+	.db	1,13,2,35,0,15
+	.db	'F19',0,4
+	.dw	1062
+	.db	1,12,2,35,0,15
+	.db	'F20',0,4
+	.dw	1067
+	.db	1,11,2,35,0,15
+	.db	'F21',0,4
+	.dw	1072
+	.db	1,10,2,35,0,15
+	.db	'F22',0,4
+	.dw	1077
+	.db	1,9,2,35,0,15
+	.db	'F23',0,4
+	.dw	1082
+	.db	1,8,2,35,0,15
+	.db	'F24',0,4
+	.dw	1087
+	.db	1,7,2,35,0,15
+	.db	'F25',0,4
+	.dw	1092
+	.db	1,6,2,35,0,15
+	.db	'F26',0,4
+	.dw	1097
+	.db	1,5,2,35,0,15
+	.db	'F27',0,4
+	.dw	1102
+	.db	1,4,2,35,0,15
+	.db	'F28',0,4
+	.dw	1107
+	.db	1,3,2,35,0,15
+	.db	'F29',0,4
+	.dw	1112
+	.db	1,2,2,35,0,15
+	.db	'F30',0,4
+	.dw	1117
+	.db	1,1,2,35,0,15
+	.db	'F31',0,4
+	.dw	1122
+	.db	1,0,2,35,0,0,16,6,53,9,4,6
+	.db	'HT2HSMF',0
+	.dw	962
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HT2HSMF_REG_S',0
+	.dw	1127
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HT2HSMF_REG_t',0,6,89,2
+	.dw	1603
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,94,5,4,15
+	.db	'IE0',0,4
+	.dw	1690
+	.db	1,31,2,35,0,15
+	.db	'IE1',0,4
+	.dw	1695
+	.db	1,30,2,35,0,15
+	.db	'IE2',0,4
+	.dw	1700
+	.db	1,29,2,35,0,15
+	.db	'IE3',0,4
+	.dw	1705
+	.db	1,28,2,35,0,15
+	.db	'IE4',0,4
+	.dw	1710
+	.db	1,27,2,35,0,15
+	.db	'IE5',0,4
+	.dw	1715
+	.db	1,26,2,35,0,15
+	.db	'IE6',0,4
+	.dw	1720
+	.db	1,25,2,35,0,15
+	.db	'IE7',0,4
+	.dw	1725
+	.db	1,24,2,35,0,15
+	.db	'IE8',0,4
+	.dw	1730
+	.db	1,23,2,35,0,15
+	.db	'IE9',0,4
+	.dw	1735
+	.db	1,22,2,35,0,15
+	.db	'IE10',0,4
+	.dw	1740
+	.db	1,21,2,35,0,15
+	.db	'IE11',0,4
+	.dw	1745
+	.db	1,20,2,35,0,15
+	.db	'IE12',0,4
+	.dw	1750
+	.db	1,19,2,35,0,15
+	.db	'IE13',0,4
+	.dw	1755
+	.db	1,18,2,35,0,15
+	.db	'IE14',0,4
+	.dw	1760
+	.db	1,17,2,35,0,15
+	.db	'IE15',0,4
+	.dw	1765
+	.db	1,16,2,35,0,15
+	.db	'IE16',0,4
+	.dw	1770
+	.db	1,15,2,35,0,15
+	.db	'IE17',0,4
+	.dw	1775
+	.db	1,14,2,35,0,15
+	.db	'IE18',0,4
+	.dw	1780
+	.db	1,13,2,35,0,15
+	.db	'IE19',0,4
+	.dw	1785
+	.db	1,12,2,35,0,15
+	.db	'IE20',0,4
+	.dw	1790
+	.db	1,11,2,35,0,15
+	.db	'IE21',0,4
+	.dw	1795
+	.db	1,10,2,35,0,15
+	.db	'IE22',0,4
+	.dw	1800
+	.db	1,9,2,35,0,15
+	.db	'IE23',0,4
+	.dw	1805
+	.db	1,8,2,35,0,15
+	.db	'IE24',0,4
+	.dw	1810
+	.db	1,7,2,35,0,15
+	.db	'IE25',0,4
+	.dw	1815
+	.db	1,6,2,35,0,15
+	.db	'IE26',0,4
+	.dw	1820
+	.db	1,5,2,35,0,15
+	.db	'IE27',0,4
+	.dw	1825
+	.db	1,4,2,35,0,15
+	.db	'IE28',0,4
+	.dw	1830
+	.db	1,3,2,35,0,15
+	.db	'IE29',0,4
+	.dw	1835
+	.db	1,2,2,35,0,15
+	.db	'IE30',0,4
+	.dw	1840
+	.db	1,1,2,35,0,15
+	.db	'IE31',0,4
+	.dw	1845
+	.db	1,0,2,35,0,0,16,6,92,9,4,6
+	.db	'HT2HSMIE',0
+	.dw	1685
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HT2HSMIE_REG_S',0
+	.dw	1850
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HT2HSMIE_REG_t',0,6,128,1,2
+	.dw	2358
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,133,1,5,4,15
+	.db	'F0',0,4
+	.dw	2449
+	.db	1,31,2,35,0,15
+	.db	'F1',0,4
+	.dw	2454
+	.db	1,30,2,35,0,15
+	.db	'F2',0,4
+	.dw	2459
+	.db	1,29,2,35,0,15
+	.db	'F3',0,4
+	.dw	2464
+	.db	1,28,2,35,0,15
+	.db	'F4',0,4
+	.dw	2469
+	.db	1,27,2,35,0,15
+	.db	'F5',0,4
+	.dw	2474
+	.db	1,26,2,35,0,15
+	.db	'F6',0,4
+	.dw	2479
+	.db	1,25,2,35,0,15
+	.db	'F7',0,4
+	.dw	2484
+	.db	1,24,2,35,0,15
+	.db	'F8',0,4
+	.dw	2489
+	.db	1,23,2,35,0,15
+	.db	'F9',0,4
+	.dw	2494
+	.db	1,22,2,35,0,15
+	.db	'F10',0,4
+	.dw	2499
+	.db	1,21,2,35,0,15
+	.db	'F11',0,4
+	.dw	2504
+	.db	1,20,2,35,0,15
+	.db	'F12',0,4
+	.dw	2509
+	.db	1,19,2,35,0,15
+	.db	'F13',0,4
+	.dw	2514
+	.db	1,18,2,35,0,15
+	.db	'F14',0,4
+	.dw	2519
+	.db	1,17,2,35,0,15
+	.db	'F15',0,4
+	.dw	2524
+	.db	1,16,2,35,0,15
+	.db	'F16',0,4
+	.dw	2529
+	.db	1,15,2,35,0,15
+	.db	'F17',0,4
+	.dw	2534
+	.db	1,14,2,35,0,15
+	.db	'F18',0,4
+	.dw	2539
+	.db	1,13,2,35,0,15
+	.db	'F19',0,4
+	.dw	2544
+	.db	1,12,2,35,0,15
+	.db	'F20',0,4
+	.dw	2549
+	.db	1,11,2,35,0,15
+	.db	'F21',0,4
+	.dw	2554
+	.db	1,10,2,35,0,15
+	.db	'F22',0,4
+	.dw	2559
+	.db	1,9,2,35,0,15
+	.db	'F23',0,4
+	.dw	2564
+	.db	1,8,2,35,0,15
+	.db	'F24',0,4
+	.dw	2569
+	.db	1,7,2,35,0,15
+	.db	'F25',0,4
+	.dw	2574
+	.db	1,6,2,35,0,15
+	.db	'F26',0,4
+	.dw	2579
+	.db	1,5,2,35,0,15
+	.db	'F27',0,4
+	.dw	2584
+	.db	1,4,2,35,0,15
+	.db	'F28',0,4
+	.dw	2589
+	.db	1,3,2,35,0,15
+	.db	'F29',0,4
+	.dw	2594
+	.db	1,2,2,35,0,15
+	.db	'F30',0,4
+	.dw	2599
+	.db	1,1,2,35,0,15
+	.db	'F31',0,4
+	.dw	2604
+	.db	1,0,2,35,0,0,16,6,131,1,9,4,6
+	.db	'HSM2HTF',0
+	.dw	2444
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HSM2HTF_REG_S',0
+	.dw	2609
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HSM2HTF_REG_t',0,6,167,1,2
+	.dw	3086
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,172,1,5,4,15
+	.db	'IE0',0,4
+	.dw	3175
+	.db	1,31,2,35,0,15
+	.db	'IE1',0,4
+	.dw	3180
+	.db	1,30,2,35,0,15
+	.db	'IE2',0,4
+	.dw	3185
+	.db	1,29,2,35,0,15
+	.db	'IE3',0,4
+	.dw	3190
+	.db	1,28,2,35,0,15
+	.db	'IE4',0,4
+	.dw	3195
+	.db	1,27,2,35,0,15
+	.db	'IE5',0,4
+	.dw	3200
+	.db	1,26,2,35,0,15
+	.db	'IE6',0,4
+	.dw	3205
+	.db	1,25,2,35,0,15
+	.db	'IE7',0,4
+	.dw	3210
+	.db	1,24,2,35,0,15
+	.db	'IE8',0,4
+	.dw	3215
+	.db	1,23,2,35,0,15
+	.db	'IE9',0,4
+	.dw	3220
+	.db	1,22,2,35,0,15
+	.db	'IE10',0,4
+	.dw	3225
+	.db	1,21,2,35,0,15
+	.db	'IE11',0,4
+	.dw	3230
+	.db	1,20,2,35,0,15
+	.db	'IE12',0,4
+	.dw	3235
+	.db	1,19,2,35,0,15
+	.db	'IE13',0,4
+	.dw	3240
+	.db	1,18,2,35,0,15
+	.db	'IE14',0,4
+	.dw	3245
+	.db	1,17,2,35,0,15
+	.db	'IE15',0,4
+	.dw	3250
+	.db	1,16,2,35,0,15
+	.db	'IE16',0,4
+	.dw	3255
+	.db	1,15,2,35,0,15
+	.db	'IE17',0,4
+	.dw	3260
+	.db	1,14,2,35,0,15
+	.db	'IE18',0,4
+	.dw	3265
+	.db	1,13,2,35,0,15
+	.db	'IE19',0,4
+	.dw	3270
+	.db	1,12,2,35,0,15
+	.db	'IE20',0,4
+	.dw	3275
+	.db	1,11,2,35,0,15
+	.db	'IE21',0,4
+	.dw	3280
+	.db	1,10,2,35,0,15
+	.db	'IE22',0,4
+	.dw	3285
+	.db	1,9,2,35,0,15
+	.db	'IE23',0,4
+	.dw	3290
+	.db	1,8,2,35,0,15
+	.db	'IE24',0,4
+	.dw	3295
+	.db	1,7,2,35,0,15
+	.db	'IE25',0,4
+	.dw	3300
+	.db	1,6,2,35,0,15
+	.db	'IE26',0,4
+	.dw	3305
+	.db	1,5,2,35,0,15
+	.db	'IE27',0,4
+	.dw	3310
+	.db	1,4,2,35,0,15
+	.db	'IE28',0,4
+	.dw	3315
+	.db	1,3,2,35,0,15
+	.db	'IE29',0,4
+	.dw	3320
+	.db	1,2,2,35,0,15
+	.db	'IE30',0,4
+	.dw	3325
+	.db	1,1,2,35,0,15
+	.db	'IE31',0,4
+	.dw	3330
+	.db	1,0,2,35,0,0,16,6,170,1,9,4,6
+	.db	'HSM2HTIE',0
+	.dw	3170
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HSM2HTIE_REG_S',0
+	.dw	3335
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HSM2HTIE_REG_t',0,6,206,1,2
+	.dw	3844
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,211,1,5,4,15
+	.db	'IS0',0,4
+	.dw	3936
+	.db	1,31,2,35,0,15
+	.db	'IS1',0,4
+	.dw	3941
+	.db	1,30,2,35,0,15
+	.db	'IS2',0,4
+	.dw	3946
+	.db	1,29,2,35,0,15
+	.db	'IS3',0,4
+	.dw	3951
+	.db	1,28,2,35,0,15
+	.db	'IS4',0,4
+	.dw	3956
+	.db	1,27,2,35,0,15
+	.db	'IS5',0,4
+	.dw	3961
+	.db	1,26,2,35,0,15
+	.db	'IS6',0,4
+	.dw	3966
+	.db	1,25,2,35,0,15
+	.db	'IS7',0,4
+	.dw	3971
+	.db	1,24,2,35,0,15
+	.db	'IS8',0,4
+	.dw	3976
+	.db	1,23,2,35,0,15
+	.db	'IS9',0,4
+	.dw	3981
+	.db	1,22,2,35,0,15
+	.db	'IS10',0,4
+	.dw	3986
+	.db	1,21,2,35,0,15
+	.db	'IS11',0,4
+	.dw	3991
+	.db	1,20,2,35,0,15
+	.db	'IS12',0,4
+	.dw	3996
+	.db	1,19,2,35,0,15
+	.db	'IS13',0,4
+	.dw	4001
+	.db	1,18,2,35,0,15
+	.db	'IS14',0,4
+	.dw	4006
+	.db	1,17,2,35,0,15
+	.db	'IS15',0,4
+	.dw	4011
+	.db	1,16,2,35,0,15
+	.db	'IS16',0,4
+	.dw	4016
+	.db	1,15,2,35,0,15
+	.db	'IS17',0,4
+	.dw	4021
+	.db	1,14,2,35,0,15
+	.db	'IS18',0,4
+	.dw	4026
+	.db	1,13,2,35,0,15
+	.db	'IS19',0,4
+	.dw	4031
+	.db	1,12,2,35,0,15
+	.db	'IS20',0,4
+	.dw	4036
+	.db	1,11,2,35,0,15
+	.db	'IS21',0,4
+	.dw	4041
+	.db	1,10,2,35,0,15
+	.db	'IS22',0,4
+	.dw	4046
+	.db	1,9,2,35,0,15
+	.db	'IS23',0,4
+	.dw	4051
+	.db	1,8,2,35,0,15
+	.db	'IS24',0,4
+	.dw	4056
+	.db	1,7,2,35,0,15
+	.db	'IS25',0,4
+	.dw	4061
+	.db	1,6,2,35,0,15
+	.db	'IS26',0,4
+	.dw	4066
+	.db	1,5,2,35,0,15
+	.db	'IS27',0,4
+	.dw	4071
+	.db	1,4,2,35,0,15
+	.db	'IS28',0,4
+	.dw	4076
+	.db	1,3,2,35,0,15
+	.db	'IS29',0,4
+	.dw	4081
+	.db	1,2,2,35,0,15
+	.db	'IS30',0,4
+	.dw	4086
+	.db	1,1,2,35,0,15
+	.db	'IS31',0,4
+	.dw	4091
+	.db	1,0,2,35,0,0,16,6,209,1,9,4,6
+	.db	'HSM2HTIS',0
+	.dw	3931
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HSM2HTIS_REG_S',0
+	.dw	4096
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HSM2HTIS_REG_t',0,6,245,1,2
+	.dw	4605
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,250,1,5,4,15
+	.db	'S0',0,4
+	.dw	4697
+	.db	1,31,2,35,0,15
+	.db	'S1',0,4
+	.dw	4702
+	.db	1,30,2,35,0,15
+	.db	'S2',0,4
+	.dw	4707
+	.db	1,29,2,35,0,15
+	.db	'S3',0,4
+	.dw	4712
+	.db	1,28,2,35,0,15
+	.db	'S4',0,4
+	.dw	4717
+	.db	1,27,2,35,0,15
+	.db	'S5',0,4
+	.dw	4722
+	.db	1,26,2,35,0,15
+	.db	'S6',0,4
+	.dw	4727
+	.db	1,25,2,35,0,15
+	.db	'S7',0,4
+	.dw	4732
+	.db	1,24,2,35,0,15
+	.db	'S8',0,4
+	.dw	4737
+	.db	1,23,2,35,0,15
+	.db	'S9',0,4
+	.dw	4742
+	.db	1,22,2,35,0,15
+	.db	'S10',0,4
+	.dw	4747
+	.db	1,21,2,35,0,15
+	.db	'S11',0,4
+	.dw	4752
+	.db	1,20,2,35,0,15
+	.db	'S12',0,4
+	.dw	4757
+	.db	1,19,2,35,0,15
+	.db	'S13',0,4
+	.dw	4762
+	.db	1,18,2,35,0,15
+	.db	'S14',0,4
+	.dw	4767
+	.db	1,17,2,35,0,15
+	.db	'S15',0,4
+	.dw	4772
+	.db	1,16,2,35,0,15
+	.db	'S16',0,4
+	.dw	4777
+	.db	1,15,2,35,0,15
+	.db	'S17',0,4
+	.dw	4782
+	.db	1,14,2,35,0,15
+	.db	'S18',0,4
+	.dw	4787
+	.db	1,13,2,35,0,15
+	.db	'S19',0,4
+	.dw	4792
+	.db	1,12,2,35,0,15
+	.db	'S20',0,4
+	.dw	4797
+	.db	1,11,2,35,0,15
+	.db	'S21',0,4
+	.dw	4802
+	.db	1,10,2,35,0,15
+	.db	'S22',0,4
+	.dw	4807
+	.db	1,9,2,35,0,15
+	.db	'S23',0,4
+	.dw	4812
+	.db	1,8,2,35,0,15
+	.db	'S24',0,4
+	.dw	4817
+	.db	1,7,2,35,0,15
+	.db	'S25',0,4
+	.dw	4822
+	.db	1,6,2,35,0,15
+	.db	'S26',0,4
+	.dw	4827
+	.db	1,5,2,35,0,15
+	.db	'S27',0,4
+	.dw	4832
+	.db	1,4,2,35,0,15
+	.db	'S28',0,4
+	.dw	4837
+	.db	1,3,2,35,0,15
+	.db	'S29',0,4
+	.dw	4842
+	.db	1,2,2,35,0,15
+	.db	'S30',0,4
+	.dw	4847
+	.db	1,1,2,35,0,15
+	.db	'S31',0,4
+	.dw	4852
+	.db	1,0,2,35,0,0,16,6,248,1,9,4,6
+	.db	'HSM2HTS',0
+	.dw	4692
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HSM2HTS_REG_S',0
+	.dw	4857
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HSM2HTS_REG_t',0,6,156,2,2
+	.dw	5334
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,161,2,5,4,15
+	.db	'S0',0,4
+	.dw	5423
+	.db	1,31,2,35,0,15
+	.db	'S1',0,4
+	.dw	5428
+	.db	1,30,2,35,0,15
+	.db	'S2',0,4
+	.dw	5433
+	.db	1,29,2,35,0,15
+	.db	'S3',0,4
+	.dw	5438
+	.db	1,28,2,35,0,15
+	.db	'S4',0,4
+	.dw	5443
+	.db	1,27,2,35,0,15
+	.db	'S5',0,4
+	.dw	5448
+	.db	1,26,2,35,0,15
+	.db	'S6',0,4
+	.dw	5453
+	.db	1,25,2,35,0,15
+	.db	'S7',0,4
+	.dw	5458
+	.db	1,24,2,35,0,15
+	.db	'S8',0,4
+	.dw	5463
+	.db	1,23,2,35,0,15
+	.db	'S9',0,4
+	.dw	5468
+	.db	1,22,2,35,0,15
+	.db	'S10',0,4
+	.dw	5473
+	.db	1,21,2,35,0,15
+	.db	'S11',0,4
+	.dw	5478
+	.db	1,20,2,35,0,15
+	.db	'S12',0,4
+	.dw	5483
+	.db	1,19,2,35,0,15
+	.db	'S13',0,4
+	.dw	5488
+	.db	1,18,2,35,0,15
+	.db	'S14',0,4
+	.dw	5493
+	.db	1,17,2,35,0,15
+	.db	'S15',0,4
+	.dw	5498
+	.db	1,16,2,35,0,15
+	.db	'S16',0,4
+	.dw	5503
+	.db	1,15,2,35,0,15
+	.db	'S17',0,4
+	.dw	5508
+	.db	1,14,2,35,0,15
+	.db	'S18',0,4
+	.dw	5513
+	.db	1,13,2,35,0,15
+	.db	'S19',0,4
+	.dw	5518
+	.db	1,12,2,35,0,15
+	.db	'S20',0,4
+	.dw	5523
+	.db	1,11,2,35,0,15
+	.db	'S21',0,4
+	.dw	5528
+	.db	1,10,2,35,0,15
+	.db	'S22',0,4
+	.dw	5533
+	.db	1,9,2,35,0,15
+	.db	'S23',0,4
+	.dw	5538
+	.db	1,8,2,35,0,15
+	.db	'S24',0,4
+	.dw	5543
+	.db	1,7,2,35,0,15
+	.db	'S25',0,4
+	.dw	5548
+	.db	1,6,2,35,0,15
+	.db	'S26',0,4
+	.dw	5553
+	.db	1,5,2,35,0,15
+	.db	'S27',0,4
+	.dw	5558
+	.db	1,4,2,35,0,15
+	.db	'S28',0,4
+	.dw	5563
+	.db	1,3,2,35,0,15
+	.db	'S29',0,4
+	.dw	5568
+	.db	1,2,2,35,0,15
+	.db	'S30',0,4
+	.dw	5573
+	.db	1,1,2,35,0,15
+	.db	'S31',0,4
+	.dw	5578
+	.db	1,0,2,35,0,0,16,6,159,2,9,4,6
+	.db	'HT2HSMS',0
+	.dw	5418
+	.db	4,2,35,0,6
+	.db	'BRIDGE_HT2HSMS_REG_S',0
+	.dw	5583
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_HT2HSMS_REG_t',0,6,195,2,2
+	.dw	6060
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,202,2,5,4,15
+	.db	'CLKDIV',0,4
+	.dw	6149
+	.db	2,30,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	6154
+	.db	30,0,2,35,0,0,16,6,200,2,9,4,6
+	.db	'CLKCTRL',0
+	.dw	6144
+	.db	4,2,35,0,6
+	.db	'BRIDGE_CLKCTRL_REG_S',0
+	.dw	6159
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_CLKCTRL_REG_t',0,6,206,2,2
+	.dw	6204
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,213,2,5,4,15
+	.db	'HSM',0,4
+	.dw	6293
+	.db	2,30,2,35,0,15
+	.db	'RESERVED0',0,4
+	.dw	6298
+	.db	2,28,2,35,0,15
+	.db	'HOST',0,4
+	.dw	6303
+	.db	2,26,2,35,0,15
+	.db	'RESERVED1',0,4
+	.dw	6308
+	.db	2,24,2,35,0,15
+	.db	'TREN',0,4
+	.dw	6313
+	.db	2,22,2,35,0,15
+	.db	'TRDATA',0,4
+	.dw	6318
+	.db	1,21,2,35,0,15
+	.db	'RESERVED2',0,4
+	.dw	6323
+	.db	21,0,2,35,0,0,16,6,211,2,9,4,6
+	.db	'DBGCTRL',0
+	.dw	6288
+	.db	4,2,35,0,6
+	.db	'BRIDGE_DBGCTRL_REG_S',0
+	.dw	6328
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_DBGCTRL_REG_t',0,6,222,2,2
+	.dw	6463
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,227,2,5,4,15
+	.db	'VAL0',0,4
+	.dw	6552
+	.db	1,31,2,35,0,15
+	.db	'OEN0',0,4
+	.dw	6557
+	.db	1,30,2,35,0,15
+	.db	'VAL1',0,4
+	.dw	6562
+	.db	1,29,2,35,0,15
+	.db	'OEN1',0,4
+	.dw	6567
+	.db	1,28,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	6572
+	.db	27,1,2,35,0,15
+	.db	'LOCK',0,4
+	.dw	6577
+	.db	1,0,2,35,0,0,16,6,225,2,9,4,6
+	.db	'PINCTRL',0
+	.dw	6547
+	.db	4,2,35,0,6
+	.db	'BRIDGE_PINCTRL_REG_S',0
+	.dw	6582
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_PINCTRL_REG_t',0,6,235,2,2
+	.dw	6689
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,242,2,5,4,15
+	.db	'BERR',0,4
+	.dw	6778
+	.db	1,31,2,35,0,15
+	.db	'RESERVED0',0,4
+	.dw	6783
+	.db	1,30,2,35,0,15
+	.db	'ECCROM',0,4
+	.dw	6788
+	.db	2,28,2,35,0,15
+	.db	'ECCRAM',0,4
+	.dw	6793
+	.db	2,26,2,35,0,15
+	.db	'ADRAM',0,4
+	.dw	6798
+	.db	1,25,2,35,0,15
+	.db	'ECCCD',0,4
+	.dw	6803
+	.db	2,23,2,35,0,15
+	.db	'ADCD',0,4
+	.dw	6808
+	.db	1,22,2,35,0,15
+	.db	'ECCCT',0,4
+	.dw	6813
+	.db	2,20,2,35,0,15
+	.db	'ADCT',0,4
+	.dw	6818
+	.db	1,19,2,35,0,15
+	.db	'ECCPKCTCM',0,4
+	.dw	6823
+	.db	2,17,2,35,0,15
+	.db	'ADPKCTCM',0,4
+	.dw	6828
+	.db	1,16,2,35,0,15
+	.db	'ECCPKCSCM',0,4
+	.dw	6833
+	.db	2,14,2,35,0,15
+	.db	'ADPKCSCM',0,4
+	.dw	6838
+	.db	1,13,2,35,0,15
+	.db	'ECCPKCROM',0,4
+	.dw	6843
+	.db	2,11,2,35,0,15
+	.db	'RESERVED1',0,4
+	.dw	6848
+	.db	7,4,2,35,0,15
+	.db	'ROMON',0,4
+	.dw	6853
+	.db	2,2,2,35,0,15
+	.db	'RESERVED2',0,4
+	.dw	6858
+	.db	1,1,2,35,0,15
+	.db	'XDBG',0,4
+	.dw	6863
+	.db	1,0,2,35,0,0,16,6,240,2,9,4,6
+	.db	'ERRCTRL',0
+	.dw	6773
+	.db	4,2,35,0,6
+	.db	'BRIDGE_ERRCTRL_REG_S',0
+	.dw	6868
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_ERRCTRL_REG_t',0,6,134,3,2
+	.dw	7209
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,139,3,5,4,15
+	.db	'BERRIE',0,4
+	.dw	7298
+	.db	1,31,2,35,0,15
+	.db	'RESERVED0',0,4
+	.dw	7303
+	.db	1,30,2,35,0,15
+	.db	'ECCROMIE',0,4
+	.dw	7308
+	.db	2,28,2,35,0,15
+	.db	'ECCRAMIE',0,4
+	.dw	7313
+	.db	2,26,2,35,0,15
+	.db	'ADRAMIE',0,4
+	.dw	7318
+	.db	1,25,2,35,0,15
+	.db	'ECCCDIE',0,4
+	.dw	7323
+	.db	2,23,2,35,0,15
+	.db	'ADCDIE',0,4
+	.dw	7328
+	.db	1,22,2,35,0,15
+	.db	'ECCCTIE',0,4
+	.dw	7333
+	.db	2,20,2,35,0,15
+	.db	'ADCTIE',0,4
+	.dw	7338
+	.db	1,19,2,35,0,15
+	.db	'ECCPKCTCMIE',0,4
+	.dw	7343
+	.db	2,17,2,35,0,15
+	.db	'ADPKCTCMIE',0,4
+	.dw	7348
+	.db	1,16,2,35,0,15
+	.db	'ECCPKCSCMIE',0,4
+	.dw	7353
+	.db	2,14,2,35,0,15
+	.db	'ADPKCSCMIE',0,4
+	.dw	7358
+	.db	1,13,2,35,0,15
+	.db	'ECCPKCROMIE',0,4
+	.dw	7363
+	.db	2,11,2,35,0,15
+	.db	'RESERVED1',0,4
+	.dw	7368
+	.db	11,0,2,35,0,0,16,6,137,3,9,4,6
+	.db	'ERRIE',0
+	.dw	7293
+	.db	4,2,35,0,6
+	.db	'BRIDGE_ERRIE_REG_S',0
+	.dw	7373
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_ERRIE_REG_t',0,6,156,3,2
+	.dw	7686
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,161,3,5,4,15
+	.db	'ADDR',0,4
+	.dw	7769
+	.db	32,0,2,35,0,0,16,6,159,3,9,4,6
+	.db	'ERRADDR',0
+	.dw	7764
+	.db	4,2,35,0,6
+	.db	'BRIDGE_ERRADDR_REG_S',0
+	.dw	7774
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_ERRADDR_REG_t',0,6,164,3,2
+	.dw	7797
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,171,3,5,4,15
+	.db	'F0',0,4
+	.dw	7886
+	.db	1,31,2,35,0,15
+	.db	'F1',0,4
+	.dw	7891
+	.db	1,30,2,35,0,15
+	.db	'F2',0,4
+	.dw	7896
+	.db	1,29,2,35,0,15
+	.db	'F3',0,4
+	.dw	7901
+	.db	1,28,2,35,0,15
+	.db	'F4',0,4
+	.dw	7906
+	.db	1,27,2,35,0,15
+	.db	'F5',0,4
+	.dw	7911
+	.db	1,26,2,35,0,15
+	.db	'F6',0,4
+	.dw	7916
+	.db	1,25,2,35,0,15
+	.db	'F7',0,4
+	.dw	7921
+	.db	1,24,2,35,0,15
+	.db	'F8',0,4
+	.dw	7926
+	.db	1,23,2,35,0,15
+	.db	'F9',0,4
+	.dw	7931
+	.db	1,22,2,35,0,15
+	.db	'F10',0,4
+	.dw	7936
+	.db	1,21,2,35,0,15
+	.db	'F11',0,4
+	.dw	7941
+	.db	1,20,2,35,0,15
+	.db	'F12',0,4
+	.dw	7946
+	.db	1,19,2,35,0,15
+	.db	'F13',0,4
+	.dw	7951
+	.db	1,18,2,35,0,15
+	.db	'F14',0,4
+	.dw	7956
+	.db	1,17,2,35,0,15
+	.db	'F15',0,4
+	.dw	7961
+	.db	1,16,2,35,0,15
+	.db	'F16',0,4
+	.dw	7966
+	.db	1,15,2,35,0,15
+	.db	'F17',0,4
+	.dw	7971
+	.db	1,14,2,35,0,15
+	.db	'F18',0,4
+	.dw	7976
+	.db	1,13,2,35,0,15
+	.db	'F19',0,4
+	.dw	7981
+	.db	1,12,2,35,0,15
+	.db	'F20',0,4
+	.dw	7986
+	.db	1,11,2,35,0,15
+	.db	'F21',0,4
+	.dw	7991
+	.db	1,10,2,35,0,15
+	.db	'F22',0,4
+	.dw	7996
+	.db	1,9,2,35,0,15
+	.db	'F23',0,4
+	.dw	8001
+	.db	1,8,2,35,0,15
+	.db	'F24',0,4
+	.dw	8006
+	.db	1,7,2,35,0,15
+	.db	'F25',0,4
+	.dw	8011
+	.db	1,6,2,35,0,15
+	.db	'F26',0,4
+	.dw	8016
+	.db	1,5,2,35,0,15
+	.db	'F27',0,4
+	.dw	8021
+	.db	1,4,2,35,0,15
+	.db	'F28',0,4
+	.dw	8026
+	.db	1,3,2,35,0,15
+	.db	'F29',0,4
+	.dw	8031
+	.db	1,2,2,35,0,15
+	.db	'F30',0,4
+	.dw	8036
+	.db	1,1,2,35,0,15
+	.db	'F31',0,4
+	.dw	8041
+	.db	1,0,2,35,0,0,16,6,169,3,9,4,6
+	.db	'EXTIF',0
+	.dw	7881
+	.db	4,2,35,0,6
+	.db	'BRIDGE_EXTIF_REG_S',0
+	.dw	8046
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_EXTIF_REG_t',0,6,205,3,2
+	.dw	8523
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,210,3,5,4,15
+	.db	'IE0',0,4
+	.dw	8606
+	.db	1,31,2,35,0,15
+	.db	'IE1',0,4
+	.dw	8611
+	.db	1,30,2,35,0,15
+	.db	'IE2',0,4
+	.dw	8616
+	.db	1,29,2,35,0,15
+	.db	'IE3',0,4
+	.dw	8621
+	.db	1,28,2,35,0,15
+	.db	'IE4',0,4
+	.dw	8626
+	.db	1,27,2,35,0,15
+	.db	'IE5',0,4
+	.dw	8631
+	.db	1,26,2,35,0,15
+	.db	'IE6',0,4
+	.dw	8636
+	.db	1,25,2,35,0,15
+	.db	'IE7',0,4
+	.dw	8641
+	.db	1,24,2,35,0,15
+	.db	'IE8',0,4
+	.dw	8646
+	.db	1,23,2,35,0,15
+	.db	'IE9',0,4
+	.dw	8651
+	.db	1,22,2,35,0,15
+	.db	'IE10',0,4
+	.dw	8656
+	.db	1,21,2,35,0,15
+	.db	'IE11',0,4
+	.dw	8661
+	.db	1,20,2,35,0,15
+	.db	'IE12',0,4
+	.dw	8666
+	.db	1,19,2,35,0,15
+	.db	'IE13',0,4
+	.dw	8671
+	.db	1,18,2,35,0,15
+	.db	'IE14',0,4
+	.dw	8676
+	.db	1,17,2,35,0,15
+	.db	'IE15',0,4
+	.dw	8681
+	.db	1,16,2,35,0,15
+	.db	'IE16',0,4
+	.dw	8686
+	.db	1,15,2,35,0,15
+	.db	'IE17',0,4
+	.dw	8691
+	.db	1,14,2,35,0,15
+	.db	'IE18',0,4
+	.dw	8696
+	.db	1,13,2,35,0,15
+	.db	'IE19',0,4
+	.dw	8701
+	.db	1,12,2,35,0,15
+	.db	'IE20',0,4
+	.dw	8706
+	.db	1,11,2,35,0,15
+	.db	'IE21',0,4
+	.dw	8711
+	.db	1,10,2,35,0,15
+	.db	'IE22',0,4
+	.dw	8716
+	.db	1,9,2,35,0,15
+	.db	'IE23',0,4
+	.dw	8721
+	.db	1,8,2,35,0,15
+	.db	'IE24',0,4
+	.dw	8726
+	.db	1,7,2,35,0,15
+	.db	'IE25',0,4
+	.dw	8731
+	.db	1,6,2,35,0,15
+	.db	'IE26',0,4
+	.dw	8736
+	.db	1,5,2,35,0,15
+	.db	'IE27',0,4
+	.dw	8741
+	.db	1,4,2,35,0,15
+	.db	'IE28',0,4
+	.dw	8746
+	.db	1,3,2,35,0,15
+	.db	'IE29',0,4
+	.dw	8751
+	.db	1,2,2,35,0,15
+	.db	'IE30',0,4
+	.dw	8756
+	.db	1,1,2,35,0,15
+	.db	'IE31',0,4
+	.dw	8761
+	.db	1,0,2,35,0,0,16,6,208,3,9,4,6
+	.db	'EXTIE',0
+	.dw	8601
+	.db	4,2,35,0,6
+	.db	'BRIDGE_EXTIE_REG_S',0
+	.dw	8766
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_EXTIE_REG_t',0,6,244,3,2
+	.dw	9275
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,251,3,5,4,15
+	.db	'RESERVED',0,4
+	.dw	9358
+	.db	16,16,2,35,0,15
+	.db	'BASE',0,4
+	.dw	9363
+	.db	16,0,2,35,0,0,16,6,249,3,9,4,6
+	.db	'SAHBASE',0
+	.dw	9353
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SAHBASE_REG_S',0
+	.dw	9368
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SAHBASE_REG_t',0,6,255,3,2
+	.dw	9411
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,132,4,5,4,15
+	.db	'DATA',0,4
+	.dw	9500
+	.db	32,0,2,35,0,0,16,6,130,4,9,4,6
+	.db	'SAHMEM',0
+	.dw	9495
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SAHMEM_REG_S',0
+	.dw	9505
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SAHMEM_REG_t',0,6,135,4,2
+	.dw	9528
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,142,4,5,4,15
+	.db	'APPRST',0,4
+	.dw	9614
+	.db	1,31,2,35,0,15
+	.db	'SYSRST',0,4
+	.dw	9619
+	.db	1,30,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	9624
+	.db	30,0,2,35,0,0,16,6,140,4,9,4,6
+	.db	'RSTCTRL',0
+	.dw	9609
+	.db	4,2,35,0,6
+	.db	'BRIDGE_RSTCTRL_REG_S',0
+	.dw	9629
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_RSTCTRL_REG_t',0,6,147,4,2
+	.dw	9692
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,152,4,5,4,15
+	.db	'PWD',0,4
+	.dw	9781
+	.db	32,0,2,35,0,0,16,6,150,4,9,4,6
+	.db	'RSTPWD',0
+	.dw	9776
+	.db	4,2,35,0,6
+	.db	'BRIDGE_RSTPWD_REG_S',0
+	.dw	9786
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_RSTPWD_REG_t',0,6,155,4,2
+	.dw	9808
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,160,4,5,4,15
+	.db	'SENSIF',0,4
+	.dw	9894
+	.db	10,22,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	9899
+	.db	22,0,2,35,0,0,16,6,158,4,9,4,6
+	.db	'SENSIF',0
+	.dw	9889
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SENSIF_REG_S',0
+	.dw	9904
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SENSIF_REG_t',0,6,164,4,2
+	.dw	9949
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,169,4,5,4,15
+	.db	'SENSIE',0,4
+	.dw	10035
+	.db	10,22,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	10040
+	.db	22,0,2,35,0,0,16,6,167,4,9,4,6
+	.db	'SENSIE',0
+	.dw	10030
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SENSIE_REG_S',0
+	.dw	10045
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SENSIE_REG_t',0,6,173,4,2
+	.dw	10090
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,178,4,5,4,15
+	.db	'AREN',0,4
+	.dw	10176
+	.db	10,22,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	10181
+	.db	22,0,2,35,0,0,16,6,176,4,9,4,6
+	.db	'SENSAPPRST',0
+	.dw	10171
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SENSAPPRST_REG_S',0
+	.dw	10186
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SENSAPPRST_REG_t',0,6,182,4,2
+	.dw	10229
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	14
+	.dw	30
+	.db	5,6,187,4,5,4,15
+	.db	'SREN',0,4
+	.dw	10327
+	.db	10,22,2,35,0,15
+	.db	'RESERVED',0,4
+	.dw	10332
+	.db	22,0,2,35,0,0,16,6,185,4,9,4,6
+	.db	'SENSSYSRST',0
+	.dw	10322
+	.db	4,2,35,0,6
+	.db	'BRIDGE_SENSSYSRST_REG_S',0
+	.dw	10337
+	.db	4,2,35,0,0,13
+	.db	'BRIDGE_SENSSYSRST_REG_t',0,6,191,4,2
+	.dw	10380
+	.db	13
+	.db	'HSM_BRIDGE_CONFIGURATION_T',0,1,78,2
+	.dw	71
+	.db	17
+	.db	'BridgeModuleHsmConfiguration',0,1,99,35
+	.dw	71
+	.db	1,1,13
+	.db	'IRQn_Type',0,2,57,3
+	.dw	244
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L36:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,21,0,54,15,39,12,0,0,4,15
+	.db	0,73,19,0,0,5,19,1,58,15,59,15,57,15,11,15,0,0,6,13,0,3,8,73,19,11,15,56,9,0,0,7,4,1,3,8,58,15,59,15,57
+	.db	15,11,15,0,0,8,40,0,3,8,28,13,0,0,9,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,10,5,0,3,8
+	.db	58,15,59,15,57,15,73,19,0,0,11,46,0,3,8,58,15,59,15,57,15,54,15,63,12,60,12,0,0,12,21,0,54,15,0,0,13,22
+	.db	0,3,8,58,15,59,15,57,15,73,19,0,0,14,53,0,73,19,0,0,15,13,0,3,8,11,15,73,19,13,15,12,15,56,9,0,0,16,23
+	.db	1,58,15,59,15,57,15,11,15,0,0,17,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L37:
+	.dw	.L163-.L162
+.L162:
+	.dh	3
+	.dw	.L165-.L164
+.L164:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\Bridge\\inc\\Hsm_Bridge_cfg.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\NVIC\\inc\\NVIC.h',0,0,0,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Reg\\Hsm_Bridge_reg.h',0,0,0,0,0
+.L165:
+.L163:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+.L38:
+	.dw	94
+	.dh	3
+	.dw	.L39
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L41,.L40
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_InterruptsEnable',0,1,203,1,6,1,1,1
+	.dw	.L6,.L43,.L5
+	.db	4
+	.dw	.L6,.L43
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+.L39:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+.L40:
+	.dw	.L167-.L166
+.L166:
+	.dh	3
+	.dw	.L169-.L168
+.L168:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L169:
+	.db	5,6,7,0,5,2
+	.dw	.L6
+	.db	3,202,1,1,5,20,9
+	.dh	.L146-.L6
+	.db	3,2,1,9
+	.dh	.L170-.L146
+	.db	3,2,1,5,1,9
+	.dh	.L171-.L170
+	.db	3,1,1,7,9
+	.dh	.L43-.L171
+	.db	0,1,1
+.L167:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+.L41:
+	.dw	-1,.L42,0,.L43-.L42,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_Init')
+.L44:
+	.dw	127
+	.dh	3
+	.dw	.L45
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L47,.L46
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_Init',0,1,210,1,6,1,1,1
+	.dw	.L8,.L49,.L7
+	.db	4
+	.db	'ptrBridgeModuleHsmConfiguration',0,1,210,1,50
+	.dw	.L128,.L129
+	.db	5
+	.dw	.L8,.L49
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_Init')
+.L45:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_Init')
+.L46:
+	.dw	.L173-.L172
+.L172:
+	.dh	3
+	.dw	.L175-.L174
+.L174:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L175:
+	.db	5,6,7,0,5,2
+	.dw	.L8
+	.db	3,209,1,1,5,72,9
+	.dh	.L149-.L8
+	.db	3,2,1,5,63,9
+	.dh	.L176-.L149
+	.db	3,2,1,5,74,9
+	.dh	.L177-.L176
+	.db	3,2,1,5,1,9
+	.dh	.L178-.L177
+	.db	3,1,1,7,9
+	.dh	.L49-.L178
+	.db	0,1,1
+.L173:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_Init')
+.L47:
+	.dw	-1,.L48,0,.L49-.L48,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+.L50:
+	.dw	168
+	.dh	3
+	.dw	.L51
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L53,.L52
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_NotifyCryptographicServiceFinshed',0,1,219,1,6,1,1,1
+	.dw	.L10,.L55,.L9
+	.db	4
+	.db	'requestedId',0,1,219,1,57
+	.dw	.L130,.L131
+	.db	4
+	.db	'requestedServiceId',0,1,219,1,76
+	.dw	.L130,.L132
+	.db	5
+	.dw	.L10,.L55
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+.L51:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+.L52:
+	.dw	.L180-.L179
+.L179:
+	.dh	3
+	.dw	.L182-.L181
+.L181:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L182:
+	.db	5,1,7,0,5,2
+	.dw	.L10
+	.db	3,221,1,1,7,9
+	.dh	.L55-.L10
+	.db	0,1,1
+.L180:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+.L53:
+	.dw	-1,.L54,0,.L55-.L54,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+.L56:
+	.dw	129
+	.dh	3
+	.dw	.L57
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L59,.L58
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_ReceiveHostMessage',0,1,135,2,6,1,1,1
+	.dw	.L23,.L61,.L22
+	.db	4
+	.db	'HostToHsmMessagePtr',0,1,135,2,44
+	.dw	.L133,.L134
+	.db	5
+	.dw	.L23,.L61
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+.L57:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+.L58:
+	.dw	.L184-.L183
+.L183:
+	.dh	3
+	.dw	.L186-.L185
+.L185:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L186:
+	.db	5,47,7,0,5,2
+	.dw	.L23
+	.db	3,136,2,1,5,26,9
+	.dh	.L187-.L23
+	.db	1,5,1,9
+	.dh	.L188-.L187
+	.db	3,1,1,7,9
+	.dh	.L61-.L188
+	.db	0,1,1
+.L184:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+.L59:
+	.dw	-1,.L60,0,.L61-.L60,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+.L62:
+	.dw	140
+	.dh	3
+	.dw	.L63
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L65,.L64
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_GetInterruptFlagRegister',0,1,140,2,6,1,1,1
+	.dw	.L25,.L67,.L24
+	.db	4
+	.db	'InterruptFlagRegisterPtr',0,1,140,2,51
+	.dw	.L133,.L135
+	.db	5
+	.dw	.L25,.L67
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+.L63:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+.L64:
+	.dw	.L190-.L189
+.L189:
+	.dh	3
+	.dw	.L192-.L191
+.L191:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L192:
+	.db	5,52,7,0,5,2
+	.dw	.L25
+	.db	3,141,2,1,5,31,9
+	.dh	.L193-.L25
+	.db	1,5,1,9
+	.dh	.L194-.L193
+	.db	3,1,1,7,9
+	.dh	.L67-.L194
+	.db	0,1,1
+.L190:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+.L65:
+	.dw	-1,.L66,0,.L67-.L66,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+.L68:
+	.dw	103
+	.dh	3
+	.dw	.L69
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L71,.L70
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_ResetHostInterruptRequest',0,1,243,1,6,1,1,1
+	.dw	.L15,.L73,.L14
+	.db	4
+	.dw	.L15,.L73
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+.L69:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+.L70:
+	.dw	.L196-.L195
+.L195:
+	.dh	3
+	.dw	.L198-.L197
+.L197:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L198:
+	.db	5,54,7,0,5,2
+	.dw	.L15
+	.db	3,244,1,1,5,33,9
+	.dh	.L199-.L15
+	.db	1,5,1,9
+	.dh	.L200-.L199
+	.db	3,1,1,7,9
+	.dh	.L73-.L200
+	.db	0,1,1
+.L196:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+.L71:
+	.dw	-1,.L72,0,.L73-.L72,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+.L74:
+	.dw	140
+	.dh	3
+	.dw	.L75
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L77,.L76
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_HostToHsmInterruptEnable',0,1,248,1,6,1,1,1
+	.dw	.L17,.L79,.L16
+	.db	4
+	.db	'HostToHsmInterruptEnable',0,1,248,1,50
+	.dw	.L136,.L137
+	.db	5
+	.dw	.L17,.L79
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+.L75:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+.L76:
+	.dw	.L202-.L201
+.L201:
+	.dh	3
+	.dw	.L204-.L203
+.L203:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L204:
+	.db	5,25,7,0,5,2
+	.dw	.L17
+	.db	3,249,1,1,5,35,9
+	.dh	.L205-.L17
+	.db	1,5,1,9
+	.dh	.L206-.L205
+	.db	3,1,1,7,9
+	.dh	.L79-.L206
+	.db	0,1,1
+.L202:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+.L77:
+	.dw	-1,.L78,0,.L79-.L78,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+.L80:
+	.dw	145
+	.dh	3
+	.dw	.L81
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L83,.L82
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_GenerateHostInterruptRequest',0,1,253,1,6,1,1,1
+	.dw	.L19,.L85,.L18
+	.db	4
+	.db	'HsmToHostInterruptRequest',0,1,253,1,54
+	.dw	.L136,.L138
+	.db	5
+	.dw	.L19,.L85
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+.L81:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+.L82:
+	.dw	.L208-.L207
+.L207:
+	.dh	3
+	.dw	.L210-.L209
+.L209:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L210:
+	.db	5,24,7,0,5,2
+	.dw	.L19
+	.db	3,254,1,1,5,33,9
+	.dh	.L211-.L19
+	.db	1,5,1,9
+	.dh	.L212-.L211
+	.db	3,1,1,7,9
+	.dh	.L85-.L212
+	.db	0,1,1
+.L208:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+.L83:
+	.dw	-1,.L84,0,.L85-.L84,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_SendMessage')
+.L86:
+	.dw	119
+	.dh	3
+	.dw	.L87
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L89,.L88
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_SendMessage',0,1,130,2,6,1,1,1
+	.dw	.L21,.L91,.L20
+	.db	4
+	.db	'HsmToHostMessage',0,1,130,2,37
+	.dw	.L136,.L139
+	.db	5
+	.dw	.L21,.L91
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_SendMessage')
+.L87:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_SendMessage')
+.L88:
+	.dw	.L214-.L213
+.L213:
+	.dh	3
+	.dw	.L216-.L215
+.L215:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L216:
+	.db	5,24,7,0,5,2
+	.dw	.L21
+	.db	3,131,2,1,5,33,9
+	.dh	.L217-.L21
+	.db	1,5,1,9
+	.dh	.L218-.L217
+	.db	3,1,1,7,9
+	.dh	.L91-.L218
+	.db	0,1,1
+.L214:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_SendMessage')
+.L89:
+	.dw	-1,.L90,0,.L91-.L90,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+.L92:
+	.dw	124
+	.dh	3
+	.dw	.L93
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L95,.L94
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_SetClockDivider',0,1,162,2,6,1,1,1
+	.dw	.L31,.L97,.L30
+	.db	4
+	.db	'ClockDividerValue',0,1,162,2,39
+	.dw	.L130,.L140
+	.db	5
+	.dw	.L31,.L97
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+.L93:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+.L94:
+	.dw	.L220-.L219
+.L219:
+	.dh	3
+	.dw	.L222-.L221
+.L221:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L222:
+	.db	5,45,7,0,5,2
+	.dw	.L31
+	.db	3,163,2,1,5,53,9
+	.dh	.L223-.L31
+	.db	1,5,1,9
+	.dh	.L224-.L223
+	.db	3,1,1,7,9
+	.dh	.L97-.L224
+	.db	0,1,1
+.L220:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+.L95:
+	.dw	-1,.L96,0,.L97-.L96,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+.L98:
+	.dw	127
+	.dh	3
+	.dw	.L99
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L101,.L100
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_GetClockDivider',0,1,167,2,6,1,1,1
+	.dw	.L33,.L103,.L32
+	.db	4
+	.db	'ClockDividerValuePtr',0,1,167,2,40
+	.dw	.L141,.L142
+	.db	5
+	.dw	.L33,.L103
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+.L99:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+.L100:
+	.dw	.L226-.L225
+.L225:
+	.dh	3
+	.dw	.L228-.L227
+.L227:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L228:
+	.db	5,69,7,0,5,2
+	.dw	.L33
+	.db	3,168,2,1,5,27,9
+	.dh	.L229-.L33
+	.db	1,5,1,9
+	.dh	.L230-.L229
+	.db	3,1,1,7,9
+	.dh	.L103-.L230
+	.db	0,1,1
+.L226:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+.L101:
+	.dw	-1,.L102,0,.L103-.L102,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+.L104:
+	.dw	120
+	.dh	3
+	.dw	.L105
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L107,.L106
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_GetErrorStatus',0,1,147,2,6,1,1,1
+	.dw	.L27,.L109,.L26
+	.db	4
+	.db	'ErrorStatusPtr',0,1,147,2,40
+	.dw	.L133,.L143
+	.db	5
+	.dw	.L27,.L109
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+.L105:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+.L106:
+	.dw	.L232-.L231
+.L231:
+	.dh	3
+	.dw	.L234-.L233
+.L233:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L234:
+	.db	5,42,7,0,5,2
+	.dw	.L27
+	.db	3,148,2,1,5,21,9
+	.dh	.L235-.L27
+	.db	1,5,1,9
+	.dh	.L236-.L235
+	.db	3,1,1,7,9
+	.dh	.L109-.L236
+	.db	0,1,1
+.L232:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+.L107:
+	.dw	-1,.L108,0,.L109-.L108,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+.L110:
+	.dw	144
+	.dh	3
+	.dw	.L111
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L113,.L112
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'HSM_BRIDGE_BridgeErrorInterruptEnable',0,1,152,2,6,1,1,1
+	.dw	.L29,.L115,.L28
+	.db	4
+	.db	'BridgeErrorInterruptEnable',0,1,152,2,52
+	.dw	.L136,.L144
+	.db	5
+	.dw	.L29,.L115
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+.L111:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+.L112:
+	.dw	.L238-.L237
+.L237:
+	.dh	3
+	.dw	.L240-.L239
+.L239:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L240:
+	.db	5,22,7,0,5,2
+	.dw	.L29
+	.db	3,153,2,1,5,29,9
+	.dh	.L241-.L29
+	.db	1,5,1,9
+	.dh	.L242-.L241
+	.db	3,1,1,7,9
+	.dh	.L115-.L242
+	.db	0,1,1
+.L238:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+.L113:
+	.dw	-1,.L114,0,.L115-.L114,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_BridgeService_Handler')
+.L116:
+	.dw	88
+	.dh	3
+	.dw	.L117
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L119,.L118
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'BridgeService_Handler',0,1,228,1,6,1,1,1
+	.dw	.L12,.L145,.L11
+	.db	4
+	.dw	.L12,.L145
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_BridgeService_Handler')
+.L117:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_BridgeService_Handler')
+.L118:
+	.dw	.L244-.L243
+.L243:
+	.dh	3
+	.dw	.L246-.L245
+.L245:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L246:
+	.db	5,6,7,0,5,2
+	.dw	.L12
+	.db	3,227,1,1,5,33,9
+	.dh	.L150-.L12
+	.db	3,2,1,5,73,9
+	.dh	.L247-.L150
+	.db	1,5,1,9
+	.dh	.L248-.L247
+	.db	3,2,1,7,9
+	.dh	.L121-.L248
+	.db	0,1,1
+.L244:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_BridgeService_Handler')
+.L119:
+	.dw	-1,.L120,0,.L121-.L120,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_BridgeError_Handler')
+.L122:
+	.dw	86
+	.dh	3
+	.dw	.L123
+	.db	4,1
+	.dw	.L151,.L152,.L153
+	.db	12,1
+	.dw	.L125,.L124
+	.db	2
+	.dw	.L34
+	.db	3
+	.db	'BridgeError_Handler',0,1,235,1,6,1,1,1
+	.dw	.L3,.L127,.L13
+	.db	4
+	.dw	.L3,.L127
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_BridgeError_Handler')
+.L123:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_BridgeError_Handler')
+.L124:
+	.dw	.L250-.L249
+.L249:
+	.dh	3
+	.dw	.L252-.L251
+.L251:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0,0,0,0,0
+.L252:
+	.db	5,8,7,0,5,2
+	.dw	.L3
+	.db	3,235,1,1,5,9,9
+	.dh	.L253-.L3
+	.db	1,5,1,7,9
+	.dh	.L254-.L253
+	.db	3,3,1,7,9
+	.dh	.L127-.L254
+	.db	0,1,1
+.L250:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_BridgeError_Handler')
+.L125:
+	.dw	-1,.L126,0,.L127-.L126,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L151:
+	.db	'../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c',0
+.L153:
+	.db	'D:\\CryptOS Repository\\Software\\OS\\Makefile\\',0
+.L152:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_BridgeError_Handler')
+.L13:
+	.dw	-1,.L3,0,.L127-.L3
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_BridgeService_Handler')
+.L11:
+	.dw	-1,.L12,0,.L150-.L12
+	.dh	2
+	.db	125,0
+	.dw	.L150-.L12,.L145-.L12
+	.dh	2
+	.db	125,8
+	.dw	.L145-.L12,.L145-.L12
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+.L144:
+	.dw	-1,.L29,0,.L115-.L29
+	.dh	1
+	.db	80
+	.dw	0,0
+.L28:
+	.dw	-1,.L29,0,.L115-.L29
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+.L18:
+	.dw	-1,.L19,0,.L85-.L19
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L138:
+	.dw	-1,.L19,0,.L85-.L19
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+.L142:
+	.dw	-1,.L33,0,.L103-.L33
+	.dh	1
+	.db	80
+	.dw	0,0
+.L32:
+	.dw	-1,.L33,0,.L103-.L33
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+.L143:
+	.dw	-1,.L27,0,.L109-.L27
+	.dh	1
+	.db	80
+	.dw	0,0
+.L26:
+	.dw	-1,.L27,0,.L109-.L27
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+.L24:
+	.dw	-1,.L25,0,.L67-.L25
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L135:
+	.dw	-1,.L25,0,.L67-.L25
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+.L16:
+	.dw	-1,.L17,0,.L79-.L17
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L137:
+	.dw	-1,.L17,0,.L79-.L17
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_Init')
+.L7:
+	.dw	-1,.L8,0,.L147-.L8
+	.dh	2
+	.db	125,0
+	.dw	.L147-.L8,.L49-.L8
+	.dh	2
+	.db	125,4
+	.dw	.L49-.L8,.L49-.L8
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L129:
+	.dw	-1,.L8,0,.L148-.L8
+	.dh	1
+	.db	80
+	.dw	.L149-.L8,.L49-.L8
+	.dh	1
+	.db	83
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+.L5:
+	.dw	-1,.L6,0,.L146-.L6
+	.dh	2
+	.db	125,0
+	.dw	.L146-.L6,.L43-.L6
+	.dh	2
+	.db	125,4
+	.dw	.L43-.L6,.L43-.L6
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+.L9:
+	.dw	-1,.L10,0,.L55-.L10
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L131:
+	.dw	-1,.L10,0,.L55-.L10
+	.dh	1
+	.db	80
+	.dw	0,0
+.L132:
+	.dw	-1,.L10,0,.L55-.L10
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+.L22:
+	.dw	-1,.L23,0,.L61-.L23
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L134:
+	.dw	-1,.L23,0,.L61-.L23
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+.L14:
+	.dw	-1,.L15,0,.L73-.L15
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_SendMessage')
+.L20:
+	.dw	-1,.L21,0,.L91-.L21
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L139:
+	.dw	-1,.L21,0,.L91-.L21
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+.L140:
+	.dw	-1,.L31,0,.L97-.L31
+	.dh	1
+	.db	80
+	.dw	0,0
+.L30:
+	.dw	-1,.L31,0,.L97-.L31
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L255:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_InterruptsEnable')
+	.dw	40
+	.dw	.L255,.L6,.L43-.L6
+	.db	4
+	.dw	(.L146-.L6)/2
+	.db	19,2,22,13,3,19,125,4,17,14,126,4
+	.dw	(.L43-.L146)/2
+	.db	19,0,8,13,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_Init')
+	.dw	64
+	.dw	.L255,.L8,.L49-.L8
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L147-.L8)/2
+	.db	19,2,22,13,3,19,125,4,17,14,126,4
+	.dw	(.L49-.L147)/2
+	.db	19,0,8,13,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_NotifyCryptographicServiceFinshed')
+	.dw	44
+	.dw	.L255,.L10,.L55-.L10
+	.db	8,0,8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_BridgeService_Handler')
+	.dw	44
+	.dw	.L255,.L12,.L145-.L12
+	.db	4
+	.dw	(.L150-.L12)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L145-.L150)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_BridgeError_Handler')
+	.dw	44
+	.dw	.L255,.L3,.L127-.L3
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_ResetHostInterruptRequest')
+	.dw	40
+	.dw	.L255,.L15,.L73-.L15
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_HostToHsmInterruptEnable')
+	.dw	40
+	.dw	.L255,.L17,.L79-.L17
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_GenerateHostInterruptRequest')
+	.dw	40
+	.dw	.L255,.L19,.L85-.L19
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_SendMessage')
+	.dw	40
+	.dw	.L255,.L21,.L91-.L21
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_ReceiveHostMessage')
+	.dw	40
+	.dw	.L255,.L23,.L61-.L23
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_GetInterruptFlagRegister')
+	.dw	40
+	.dw	.L255,.L25,.L67-.L25
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_GetErrorStatus')
+	.dw	40
+	.dw	.L255,.L27,.L109-.L27
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_BridgeErrorInterruptEnable')
+	.dw	40
+	.dw	.L255,.L29,.L115-.L29
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_SetClockDivider')
+	.dw	40
+	.dw	.L255,.L31,.L97-.L31
+	.db	8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_HSM_BRIDGE_GetClockDivider')
+	.dw	40
+	.dw	.L255,.L33,.L103-.L33
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   299  
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   300  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   301  /*				    			 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/Bridge/src/Hsm_Bridge.c	   301  /***********************************************************************************/
+
+	; Module end
+	.end

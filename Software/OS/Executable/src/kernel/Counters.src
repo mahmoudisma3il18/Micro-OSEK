@@ -1,0 +1,1574 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.Counters.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/Counters.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\Counters.src ../src/kernel/Counters.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/Counters.c'
+
+	.section	.text ,cluster('$group_SysTick_Handler')
+	.global	SysTick_Handler
+
+; ../src/kernel/Counters.c	     1  
+; ../src/kernel/Counters.c	     2  /**
+; ../src/kernel/Counters.c	     3   * @file Counters.c
+; ../src/kernel/Counters.c	     4   * @author Qamar Elgohary
+; ../src/kernel/Counters.c	     5   * @version 1.0.0
+; ../src/kernel/Counters.c	     6   * @date 04-03-2024
+; ../src/kernel/Counters.c	     7   * @platform
+; ../src/kernel/Counters.c	     8   * @variant
+; ../src/kernel/Counters.c	     9   * @vendor Siemens
+; ../src/kernel/Counters.c	    10   * @specification
+; ../src/kernel/Counters.c	    11   * @brief Implementation of counters.
+; ../src/kernel/Counters.c	    12   *
+; ../src/kernel/Counters.c	    13   */
+; ../src/kernel/Counters.c	    14  
+; ../src/kernel/Counters.c	    15  /**********************************************************************************/
+; ../src/kernel/Counters.c	    16  /**				    			Include Headers			         				 **/
+; ../src/kernel/Counters.c	    17  /**********************************************************************************/
+; ../src/kernel/Counters.c	    18  #include <OS_kernel.h>
+; ../src/kernel/Counters.c	    19  
+; ../src/kernel/Counters.c	    20  /***********************************************************************************/
+; ../src/kernel/Counters.c	    21  /*  			    			    Macros				         				   */
+; ../src/kernel/Counters.c	    22  /***********************************************************************************/
+; ../src/kernel/Counters.c	    23  
+; ../src/kernel/Counters.c	    24  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/Counters.c	    25  
+; ../src/kernel/Counters.c	    26  /************************** Module Specific Macros ********************************/
+; ../src/kernel/Counters.c	    27  
+; ../src/kernel/Counters.c	    28  /************************************************************************************/
+; ../src/kernel/Counters.c	    29  /*				    			Type Definitions		         			        */
+; ../src/kernel/Counters.c	    30  /************************************************************************************/
+; ../src/kernel/Counters.c	    31  
+; ../src/kernel/Counters.c	    32  /************************************************************************************/
+; ../src/kernel/Counters.c	    33  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/Counters.c	    34  /************************************************************************************/
+; ../src/kernel/Counters.c	    35  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/Counters.c	    36  
+; ../src/kernel/Counters.c	    37  /***************************************************************************************/
+; ../src/kernel/Counters.c	    38  /*                            External Global Variables                                */
+; ../src/kernel/Counters.c	    39  /***************************************************************************************/
+; ../src/kernel/Counters.c	    40  /* Extern Functions from Systemcall.asm */
+; ../src/kernel/Counters.c	    41  
+; ../src/kernel/Counters.c	    42  extern void SaveAndSwitchContext(void);
+; ../src/kernel/Counters.c	    43  extern void NewTaskStackInit(int);
+; ../src/kernel/Counters.c	    44  
+; ../src/kernel/Counters.c	    45  /* Systick Handler */
+; ../src/kernel/Counters.c	    46  
+; ../src/kernel/Counters.c	    47  void SysTick_Handler(void)
+; Function SysTick_Handler
+.L43:
+	.thumb
+	.align	4
+SysTick_Handler:	.type	func
+
+.L24:
+	push	{r4,lr}
+.L66:
+
+; ../src/kernel/Counters.c	    48  {
+; ../src/kernel/Counters.c	    49  #if (COUNTER_COUNT > 0)
+; ../src/kernel/Counters.c	    50      /* Increment the counter value */
+; ../src/kernel/Counters.c	    51      OS_IncrementHardwreCounter(&Counters[0]);
+	ldr	r0,.L20
+	bl	OS_IncrementHardwreCounter
+.L123:
+
+; ../src/kernel/Counters.c	    52  
+; ../src/kernel/Counters.c	    53      /* Check if the scheduler is needed */
+; ../src/kernel/Counters.c	    54      if (Kernel.SchedulerNeeded == TRUE)
+	ldr	r4,.L20+4
+.L124:
+	ldrb	r0,[r4,#18]
+.L125:
+	cmp	r0,#1
+	it	ne
+	popne	{r4,pc}
+.L67:
+
+; ../src/kernel/Counters.c	    55      {
+; ../src/kernel/Counters.c	    56          /* Call the scheduler */
+; ../src/kernel/Counters.c	    57          Kern_Schedule();
+	bl	Kern_Schedule
+.L126:
+
+; ../src/kernel/Counters.c	    58  
+; ../src/kernel/Counters.c	    59          /* Check if the context is new */
+; ../src/kernel/Counters.c	    60          if (Kernel.NewContext == TRUE)
+	ldrb	r0,[r4,#20]
+.L127:
+	cmp	r0,#1
+	bne	.L3
+.L128:
+
+; ../src/kernel/Counters.c	    61          {
+; ../src/kernel/Counters.c	    62              NewTaskStackInit(NEW_TASK_STACK_FROM_ISR);
+	movs	r0,#50
+	bl	NewTaskStackInit
+.L129:
+	pop	{r4,pc}
+.L3:
+
+; ../src/kernel/Counters.c	    63          }
+; ../src/kernel/Counters.c	    64          else
+; ../src/kernel/Counters.c	    65          {
+; ../src/kernel/Counters.c	    66              SaveAndSwitchContext();
+	bl	SaveAndSwitchContext
+.L4:
+.L2:
+
+; ../src/kernel/Counters.c	    67          }
+; ../src/kernel/Counters.c	    68      }
+; ../src/kernel/Counters.c	    69  #endif /* (COUNTER_COUNT > 0) */
+; ../src/kernel/Counters.c	    70  }
+	pop	{r4,pc}
+.L58:
+	.align	4
+.L20:
+	.dw	Counters
+	.dw	Kernel
+.L44:
+	.size	SysTick_Handler,$-SysTick_Handler
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_IncrementHardwreCounter')
+	.global	OS_IncrementHardwreCounter
+
+; ../src/kernel/Counters.c	    71  
+; ../src/kernel/Counters.c	    72  /***********************************************************************************/
+; ../src/kernel/Counters.c	    73  /*				    			External constants		         				   */
+; ../src/kernel/Counters.c	    74  /***********************************************************************************/
+; ../src/kernel/Counters.c	    75  
+; ../src/kernel/Counters.c	    76  /***************************************************************************************/
+; ../src/kernel/Counters.c	    77  /*                              Internal Global Variables                              */
+; ../src/kernel/Counters.c	    78  /***************************************************************************************/
+; ../src/kernel/Counters.c	    79  
+; ../src/kernel/Counters.c	    80  /***********************************************************************************/
+; ../src/kernel/Counters.c	    81  /*				    			Internal constants		         				   */
+; ../src/kernel/Counters.c	    82  /***********************************************************************************/
+; ../src/kernel/Counters.c	    83  
+; ../src/kernel/Counters.c	    84  /***********************************************************************************/
+; ../src/kernel/Counters.c	    85  /*                        Internal Function Declration                             */
+; ../src/kernel/Counters.c	    86  /***********************************************************************************/
+; ../src/kernel/Counters.c	    87  
+; ../src/kernel/Counters.c	    88  /***********************************************************************************/
+; ../src/kernel/Counters.c	    89  /*				    	 Internal Functions Definition		      				   */
+; ../src/kernel/Counters.c	    90  /***********************************************************************************/
+; ../src/kernel/Counters.c	    91  
+; ../src/kernel/Counters.c	    92  /**
+; ../src/kernel/Counters.c	    93   * @brief Increments the hardware counter and handles alarm expiration.
+; ../src/kernel/Counters.c	    94   *
+; ../src/kernel/Counters.c	    95   * This function increments the given hardware counter by one and checks if any alarms associated with the counter have expired.
+; ../src/kernel/Counters.c	    96   * If an alarm has expired, it is removed from the list, its action is fired, and if it is cyclic, its expiry time is updated.
+; ../src/kernel/Counters.c	    97   *
+; ../src/kernel/Counters.c	    98   * @param Counter Pointer to the hardware counter to be incremented.
+; ../src/kernel/Counters.c	    99   */
+; ../src/kernel/Counters.c	   100  FUNC(void, OS_CODE)
+; ../src/kernel/Counters.c	   101  OS_IncrementHardwreCounter(
+; Function OS_IncrementHardwreCounter
+.L37:
+	.thumb
+	.align	4
+OS_IncrementHardwreCounter:	.type	func
+
+.L26:
+	push	{r4,r5,r6,lr}
+.L68:
+	mov	r5,r0
+.L71:
+
+; ../src/kernel/Counters.c	   102      P2VAR(Os_Counter, AUTOMATIC, OS_APPL_DATA) Counter)
+; ../src/kernel/Counters.c	   103  {
+; ../src/kernel/Counters.c	   104  
+; ../src/kernel/Counters.c	   105  #if (COUNTER_COUNT > 0)
+; ../src/kernel/Counters.c	   106      /* Get Counter Head Index */
+; ../src/kernel/Counters.c	   107      VAR(uint8, AUTOMATIC)
+; ../src/kernel/Counters.c	   108      ActiveAlarmsHeadIndex;
+; ../src/kernel/Counters.c	   109  
+; ../src/kernel/Counters.c	   110      P2VAR(Os_Alarm, AUTOMATIC, OS_APPL_DATA)
+; ../src/kernel/Counters.c	   111      Alarm = NULL_PTR;
+; ../src/kernel/Counters.c	   112  
+; ../src/kernel/Counters.c	   113      if (NULL_PTR == Counter)
+	movs	r1,#0
+.L98:
+	cmp	r1,r0
+.L99:
+	it	eq
+	popeq	{r4,r5,r6,pc}
+.L5:
+
+; ../src/kernel/Counters.c	   114      {
+; ../src/kernel/Counters.c	   115          /* Do Nothing */
+; ../src/kernel/Counters.c	   116      }
+; ../src/kernel/Counters.c	   117      else
+; ../src/kernel/Counters.c	   118      {
+; ../src/kernel/Counters.c	   119          /* Get the counter head index */
+; ../src/kernel/Counters.c	   120          ActiveAlarmsHeadIndex = Counter->OsCounterAlarmsHeadIndex;
+	ldrb	r0,[r5,#24]
+.L70:
+
+; ../src/kernel/Counters.c	   121  
+; ../src/kernel/Counters.c	   122          /* Get the head of the counter */
+; ../src/kernel/Counters.c	   123          Alarm = ActiveAlarmsHead[ActiveAlarmsHeadIndex];
+	ldr	r4,.L21
+.L100:
+	ldr	r6,[r4,r0,lsl #2]
+.L73:
+	add	r4,r4,r0,lsl #2
+.L101:
+
+; ../src/kernel/Counters.c	   124  
+; ../src/kernel/Counters.c	   125          /* Increment the counter value */
+; ../src/kernel/Counters.c	   126          Counter->OsCounterCurrentTicks++;
+	ldr	r0,[r5,#20]
+.L72:
+	adds	r0,r0,#1
+	str	r0,[r5,#20]
+.L102:
+
+; ../src/kernel/Counters.c	   127  
+; ../src/kernel/Counters.c	   128          if (Counter->OsCounterCurrentTicks > Counter->OsCounterMaxAllowedValue)
+	ldr	r1,[r5,#0]
+.L103:
+	cmp	r0,r1
+	bls	.L8
+.L104:
+
+; ../src/kernel/Counters.c	   129          {
+; ../src/kernel/Counters.c	   130              Counter->OsCounterCurrentTicks = 0;
+	movs	r0,#0
+.L105:
+	str	r0,[r5,#20]
+.L106:
+
+; ../src/kernel/Counters.c	   131          }
+; ../src/kernel/Counters.c	   132  
+; ../src/kernel/Counters.c	   133          /* Check if the counter value is equal to the ticks per base */
+; ../src/kernel/Counters.c	   134          while ((NULL_PTR != Alarm) && (Counter->OsCounterCurrentTicks == Alarm->OsAlarmExpiryTime))
+	b	.L18
+.L9:
+
+; ../src/kernel/Counters.c	   135          {
+; ../src/kernel/Counters.c	   136              /* Remove the alarm from the list */
+; ../src/kernel/Counters.c	   137              OS_AlarmRemoveHead(&ActiveAlarmsHead[ActiveAlarmsHeadIndex]);
+	mov	r0,r4
+	bl	OS_AlarmRemoveHead
+.L107:
+
+; ../src/kernel/Counters.c	   138  
+; ../src/kernel/Counters.c	   139              /* Fire the alarm action */
+; ../src/kernel/Counters.c	   140              OS_AlarmFireAction(Alarm);
+	mov	r0,r6
+.L74:
+	bl	OS_AlarmFireAction
+.L75:
+
+; ../src/kernel/Counters.c	   141  
+; ../src/kernel/Counters.c	   142              /* If the alarm is cyclic, update its expiry time */
+; ../src/kernel/Counters.c	   143              if (Alarm->OsAlarmCycleTime != 0U)
+	ldr	r0,[r6,#12]
+.L108:
+	cbz	r0,.L10
+.L109:
+
+; ../src/kernel/Counters.c	   144              {
+; ../src/kernel/Counters.c	   145                  Alarm->OsAlarmExpiryTime = (Alarm->OsAlarmCycleTime + Alarm->OsAlarmExpiryTime) % (Counter->OsCounterMaxAllowedValue + 1);
+	ldr	r1,[r6,#8]
+.L110:
+	add	r0,r0,r1
+.L111:
+	ldr	r1,[r5,#0]
+.L112:
+	adds	r1,r1,#1
+.L113:
+	udiv	r2,r0,r1
+	mul	r1,r1,r2
+	subs	r0,r0,r1
+.L114:
+	str	r0,[r6,#8]
+.L115:
+
+; ../src/kernel/Counters.c	   146                  OS_AlarmInsert(&ActiveAlarmsHead[ActiveAlarmsHeadIndex], Alarm);
+	mov	r0,r4
+	mov	r1,r6
+.L76:
+	bl	OS_AlarmInsert
+.L10:
+
+; ../src/kernel/Counters.c	   147              }
+; ../src/kernel/Counters.c	   148  
+; ../src/kernel/Counters.c	   149              /* Get the new head of the counter */
+; ../src/kernel/Counters.c	   150              Alarm = ActiveAlarmsHead[ActiveAlarmsHeadIndex];
+	ldr	r6,[r4,#0]
+.L8:
+.L18:
+	movs	r0,#0
+.L116:
+	cmp	r0,r6
+	it	eq
+	popeq	{r4,r5,r6,pc}
+.L69:
+	ldr	r0,[r5,#20]
+.L117:
+	ldr	r1,[r6,#8]
+.L118:
+	cmp	r0,r1
+	beq	.L9
+.L11:
+.L6:
+
+; ../src/kernel/Counters.c	   151          }
+; ../src/kernel/Counters.c	   152      }
+; ../src/kernel/Counters.c	   153  #endif /* (COUNTER_COUNT > 0) */
+; ../src/kernel/Counters.c	   154  }
+	pop	{r4,r5,r6,pc}
+.L51:
+	.align	4
+.L21:
+	.dw	ActiveAlarmsHead
+.L38:
+	.size	OS_IncrementHardwreCounter,$-OS_IncrementHardwreCounter
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_IncrementCounter')
+	.global	OS_IncrementCounter
+
+; ../src/kernel/Counters.c	   155  
+; ../src/kernel/Counters.c	   156  /***********************************************************************************/
+; ../src/kernel/Counters.c	   157  /*                        External Function Definition                             */
+; ../src/kernel/Counters.c	   158  /***********************************************************************************/
+; ../src/kernel/Counters.c	   159  
+; ../src/kernel/Counters.c	   160  /**
+; ../src/kernel/Counters.c	   161   * @brief This service increments a software counter.
+; ../src/kernel/Counters.c	   162   *
+; ../src/kernel/Counters.c	   163   * @service name    OS_IncrementCounter
+; ../src/kernel/Counters.c	   164   * @syntax          FUNC(StatusType, OS_CODE) OS_IncrementCounter
+; ../src/kernel/Counters.c	   165   *                  (
+; ../src/kernel/Counters.c	   166   *                      CONST(CounterType, AUTOMATIC) CounterID
+; ../src/kernel/Counters.c	   167   *                  );
+; ../src/kernel/Counters.c	   168   * @service ID  0x0f
+; ../src/kernel/Counters.c	   169   * @sync/async  Synchronous
+; ../src/kernel/Counters.c	   170   * @reentrancy  Reentrant
+; ../src/kernel/Counters.c	   171   * @param[in]  CounterID      Reference to the Counter to be incremented.
+; ../src/kernel/Counters.c	   172   * @param[out] -
+; ../src/kernel/Counters.c	   173   * @return     StatusType     Indicates the error status
+; ../src/kernel/Counters.c	   174   *             Standard:
+; ../src/kernel/Counters.c	   175   *                  • E_OK      No error
+; ../src/kernel/Counters.c	   176   *             Extended:
+; ../src/kernel/Counters.c	   177   *                  • E_OS_ID   The CounterID was notvalid or counter is implemented in hardware and can not beincremented by software
+; ../src/kernel/Counters.c	   178   * @see       -
+; ../src/kernel/Counters.c	   179   * @note      Conformance: BCC1, BCC2, ECC1, ECC2
+; ../src/kernel/Counters.c	   180   * @warning   -
+; ../src/kernel/Counters.c	   181   */
+; ../src/kernel/Counters.c	   182  
+; ../src/kernel/Counters.c	   183  FUNC(StatusType, OS_CODE)
+; ../src/kernel/Counters.c	   184  OS_IncrementCounter(
+; Function OS_IncrementCounter
+.L49:
+	.thumb
+	.align	4
+OS_IncrementCounter:	.type	func
+
+.L28:
+	push	{r4,r5,r6,r7,r8,lr}
+.L77:
+
+; ../src/kernel/Counters.c	   185      CONST(CounterType, AUTOMATIC) CounterID)
+; ../src/kernel/Counters.c	   186  {
+; ../src/kernel/Counters.c	   187      /* Init the error to no error */
+; ../src/kernel/Counters.c	   188      VAR(StatusType, OS_CODE)
+; ../src/kernel/Counters.c	   189      ErrorState = E_OK;
+	movs	r5,#0
+.L79:
+
+; ../src/kernel/Counters.c	   190  
+; ../src/kernel/Counters.c	   191  #if (COUNTER_COUNT > 0)
+; ../src/kernel/Counters.c	   192      /* Create pointer to an instance of Os_Counter struct*/
+; ../src/kernel/Counters.c	   193      P2VAR(Os_Counter, OS_CODE, AUTOMATIC)
+; ../src/kernel/Counters.c	   194      Counter = NULL_PTR;
+; ../src/kernel/Counters.c	   195  
+; ../src/kernel/Counters.c	   196      /* Get Counter Head Index */
+; ../src/kernel/Counters.c	   197      VAR(uint8, AUTOMATIC)
+; ../src/kernel/Counters.c	   198      ActiveAlarmsHeadIndex;
+; ../src/kernel/Counters.c	   199  
+; ../src/kernel/Counters.c	   200      P2VAR(Os_Alarm, AUTOMATIC, OS_APPL_DATA)
+; ../src/kernel/Counters.c	   201      Alarm = NULL_PTR;
+	mov	r4,r5
+.L80:
+
+; ../src/kernel/Counters.c	   202  
+; ../src/kernel/Counters.c	   203      /* Get the counter head index */
+; ../src/kernel/Counters.c	   204      ActiveAlarmsHeadIndex = Counter->OsCounterAlarmsHeadIndex;
+	ldrb	r7,[r5,#24]
+.L81:
+
+; ../src/kernel/Counters.c	   205  
+; ../src/kernel/Counters.c	   206  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/Counters.c	   207  
+; ../src/kernel/Counters.c	   208      if (CounterID >= COUNTER_COUNT)
+; ../src/kernel/Counters.c	   209      {
+; ../src/kernel/Counters.c	   210          /* [SWS_Os_00285] If the input parameter <CounterID> is not valid shall return E_OS_ID.*/
+; ../src/kernel/Counters.c	   211          ErrorState = E_OS_ID;
+; ../src/kernel/Counters.c	   212      }
+; ../src/kernel/Counters.c	   213      else if (Counters[CounterID].OsCounterType == COUNTER_HARDWARE)
+; ../src/kernel/Counters.c	   214      {
+; ../src/kernel/Counters.c	   215          /* [SWS_Os_00285] counter is implemented in hardware and can not be incremented by software*/
+; ../src/kernel/Counters.c	   216          ErrorState = E_OS_ID;
+; ../src/kernel/Counters.c	   217      }
+; ../src/kernel/Counters.c	   218      else
+; ../src/kernel/Counters.c	   219  #endif /*(ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/Counters.c	   220      {
+; ../src/kernel/Counters.c	   221          /* Access struct of <CounterID> */
+; ../src/kernel/Counters.c	   222          Counter = &Counters[CounterID];
+	movs	r1,#28
+.L134:
+	ldr	r2,.L22
+.L135:
+	mla	r6,r0,r1,r2
+.L82:
+
+; ../src/kernel/Counters.c	   223  
+; ../src/kernel/Counters.c	   224          /* Increment the counter value */
+; ../src/kernel/Counters.c	   225          (Counter->OsCounterCurrentTicks)++;
+	ldr	r0,[r6,#20]
+.L78:
+	adds	r0,r0,#1
+	str	r0,[r6,#20]
+.L136:
+
+; ../src/kernel/Counters.c	   226  
+; ../src/kernel/Counters.c	   227          if (Counter->OsCounterCurrentTicks > Counter->OsCounterMaxAllowedValue)
+	ldr	r1,[r6,#0]
+.L137:
+	cmp	r0,r1
+	bls	.L13
+.L138:
+
+; ../src/kernel/Counters.c	   228          {
+; ../src/kernel/Counters.c	   229              Counter->OsCounterCurrentTicks = 0;
+	str	r5,[r6,#20]
+.L139:
+
+; ../src/kernel/Counters.c	   230          }
+; ../src/kernel/Counters.c	   231          /*[SWS_Os_00286] If any alarm connected to this counter expires, the given action is done*/
+; ../src/kernel/Counters.c	   232          /* Check if the counter value is equal to the ticks per base */
+; ../src/kernel/Counters.c	   233          while ((NULL_PTR != Alarm) && (Counter->OsCounterCurrentTicks == Alarm->OsAlarmExpiryTime))
+	b	.L19
+.L14:
+
+; ../src/kernel/Counters.c	   234          {
+; ../src/kernel/Counters.c	   235              /* Remove the alarm from the list */
+; ../src/kernel/Counters.c	   236              OS_AlarmRemoveHead(&ActiveAlarmsHead[ActiveAlarmsHeadIndex]);
+	ldr	r0,.L22+4
+.L140:
+	add	r8,r0,r7,lsl #2
+	mov	r0,r8
+	bl	OS_AlarmRemoveHead
+.L141:
+
+; ../src/kernel/Counters.c	   237  
+; ../src/kernel/Counters.c	   238              /* Fire the alarm action */
+; ../src/kernel/Counters.c	   239              OS_AlarmFireAction(Alarm);
+	mov	r0,r4
+.L83:
+	bl	OS_AlarmFireAction
+.L84:
+
+; ../src/kernel/Counters.c	   240  
+; ../src/kernel/Counters.c	   241              /* If the alarm is cyclic, update its expiry time */
+; ../src/kernel/Counters.c	   242              if (Alarm->OsAlarmCycleTime != 0U)
+	ldr	r0,[r4,#12]
+.L142:
+	cbz	r0,.L15
+.L143:
+
+; ../src/kernel/Counters.c	   243              {
+; ../src/kernel/Counters.c	   244                  Alarm->OsAlarmExpiryTime += Alarm->OsAlarmCycleTime;
+	ldr	r1,[r4,#8]
+.L144:
+	add	r1,r1,r0
+	str	r1,[r4,#8]
+.L145:
+
+; ../src/kernel/Counters.c	   245                  OS_AlarmInsert(&ActiveAlarmsHead[ActiveAlarmsHeadIndex], Alarm);
+	mov	r0,r8
+	mov	r1,r4
+.L85:
+	bl	OS_AlarmInsert
+.L15:
+
+; ../src/kernel/Counters.c	   246              }
+; ../src/kernel/Counters.c	   247  
+; ../src/kernel/Counters.c	   248              /* Get the new head of the counter */
+; ../src/kernel/Counters.c	   249              Alarm = ActiveAlarmsHead[ActiveAlarmsHeadIndex];
+	ldr	r4,[r8,#0]
+.L13:
+.L19:
+	movs	r0,#0
+.L146:
+	cmp	r0,r4
+	beq	.L16
+.L147:
+	ldr	r0,[r6,#20]
+.L148:
+	ldr	r1,[r4,#8]
+.L149:
+	cmp	r0,r1
+	beq	.L14
+.L16:
+
+; ../src/kernel/Counters.c	   250          }
+; ../src/kernel/Counters.c	   251      }
+; ../src/kernel/Counters.c	   252  #endif   /* (COUNTER_COUNT > 0) */
+; ../src/kernel/Counters.c	   253      /* Return Error State */
+; ../src/kernel/Counters.c	   254      return ErrorState;
+	mov	r0,r5
+.L86:
+
+; ../src/kernel/Counters.c	   255  }
+	pop	{r4,r5,r6,r7,r8,pc}
+.L59:
+	.align	4
+.L22:
+	.dw	Counters
+	.dw	ActiveAlarmsHead
+.L50:
+	.size	OS_IncrementCounter,$-OS_IncrementCounter
+	; End of function
+	.endsec	; End of section
+
+	.calls	'SysTick_Handler','OS_IncrementHardwreCounter'
+	.calls	'SysTick_Handler','Kern_Schedule'
+	.calls	'SysTick_Handler','NewTaskStackInit'
+	.calls	'SysTick_Handler','SaveAndSwitchContext'
+	.calls	'OS_IncrementHardwreCounter','OS_AlarmRemoveHead'
+	.calls	'OS_IncrementHardwreCounter','OS_AlarmFireAction'
+	.calls	'OS_IncrementHardwreCounter','OS_AlarmInsert'
+	.calls	'OS_IncrementCounter','OS_AlarmRemoveHead'
+	.calls	'OS_IncrementCounter','OS_AlarmFireAction'
+	.calls	'OS_IncrementCounter','OS_AlarmInsert'
+	.calls	'SysTick_Handler','',8
+	.calls	'OS_IncrementHardwreCounter','',16
+	.calls	'OS_IncrementCounter','',24
+	.extern	Kern_Schedule
+	.extern	OS_AlarmInsert
+	.extern	OS_AlarmRemoveHead
+	.extern	OS_AlarmFireAction
+	.extern	Kernel
+	.extern	ActiveAlarmsHead
+	.extern	Counters
+	.extern	SaveAndSwitchContext
+	.extern	NewTaskStackInit
+	.section	.debug_info
+.L30:
+	.dw	3731
+	.dh	3
+	.dw	.L31
+	.db	4
+.L29:
+	.db	1
+	.db	'../src/kernel/Counters.c',0
+	.dw	.L87,.L88
+	.db	12,1
+	.dw	.L32
+	.db	2
+	.db	'Kern_Schedule',0,1,214,2,28,1,1,1,1,3
+	.db	'unsigned int',0,4,7,4
+	.dw	74
+	.db	4
+	.dw	74
+	.db	4
+	.dw	74
+.L54:
+	.db	3
+	.db	'unsigned char',0,1,8,4
+	.dw	105
+	.db	4
+	.dw	74
+	.db	5
+	.db	'Os_Counter_s',0,2,44,8,28,6
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	90
+	.db	4,2,35,0,6
+	.db	'OsCounterMinCycle',0
+	.dw	95
+	.db	4,2,35,4,6
+	.db	'OsCounterTicksPerBase',0
+	.dw	100
+	.db	4,2,35,8,6
+	.db	'OsCounterType',0
+	.dw	122
+	.db	1,2,35,12,6
+	.db	'OsSecondsPerTick',0
+	.dw	127
+	.db	4,2,35,16,6
+	.db	'OsCounterCurrentTicks',0
+	.dw	74
+	.db	4,2,35,20,6
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	105
+	.db	1,2,35,24,0
+.L52:
+	.db	7
+	.dw	132
+	.db	5
+	.db	'Os_AlarmActivateTask_s',0,3,140,1,8,1,6
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	105
+	.db	1,2,35,0,0,7
+	.dw	362
+	.db	5
+	.db	'Os_AlarmSetEvent_s',0,3,146,1,8,8,6
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	105
+	.db	1,2,35,0,6
+	.db	'OsAlarmSetEventRef',0
+	.dw	74
+	.db	4,2,35,4,0,7
+	.dw	429
+	.db	8,1,1,7
+	.dw	520
+	.db	9
+	.db	'CallbackFuncPtrType',0,3,88,9
+	.dw	523
+	.db	4
+	.dw	528
+	.db	10
+	.db	'Os_AlarmAction_u',0,3,92,7,4,6
+	.db	'OsAlarmActivateTask',0
+	.dw	424
+	.db	4,2,35,0,6
+	.db	'OsAlarmSetEventTask',0
+	.dw	515
+	.db	4,2,35,0,6
+	.db	'OsAlarmCallbackName',0
+	.dw	556
+	.db	4,2,35,0,0,5
+	.db	'Os_Alarm_s',0,3,104,8,36,6
+	.db	'OsAlarmAction',0
+	.dw	561
+	.db	4,2,35,0,6
+	.db	'OsAlarmActionType',0
+	.dw	105
+	.db	1,2,35,4,6
+	.db	'OsAlarmExpiryTime',0
+	.dw	74
+	.db	4,2,35,8,6
+	.db	'OsAlarmCycleTime',0
+	.dw	74
+	.db	4,2,35,12,6
+	.db	'OsAlarmState',0
+	.dw	105
+	.db	1,2,35,16,6
+	.db	'OsAlarmCounterRef',0
+	.dw	357
+	.db	4,2,35,20,6
+	.db	'OsAlarmNext',0
+	.dw	.L56-.L30
+	.db	4,2,35,24,6
+	.db	'OsAlarmPrevious',0
+	.dw	.L56-.L30
+	.db	4,2,35,28,6
+	.db	'OsAlarmAlarmTime',0
+	.dw	105
+	.db	1,2,35,32,6
+	.db	'OsAlarmAutoStartType',0
+	.dw	105
+	.db	1,2,35,33,0
+.L56:
+	.db	7
+	.dw	671
+	.db	7
+	.dw	520
+	.db	7
+	.dw	942
+	.db	11
+	.db	'OS_AlarmInsert',0,3,193,1,1,1,1,1,1,12
+	.db	'Head',0,3,195,1,41
+	.dw	952
+	.db	12
+	.db	'NewAlarm',0,3,196,1,39
+	.dw	942
+	.db	0,11
+	.db	'OS_AlarmRemoveHead',0,3,208,1,1,1,1,1,1,12
+	.db	'Head',0,3,210,1,41
+	.dw	952
+	.db	0,11
+	.db	'OS_AlarmFireAction',0,3,237,1,1,1,1,1,1,12
+	.db	'Alarm',0,3,239,1,46
+	.dw	942
+	.db	0,2
+	.db	'SaveAndSwitchContext',0,4,42,13,1,1,1,1,3
+	.db	'int',0,4,5,11
+	.db	'NewTaskStackInit',0,4,43,13,1,1,1,1,13,4,43,30
+	.dw	1130
+	.db	0
+.L60:
+	.db	4
+	.dw	105
+	.db	14,1,7
+	.dw	1176
+	.db	9
+	.db	'__codeptr',0,4,1,1
+	.dw	1178
+	.db	15,5,87,10,4,6
+	.db	'x',0
+	.dw	1130
+	.db	4,2,35,0,0,9
+	.db	'Os_ContexType',0,5,90,2
+	.dw	1201
+	.db	9
+	.db	'boolean',0,6,242,1,23
+	.dw	105
+	.db	9
+	.db	'uint8',0,6,247,1,23
+	.dw	105
+	.db	3
+	.db	'unsigned short int',0,2,7,9
+	.db	'uint16',0,6,252,1,24
+	.dw	1272
+	.db	9
+	.db	'uint32',0,6,129,2,22
+	.dw	74
+	.db	9
+	.db	'StatusType',0,7,191,1,23
+	.dw	105
+	.db	9
+	.db	'Std_ReturnType',0,7,235,2,15
+	.dw	105
+	.db	9
+	.db	'Std_TransformerClass',0,7,238,2,15
+	.dw	105
+	.db	9
+	.db	'Std_TransformerForwardCode',0,7,241,2,15
+	.dw	105
+	.db	9
+	.db	'TaskType',0,8,183,1,29
+	.dw	105
+	.db	9
+	.db	'TaskStateType',0,8,189,1,29
+	.dw	105
+	.db	9
+	.db	'TaskPriorityType',0,8,195,1,29
+	.dw	105
+	.db	9
+	.db	'ResourceType',0,8,198,1,29
+	.dw	105
+	.db	9
+	.db	'EventMaskType',0,8,201,1,30
+	.dw	74
+	.db	9
+	.db	'AppModeType',0,8,207,1,28
+	.dw	105
+	.db	9
+	.db	'OsStateType',0,8,210,1,28
+	.dw	105
+	.db	9
+	.db	'TickType',0,8,214,1,30
+	.dw	74
+	.db	5
+	.db	'AlarmBaseType_s',0,8,230,1,8,12,6
+	.db	'maxallowedvalue',0
+	.dw	74
+	.db	4,2,35,0,6
+	.db	'ticksperbase',0
+	.dw	74
+	.db	4,2,35,4,6
+	.db	'mincycle',0
+	.dw	74
+	.db	4,2,35,8,0,9
+	.db	'AlarmBaseType',0,8,220,1,32
+	.dw	1608
+	.db	9
+	.db	'AlarmType',0,8,226,1,28
+	.dw	105
+	.db	9
+	.db	'CounterType',0,8,245,1,28
+	.dw	105
+	.db	5
+	.db	'Os_InernalResourceDynamic_s',0,9,66,8,2,6
+	.db	'TakenTaskPriority',0
+	.dw	105
+	.db	1,2,35,0,6
+	.db	'TakenFlag',0
+	.dw	105
+	.db	1,2,35,1,0,9
+	.db	'Os_InernalResourceDynamic',0,9,55,44
+	.dw	1759
+	.db	4
+	.dw	105
+	.db	7
+	.dw	1759
+	.db	5
+	.db	'Os_InteranlResource_s',0,9,79,8,8,6
+	.db	'CeilingPriority',0
+	.dw	1873
+	.db	1,2,35,0,6
+	.db	'InternalResourceDynamics',0
+	.dw	1878
+	.db	4,2,35,4,0,9
+	.db	'Os_InteranlResource',0,9,57,38
+	.dw	1883
+	.db	4
+	.dw	105
+	.db	4
+	.dw	105
+	.db	7
+	.dw	.L89-.L30
+	.db	5
+	.db	'Os_ResourceDynamic_s',0,9,105,8,8,6
+	.db	'OwnerTaskPriority',0
+	.dw	105
+	.db	1,2,35,0,6
+	.db	'OwnerTaskID',0
+	.dw	105
+	.db	1,2,35,1,6
+	.db	'LinkedResource',0
+	.dw	2008
+	.db	4,2,35,4,0,7
+	.dw	2013
+.L89:
+	.db	5
+	.db	'Os_Resource_s',0,9,92,8,8,6
+	.db	'CeilingPriority',0
+	.dw	1998
+	.db	1,2,35,0,6
+	.db	'ResourceID',0
+	.dw	2003
+	.db	1,2,35,1,6
+	.db	'ResourceDynamics',0
+	.dw	2112
+	.db	4,2,35,4,0,9
+	.db	'Os_Resource',0,9,59,30
+	.dw	2117
+	.db	9
+	.db	'Os_ResourceDynamic',0,9,61,37
+	.dw	2013
+	.db	7
+	.dw	74
+	.db	9
+	.db	'StackPtrType',0,1,143,1,30
+	.dw	2255
+	.db	9
+	.db	'StackSizeType',0,1,145,1,31
+	.dw	74
+	.db	9
+	.db	'TaskActivationCounterType',0,1,147,1,30
+	.dw	105
+	.db	9
+	.db	'QueueIndexType',0,1,149,1,30
+	.dw	105
+	.db	9
+	.db	'EntryFunctionPtrType',0,1,151,1,9
+	.dw	523
+	.db	5
+	.db	'TaskFlagsType_s',0,1,172,1,8,2,6
+	.db	'Type',0
+	.dw	105
+	.db	1,2,35,0,6
+	.db	'TaskSchedulingPolicy',0
+	.dw	105
+	.db	1,2,35,1,0,9
+	.db	'TaskFlagsType',0,1,155,1,32
+	.dw	2394
+	.db	5
+	.db	'TaskStackType_s',0,1,243,1,8,12,6
+	.db	'StackBase',0
+	.dw	2260
+	.db	4,2,35,0,6
+	.db	'CurrentStackPtr',0
+	.dw	2260
+	.db	4,2,35,4,6
+	.db	'StackSize',0
+	.dw	74
+	.db	4,2,35,8,0,9
+	.db	'TaskStackType',0,1,157,1,32
+	.dw	2484
+	.db	7
+	.dw	74
+	.db	7
+	.dw	1201
+	.db	5
+	.db	'Os_TaskDynamic_s',0,1,214,1,8,24,6
+	.db	'Context',0
+	.dw	2598
+	.db	4,2,35,0,6
+	.db	'Resources',0
+	.dw	2008
+	.db	4,2,35,4,6
+	.db	'PriorityQueueIndex',0
+	.dw	105
+	.db	1,2,35,8,6
+	.db	'EventsSet',0
+	.dw	74
+	.db	4,2,35,12,6
+	.db	'EventsWaiting',0
+	.dw	74
+	.db	4,2,35,16,6
+	.db	'TaskCurrentPriority',0
+	.dw	105
+	.db	1,2,35,20,6
+	.db	'TaskState',0
+	.dw	105
+	.db	1,2,35,21,6
+	.db	'PendingActivationRequests',0
+	.dw	105
+	.db	1,2,35,22,0,9
+	.db	'Os_TaskDynamic',0,1,159,1,33
+	.dw	2603
+	.db	4
+	.dw	105
+	.db	4
+	.dw	105
+	.db	4
+	.dw	105
+	.db	4
+	.dw	105
+	.db	7
+	.dw	2394
+	.db	7
+	.dw	2484
+	.db	4
+	.dw	2364
+	.db	7
+	.dw	1883
+	.db	7
+	.dw	2603
+	.db	5
+	.db	'Os_Task_s',0,1,186,1,8,28,6
+	.db	'TaskStaticPriority',0
+	.dw	2840
+	.db	1,2,35,0,6
+	.db	'TaskID',0
+	.dw	2845
+	.db	1,2,35,1,6
+	.db	'ApplicationMode',0
+	.dw	2850
+	.db	1,2,35,2,6
+	.db	'NumOfActivationRequests',0
+	.dw	2855
+	.db	1,2,35,3,6
+	.db	'TaskFlags',0
+	.dw	2860
+	.db	4,2,35,4,6
+	.db	'TaskStack',0
+	.dw	2865
+	.db	4,2,35,8,6
+	.db	'EntryPoint',0
+	.dw	2870
+	.db	4,2,35,12,6
+	.db	'InternalResource',0
+	.dw	2875
+	.db	4,2,35,16,6
+	.db	'TaskDynamics',0
+	.dw	2880
+	.db	4,2,35,20,6
+	.db	'EventsOwned',0
+	.dw	74
+	.db	4,2,35,24,0,9
+	.db	'Os_Task',0,1,161,1,26
+	.dw	2885
+	.db	7
+	.dw	520
+	.db	7
+	.dw	2885
+	.db	5
+	.db	'Os_CpuLoad_s',0,1,155,2,8,8,6
+	.db	'IdleTime',0
+	.dw	74
+	.db	4,2,35,0,6
+	.db	'CurrentCpuLoad',0
+	.dw	105
+	.db	1,2,35,4,6
+	.db	'PeakCpuLoad',0
+	.dw	105
+	.db	1,2,35,5,0,7
+	.dw	3158
+	.db	5
+	.db	'Os_Kernel_s',0,1,129,2,8,24,6
+	.db	'TaskQueueHead',0
+	.dw	3153
+	.db	4,2,35,0,6
+	.db	'TaskRunning',0
+	.dw	3153
+	.db	4,2,35,4,6
+	.db	'TaskPreempted',0
+	.dw	3153
+	.db	4,2,35,8,6
+	.db	'CpuLoad',0
+	.dw	3241
+	.db	4,2,35,12,6
+	.db	'OsState',0
+	.dw	105
+	.db	1,2,35,16,6
+	.db	'ForceScheduling',0
+	.dw	105
+	.db	1,2,35,17,6
+	.db	'SchedulerNeeded',0
+	.dw	105
+	.db	1,2,35,18,6
+	.db	'DispatcherNeeded',0
+	.dw	105
+	.db	1,2,35,19,6
+	.db	'NewContext',0
+	.dw	105
+	.db	1,2,35,20,0,9
+	.db	'Os_Kernel',0,1,163,1,28
+	.dw	3246
+	.db	9
+	.db	'Os_CpuLoad',0,1,165,1,29
+	.dw	3158
+	.db	9
+	.db	'Os_Counter',0,2,42,29
+	.dw	132
+	.db	9
+	.db	'Os_Alarm',0,3,73,45
+	.dw	671
+	.db	9
+	.db	'Os_AlarmAction',0,3,76,45
+	.dw	561
+	.db	9
+	.db	'Os_AlarmActivateTask',0,3,79,41
+	.dw	362
+	.db	9
+	.db	'Os_AlarmSetEvent',0,3,82,38
+	.dw	429
+	.db	16
+	.db	'Kernel',0,10,40,18
+	.dw	3246
+	.db	1,1,17,4
+	.dw	942
+	.db	18,0,0,16
+	.db	'ActiveAlarmsHead',0,10,46,18
+	.dw	3631
+	.db	1,1,17,28
+	.dw	132
+	.db	18,0,0,16
+	.db	'Counters',0,10,49,19
+	.dw	3667
+	.db	1,1,9
+	.db	'QueueSize',0,11,183,1,29
+	.dw	105
+	.db	9
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	105
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L31:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,46,0,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0
+	.db	0,3,36,0,3,8,11,15,62,15,0,0,4,38,0,73,19,0,0,5,19,1,3,8,58,15,59,15,57,15,11,15,0,0,6,13,0,3,8,73,19
+	.db	11,15,56,9,0,0,7,15,0,73,19,0,0,8,21,0,54,15,39,12,0,0,9,22,0,3,8,58,15,59,15,57,15,73,19,0,0,10,23,1
+	.db	3,8,58,15,59,15,57,15,11,15,0,0,11,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,12,5,0,3,8,58
+	.db	15,59,15,57,15,73,19,0,0,13,5,0,58,15,59,15,57,15,73,19,0,0,14,21,0,54,15,0,0,15,19,1,58,15,59,15,57,15
+	.db	11,15,0,0,16,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,17,1,1,11,15,73,19,0,0,18,33,0,47,15,0,0
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L32:
+	.dw	.L91-.L90
+.L90:
+	.dh	3
+	.dw	.L93-.L92
+.L92:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'../src/kernel/Counters.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L93:
+.L91:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_IncrementHardwreCounter')
+.L33:
+	.dw	186
+	.dh	3
+	.dw	.L34
+	.db	4,1
+	.db	'../src/kernel/Counters.c',0
+	.dw	.L87,.L88
+	.db	12,1
+	.dw	.L36,.L35
+	.db	2
+	.dw	.L29
+	.db	3
+	.db	'OS_IncrementHardwreCounter',0,1,101,1,1,1,1
+	.dw	.L26,.L51,.L25
+	.db	4
+	.db	'Counter',0,1,102,48
+	.dw	.L52,.L53
+	.db	5
+	.dw	.L26,.L51
+	.db	6
+	.db	'ActiveAlarmsHeadIndex',0,1,108,5
+	.dw	.L54,.L55
+	.db	6
+	.db	'Alarm',0,1,111,5
+	.dw	.L56,.L57
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_IncrementHardwreCounter')
+.L34:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52
+	.db	0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_IncrementHardwreCounter')
+.L35:
+	.dw	.L95-.L94
+.L94:
+	.dh	3
+	.dw	.L97-.L96
+.L96:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Counters.c',0,0,0,0,0
+.L97:
+	.db	5,1,7,0,5,2
+	.dw	.L26
+	.db	3,228,0,1,5,9,9
+	.dh	.L71-.L26
+	.db	3,12,1,5,5,9
+	.dh	.L98-.L71
+	.db	1,5,11,9
+	.dh	.L99-.L98
+	.db	3,126,1,5,40,9
+	.dh	.L5-.L99
+	.db	3,9,1,5,17,9
+	.dh	.L70-.L5
+	.db	3,3,1,5,33,9
+	.dh	.L100-.L70
+	.db	1,5,16,9
+	.dh	.L101-.L100
+	.db	3,3,1,5,39,9
+	.dh	.L72-.L101
+	.db	1,5,53,9
+	.dh	.L102-.L72
+	.db	3,2,1,5,9,9
+	.dh	.L103-.L102
+	.db	1,5,46,9
+	.dh	.L104-.L103
+	.db	3,2,1,5,44,9
+	.dh	.L105-.L104
+	.db	1,5,99,9
+	.dh	.L106-.L105
+	.db	3,4,1,5,49,9
+	.dh	.L9-.L106
+	.db	3,3,1,5,32,9
+	.dh	.L107-.L9
+	.db	3,3,1,5,22,9
+	.dh	.L75-.L107
+	.db	3,3,1,5,13,9
+	.dh	.L108-.L75
+	.db	1,5,76,7,9
+	.dh	.L109-.L108
+	.db	3,2,1,5,69,9
+	.dh	.L110-.L109
+	.db	1,5,107,9
+	.dh	.L111-.L110
+	.db	1,5,134,1,9
+	.dh	.L112-.L111
+	.db	1,5,97,9
+	.dh	.L113-.L112
+	.db	1,5,42,9
+	.dh	.L114-.L113
+	.db	1,5,74,9
+	.dh	.L115-.L114
+	.db	3,1,1,5,37,9
+	.dh	.L10-.L115
+	.db	3,4,1,5,17,9
+	.dh	.L18-.L10
+	.db	3,112,1,5,16,9
+	.dh	.L116-.L18
+	.db	1,5,47,9
+	.dh	.L69-.L116
+	.db	1,5,79,9
+	.dh	.L117-.L69
+	.db	1,5,71,9
+	.dh	.L118-.L117
+	.db	1,5,1,9
+	.dh	.L6-.L118
+	.db	3,20,1,7,9
+	.dh	.L38-.L6
+	.db	0,1,1
+.L95:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_IncrementHardwreCounter')
+.L36:
+	.dw	-1,.L37,0,.L38-.L37,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_Handler')
+.L39:
+	.dw	102
+	.dh	3
+	.dw	.L40
+	.db	4,1
+	.db	'../src/kernel/Counters.c',0
+	.dw	.L87,.L88
+	.db	12,1
+	.dw	.L42,.L41
+	.db	2
+	.dw	.L29
+	.db	3
+	.db	'SysTick_Handler',0,1,47,6,1,1,1
+	.dw	.L24,.L58,.L23
+	.db	4
+	.dw	.L24,.L58
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_Handler')
+.L40:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_Handler')
+.L41:
+	.dw	.L120-.L119
+.L119:
+	.dh	3
+	.dw	.L122-.L121
+.L121:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Counters.c',0,0,0,0,0
+.L122:
+	.db	5,6,7,0,5,2
+	.dw	.L24
+	.db	3,46,1,5,33,9
+	.dh	.L66-.L24
+	.db	3,4,1,5,9,9
+	.dh	.L123-.L66
+	.db	3,3,1,5,15,9
+	.dh	.L124-.L123
+	.db	1,5,5,9
+	.dh	.L125-.L124
+	.db	1,5,22,9
+	.dh	.L67-.L125
+	.db	3,3,1,5,19,9
+	.dh	.L126-.L67
+	.db	3,3,1,5,9,9
+	.dh	.L127-.L126
+	.db	1,5,30,9
+	.dh	.L128-.L127
+	.db	3,2,1,5,54,9
+	.dh	.L129-.L128
+	.db	1,5,33,7,9
+	.dh	.L3-.L129
+	.db	3,4,1,5,1,9
+	.dh	.L2-.L3
+	.db	3,4,1,7,9
+	.dh	.L44-.L2
+	.db	0,1,1
+.L120:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_Handler')
+.L42:
+	.dw	-1,.L43,0,.L44-.L43,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_IncrementCounter')
+.L45:
+	.dw	234
+	.dh	3
+	.dw	.L46
+	.db	4,1
+	.db	'../src/kernel/Counters.c',0
+	.dw	.L87,.L88
+	.db	12,1
+	.dw	.L48,.L47
+	.db	2
+	.dw	.L29
+	.db	3
+	.db	'OS_IncrementCounter',0,1,184,1,1
+	.dw	.L54
+	.db	1,1,1
+	.dw	.L28,.L59,.L27
+	.db	4
+	.db	'CounterID',0,1,185,1,35
+	.dw	.L60,.L61
+	.db	5
+	.dw	.L28,.L59
+	.db	6
+	.db	'ErrorState',0,1,189,1,5
+	.dw	.L54,.L62
+	.db	6
+	.db	'Counter',0,1,194,1,5
+	.dw	.L52,.L63
+	.db	6
+	.db	'ActiveAlarmsHeadIndex',0,1,198,1,5
+	.dw	.L54,.L64
+	.db	6
+	.db	'Alarm',0,1,201,1,5
+	.dw	.L56,.L65
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_IncrementCounter')
+.L46:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_IncrementCounter')
+.L47:
+	.dw	.L131-.L130
+.L130:
+	.dh	3
+	.dw	.L133-.L132
+.L132:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Counters.c',0,0,0,0,0
+.L133:
+	.db	5,1,7,0,5,2
+	.dw	.L28
+	.db	3,183,1,1,5,18,9
+	.dh	.L77-.L28
+	.db	3,5,1,5,13,9
+	.dh	.L79-.L77
+	.db	3,12,1,5,36,9
+	.dh	.L80-.L79
+	.db	3,3,1,5,28,9
+	.dh	.L81-.L80
+	.db	3,18,1,5,20,9
+	.dh	.L134-.L81
+	.db	1,5,28,9
+	.dh	.L135-.L134
+	.db	1,5,17,9
+	.dh	.L82-.L135
+	.db	3,3,1,5,41,9
+	.dh	.L78-.L82
+	.db	1,5,53,9
+	.dh	.L136-.L78
+	.db	3,2,1,5,9,9
+	.dh	.L137-.L136
+	.db	1,5,44,9
+	.dh	.L138-.L137
+	.db	3,2,1,5,99,9
+	.dh	.L139-.L138
+	.db	3,4,1,5,33,9
+	.dh	.L14-.L139
+	.db	3,3,1,5,49,9
+	.dh	.L140-.L14
+	.db	1,5,32,9
+	.dh	.L141-.L140
+	.db	3,3,1,5,22,9
+	.dh	.L84-.L141
+	.db	3,3,1,5,13,9
+	.dh	.L142-.L84
+	.db	1,5,22,7,9
+	.dh	.L143-.L142
+	.db	3,2,1,5,42,9
+	.dh	.L144-.L143
+	.db	1,5,74,9
+	.dh	.L145-.L144
+	.db	3,1,1,5,37,9
+	.dh	.L15-.L145
+	.db	3,4,1,5,17,9
+	.dh	.L19-.L15
+	.db	3,112,1,5,16,9
+	.dh	.L146-.L19
+	.db	1,5,47,9
+	.dh	.L147-.L146
+	.db	1,5,79,9
+	.dh	.L148-.L147
+	.db	1,5,71,9
+	.dh	.L149-.L148
+	.db	1,5,5,9
+	.dh	.L16-.L149
+	.db	3,21,1,5,1,9
+	.dh	.L86-.L16
+	.db	3,1,1,7,9
+	.dh	.L50-.L86
+	.db	0,1,1
+.L131:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_IncrementCounter')
+.L48:
+	.dw	-1,.L49,0,.L50-.L49,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L88:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L87:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_IncrementCounter')
+.L64:
+	.dw	-1,.L28,.L81-.L28,.L59-.L28
+	.dh	1
+	.db	87
+	.dw	0,0
+.L65:
+	.dw	-1,.L28,.L80-.L28,.L59-.L28
+	.dh	1
+	.db	84
+	.dw	.L83-.L28,.L84-.L28
+	.dh	1
+	.db	80
+	.dw	.L85-.L28,.L15-.L28
+	.dh	1
+	.db	81
+	.dw	0,0
+.L63:
+	.dw	-1,.L28,.L82-.L28,.L59-.L28
+	.dh	1
+	.db	86
+	.dw	0,0
+.L61:
+	.dw	-1,.L28,0,.L78-.L28
+	.dh	1
+	.db	80
+	.dw	0,0
+.L62:
+	.dw	-1,.L28,.L79-.L28,.L59-.L28
+	.dh	1
+	.db	85
+	.dw	.L86-.L28,.L59-.L28
+	.dh	1
+	.db	80
+	.dw	0,0
+.L27:
+	.dw	-1,.L28,0,.L77-.L28
+	.dh	2
+	.db	125,0
+	.dw	.L77-.L28,.L59-.L28
+	.dh	2
+	.db	125,24
+	.dw	.L59-.L28,.L59-.L28
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_IncrementHardwreCounter')
+.L55:
+	.dw	-1,.L26,.L70-.L26,.L72-.L26
+	.dh	1
+	.db	80
+	.dw	0,0
+.L57:
+	.dw	-1,.L26,.L73-.L26,.L51-.L26
+	.dh	1
+	.db	86
+	.dw	.L74-.L26,.L75-.L26
+	.dh	1
+	.db	80
+	.dw	.L76-.L26,.L10-.L26
+	.dh	1
+	.db	81
+	.dw	0,0
+.L53:
+	.dw	-1,.L26,0,.L70-.L26
+	.dh	1
+	.db	80
+	.dw	.L71-.L26,.L51-.L26
+	.dh	1
+	.db	85
+	.dw	0,0
+.L25:
+	.dw	-1,.L26,0,.L68-.L26
+	.dh	2
+	.db	125,0
+	.dw	.L68-.L26,.L51-.L26
+	.dh	2
+	.db	125,16
+	.dw	.L51-.L26,.L51-.L26
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_Handler')
+.L23:
+	.dw	-1,.L24,0,.L66-.L24
+	.dh	2
+	.db	125,0
+	.dw	.L66-.L24,.L3-.L24
+	.dh	2
+	.db	125,8
+	.dw	.L3-.L24,.L3-.L24
+	.dh	2
+	.db	125,0
+	.dw	.L3-.L24,.L58-.L24
+	.dh	2
+	.db	125,8
+	.dw	.L58-.L24,.L58-.L24
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L150:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_Handler')
+	.dw	68
+	.dw	.L150,.L24,.L58-.L24
+	.db	4
+	.dw	(.L66-.L24)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L67-.L66)/2
+	.db	196,4
+	.dw	(.L3-.L67)/2
+	.db	19,0,8,13,196,19,4,22,13,3,19,125,8,4
+	.dw	(.L58-.L3)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_IncrementHardwreCounter')
+	.dw	68
+	.dw	.L150,.L26,.L51-.L26
+	.db	4
+	.dw	(.L68-.L26)/2
+	.db	19,8,22,13,3,19,125,16,17,14,126,17,6,124,17,5,122,17,4,120,4
+	.dw	(.L5-.L68)/2
+	.db	198,197,196,4
+	.dw	(.L69-.L5)/2
+	.db	198,197,196,4
+	.dw	(.L51-.L69)/2
+	.db	19,0,8,13,198,197,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_IncrementCounter')
+	.dw	60
+	.dw	.L150,.L28,.L59-.L28
+	.db	4
+	.dw	(.L77-.L28)/2
+	.db	19,12,22,13,3,19,125,24,17,14,126,17,8,124,17,7,122,17,6,120,17,5,118,17,4,116,4
+	.dw	(.L59-.L77)/2
+	.db	19,0,8,13,200,199,198,197,196,0,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/Counters.c	   256  
+; ../src/kernel/Counters.c	   257  /***********************************************************************************/
+; ../src/kernel/Counters.c	   258  /*				    			 End Of File			         				   */
+; ../src/kernel/Counters.c	   258  /***********************************************************************************/
+
+	; Module end
+	.end

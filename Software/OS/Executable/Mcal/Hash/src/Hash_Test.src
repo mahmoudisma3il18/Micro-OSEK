@@ -1,0 +1,338 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/Hash/src/.Hash_Test.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../TC399x/HSM/Application/KeyM/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../../TC399x/Host Core\\CryptoKeyManagement\\inc -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/Hash/src/Hash_Test.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\Hash\\src\\Hash_Test.src ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455255'
+	.source '../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c'
+
+	.section	.bss ,cluster('$group_stringptr')
+	.global	stringptr
+	.align	4
+stringptr:	.type	object
+	.size	stringptr,4
+	.ds	4
+	.endsec	; End of section
+
+	.section	.data ,cluster('$group_input_size')
+	.global	input_size
+	.align	4
+input_size:	.type	object
+	.size	input_size,4
+	.dw	32
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_output_ptr_224')
+	.global	output_ptr_224
+	.align	4
+output_ptr_224:	.type	object
+	.size	output_ptr_224,28
+	.ds	28
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_output_ptr_1')
+	.global	output_ptr_1
+	.align	4
+output_ptr_1:	.type	object
+	.size	output_ptr_1,32
+	.ds	32
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_output_ptr_256')
+	.global	output_ptr_256
+	.align	4
+output_ptr_256:	.type	object
+	.size	output_ptr_256,32
+	.ds	32
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_output_ptr_5')
+	.global	output_ptr_5
+	.align	4
+output_ptr_5:	.type	object
+	.size	output_ptr_5,20
+	.ds	20
+	.endsec	; End of section
+
+	.section	.debug_info
+.L3:
+	.dw	276
+	.dh	3
+	.dw	.L4
+	.db	4
+.L2:
+	.db	1
+	.dw	.L23,.L24,.L25
+	.db	12,1
+	.dw	.L5
+	.db	2,1,3
+	.dw	30
+	.db	4
+	.db	'__codeptr',0,1,1,1
+	.dw	32
+	.db	5
+	.db	'unsigned char',0,1,8,4
+	.db	'uint8',0,2,247,1,23
+	.dw	55
+	.db	5
+	.db	'unsigned short int',0,2,7,4
+	.db	'uint16',0,2,252,1,24
+	.dw	87
+.L18:
+	.db	5
+	.db	'unsigned int',0,4,7,4
+	.db	'uint32',0,2,129,2,22
+	.dw	125
+	.db	4
+	.db	'Std_ReturnType',0,3,235,2,15
+	.dw	55
+	.db	4
+	.db	'Std_TransformerClass',0,3,238,2,15
+	.dw	55
+	.db	4
+	.db	'Std_TransformerForwardCode',0,3,241,2,15
+	.dw	55
+.L19:
+	.db	6,28
+	.dw	125
+	.db	7,6,0
+.L20:
+	.db	6,32
+	.dw	125
+	.db	7,7,0
+.L21:
+	.db	6,20
+	.dw	125
+	.db	7,4,0
+.L22:
+	.db	3
+	.dw	125
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L4:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,21,0,54,15,0,0,3,15,0,73,19,0,0,4,22,0,3,8,58,15,59
+	.db	15,57,15,73,19,0,0,5,36,0,3,8,11,15,62,15,0,0,6,1,1,11,15,73,19,0,0,7,33,0,47,15,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L5:
+	.dw	.L27-.L26
+.L26:
+	.dh	3
+	.dw	.L29-.L28
+.L28:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0,0
+.L29:
+.L27:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_input_size')
+.L6:
+	.dw	54
+	.dh	3
+	.dw	.L7
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'input_size',0,1,23,8
+	.dw	.L18
+	.db	1,5,3
+	.dw	input_size
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_input_size')
+.L7:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_output_ptr_224')
+.L8:
+	.dw	58
+	.dh	3
+	.dw	.L9
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'output_ptr_224',0,1,25,8
+	.dw	.L19
+	.db	1,5,3
+	.dw	output_ptr_224
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_output_ptr_224')
+.L9:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_output_ptr_1')
+.L10:
+	.dw	56
+	.dh	3
+	.dw	.L11
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'output_ptr_1',0,1,26,8
+	.dw	.L20
+	.db	1,5,3
+	.dw	output_ptr_1
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_output_ptr_1')
+.L11:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_output_ptr_256')
+.L12:
+	.dw	58
+	.dh	3
+	.dw	.L13
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'output_ptr_256',0,1,27,8
+	.dw	.L20
+	.db	1,5,3
+	.dw	output_ptr_256
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_output_ptr_256')
+.L13:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_output_ptr_5')
+.L14:
+	.dw	56
+	.dh	3
+	.dw	.L15
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'output_ptr_5',0,1,28,8
+	.dw	.L21
+	.db	1,5,3
+	.dw	output_ptr_5
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_output_ptr_5')
+.L15:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_stringptr')
+.L16:
+	.dw	53
+	.dh	3
+	.dw	.L17
+	.db	4,1
+	.dw	.L23,.L24,.L25
+	.db	12,1,2
+	.dw	.L2
+	.db	3
+	.db	'stringptr',0,1,22,9
+	.dw	.L22
+	.db	1,5,3
+	.dw	stringptr
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_stringptr')
+.L17:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L25:
+	.db	'D:\\CryptOS Repository\\Software\\OS\\Makefile\\',0
+.L23:
+	.db	'../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c',0
+.L24:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     1  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     2  /**
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     3   * @file 	Hash_Test.c
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     4   * @author  Radwa Mahmoud & Qamar Abdelrahmn
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     5   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     6   * @date	21-4-2024
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     7   * @platform    --
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     8   * @variant		--
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	     9   * @vendor		CryptOS
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    10   * @specification --
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    11   * @brief   Hash Test Source File.
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    12   *
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    13   *
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    14   *
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    15  */
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    16  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    17  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    18  #include "Hash_Test.h"
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    19  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    20  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    21  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    22  uint32 *stringptr;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    23  uint32 input_size =32;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    24  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    25  uint32 output_ptr_224[7];
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    26  uint32 output_ptr_1[8];
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    27  uint32 output_ptr_256[8];
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    28  uint32 output_ptr_5[5];
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    29  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    30  /*
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    31  int main(){
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    32  	
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    33  	Hash_Service srv = {&input_ptr , output_ptr_224 , input_size };
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    34  	
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    35  	srv.Hash_output =output_ptr_256;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    36  	SHA256_HashCalculate(&srv);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    37  	
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    38  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    39  	SHA224_HashCalculate(&srv);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    40  	while(hash_flag==0);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    41  	hash_flag=0;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    42  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    43  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    44  	srv.Hash_output =output_ptr_1;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    45  	SHA1_HashCalculate(&srv);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    46  	while(hash_flag==0);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    47  	hash_flag=0;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    48  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    49  
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    50  	srv.Hash_output =output_ptr_5;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    51  	MD5_HashCalculate(&srv);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    52  	while(hash_flag==0);
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    53  	hash_flag=0;
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    54  }
+; ../../TC399x/HSM/Mcal/Hash/src/Hash_Test.c	    55  */
+
+	; Module end
+	.end

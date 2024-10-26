@@ -1,0 +1,1092 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.StartOS.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/StartOS.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\StartOS.src ../src/kernel/StartOS.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/StartOS.c'
+
+	.section	.text ,cluster('$group_OS_StartOS')
+	.global	OS_StartOS
+
+; ../src/kernel/StartOS.c	     1  /**
+; ../src/kernel/StartOS.c	     2   * @file            StartOS.c
+; ../src/kernel/StartOS.c	     3   * @author          Mahmoud Ismail
+; ../src/kernel/StartOS.c	     4   * @version         1.0.0
+; ../src/kernel/StartOS.c	     5   * @date            18-12-2023
+; ../src/kernel/StartOS.c	     6   * @platform
+; ../src/kernel/StartOS.c	     7   * @variant
+; ../src/kernel/StartOS.c	     8   * @vendor          CryptOS
+; ../src/kernel/StartOS.c	     9   * @specification   OSEK/VDX
+; ../src/kernel/StartOS.c	    10   * @brief StartOS() API Implementation.
+; ../src/kernel/StartOS.c	    11   */
+; ../src/kernel/StartOS.c	    12  
+; ../src/kernel/StartOS.c	    13  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/StartOS.c	    14  
+; ../src/kernel/StartOS.c	    15  /**********************************************************************************/
+; ../src/kernel/StartOS.c	    16  /**				    			Include Headers			         				 **/
+; ../src/kernel/StartOS.c	    17  /**********************************************************************************/
+; ../src/kernel/StartOS.c	    18  /* Kernel main header file inclusion */
+; ../src/kernel/StartOS.c	    19  #include <Os_kernel.h>
+; ../src/kernel/StartOS.c	    20  
+; ../src/kernel/StartOS.c	    21  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    22  /*  			    			    Macros				         				   */
+; ../src/kernel/StartOS.c	    23  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    24  
+; ../src/kernel/StartOS.c	    25  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/StartOS.c	    26  
+; ../src/kernel/StartOS.c	    27  /***************************** Autosar version Check ********************************/
+; ../src/kernel/StartOS.c	    28  
+; ../src/kernel/StartOS.c	    29  /******************************* DET Version Check **********************************/
+; ../src/kernel/StartOS.c	    30  
+; ../src/kernel/StartOS.c	    31  /************************** Internal Module Specific Macros ********************************/
+; ../src/kernel/StartOS.c	    32  /**
+; ../src/kernel/StartOS.c	    33   * @name InternalModuleSpecificMacros
+; ../src/kernel/StartOS.c	    34   * @{
+; ../src/kernel/StartOS.c	    35   */
+; ../src/kernel/StartOS.c	    36  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/kernel/StartOS.c	    37  
+; ../src/kernel/StartOS.c	    38  /************************************************************************************/
+; ../src/kernel/StartOS.c	    39  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/StartOS.c	    40  /************************************************************************************/
+; ../src/kernel/StartOS.c	    41  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/StartOS.c	    42  
+; ../src/kernel/StartOS.c	    43  /***************************************************************************************/
+; ../src/kernel/StartOS.c	    44  /*                            External Global Variables                                */
+; ../src/kernel/StartOS.c	    45  /***************************************************************************************/
+; ../src/kernel/StartOS.c	    46  /**
+; ../src/kernel/StartOS.c	    47   * @name ExternalGlobalVariables
+; ../src/kernel/StartOS.c	    48   * @{
+; ../src/kernel/StartOS.c	    49   */
+; ../src/kernel/StartOS.c	    50  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/kernel/StartOS.c	    51  
+; ../src/kernel/StartOS.c	    52  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    53  /*				    			External constants		         				   */
+; ../src/kernel/StartOS.c	    54  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    55  /**
+; ../src/kernel/StartOS.c	    56   * @name External constants
+; ../src/kernel/StartOS.c	    57   * @{
+; ../src/kernel/StartOS.c	    58   */
+; ../src/kernel/StartOS.c	    59  /** @} */ /*End of External constants*/
+; ../src/kernel/StartOS.c	    60  
+; ../src/kernel/StartOS.c	    61  /***************************************************************************************/
+; ../src/kernel/StartOS.c	    62  /*                              Internal Global Variables                              */
+; ../src/kernel/StartOS.c	    63  /***************************************************************************************/
+; ../src/kernel/StartOS.c	    64  /**
+; ../src/kernel/StartOS.c	    65   * @name InternalGlobalVariables
+; ../src/kernel/StartOS.c	    66   * @{
+; ../src/kernel/StartOS.c	    67   */
+; ../src/kernel/StartOS.c	    68  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/kernel/StartOS.c	    69  
+; ../src/kernel/StartOS.c	    70  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    71  /*				    			Internal constants		         				   */
+; ../src/kernel/StartOS.c	    72  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    73  /**
+; ../src/kernel/StartOS.c	    74   * @name InternalConstants
+; ../src/kernel/StartOS.c	    75   * @{
+; ../src/kernel/StartOS.c	    76   */
+; ../src/kernel/StartOS.c	    77  /** @} */ /*End of InternalConstants*/
+; ../src/kernel/StartOS.c	    78  
+; ../src/kernel/StartOS.c	    79  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    80  /*                        External Function Declration                             */
+; ../src/kernel/StartOS.c	    81  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    82  /**
+; ../src/kernel/StartOS.c	    83   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/StartOS.c	    84   * @{
+; ../src/kernel/StartOS.c	    85   */
+; ../src/kernel/StartOS.c	    86  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/kernel/StartOS.c	    87  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    88  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/StartOS.c	    89  /***********************************************************************************/
+; ../src/kernel/StartOS.c	    90  
+; ../src/kernel/StartOS.c	    91  /**
+; ../src/kernel/StartOS.c	    92   * @brief The user can call this system service to start the operating
+; ../src/kernel/StartOS.c	    93   * system in a specific mode.
+; ../src/kernel/StartOS.c	    94   *
+; ../src/kernel/StartOS.c	    95   *
+; ../src/kernel/StartOS.c	    96   * @service name    StartOS
+; ../src/kernel/StartOS.c	    97   * @syntax          FUNC(void, OS_CODE) StartOS
+; ../src/kernel/StartOS.c	    98   *                  (
+; ../src/kernel/StartOS.c	    99   *                      CONST(AppModeType, AUTOMATIC) Mode
+; ../src/kernel/StartOS.c	   100   *                  );
+; ../src/kernel/StartOS.c	   101   * @service ID      -
+; ../src/kernel/StartOS.c	   102   * @sync/async      -
+; ../src/kernel/StartOS.c	   103   * @reentrancy      Reentrant
+; ../src/kernel/StartOS.c	   104   * @param[in]       Mode      Application mode
+; ../src/kernel/StartOS.c	   105   * @param[out]      -
+; ../src/kernel/StartOS.c	   106   * @return          -
+; ../src/kernel/StartOS.c	   107   * @note            This call does not need to return.
+; ../src/kernel/StartOS.c	   108   * @warning         -
+; ../src/kernel/StartOS.c	   109   */
+; ../src/kernel/StartOS.c	   110  
+; ../src/kernel/StartOS.c	   111  FUNC(void, OS_CODE)
+; ../src/kernel/StartOS.c	   112  OS_StartOS(
+; Function OS_StartOS
+.L19:
+	.thumb
+	.align	4
+OS_StartOS:	.type	func
+
+.L10:
+	push	{r4,r5,r6,r7,lr}
+.L36:
+	mov	r4,r0
+.L25:
+
+; ../src/kernel/StartOS.c	   113      CONST(AppModeType, AUTOMATIC) Mode)
+; ../src/kernel/StartOS.c	   114  {
+; ../src/kernel/StartOS.c	   115  
+; ../src/kernel/StartOS.c	   116      /* Starting OS */
+; ../src/kernel/StartOS.c	   117      Kernel.OsState = OS_STATE_BOOT;
+	movs	r5,#0
+.L26:
+	ldr	r6,.L8
+.L27:
+	strb	r5,[r6,#16]
+.L28:
+
+; ../src/kernel/StartOS.c	   118  
+; ../src/kernel/StartOS.c	   119      ReadyQueueInit();
+	bl	ReadyQueueInit
+.L29:
+
+; ../src/kernel/StartOS.c	   120  
+; ../src/kernel/StartOS.c	   121      /* OsInitCode(), ReadyQueueInit(), Any OS Intilizatin code needed */
+; ../src/kernel/StartOS.c	   122  
+; ../src/kernel/StartOS.c	   123      /*[SWS_OS_00100] In StartOS AutoStart of tasks is performed before AutoStart of alarms.*/
+; ../src/kernel/StartOS.c	   124      /* Activating AutoStart Tasks according to thier priority */
+; ../src/kernel/StartOS.c	   125      for (uint8 LocalIndex = 0; LocalIndex < ApplicationModes[Mode].AutoStartTaskSize; LocalIndex++)
+	movs	r0,#12
+.L55:
+	ldr	r1,.L8+4
+.L56:
+	mla	r4,r4,r0,r1
+.L37:
+	b	.L2
+.L3:
+
+; ../src/kernel/StartOS.c	   126      {
+; ../src/kernel/StartOS.c	   127          OS_ActivateTask(ApplicationModes[Mode].AutoStartTasks[LocalIndex]);
+	ldr	r0,[r4,#0]
+.L57:
+	ldrb	r0,[r0,r5]
+	bl	OS_ActivateTask
+.L58:
+	adds	r5,r5,#1
+.L38:
+	uxtb	r5,r5
+.L2:
+	ldrb	r0,[r4,#4]
+.L59:
+	cmp	r5,r0
+	blt	.L3
+.L30:
+
+; ../src/kernel/StartOS.c	   128      }
+; ../src/kernel/StartOS.c	   129  
+; ../src/kernel/StartOS.c	   130  #if (ALARM_COUNT > 0)
+; ../src/kernel/StartOS.c	   131      {
+; ../src/kernel/StartOS.c	   132          VAR(AlarmType, AUTOMATIC) LocalAlarmIndex;
+; ../src/kernel/StartOS.c	   133  
+; ../src/kernel/StartOS.c	   134          for (uint8 LocalIndex = 0; LocalIndex < ApplicationModes[Mode].AutoStartAlarmsSize; LocalIndex++)
+	movs	r5,#0
+.L39:
+
+; ../src/kernel/StartOS.c	   135          {
+; ../src/kernel/StartOS.c	   136              LocalAlarmIndex = ApplicationModes[Mode].AutoStartAlarms[LocalIndex];
+; ../src/kernel/StartOS.c	   137              
+; ../src/kernel/StartOS.c	   138              /* Absolute Alarm */
+; ../src/kernel/StartOS.c	   139              if (Alarms[LocalIndex].OsAlarmAutoStartType == ALARM_ABSOLUTE)
+; ../src/kernel/StartOS.c	   140              {
+; ../src/kernel/StartOS.c	   141                  OS_SetAbsAlarm(LocalAlarmIndex, Alarms[LocalAlarmIndex].OsAlarmAlarmTime, Alarms[LocalAlarmIndex].OsAlarmCycleTime);
+	ldr	r7,.L8+8
+.L60:
+	b	.L4
+.L5:
+	ldr	r0,[r4,#8]
+.L61:
+	ldrb	r0,[r0,r5]
+.L41:
+	movs	r3,#36
+	mla	r1,r0,r3,r7
+.L62:
+	ldr	r2,[r1,#12]
+.L63:
+	ldrb	r1,[r1,#32]
+.L64:
+	mla	r3,r5,r3,r7
+.L65:
+	ldrb	r3,[r3,#33]
+.L66:
+	cmp	r3,#1
+	bne	.L6
+.L67:
+	bl	OS_SetAbsAlarm
+.L42:
+	b	.L7
+.L6:
+
+; ../src/kernel/StartOS.c	   142              }
+; ../src/kernel/StartOS.c	   143              else
+; ../src/kernel/StartOS.c	   144              {
+; ../src/kernel/StartOS.c	   145                  OS_SetRelAlarm(LocalAlarmIndex, Alarms[LocalAlarmIndex].OsAlarmAlarmTime, Alarms[LocalAlarmIndex].OsAlarmCycleTime);
+	bl	OS_SetRelAlarm
+.L7:
+	adds	r5,r5,#1
+.L40:
+	uxtb	r5,r5
+.L4:
+	ldrb	r0,[r4,#5]
+.L68:
+	cmp	r5,r0
+	blt	.L5
+.L33:
+
+; ../src/kernel/StartOS.c	   146              }
+; ../src/kernel/StartOS.c	   147          }
+; ../src/kernel/StartOS.c	   148      }
+; ../src/kernel/StartOS.c	   149  #endif /* #if (ALARM_COUNT > 0) */
+; ../src/kernel/StartOS.c	   150  
+; ../src/kernel/StartOS.c	   151      /*[SWS_OS_00100] StartOS calls the hook routine StartupHook after the
+; ../src/kernel/StartOS.c	   152      operating system is initialized (scheduler is not running).*/
+; ../src/kernel/StartOS.c	   153      /*[SWS_OS_00100] During StartupHook all user interrupts are disabled.*/
+; ../src/kernel/StartOS.c	   154  #if (STARTUP_HOOK == STD_ON)
+; ../src/kernel/StartOS.c	   155      StartupHook();
+; ../src/kernel/StartOS.c	   156  #endif /* #if (STARTUP_HOOK == STD_ON) */
+; ../src/kernel/StartOS.c	   157  
+; ../src/kernel/StartOS.c	   158      Kernel.OsState = OS_STATE_TASK;
+	movs	r0,#1
+.L69:
+	strb	r0,[r6,#16]
+.L70:
+
+; ../src/kernel/StartOS.c	   159  
+; ../src/kernel/StartOS.c	   160      /* Call schdeuler */
+; ../src/kernel/StartOS.c	   161      Kernel.SchedulerNeeded = TRUE;
+	strb	r0,[r6,#18]
+.L71:
+
+; ../src/kernel/StartOS.c	   162  
+; ../src/kernel/StartOS.c	   163      /*[SWS_OS_00100] The first call to StartOS (for starting the Operating System) shall not return. */
+; ../src/kernel/StartOS.c	   164  }
+	pop	{r4,r5,r6,r7,pc}
+.L21:
+	.align	4
+.L8:
+	.dw	Kernel
+	.dw	ApplicationModes
+	.dw	Alarms
+.L20:
+	.size	OS_StartOS,$-OS_StartOS
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_StartOS','ReadyQueueInit'
+	.calls	'OS_StartOS','OS_ActivateTask'
+	.calls	'OS_StartOS','OS_SetAbsAlarm'
+	.calls	'OS_StartOS','OS_SetRelAlarm'
+	.calls	'OS_StartOS','',20
+	.extern	OS_ActivateTask
+	.extern	OS_SetAbsAlarm
+	.extern	OS_SetRelAlarm
+	.extern	Kernel
+	.extern	ApplicationModes
+	.extern	Alarms
+	.extern	ReadyQueueInit
+	.section	.debug_info
+.L12:
+	.dw	3892
+	.dh	3
+	.dw	.L13
+	.db	4
+.L11:
+	.db	1
+	.db	'../src/kernel/StartOS.c',0
+	.dw	.L43,.L44
+	.db	12,1
+	.dw	.L14
+.L31:
+	.db	2
+	.db	'unsigned char',0,1,8,3
+	.dw	50
+	.db	4
+	.db	'OS_ActivateTask',0,1,64,34
+	.dw	50
+	.db	1,1,1,1,5
+	.db	'TaskID',0,1,66,32
+	.dw	67
+	.db	0
+.L22:
+	.db	3
+	.dw	50
+	.db	3
+	.dw	50
+	.db	2
+	.db	'unsigned int',0,4,7,3
+	.dw	126
+	.db	3
+	.dw	126
+	.db	4
+	.db	'OS_SetAbsAlarm',0,1,139,1,1
+	.dw	50
+	.db	1,1,1,1,5
+	.db	'AlarmID',0,1,141,1,33
+	.dw	121
+	.db	5
+	.db	'start',0,1,142,1,32
+	.dw	142
+	.db	5
+	.db	'cycle',0,1,143,1,32
+	.dw	147
+	.db	0,3
+	.dw	50
+	.db	3
+	.dw	126
+	.db	3
+	.dw	126
+	.db	4
+	.db	'OS_SetRelAlarm',0,1,147,1,1
+	.dw	50
+	.db	1,1,1,1,5
+	.db	'AlarmID',0,1,149,1,33
+	.dw	228
+	.db	5
+	.db	'increment',0,1,150,1,32
+	.dw	233
+	.db	5
+	.db	'cycle',0,1,151,1,32
+	.dw	238
+	.db	0,6
+	.db	'ReadyQueueInit',0,2,157,1,34
+	.dw	50
+	.db	1,1,1,1,7,1,8
+	.dw	351
+	.db	9
+	.db	'__codeptr',0,3,1,1
+	.dw	353
+	.db	2
+	.db	'int',0,4,5,10,4,87,10,4,11
+	.db	'x',0
+	.dw	376
+	.db	4,2,35,0,0,9
+	.db	'Os_ContexType',0,4,90,2
+	.dw	383
+	.db	9
+	.db	'boolean',0,5,242,1,23
+	.dw	50
+	.db	9
+	.db	'uint8',0,5,247,1,23
+	.dw	50
+	.db	2
+	.db	'unsigned short int',0,2,7,9
+	.db	'uint16',0,5,252,1,24
+	.dw	454
+	.db	9
+	.db	'uint32',0,5,129,2,22
+	.dw	126
+	.db	9
+	.db	'StatusType',0,6,191,1,23
+	.dw	50
+	.db	9
+	.db	'Std_ReturnType',0,6,235,2,15
+	.dw	50
+	.db	9
+	.db	'Std_TransformerClass',0,6,238,2,15
+	.dw	50
+	.db	9
+	.db	'Std_TransformerForwardCode',0,6,241,2,15
+	.dw	50
+	.db	9
+	.db	'TaskType',0,7,183,1,29
+	.dw	50
+	.db	9
+	.db	'TaskStateType',0,7,189,1,29
+	.dw	50
+	.db	9
+	.db	'TaskPriorityType',0,7,195,1,29
+	.dw	50
+	.db	9
+	.db	'ResourceType',0,7,198,1,29
+	.dw	50
+	.db	9
+	.db	'EventMaskType',0,7,201,1,30
+	.dw	126
+	.db	9
+	.db	'AppModeType',0,7,207,1,28
+	.dw	50
+	.db	9
+	.db	'OsStateType',0,7,210,1,28
+	.dw	50
+	.db	9
+	.db	'TickType',0,7,214,1,30
+	.dw	126
+	.db	12
+	.db	'AlarmBaseType_s',0,7,230,1,8,12,11
+	.db	'maxallowedvalue',0
+	.dw	126
+	.db	4,2,35,0,11
+	.db	'ticksperbase',0
+	.dw	126
+	.db	4,2,35,4,11
+	.db	'mincycle',0
+	.dw	126
+	.db	4,2,35,8,0,9
+	.db	'AlarmBaseType',0,7,220,1,32
+	.dw	790
+	.db	9
+	.db	'AlarmType',0,7,226,1,28
+	.dw	50
+	.db	12
+	.db	'Os_InernalResourceDynamic_s',0,8,66,8,2,11
+	.db	'TakenTaskPriority',0
+	.dw	50
+	.db	1,2,35,0,11
+	.db	'TakenFlag',0
+	.dw	50
+	.db	1,2,35,1,0,9
+	.db	'Os_InernalResourceDynamic',0,8,55,44
+	.dw	920
+	.db	3
+	.dw	50
+	.db	8
+	.dw	920
+	.db	12
+	.db	'Os_InteranlResource_s',0,8,79,8,8,11
+	.db	'CeilingPriority',0
+	.dw	1034
+	.db	1,2,35,0,11
+	.db	'InternalResourceDynamics',0
+	.dw	1039
+	.db	4,2,35,4,0,9
+	.db	'Os_InteranlResource',0,8,57,38
+	.dw	1044
+	.db	3
+	.dw	50
+	.db	3
+	.dw	50
+	.db	8
+	.dw	.L45-.L12
+	.db	12
+	.db	'Os_ResourceDynamic_s',0,8,105,8,8,11
+	.db	'OwnerTaskPriority',0
+	.dw	50
+	.db	1,2,35,0,11
+	.db	'OwnerTaskID',0
+	.dw	50
+	.db	1,2,35,1,11
+	.db	'LinkedResource',0
+	.dw	1169
+	.db	4,2,35,4,0,8
+	.dw	1174
+.L45:
+	.db	12
+	.db	'Os_Resource_s',0,8,92,8,8,11
+	.db	'CeilingPriority',0
+	.dw	1159
+	.db	1,2,35,0,11
+	.db	'ResourceID',0
+	.dw	1164
+	.db	1,2,35,1,11
+	.db	'ResourceDynamics',0
+	.dw	1273
+	.db	4,2,35,4,0,9
+	.db	'Os_Resource',0,8,59,30
+	.dw	1278
+	.db	9
+	.db	'Os_ResourceDynamic',0,8,61,37
+	.dw	1174
+	.db	8
+	.dw	126
+	.db	9
+	.db	'StackPtrType',0,9,143,1,30
+	.dw	1416
+	.db	9
+	.db	'StackSizeType',0,9,145,1,31
+	.dw	126
+	.db	9
+	.db	'TaskActivationCounterType',0,9,147,1,30
+	.dw	50
+	.db	9
+	.db	'QueueIndexType',0,9,149,1,30
+	.dw	50
+	.db	13,1,1,8
+	.dw	1525
+	.db	9
+	.db	'EntryFunctionPtrType',0,9,151,1,9
+	.dw	1528
+	.db	12
+	.db	'TaskFlagsType_s',0,9,172,1,8,2,11
+	.db	'Type',0
+	.dw	50
+	.db	1,2,35,0,11
+	.db	'TaskSchedulingPolicy',0
+	.dw	50
+	.db	1,2,35,1,0,9
+	.db	'TaskFlagsType',0,9,155,1,32
+	.dw	1563
+	.db	12
+	.db	'TaskStackType_s',0,9,243,1,8,12,11
+	.db	'StackBase',0
+	.dw	1421
+	.db	4,2,35,0,11
+	.db	'CurrentStackPtr',0
+	.dw	1421
+	.db	4,2,35,4,11
+	.db	'StackSize',0
+	.dw	126
+	.db	4,2,35,8,0,9
+	.db	'TaskStackType',0,9,157,1,32
+	.dw	1653
+	.db	8
+	.dw	126
+	.db	8
+	.dw	383
+	.db	12
+	.db	'Os_TaskDynamic_s',0,9,214,1,8,24,11
+	.db	'Context',0
+	.dw	1767
+	.db	4,2,35,0,11
+	.db	'Resources',0
+	.dw	1169
+	.db	4,2,35,4,11
+	.db	'PriorityQueueIndex',0
+	.dw	50
+	.db	1,2,35,8,11
+	.db	'EventsSet',0
+	.dw	126
+	.db	4,2,35,12,11
+	.db	'EventsWaiting',0
+	.dw	126
+	.db	4,2,35,16,11
+	.db	'TaskCurrentPriority',0
+	.dw	50
+	.db	1,2,35,20,11
+	.db	'TaskState',0
+	.dw	50
+	.db	1,2,35,21,11
+	.db	'PendingActivationRequests',0
+	.dw	50
+	.db	1,2,35,22,0,9
+	.db	'Os_TaskDynamic',0,9,159,1,33
+	.dw	1772
+	.db	3
+	.dw	50
+	.db	3
+	.dw	50
+	.db	3
+	.dw	50
+	.db	3
+	.dw	50
+	.db	8
+	.dw	1563
+	.db	8
+	.dw	1653
+	.db	3
+	.dw	1533
+	.db	8
+	.dw	1044
+	.db	8
+	.dw	1772
+	.db	12
+	.db	'Os_Task_s',0,9,186,1,8,28,11
+	.db	'TaskStaticPriority',0
+	.dw	2009
+	.db	1,2,35,0,11
+	.db	'TaskID',0
+	.dw	2014
+	.db	1,2,35,1,11
+	.db	'ApplicationMode',0
+	.dw	2019
+	.db	1,2,35,2,11
+	.db	'NumOfActivationRequests',0
+	.dw	2024
+	.db	1,2,35,3,11
+	.db	'TaskFlags',0
+	.dw	2029
+	.db	4,2,35,4,11
+	.db	'TaskStack',0
+	.dw	2034
+	.db	4,2,35,8,11
+	.db	'EntryPoint',0
+	.dw	2039
+	.db	4,2,35,12,11
+	.db	'InternalResource',0
+	.dw	2044
+	.db	4,2,35,16,11
+	.db	'TaskDynamics',0
+	.dw	2049
+	.db	4,2,35,20,11
+	.db	'EventsOwned',0
+	.dw	126
+	.db	4,2,35,24,0,9
+	.db	'Os_Task',0,9,161,1,26
+	.dw	2054
+	.db	8
+	.dw	1525
+	.db	8
+	.dw	2054
+	.db	12
+	.db	'Os_CpuLoad_s',0,9,155,2,8,8,11
+	.db	'IdleTime',0
+	.dw	126
+	.db	4,2,35,0,11
+	.db	'CurrentCpuLoad',0
+	.dw	50
+	.db	1,2,35,4,11
+	.db	'PeakCpuLoad',0
+	.dw	50
+	.db	1,2,35,5,0,8
+	.dw	2327
+	.db	12
+	.db	'Os_Kernel_s',0,9,129,2,8,24,11
+	.db	'TaskQueueHead',0
+	.dw	2322
+	.db	4,2,35,0,11
+	.db	'TaskRunning',0
+	.dw	2322
+	.db	4,2,35,4,11
+	.db	'TaskPreempted',0
+	.dw	2322
+	.db	4,2,35,8,11
+	.db	'CpuLoad',0
+	.dw	2410
+	.db	4,2,35,12,11
+	.db	'OsState',0
+	.dw	50
+	.db	1,2,35,16,11
+	.db	'ForceScheduling',0
+	.dw	50
+	.db	1,2,35,17,11
+	.db	'SchedulerNeeded',0
+	.dw	50
+	.db	1,2,35,18,11
+	.db	'DispatcherNeeded',0
+	.dw	50
+	.db	1,2,35,19,11
+	.db	'NewContext',0
+	.dw	50
+	.db	1,2,35,20,0,9
+	.db	'Os_Kernel',0,9,163,1,28
+	.dw	2415
+	.db	9
+	.db	'Os_CpuLoad',0,9,165,1,29
+	.dw	2327
+	.db	8
+	.dw	50
+	.db	8
+	.dw	50
+	.db	12
+	.db	'Os_AppModeType',0,9,166,2,8,12,11
+	.db	'AutoStartTasks',0
+	.dw	2670
+	.db	4,2,35,0,11
+	.db	'AutoStartTaskSize',0
+	.dw	50
+	.db	1,2,35,4,11
+	.db	'AutoStartAlarmsSize',0
+	.dw	50
+	.db	1,2,35,5,11
+	.db	'AutoStartAlarms',0
+	.dw	2675
+	.db	4,2,35,8,0,9
+	.db	'Os_AppMode',0,9,167,1,31
+	.dw	2680
+	.db	3
+	.dw	126
+	.db	3
+	.dw	126
+	.db	3
+	.dw	126
+	.db	3
+	.dw	50
+	.db	3
+	.dw	126
+	.db	12
+	.db	'Os_Counter_s',0,10,44,8,28,11
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2827
+	.db	4,2,35,0,11
+	.db	'OsCounterMinCycle',0
+	.dw	2832
+	.db	4,2,35,4,11
+	.db	'OsCounterTicksPerBase',0
+	.dw	2837
+	.db	4,2,35,8,11
+	.db	'OsCounterType',0
+	.dw	2842
+	.db	1,2,35,12,11
+	.db	'OsSecondsPerTick',0
+	.dw	2847
+	.db	4,2,35,16,11
+	.db	'OsCounterCurrentTicks',0
+	.dw	126
+	.db	4,2,35,20,11
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	50
+	.db	1,2,35,24,0,9
+	.db	'Os_Counter',0,10,42,29
+	.dw	2852
+	.db	12
+	.db	'Os_AlarmActivateTask_s',0,11,140,1,8,1,11
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	50
+	.db	1,2,35,0,0,8
+	.dw	3096
+	.db	12
+	.db	'Os_AlarmSetEvent_s',0,11,146,1,8,8,11
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	50
+	.db	1,2,35,0,11
+	.db	'OsAlarmSetEventRef',0
+	.dw	126
+	.db	4,2,35,4,0,8
+	.dw	3163
+	.db	9
+	.db	'CallbackFuncPtrType',0,11,88,9
+	.dw	1528
+	.db	3
+	.dw	3254
+	.db	14
+	.db	'Os_AlarmAction_u',0,11,92,7,4,11
+	.db	'OsAlarmActivateTask',0
+	.dw	3158
+	.db	4,2,35,0,11
+	.db	'OsAlarmSetEventTask',0
+	.dw	3249
+	.db	4,2,35,0,11
+	.db	'OsAlarmCallbackName',0
+	.dw	3282
+	.db	4,2,35,0,0,8
+	.dw	2852
+	.db	8
+	.dw	.L46-.L12
+.L46:
+	.db	12
+	.db	'Os_Alarm_s',0,11,104,8,36,11
+	.db	'OsAlarmAction',0
+	.dw	3287
+	.db	4,2,35,0,11
+	.db	'OsAlarmActionType',0
+	.dw	50
+	.db	1,2,35,4,11
+	.db	'OsAlarmExpiryTime',0
+	.dw	126
+	.db	4,2,35,8,11
+	.db	'OsAlarmCycleTime',0
+	.dw	126
+	.db	4,2,35,12,11
+	.db	'OsAlarmState',0
+	.dw	50
+	.db	1,2,35,16,11
+	.db	'OsAlarmCounterRef',0
+	.dw	3397
+	.db	4,2,35,20,11
+	.db	'OsAlarmNext',0
+	.dw	3402
+	.db	4,2,35,24,11
+	.db	'OsAlarmPrevious',0
+	.dw	3402
+	.db	4,2,35,28,11
+	.db	'OsAlarmAlarmTime',0
+	.dw	50
+	.db	1,2,35,32,11
+	.db	'OsAlarmAutoStartType',0
+	.dw	50
+	.db	1,2,35,33,0,9
+	.db	'Os_Alarm',0,11,73,45
+	.dw	3407
+	.db	8
+	.dw	1525
+	.db	9
+	.db	'Os_AlarmAction',0,11,76,45
+	.dw	3287
+	.db	9
+	.db	'Os_AlarmActivateTask',0,11,79,41
+	.dw	3096
+	.db	9
+	.db	'Os_AlarmSetEvent',0,11,82,38
+	.dw	3163
+	.db	15
+	.db	'Kernel',0,12,40,18
+	.dw	2415
+	.db	1,1,16,12
+	.dw	2680
+	.db	17,0,0,15
+	.db	'ApplicationModes',0,12,42,19
+	.dw	3794
+	.db	1,1,16,72
+	.dw	3407
+	.db	17,1,0,15
+	.db	'Alarms',0,12,52,17
+	.dw	3830
+	.db	1,1,9
+	.db	'QueueSize',0,13,183,1,29
+	.dw	50
+	.db	9
+	.db	'QueueIndex',0,13,186,1,29
+	.dw	50
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L13:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,46,1,3,8
+	.db	58,15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,5,5,0,3,8,58,15,59,15,57,15,73,19,0,0,6,46,0,3,8,58
+	.db	15,59,15,57,15,73,19,54,15,39,12,63,12,60,12,0,0,7,21,0,54,15,0,0,8,15,0,73,19,0,0,9,22,0,3,8,58,15,59
+	.db	15,57,15,73,19,0,0,10,19,1,58,15,59,15,57,15,11,15,0,0,11,13,0,3,8,73,19,11,15,56,9,0,0,12,19,1,3,8,58
+	.db	15,59,15,57,15,11,15,0,0,13,21,0,54,15,39,12,0,0,14,23,1,3,8,58,15,59,15,57,15,11,15,0,0,15,52,0,3,8,58
+	.db	15,59,15,57,15,73,19,63,12,60,12,0,0,16,1,1,11,15,73,19,0,0,17,33,0,47,15,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L14:
+	.dw	.L48-.L47
+.L47:
+	.dh	3
+	.dw	.L50-.L49
+.L49:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_api.h',0,0,0,0
+	.db	'..\\include\\Internal\\SchedulingQueues.h',0,0,0,0
+	.db	'../src/kernel/StartOS.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L50:
+.L48:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_StartOS')
+.L15:
+	.dw	216
+	.dh	3
+	.dw	.L16
+	.db	4,1
+	.db	'../src/kernel/StartOS.c',0
+	.dw	.L43,.L44
+	.db	12,1
+	.dw	.L18,.L17
+	.db	2
+	.dw	.L11
+	.db	3
+	.db	'OS_StartOS',0,1,112,1,1,1,1
+	.dw	.L10,.L21,.L9
+	.db	4
+	.db	'Mode',0,1,113,35
+	.dw	.L22,.L23
+	.db	5
+	.dw	.L10,.L21
+	.db	6
+	.dw	.L24
+	.db	7
+	.db	'LocalIndex',0,1,125,16
+	.dw	.L31,.L32
+	.db	0,5
+	.dw	.L30,.L33
+	.db	7
+	.db	'LocalAlarmIndex',0,1,132,1,35
+	.dw	.L31,.L34
+	.db	5
+	.dw	.L30,.L33
+	.db	7
+	.db	'LocalIndex',0,1,134,1,20
+	.dw	.L31,.L35
+	.db	0,0,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_StartOS')
+.L16:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,11
+	.db	1,85,6,0,0,7,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_StartOS')
+.L17:
+	.dw	.L52-.L51
+.L51:
+	.dh	3
+	.dw	.L54-.L53
+.L53:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/StartOS.c',0,0,0,0,0
+.L54:
+	.db	5,1,7,0,5,2
+	.dw	.L10
+	.db	3,239,0,1,5,22,9
+	.dh	.L25-.L10
+	.db	3,5,1,5,5,9
+	.dh	.L26-.L25
+	.db	1,5,20,9
+	.dh	.L27-.L26
+	.db	1,5,19,9
+	.dh	.L28-.L27
+	.db	3,2,1,5,61,9
+	.dh	.L29-.L28
+	.db	3,6,1,5,45,9
+	.dh	.L55-.L29
+	.db	1,5,61,9
+	.dh	.L56-.L55
+	.db	1,5,85,9
+	.dh	.L37-.L56
+	.db	1,5,47,9
+	.dh	.L3-.L37
+	.db	3,2,1,5,62,9
+	.dh	.L57-.L3
+	.db	1,5,97,9
+	.dh	.L58-.L57
+	.db	3,126,1,5,67,9
+	.dh	.L2-.L58
+	.db	1,5,85,9
+	.dh	.L59-.L2
+	.db	1,5,33,9
+	.dh	.L30-.L59
+	.db	3,9,1,5,91,9
+	.dh	.L39-.L30
+	.db	3,7,1,9
+	.dh	.L60-.L39
+	.db	3,121,1,5,53,9
+	.dh	.L5-.L60
+	.db	3,2,1,5,69,9
+	.dh	.L61-.L5
+	.db	1,5,97,9
+	.dh	.L41-.L61
+	.db	3,5,1,5,114,9
+	.dh	.L62-.L41
+	.db	1,5,72,9
+	.dh	.L63-.L62
+	.db	1,5,23,9
+	.dh	.L64-.L63
+	.db	3,126,1,5,35,9
+	.dh	.L65-.L64
+	.db	1,5,13,9
+	.dh	.L66-.L65
+	.db	1,5,114,9
+	.dh	.L67-.L66
+	.db	3,2,1,5,132,1,9
+	.dh	.L42-.L67
+	.db	1,5,114,9
+	.dh	.L6-.L42
+	.db	3,4,1,5,103,9
+	.dh	.L7-.L6
+	.db	3,117,1,5,71,9
+	.dh	.L4-.L7
+	.db	1,5,91,9
+	.dh	.L68-.L4
+	.db	1,5,22,9
+	.dh	.L33-.L68
+	.db	3,24,1,5,20,9
+	.dh	.L69-.L33
+	.db	1,5,28,9
+	.dh	.L70-.L69
+	.db	3,3,1,5,1,9
+	.dh	.L71-.L70
+	.db	3,3,1,7,9
+	.dh	.L20-.L71
+	.db	0,1,1
+.L52:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_StartOS')
+.L18:
+	.dw	-1,.L19,0,.L20-.L19,0,0
+.L24:
+	.dw	-1,.L10,.L25-.L10,.L26-.L10,.L27-.L10,.L28-.L10,.L29-.L10,.L30-.L10,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L43:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L44:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_StartOS')
+.L34:
+	.dw	-1,.L10,.L41-.L10,.L42-.L10
+	.dh	1
+	.db	80
+	.dw	.L6-.L10,.L7-.L10
+	.dh	1
+	.db	80
+	.dw	0,0
+.L32:
+	.dw	-1,.L10,.L26-.L10,.L38-.L10
+	.dh	1
+	.db	85
+	.dw	.L2-.L10,.L39-.L10
+	.dh	1
+	.db	85
+	.dw	0,0
+.L35:
+	.dw	-1,.L10,.L39-.L10,.L40-.L10
+	.dh	1
+	.db	85
+	.dw	.L4-.L10,.L21-.L10
+	.dh	1
+	.db	85
+	.dw	0,0
+.L23:
+	.dw	-1,.L10,0,.L29-.L10
+	.dh	1
+	.db	80
+	.dw	.L25-.L10,.L37-.L10
+	.dh	1
+	.db	84
+	.dw	0,0
+.L9:
+	.dw	-1,.L10,0,.L36-.L10
+	.dh	2
+	.db	125,0
+	.dw	.L36-.L10,.L21-.L10
+	.dh	2
+	.db	125,20
+	.dw	.L21-.L10,.L21-.L10
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L72:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_StartOS')
+	.dw	56
+	.dw	.L72,.L10,.L21-.L10
+	.db	4
+	.dw	(.L36-.L10)/2
+	.db	19,10,22,13,3,19,125,20,17,14,126,17,7,124,17,6,122,17,5,120,17,4,118,4
+	.dw	(.L21-.L36)/2
+	.db	19,0,8,13,199,198,197,196,0,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/StartOS.c	   165  /***********************************************************************************/
+; ../src/kernel/StartOS.c	   166  /*                        Internal Function Declration                             */
+; ../src/kernel/StartOS.c	   167  /***********************************************************************************/
+; ../src/kernel/StartOS.c	   168  /**
+; ../src/kernel/StartOS.c	   169   * @defgroup InternalFunctionsDeclration
+; ../src/kernel/StartOS.c	   170   * @{
+; ../src/kernel/StartOS.c	   171   */
+; ../src/kernel/StartOS.c	   172  /** @} */ /*End of InternalFunctionsDeclration*/
+; ../src/kernel/StartOS.c	   173  /***********************************************************************************/
+; ../src/kernel/StartOS.c	   174  /*				    	 Internal Functions Definition		      				   */
+; ../src/kernel/StartOS.c	   175  /***********************************************************************************/
+; ../src/kernel/StartOS.c	   176  
+; ../src/kernel/StartOS.c	   177  /***********************************************************************************/
+; ../src/kernel/StartOS.c	   178  /*				    			 End Of File			         				   */
+; ../src/kernel/StartOS.c	   179  /***********************************************************************************/
+
+	; Module end
+	.end

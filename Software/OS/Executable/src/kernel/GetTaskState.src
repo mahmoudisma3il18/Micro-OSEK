@@ -1,0 +1,794 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.GetTaskState.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/GetTaskState.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\GetTaskState.src ../src/kernel/GetTaskState.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/GetTaskState.c'
+
+	.section	.text ,cluster('$group_OS_GetTaskState')
+	.global	OS_GetTaskState
+
+; ../src/kernel/GetTaskState.c	     1  
+; ../src/kernel/GetTaskState.c	     2  /**
+; ../src/kernel/GetTaskState.c	     3  * @file              GetTaskState.c
+; ../src/kernel/GetTaskState.c	     4  * @author            Hana Ashraf
+; ../src/kernel/GetTaskState.c	     5  * @version           1.0.0
+; ../src/kernel/GetTaskState.c	     6  * @date              05-12-2023
+; ../src/kernel/GetTaskState.c	     7  * @platform          NA
+; ../src/kernel/GetTaskState.c	     8  * @variant           NA
+; ../src/kernel/GetTaskState.c	     9  * @vendor            CryptOS	
+; ../src/kernel/GetTaskState.c	    10  * @specification     OSEK/VDX
+; ../src/kernel/GetTaskState.c	    11  * @brief             Source code of GetTaskState.
+; ../src/kernel/GetTaskState.c	    12  * Implementation of source code of GetTaskState which is a service offered by Task Management.
+; ../src/kernel/GetTaskState.c	    13  *
+; ../src/kernel/GetTaskState.c	    14  */
+; ../src/kernel/GetTaskState.c	    15  
+; ../src/kernel/GetTaskState.c	    16  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/GetTaskState.c	    17  
+; ../src/kernel/GetTaskState.c	    18  
+; ../src/kernel/GetTaskState.c	    19  /**********************************************************************************/
+; ../src/kernel/GetTaskState.c	    20  /*                		Include Headers			         	  */
+; ../src/kernel/GetTaskState.c	    21  /**********************************************************************************/
+; ../src/kernel/GetTaskState.c	    22  #include <OS_kernel.h>
+; ../src/kernel/GetTaskState.c	    23  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    24  /*  			    	 Macros		                                   */
+; ../src/kernel/GetTaskState.c	    25  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    26  
+; ../src/kernel/GetTaskState.c	    27  
+; ../src/kernel/GetTaskState.c	    28  /****************************** Moudle Version Check ******************************/	
+; ../src/kernel/GetTaskState.c	    29  
+; ../src/kernel/GetTaskState.c	    30  
+; ../src/kernel/GetTaskState.c	    31  /***************************** Autosar version Check ********************************/
+; ../src/kernel/GetTaskState.c	    32  
+; ../src/kernel/GetTaskState.c	    33  /******************************* DET Version Check **********************************/
+; ../src/kernel/GetTaskState.c	    34  
+; ../src/kernel/GetTaskState.c	    35  /************************** Internal Module Specific Macros *************************/
+; ../src/kernel/GetTaskState.c	    36  
+; ../src/kernel/GetTaskState.c	    37  
+; ../src/kernel/GetTaskState.c	    38  /************************************************************************************/
+; ../src/kernel/GetTaskState.c	    39  /*				    	Internal Type Definitions	            */
+; ../src/kernel/GetTaskState.c	    40  /************************************************************************************/
+; ../src/kernel/GetTaskState.c	    41  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/GetTaskState.c	    42  
+; ../src/kernel/GetTaskState.c	    43  /***************************************************************************************/
+; ../src/kernel/GetTaskState.c	    44  /*                            External Global Variables                                */
+; ../src/kernel/GetTaskState.c	    45  /***************************************************************************************/ 
+; ../src/kernel/GetTaskState.c	    46  
+; ../src/kernel/GetTaskState.c	    47  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    48  /*				    External constants	                           */
+; ../src/kernel/GetTaskState.c	    49  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    50  
+; ../src/kernel/GetTaskState.c	    51  /***************************************************************************************/
+; ../src/kernel/GetTaskState.c	    52  /*                              Internal Global Variables                              */
+; ../src/kernel/GetTaskState.c	    53  /***************************************************************************************/ 
+; ../src/kernel/GetTaskState.c	    54  
+; ../src/kernel/GetTaskState.c	    55  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    56  /*				Internal constants	                          */
+; ../src/kernel/GetTaskState.c	    57  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    58  
+; ../src/kernel/GetTaskState.c	    59  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    60  /*                        External Function Declration                             */
+; ../src/kernel/GetTaskState.c	    61  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    62  
+; ../src/kernel/GetTaskState.c	    63  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    64  /*			 External Functions Definition                             */
+; ../src/kernel/GetTaskState.c	    65  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	    66  /**
+; ../src/kernel/GetTaskState.c	    67   * @brief GetTaskState returns the state of a task at the time of calling GetTaskState.
+; ../src/kernel/GetTaskState.c	    68   *
+; ../src/kernel/GetTaskState.c	    69   * This API returns the state of a task (running, ready, waiting, suspended) at the time of calling GetTaskState.
+; ../src/kernel/GetTaskState.c	    70   *
+; ../src/kernel/GetTaskState.c	    71   * @service 				  				GetTaskState
+; ../src/kernel/GetTaskState.c	    72   * @syntax                                  StatusType GetTaskState ( TaskType <TaskID>,TaskStateRefType <State> )
+; ../src/kernel/GetTaskState.c	    73   * @service 				  				0xD6u
+; ../src/kernel/GetTaskState.c	    74   * @sync/async 				  			    Synchronous
+; ../src/kernel/GetTaskState.c	    75   * @reentrancy                              Non-Reentrant
+; ../src/kernel/GetTaskState.c	    76   * @param[in]  		            TaskID	    Task reference
+; ../src/kernel/GetTaskState.c	    77   * @param[inout]                None        -
+; ../src/kernel/GetTaskState.c	    78   * @param[out]                  State       Reference to the state of the task <TaskID>
+; ../src/kernel/GetTaskState.c	    79   * @return                      StatusType  Standard: • No error, E_OK
+; ../src/kernel/GetTaskState.c	    80                                              Extended: • Task <TaskID> is invalid, E_OS_ID
+; ../src/kernel/GetTaskState.c	    81   * @see             		                NA
+; ../src/kernel/GetTaskState.c	    82   * @note            		                Conformance:BCC1, BCC2, ECC1, ECC2
+; ../src/kernel/GetTaskState.c	    83   * @warning         		                NA
+; ../src/kernel/GetTaskState.c	    84   */
+; ../src/kernel/GetTaskState.c	    85  
+; ../src/kernel/GetTaskState.c	    86  
+; ../src/kernel/GetTaskState.c	    87  FUNC(StatusType, OS_CODE) OS_GetTaskState 
+; Function OS_GetTaskState
+.L15:
+	.thumb
+	.align	4
+OS_GetTaskState:	.type	func
+
+.L6:
+	push	{r4}
+.L24:
+
+; ../src/kernel/GetTaskState.c	    88  ( 
+; ../src/kernel/GetTaskState.c	    89      CONST(TaskType, AUTOMATIC) TaskID, 
+; ../src/kernel/GetTaskState.c	    90      VAR(TaskStateRefType,AUTOMATIC) State
+; ../src/kernel/GetTaskState.c	    91  )
+; ../src/kernel/GetTaskState.c	    92  {
+; ../src/kernel/GetTaskState.c	    93      /*Start of critical section*/
+; ../src/kernel/GetTaskState.c	    94      /*The execution of the API must not be interrupted in order to prevent getting the wrong TaskID*/
+; ../src/kernel/GetTaskState.c	    95  
+; ../src/kernel/GetTaskState.c	    96      /*The default value of ReturnType is E_OK*/
+; ../src/kernel/GetTaskState.c	    97      StatusType ReturnStatus = E_OK;
+	movs	r2,#0
+.L27:
+
+; ../src/kernel/GetTaskState.c	    98  
+; ../src/kernel/GetTaskState.c	    99      /*Check in case of extended error checking if TaskID is invalid*/
+; ../src/kernel/GetTaskState.c	   100  	#if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/GetTaskState.c	   101  	
+; ../src/kernel/GetTaskState.c	   102  	if (TaskID > TASK_COUNT)
+; ../src/kernel/GetTaskState.c	   103      {
+; ../src/kernel/GetTaskState.c	   104  			  /*[SWS_OS_00005]		If the ID is invalid, E_OS_ID is returned.*/
+; ../src/kernel/GetTaskState.c	   105          ReturnStatus = E_OS_ID;
+; ../src/kernel/GetTaskState.c	   106      }
+; ../src/kernel/GetTaskState.c	   107  	#endif /*(ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/GetTaskState.c	   108  	
+; ../src/kernel/GetTaskState.c	   109      /*In case of E_OK , get the state of the task*/
+; ../src/kernel/GetTaskState.c	   110  	if (E_OK == ReturnStatus)
+	bne	.L2
+.L41:
+
+; ../src/kernel/GetTaskState.c	   111  	{
+; ../src/kernel/GetTaskState.c	   112  		/*[SWS_OS_10204]     GetTaskState returns the state of a task (running, ready, waiting, suspended) at the time of calling the service.*/
+; ../src/kernel/GetTaskState.c	   113  		*State = Tasks[TaskID].TaskDynamics->TaskState; 
+	movs	r3,#28
+.L42:
+	ldr	r4,.L4
+.L43:
+	mla	r0,r0,r3,r4
+.L26:
+	ldr	r0,[r0,#20]
+.L44:
+	ldrb	r0,[r0,#21]
+.L45:
+	strb	r0,[r1,#0]
+.L2:
+
+; ../src/kernel/GetTaskState.c	   114  	}
+; ../src/kernel/GetTaskState.c	   115  
+; ../src/kernel/GetTaskState.c	   116  	return ReturnStatus;
+	mov	r0,r2
+.L28:
+
+; ../src/kernel/GetTaskState.c	   117  	
+; ../src/kernel/GetTaskState.c	   118  	/*End of critical section*/
+; ../src/kernel/GetTaskState.c	   119  }
+	pop	{r4}
+.L25:
+	bx	lr
+.L18:
+	.align	4
+.L4:
+	.dw	Tasks
+.L16:
+	.size	OS_GetTaskState,$-OS_GetTaskState
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_GetTaskState','',4
+	.extern	Tasks
+	.section	.debug_info
+.L8:
+	.dw	3214
+	.dh	3
+	.dw	.L9
+	.db	4
+.L7:
+	.db	1
+	.db	'../src/kernel/GetTaskState.c',0
+	.dw	.L29,.L30
+	.db	12,1
+	.dw	.L10
+.L17:
+	.db	2
+	.db	'unsigned char',0,1,8
+.L19:
+	.db	3
+	.dw	55
+	.db	4
+	.dw	55
+	.db	4
+	.dw	55
+.L21:
+	.db	5
+	.db	'TaskStateRefType',0,1,192,1,53
+	.dw	82
+	.db	6,1,4
+	.dw	113
+	.db	5
+	.db	'__codeptr',0,2,1,1
+	.dw	115
+	.db	2
+	.db	'int',0,4,5,7,3,87,10,4,8
+	.db	'x',0
+	.dw	138
+	.db	4,2,35,0,0,5
+	.db	'Os_ContexType',0,3,90,2
+	.dw	145
+	.db	5
+	.db	'boolean',0,4,242,1,23
+	.dw	55
+	.db	5
+	.db	'uint8',0,4,247,1,23
+	.dw	55
+	.db	2
+	.db	'unsigned short int',0,2,7,5
+	.db	'uint16',0,4,252,1,24
+	.dw	216
+	.db	2
+	.db	'unsigned int',0,4,7,5
+	.db	'uint32',0,4,129,2,22
+	.dw	254
+	.db	5
+	.db	'StatusType',0,5,191,1,23
+	.dw	55
+	.db	5
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	55
+	.db	5
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	55
+	.db	5
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	55
+	.db	5
+	.db	'TaskType',0,1,183,1,29
+	.dw	55
+	.db	5
+	.db	'TaskStateType',0,1,189,1,29
+	.dw	55
+	.db	5
+	.db	'TaskPriorityType',0,1,195,1,29
+	.dw	55
+	.db	5
+	.db	'ResourceType',0,1,198,1,29
+	.dw	55
+	.db	5
+	.db	'EventMaskType',0,1,201,1,30
+	.dw	254
+	.db	5
+	.db	'AppModeType',0,1,207,1,28
+	.dw	55
+	.db	5
+	.db	'OsStateType',0,1,210,1,28
+	.dw	55
+	.db	5
+	.db	'TickType',0,1,214,1,30
+	.dw	254
+	.db	9
+	.db	'AlarmBaseType_s',0,1,230,1,8,12,8
+	.db	'maxallowedvalue',0
+	.dw	254
+	.db	4,2,35,0,8
+	.db	'ticksperbase',0
+	.dw	254
+	.db	4,2,35,4,8
+	.db	'mincycle',0
+	.dw	254
+	.db	4,2,35,8,0,5
+	.db	'AlarmBaseType',0,1,220,1,32
+	.dw	568
+	.db	5
+	.db	'AlarmType',0,1,226,1,28
+	.dw	55
+	.db	9
+	.db	'Os_InernalResourceDynamic_s',0,6,66,8,2,8
+	.db	'TakenTaskPriority',0
+	.dw	55
+	.db	1,2,35,0,8
+	.db	'TakenFlag',0
+	.dw	55
+	.db	1,2,35,1,0,5
+	.db	'Os_InernalResourceDynamic',0,6,55,44
+	.dw	698
+	.db	3
+	.dw	55
+	.db	4
+	.dw	698
+	.db	9
+	.db	'Os_InteranlResource_s',0,6,79,8,8,8
+	.db	'CeilingPriority',0
+	.dw	812
+	.db	1,2,35,0,8
+	.db	'InternalResourceDynamics',0
+	.dw	817
+	.db	4,2,35,4,0,5
+	.db	'Os_InteranlResource',0,6,57,38
+	.dw	822
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	4
+	.dw	.L31-.L8
+	.db	9
+	.db	'Os_ResourceDynamic_s',0,6,105,8,8,8
+	.db	'OwnerTaskPriority',0
+	.dw	55
+	.db	1,2,35,0,8
+	.db	'OwnerTaskID',0
+	.dw	55
+	.db	1,2,35,1,8
+	.db	'LinkedResource',0
+	.dw	947
+	.db	4,2,35,4,0,4
+	.dw	952
+.L31:
+	.db	9
+	.db	'Os_Resource_s',0,6,92,8,8,8
+	.db	'CeilingPriority',0
+	.dw	937
+	.db	1,2,35,0,8
+	.db	'ResourceID',0
+	.dw	942
+	.db	1,2,35,1,8
+	.db	'ResourceDynamics',0
+	.dw	1051
+	.db	4,2,35,4,0,5
+	.db	'Os_Resource',0,6,59,30
+	.dw	1056
+	.db	5
+	.db	'Os_ResourceDynamic',0,6,61,37
+	.dw	952
+	.db	4
+	.dw	254
+	.db	5
+	.db	'StackPtrType',0,7,143,1,30
+	.dw	1194
+	.db	5
+	.db	'StackSizeType',0,7,145,1,31
+	.dw	254
+	.db	5
+	.db	'TaskActivationCounterType',0,7,147,1,30
+	.dw	55
+	.db	5
+	.db	'QueueIndexType',0,7,149,1,30
+	.dw	55
+	.db	10,1,1,4
+	.dw	1303
+	.db	5
+	.db	'EntryFunctionPtrType',0,7,151,1,9
+	.dw	1306
+	.db	9
+	.db	'TaskFlagsType_s',0,7,172,1,8,2,8
+	.db	'Type',0
+	.dw	55
+	.db	1,2,35,0,8
+	.db	'TaskSchedulingPolicy',0
+	.dw	55
+	.db	1,2,35,1,0,5
+	.db	'TaskFlagsType',0,7,155,1,32
+	.dw	1341
+	.db	9
+	.db	'TaskStackType_s',0,7,243,1,8,12,8
+	.db	'StackBase',0
+	.dw	1199
+	.db	4,2,35,0,8
+	.db	'CurrentStackPtr',0
+	.dw	1199
+	.db	4,2,35,4,8
+	.db	'StackSize',0
+	.dw	254
+	.db	4,2,35,8,0,5
+	.db	'TaskStackType',0,7,157,1,32
+	.dw	1431
+	.db	4
+	.dw	254
+	.db	4
+	.dw	145
+	.db	9
+	.db	'Os_TaskDynamic_s',0,7,214,1,8,24,8
+	.db	'Context',0
+	.dw	1545
+	.db	4,2,35,0,8
+	.db	'Resources',0
+	.dw	947
+	.db	4,2,35,4,8
+	.db	'PriorityQueueIndex',0
+	.dw	55
+	.db	1,2,35,8,8
+	.db	'EventsSet',0
+	.dw	254
+	.db	4,2,35,12,8
+	.db	'EventsWaiting',0
+	.dw	254
+	.db	4,2,35,16,8
+	.db	'TaskCurrentPriority',0
+	.dw	55
+	.db	1,2,35,20,8
+	.db	'TaskState',0
+	.dw	55
+	.db	1,2,35,21,8
+	.db	'PendingActivationRequests',0
+	.dw	55
+	.db	1,2,35,22,0,5
+	.db	'Os_TaskDynamic',0,7,159,1,33
+	.dw	1550
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	3
+	.dw	55
+	.db	4
+	.dw	1341
+	.db	4
+	.dw	1431
+	.db	3
+	.dw	1311
+	.db	4
+	.dw	822
+	.db	4
+	.dw	1550
+	.db	9
+	.db	'Os_Task_s',0,7,186,1,8,28,8
+	.db	'TaskStaticPriority',0
+	.dw	1787
+	.db	1,2,35,0,8
+	.db	'TaskID',0
+	.dw	1792
+	.db	1,2,35,1,8
+	.db	'ApplicationMode',0
+	.dw	1797
+	.db	1,2,35,2,8
+	.db	'NumOfActivationRequests',0
+	.dw	1802
+	.db	1,2,35,3,8
+	.db	'TaskFlags',0
+	.dw	1807
+	.db	4,2,35,4,8
+	.db	'TaskStack',0
+	.dw	1812
+	.db	4,2,35,8,8
+	.db	'EntryPoint',0
+	.dw	1817
+	.db	4,2,35,12,8
+	.db	'InternalResource',0
+	.dw	1822
+	.db	4,2,35,16,8
+	.db	'TaskDynamics',0
+	.dw	1827
+	.db	4,2,35,20,8
+	.db	'EventsOwned',0
+	.dw	254
+	.db	4,2,35,24,0,5
+	.db	'Os_Task',0,7,161,1,26
+	.dw	1832
+	.db	4
+	.dw	1303
+	.db	9
+	.db	'Os_CpuLoad_s',0,7,155,2,8,8,8
+	.db	'IdleTime',0
+	.dw	254
+	.db	4,2,35,0,8
+	.db	'CurrentCpuLoad',0
+	.dw	55
+	.db	1,2,35,4,8
+	.db	'PeakCpuLoad',0
+	.dw	55
+	.db	1,2,35,5,0,5
+	.db	'Os_CpuLoad',0,7,165,1,29
+	.dw	2100
+	.db	3
+	.dw	254
+	.db	3
+	.dw	254
+	.db	3
+	.dw	254
+	.db	3
+	.dw	55
+	.db	3
+	.dw	254
+	.db	9
+	.db	'Os_Counter_s',0,8,44,8,28,8
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2203
+	.db	4,2,35,0,8
+	.db	'OsCounterMinCycle',0
+	.dw	2208
+	.db	4,2,35,4,8
+	.db	'OsCounterTicksPerBase',0
+	.dw	2213
+	.db	4,2,35,8,8
+	.db	'OsCounterType',0
+	.dw	2218
+	.db	1,2,35,12,8
+	.db	'OsSecondsPerTick',0
+	.dw	2223
+	.db	4,2,35,16,8
+	.db	'OsCounterCurrentTicks',0
+	.dw	254
+	.db	4,2,35,20,8
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	55
+	.db	1,2,35,24,0,5
+	.db	'Os_Counter',0,8,42,29
+	.dw	2228
+	.db	9
+	.db	'Os_AlarmActivateTask_s',0,9,140,1,8,1,8
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	55
+	.db	1,2,35,0,0,4
+	.dw	2472
+	.db	9
+	.db	'Os_AlarmSetEvent_s',0,9,146,1,8,8,8
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	55
+	.db	1,2,35,0,8
+	.db	'OsAlarmSetEventRef',0
+	.dw	254
+	.db	4,2,35,4,0,4
+	.dw	2539
+	.db	5
+	.db	'CallbackFuncPtrType',0,9,88,9
+	.dw	1306
+	.db	3
+	.dw	2630
+	.db	11
+	.db	'Os_AlarmAction_u',0,9,92,7,4,8
+	.db	'OsAlarmActivateTask',0
+	.dw	2534
+	.db	4,2,35,0,8
+	.db	'OsAlarmSetEventTask',0
+	.dw	2625
+	.db	4,2,35,0,8
+	.db	'OsAlarmCallbackName',0
+	.dw	2658
+	.db	4,2,35,0,0,4
+	.dw	2228
+	.db	4
+	.dw	.L32-.L8
+.L32:
+	.db	9
+	.db	'Os_Alarm_s',0,9,104,8,36,8
+	.db	'OsAlarmAction',0
+	.dw	2663
+	.db	4,2,35,0,8
+	.db	'OsAlarmActionType',0
+	.dw	55
+	.db	1,2,35,4,8
+	.db	'OsAlarmExpiryTime',0
+	.dw	254
+	.db	4,2,35,8,8
+	.db	'OsAlarmCycleTime',0
+	.dw	254
+	.db	4,2,35,12,8
+	.db	'OsAlarmState',0
+	.dw	55
+	.db	1,2,35,16,8
+	.db	'OsAlarmCounterRef',0
+	.dw	2773
+	.db	4,2,35,20,8
+	.db	'OsAlarmNext',0
+	.dw	2778
+	.db	4,2,35,24,8
+	.db	'OsAlarmPrevious',0
+	.dw	2778
+	.db	4,2,35,28,8
+	.db	'OsAlarmAlarmTime',0
+	.dw	55
+	.db	1,2,35,32,8
+	.db	'OsAlarmAutoStartType',0
+	.dw	55
+	.db	1,2,35,33,0,5
+	.db	'Os_Alarm',0,9,73,45
+	.dw	2783
+	.db	4
+	.dw	1303
+	.db	5
+	.db	'Os_AlarmAction',0,9,76,45
+	.dw	2663
+	.db	5
+	.db	'Os_AlarmActivateTask',0,9,79,41
+	.dw	2472
+	.db	5
+	.db	'Os_AlarmSetEvent',0,9,82,38
+	.dw	2539
+	.db	12,112
+	.dw	1832
+	.db	13,3,0,14
+	.db	'Tasks',0,10,38,20
+	.dw	3153
+	.db	1,1,5
+	.db	'QueueSize',0,11,183,1,29
+	.dw	55
+	.db	5
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	55
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L9:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,15,0,73
+	.db	19,0,0,5,22,0,3,8,58,15,59,15,57,15,73,19,0,0,6,21,0,54,15,0,0,7,19,1,58,15,59,15,57,15,11,15,0,0,8,13
+	.db	0,3,8,73,19,11,15,56,9,0,0,9,19,1,3,8,58,15,59,15,57,15,11,15,0,0,10,21,0,54,15,39,12,0,0,11,23,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,12,1,1,11,15,73,19,0,0,13,33,0,47,15,0,0,14,52,0,3,8,58,15,59,15,57,15,73
+	.db	19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L10:
+	.dw	.L34-.L33
+.L33:
+	.dh	3
+	.dw	.L36-.L35
+.L35:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'../src/kernel/GetTaskState.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L36:
+.L34:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_GetTaskState')
+.L11:
+	.dw	173
+	.dh	3
+	.dw	.L12
+	.db	4,1
+	.db	'../src/kernel/GetTaskState.c',0
+	.dw	.L29,.L30
+	.db	12,1
+	.dw	.L14,.L13
+	.db	2
+	.dw	.L7
+	.db	3
+	.db	'OS_GetTaskState',0,1,87,27
+	.dw	.L17
+	.db	1,1,1
+	.dw	.L6,.L18,.L5
+	.db	4
+	.db	'TaskID',0,1,89,32
+	.dw	.L19,.L20
+	.db	4
+	.db	'State',0,1,90,37
+	.dw	.L21,.L22
+	.db	5
+	.dw	.L6,.L18
+	.db	6
+	.db	'ReturnStatus',0,1,97,16
+	.dw	.L17,.L23
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_GetTaskState')
+.L12:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_GetTaskState')
+.L13:
+	.dw	.L38-.L37
+.L37:
+	.dh	3
+	.dw	.L40-.L39
+.L39:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/GetTaskState.c',0,0,0,0,0
+.L40:
+	.db	5,27,7,0,5,2
+	.dw	.L6
+	.db	3,214,0,1,5,31,9
+	.dh	.L24-.L6
+	.db	3,10,1,5,2,9
+	.dh	.L27-.L24
+	.db	3,13,1,5,17,7,9
+	.dh	.L41-.L27
+	.db	3,3,1,5,12,9
+	.dh	.L42-.L41
+	.db	1,5,17,9
+	.dh	.L43-.L42
+	.db	1,5,25,9
+	.dh	.L26-.L43
+	.db	1,5,38,9
+	.dh	.L44-.L26
+	.db	1,5,10,9
+	.dh	.L45-.L44
+	.db	1,5,2,9
+	.dh	.L2-.L45
+	.db	3,3,1,5,1,9
+	.dh	.L28-.L2
+	.db	3,3,1,9
+	.dh	.L16-.L28
+	.db	0,1,1
+.L38:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_GetTaskState')
+.L14:
+	.dw	-1,.L15,0,.L16-.L15,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L30:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L29:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_GetTaskState')
+.L5:
+	.dw	-1,.L6,0,.L24-.L6
+	.dh	2
+	.db	125,0
+	.dw	.L24-.L6,.L25-.L6
+	.dh	2
+	.db	125,4
+	.dw	.L25-.L6,.L18-.L6
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L23:
+	.dw	-1,.L6,.L27-.L6,.L18-.L6
+	.dh	1
+	.db	82
+	.dw	.L28-.L6,.L18-.L6
+	.dh	1
+	.db	80
+	.dw	0,0
+.L22:
+	.dw	-1,.L6,0,.L18-.L6
+	.dh	1
+	.db	81
+	.dw	0,0
+.L20:
+	.dw	-1,.L6,0,.L26-.L6
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L46:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_GetTaskState')
+	.dw	64
+	.dw	.L46,.L6,.L18-.L6
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L24-.L6)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L25-.L24)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/GetTaskState.c	   120  
+; ../src/kernel/GetTaskState.c	   121  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	   122  /*                        Internal Function Declration                             */
+; ../src/kernel/GetTaskState.c	   123  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	   124  
+; ../src/kernel/GetTaskState.c	   125  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	   126  /*		 Internal Functions Definition		      		           */
+; ../src/kernel/GetTaskState.c	   127  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	   128  
+; ../src/kernel/GetTaskState.c	   129  /***********************************************************************************/
+; ../src/kernel/GetTaskState.c	   130  /*			 End Of File			         		   */
+; ../src/kernel/GetTaskState.c	   131  /***********************************************************************************/
+
+	; Module end
+	.end

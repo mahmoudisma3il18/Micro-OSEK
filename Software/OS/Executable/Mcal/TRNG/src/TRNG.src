@@ -1,0 +1,1948 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/TRNG/src/.TRNG.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/TRNG/src/TRNG.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\TRNG\\src\\TRNG.src ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../../TC399x/HSM/Mcal/TRNG/src/TRNG.c'
+
+	.section	.text ,cluster('$group_TrngInit')
+	.global	TrngInit
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     1  /** 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     2   * @file 	TRNG.c
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     3   * @author  Shiry Ezzat
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     4   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     5   * @date	05-03-2024
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     6   * @platform    -- 	
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     7   * @variant		--
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     8   * @vendor		--
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	     9   * @specification --
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    10   * @brief   HSM True Random Number Generator (TRNG) source code.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    11  */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    12  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    13  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    14  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    15  /*                               INCLUDE HEADERS	                              */  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    16  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    17  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    18  #include "TRNG.h"
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    19  #include "NVIC.h"
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    20  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    21  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    22  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    23  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    24  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    25  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    26  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    27  /*                                 TypeDefnitions                                  */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    28  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    29  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    30  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    31  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    32  /*                        Internal Function Declration                             */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    33  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    34  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    35  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    36  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    37  /*                        External Function Declration                             */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    38  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    39  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    40  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    41  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    42  /*				                External constants		         				   */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    43  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    44  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    45  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    46  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    47  /*			              External data	shared global varaibles	         	       */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    48  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    49  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    50  VAR(TrngDataType, TRNG_CODE) TrngData;
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    51  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    52  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    53  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    54  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    55  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    56  /**
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    57   * @brief Initialization function for TRNG.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    58   *
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    59   * This function enables the TRNG interrupt and Resets it.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    60   *
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    61   * @service name    TrngInit
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    62   * @syntax          void TrngInit
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    63   *                  (   CONSTP2CONST(TrngConfigType, TRNG_CODE ,AUTOMATIC) PtrTrngConfig);
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    64   * @service ID      -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    65   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    66   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    67   * @param[in]       PtrTrngConfig A pointer to the TRNG configuration structure.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    68   * @param[out]      -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    69   * @param[in/out]   -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    70   * @return          void
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    71   * @see             -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    72   * @note            This function enables the TRNG interrupt and Resets it.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    73   * @warning         -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    74   */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    75  FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    76  TrngInit (CONSTP2CONST(TrngConfigType, TRNG_CODE ,AUTOMATIC) PtrTrngConfig)
+; Function TrngInit
+.L58:
+	.thumb
+	.align	4
+TrngInit:	.type	func
+
+.L33:
+	push	{lr}
+.L123:
+	mov	r2,r0
+.L125:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    77  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    78      TrngDisable();
+	bl	TrngDisable
+.L124:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    79  	
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    80      if (!(PtrTrngConfig->TrngPolling))
+	ldrb	r0,[r2,#0]
+.L154:
+	cbnz	r0,.L2
+.L155:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    81      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    82          NVIC_ClearPendingIRQ(TRNG_IRQn);
+	movs	r0,#2
+	bl	NVIC_ClearPendingIRQ
+.L126:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    83          NVIC_EnableIRQ(TRNG_IRQn);
+	movs	r0,#2
+	bl	NVIC_EnableIRQ
+.L2:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    84      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    85  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    86      TrngReset();			//turn trng 32bit on
+	bl	TrngReset
+.L156:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    87  	TrngRead();				//Dummy Read to unlock the TRGN
+	bl	TrngRead
+.L157:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    88  }
+	pop	{pc}
+.L59:
+	.size	TrngInit,$-TrngInit
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngGetData')
+	.global	TrngGetData
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    89  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    90  /**
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    91   * @brief Get the Random data generated
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    92   *
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    93   * This function checks the TRNG status to ensure the availability of random data.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    94   * If the TRNG warns of low entropy, it discards the data and clears the warning 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    95   * flag. If a FIPS error occurs, it turns off the TRNG, discards the data, and 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    96   * clears the error flag. If random data is ready, it reads the value of the 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    97   * generated random number.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    98   *
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	    99   * @service name    TrngGetData
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   100   * @syntax          FUNC(void, TRNG_CODE) TrngGetData 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   101   *                  (   CONSTP2VAR(TrngConfigType, TRNG_CODE ,AUTOMATIC) PtrTrngConfig,
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   102   *                      CONSTP2VAR(TrngDataRequestType, TRNG_CODE ,AUTOMATIC) PtrTrngData)
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   103   * @service ID      -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   104   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   105   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   106   * @param[in]       PtrTrngConfig A pointer to the TRNG configuration structure.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   107   * @param[out]      -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   108   * @param[in/out]   PtrTrngDat A pointer to the structure to store the retrieved random data.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   109   * @return          void
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   110   * @see             -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   111   * @note            This function enables the TRNG interrupt and Resets it.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   112   * @warning         -
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   113   */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   114  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   115  FUNC(TrngStatusType, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   116  TrngGetData 
+; Function TrngGetData
+.L64:
+	.thumb
+	.align	4
+TrngGetData:	.type	func
+
+.L35:
+	push	{r4,lr}
+.L127:
+	mov	r4,r0
+.L130:
+	mov	r3,r1
+.L132:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   117  (
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   118      CONSTP2CONST(TrngConfigType, TRNG_CODE ,AUTOMATIC) PtrTrngConfig,
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   119      CONSTP2VAR(TrngDataSingleRequestType, TRNG_CODE ,AUTOMATIC) PtrTrngData
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   120  )
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   121  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   122      VAR(TrngStatusType, AUTOMATIC) RetVal = TRNG_NOT_READY;
+	movs	r2,#2
+.L133:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   123  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   124      /* Store the address of the RandomData member of PtrTrngData in a local pointer */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   125      TrngData.PtrRandomDataSingle = (PtrTrngData->PtrSingleRandomData);
+	ldr	r1,[r3,#0]
+.L129:
+	ldr	r0,.L30
+.L128:
+	str	r1,[r0,#0]
+.L162:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   126  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   127      /* Store the address of PtrTrngData in a global pointer */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   128      TrngData.PtrTrngDataSingleRequest = PtrTrngData;
+	str	r3,[r0,#4]
+.L163:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   129  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   130      /* Store the address of CallBack Function */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   131      TrngData.TrngCallbackSingle = PtrTrngData->TrngCallbackSingle;
+	ldr	r1,[r3,#8]
+.L164:
+	str	r1,[r0,#8]
+.L165:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   132  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   133      /* Check if the requested data size matches the current TRNG data block size */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   134      if (HSM_TRNG->TRNG_CTRL.BF.DBS != PtrTrngData->RandomDataSize)
+	movw	r0,#@lsh(-335543792)
+	movt	r0,#@msh(-335543792)
+	ldrh	r1,[r0,#0]
+	ands	r1,r1,#3
+.L166:
+	ldrb	r0,[r3,#4]
+.L167:
+	cmp	r1,r0
+	beq	.L3
+.L168:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   135      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   136          /* Adjust TRNG data block size */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   137          TrngChangeDataBlockSize(PtrTrngData->RandomDataSize);
+	bl	TrngChangeDataBlockSize
+.L134:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   138          /* Dummy Read random data to unlock TRNG */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   139          TrngRead();
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   140          /* Data requested is of different size than previous */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   141          RetVal = TRNG_DIFFRENT_SIZE;
+	movs	r2,#1
+.L135:
+	b	.L4
+.L3:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   142      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   143      else if (HSM_TRNG->TRNG_STAT.REG == TRNG_STAT_RESET)
+	movw	r0,#@lsh(-335543796)
+	movt	r0,#@msh(-335543796)
+	ldrh	r0,[r0,#0]
+.L169:
+	cbnz	r0,.L5
+.L170:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   144      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   145          /* Read TRNG */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   146          *((uint32*)PtrTrngData->PtrSingleRandomData) = TrngRead();
+	ldr	r1,[r3,#0]
+.L171:
+	bl	TrngRead
+.L172:
+	str	r0,[r1,#0]
+.L173:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   147          /* Data is put in the input pointer successfully */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   148          RetVal = TRNG_OK;
+	movs	r2,#0
+.L174:
+	b	.L6
+.L5:
+.L4:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   149      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   150      else
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   151      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   152          /* Dummy Read random data to unlock TRNG */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   153          TrngRead();
+	bl	TrngRead
+.L6:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   154      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   155      
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   156      /* If polling mode is enabled */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   157      if (PtrTrngConfig->TrngPolling)
+	ldrb	r0,[r4,#0]
+.L175:
+	cbz	r0,.L7
+.L176:
+	movw	r4,#@lsh(-335543796)
+.L131:
+	movt	r4,#@msh(-335543796)
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   158      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   159          /* Wait until the TRNG status indicates data is ready */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   160          while (HSM_TRNG->TRNG_STAT.REG == TRNG_STAT_RESET);
+.L9:
+	ldrh	r0,[r4,#0]
+.L177:
+	cmp	r0,#0
+	beq	.L9
+.L178:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   161  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   162          /* Handle low entropy warning */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   163          while (HSM_TRNG->TRNG_STAT.BF.WARN == TRNG_STAT_WARN_LOW)
+	b	.L10
+.L11:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   164          {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   165              TrngWarnHandle();
+	bl	TrngWarnHandle
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   166              while (HSM_TRNG->TRNG_STAT.REG == TRNG_STAT_RESET);
+.L13:
+	ldrh	r0,[r4,#0]
+.L179:
+	cmp	r0,#0
+	beq	.L13
+.L10:
+	ldrh	r0,[r4,#0]
+.L180:
+	tst	r0,#512
+	bne	.L11
+.L181:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   167          }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   168          
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   169          /* Handle FIPS error */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   170          if (HSM_TRNG->TRNG_STAT.BF.FIPS_ERR == TRNG_STAT_FIPS_ERR_ERROR)
+	ldrh	r0,[r4,#0]
+.L182:
+	tst	r0,#4
+	beq	.L14
+.L183:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   171          {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   172              TrngDisable();
+	bl	TrngDisable
+.L184:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   173              TrngErrorHandle();
+	bl	TrngErrorHandle
+.L185:
+	b	.L15
+.L14:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   174          }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   175          /* If data is ready */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   176          else if (HSM_TRNG->TRNG_STAT.REG == TRNG_STAT_DTA_RDY_RDY)
+	ldrh	r0,[r4,#0]
+.L186:
+	cmp	r0,#1
+	bne	.L16
+.L187:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   177          {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   178              if (PtrTrngData->PtrSingleRandomData != NULL_PTR)
+	ldr	r1,[r3,#0]
+.L188:
+	cbz	r1,.L17
+.L189:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   179              {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   180                  /* Read the value of the generated number */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   181                  *((uint32*)PtrTrngData->PtrSingleRandomData) = TrngRead();
+	bl	TrngRead
+.L190:
+	str	r0,[r1,#0]
+.L191:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   182  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   183                  RetVal = TRNG_OK;       
+	movs	r2,#0
+.L17:
+.L16:
+.L15:
+.L7:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   184              }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   185          }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   186      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   187  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   188      return RetVal;
+	mov	r0,r2
+.L136:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   189  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   190  }
+	pop	{r4,pc}
+.L113:
+	.align	4
+.L30:
+	.dw	TrngData
+.L65:
+	.size	TrngGetData,$-TrngGetData
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_Trng_Handler')
+	.global	Trng_Handler
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   191  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   192  /**
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   193    * @brief  This function handles Trng interrupt request.
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   194    * @param  None
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   195    * @retval None
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   196    */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   197  void Trng_Handler(void)
+; Function Trng_Handler
+.L106:
+	.thumb
+	.align	4
+Trng_Handler:	.type	func
+
+.L37:
+	push	{r4,lr}
+.L137:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   198  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   199      if (HSM_TRNG->TRNG_STAT.BF.WARN == TRNG_STAT_WARN_LOW)
+	movw	r0,#@lsh(-335543796)
+	movt	r0,#@msh(-335543796)
+	ldrh	r1,[r0,#0]
+.L235:
+	tst	r1,#512
+	beq	.L19
+.L236:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   200      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   201          TrngWarnHandle();
+	bl	TrngWarnHandle
+.L237:
+	pop	{r4,pc}
+.L19:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   202      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   203      else if (HSM_TRNG->TRNG_STAT.BF.FIPS_ERR == TRNG_STAT_FIPS_ERR_ERROR)
+	ldrh	r0,[r0,#0]
+.L238:
+	tst	r0,#4
+	beq	.L21
+.L239:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   204      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   205          TrngDisable();
+	bl	TrngDisable
+.L240:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   206          TrngErrorHandle();
+	bl	TrngErrorHandle
+.L241:
+	pop	{r4,pc}
+.L21:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   207          /* Call error function */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   208      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   209      else
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   210      {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   211          if (TrngData.PtrRandomDataSingle != NULL_PTR)
+	ldr	r1,.L31
+.L242:
+	ldr	r2,[r1,#0]
+.L243:
+	cbz	r2,.L23
+.L244:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   212          {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   213              *(TrngData.PtrRandomDataSingle) = TrngRead();
+	bl	TrngRead
+.L245:
+	str	r0,[r2,#0]
+.L246:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   214              
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   215              if (TrngData.TrngCallbackSingle != NULL_PTR)
+	ldr	r4,[r1,#8]
+.L247:
+	cmp	r4,#0
+	it	eq
+	popeq	{r4,pc}
+.L138:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   216              {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   217                  TrngData.TrngCallbackSingle(TrngData.PtrTrngDataSingleRequest);
+	ldr	r0,[r1,#4]
+	blx	r4
+.L248:
+	pop	{r4,pc}
+.L23:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   218              }    
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   219          }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   220          else if (TrngData.PtrRandomDataBuffer != NULL_PTR)
+	ldr	r2,[r1,#12]
+.L249:
+	cmp	r2,#0
+	it	eq
+	popeq	{r4,pc}
+.L139:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   221          {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   222              *(TrngData.PtrRandomDataBuffer) = TrngRead();
+	bl	TrngRead
+.L250:
+	str	r0,[r2,#0]
+.L251:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   223              
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   224              if (TrngData.TrngCallbackBuffer != NULL_PTR)
+	ldr	r4,[r1,#20]
+.L252:
+	cmp	r4,#0
+	it	eq
+	popeq	{r4,pc}
+.L140:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   225              {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   226                  TrngData.TrngCallbackBuffer(TrngData.PtrTrngDataBufferRequest);
+	ldr	r0,[r1,#16]
+	blx	r4
+.L27:
+.L26:
+.L25:
+.L29:
+.L22:
+.L20:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   227              }    
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   228          }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   229          
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   230      }
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   231  }
+	pop	{r4,pc}
+.L121:
+	.align	4
+.L31:
+	.dw	TrngData
+.L107:
+	.size	Trng_Handler,$-Trng_Handler
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngReset')
+	.global	TrngReset
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   232  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   233  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   234  /*                         Internal Function Definition                            */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   235  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   236  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   237   FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   238  TrngReset (void)
+; Function TrngReset
+.L70:
+	.thumb
+	.align	4
+TrngReset:	.type	func
+
+.L39:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   239  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   240      HSM_TRNG->TRNG_CTRL.REG = TRNG_CTRL_RESET;
+	mov	r0,#2
+.L196:
+	movw	r1,#@lsh(-335543792)
+	movt	r1,#@msh(-335543792)
+.L197:
+	strh	r0,[r1,#0]
+.L198:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   241  } 
+	bx	lr
+.L71:
+	.size	TrngReset,$-TrngReset
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngDisable')
+	.global	TrngDisable
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   242  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   243   FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   244  TrngDisable (void)
+; Function TrngDisable
+.L76:
+	.thumb
+	.align	4
+TrngDisable:	.type	func
+
+.L41:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   245  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   246      HSM_TRNG->TRNG_CTRL.REG = TRNG_CTRL_OFF;
+	mov	r0,#6
+.L203:
+	movw	r1,#@lsh(-335543792)
+	movt	r1,#@msh(-335543792)
+.L204:
+	strh	r0,[r1,#0]
+.L205:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   247  } 
+	bx	lr
+.L77:
+	.size	TrngDisable,$-TrngDisable
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngRead')
+	.global	TrngRead
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   248  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   249   FUNC(uint32, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   250  TrngRead (void)
+; Function TrngRead
+.L82:
+	.thumb
+	.align	4
+TrngRead:	.type	func
+
+.L43:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   251  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   252      return HSM_TRNG->TRNG_DATA32;
+	mov	r0,#-335544320
+	ldr	r0,[r0,#512]
+.L210:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   253  } 
+	bx	lr
+.L83:
+	.size	TrngRead,$-TrngRead
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngWarnHandle')
+	.global	TrngWarnHandle
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   254  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   255   FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   256  TrngWarnHandle (void)
+; Function TrngWarnHandle
+.L88:
+	.thumb
+	.align	4
+TrngWarnHandle:	.type	func
+
+.L45:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   257  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   258      HSM_TRNG->TRNG_STAT.REG = TRNG_STAT_WARN_HANDLE;
+	mov	r0,#1024
+.L215:
+	movw	r1,#@lsh(-335543796)
+	movt	r1,#@msh(-335543796)
+.L216:
+	strh	r0,[r1,#0]
+.L217:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   259  } 
+	bx	lr
+.L89:
+	.size	TrngWarnHandle,$-TrngWarnHandle
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngErrorHandle')
+	.global	TrngErrorHandle
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   260  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   261   FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   262  TrngErrorHandle (void)
+; Function TrngErrorHandle
+.L94:
+	.thumb
+	.align	4
+TrngErrorHandle:	.type	func
+
+.L47:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   263  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   264      HSM_TRNG->TRNG_STAT.REG = TRNG_STAT_ERROR_HANDLE;
+	mov	r0,#1032
+.L222:
+	movw	r1,#@lsh(-335543796)
+	movt	r1,#@msh(-335543796)
+.L223:
+	strh	r0,[r1,#0]
+.L224:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   265  } 
+	bx	lr
+.L95:
+	.size	TrngErrorHandle,$-TrngErrorHandle
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_TrngChangeDataBlockSize')
+	.global	TrngChangeDataBlockSize
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   266  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   267   FUNC(void, TRNG_CODE) 
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   268  TrngChangeDataBlockSize (VAR(uint8, TRNG_CODE) DBS_Size)
+; Function TrngChangeDataBlockSize
+.L100:
+	.thumb
+	.align	4
+TrngChangeDataBlockSize:	.type	func
+
+.L49:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   269  {
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   270      HSM_TRNG->TRNG_CTRL.BF.DBS = DBS_Size;
+	movw	r1,#@lsh(-335543792)
+	movt	r1,#@msh(-335543792)
+	ldrh	r2,[r1,#0]
+.L229:
+	bfi	r2,r0,#0,#2
+	strh	r2,[r1,#0]
+.L230:
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   271  } 
+	bx	lr
+.L101:
+	.size	TrngChangeDataBlockSize,$-TrngChangeDataBlockSize
+	; End of function
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_TrngData')
+	.global	TrngData
+	.align	4
+TrngData:	.type	object
+	.size	TrngData,24
+	.ds	24
+	.endsec	; End of section
+
+	.calls	'TrngInit','TrngDisable'
+	.calls	'TrngInit','NVIC_ClearPendingIRQ'
+	.calls	'TrngInit','NVIC_EnableIRQ'
+	.calls	'TrngInit','TrngReset'
+	.calls	'TrngInit','TrngRead'
+	.calls	'TrngGetData','TrngChangeDataBlockSize'
+	.calls	'TrngGetData','TrngRead'
+	.calls	'TrngGetData','TrngWarnHandle'
+	.calls	'TrngGetData','TrngDisable'
+	.calls	'TrngGetData','TrngErrorHandle'
+	.calls	'Trng_Handler','TrngWarnHandle'
+	.calls	'Trng_Handler','TrngDisable'
+	.calls	'Trng_Handler','TrngErrorHandle'
+	.calls	'Trng_Handler','TrngRead'
+	.calls	'Trng_Handler','__INDIRECT__'
+	.calls	'TrngInit','',4
+	.calls	'TrngGetData','',8
+	.calls	'Trng_Handler','',8
+	.calls	'TrngReset','',0
+	.calls	'TrngDisable','',0
+	.calls	'TrngRead','',0
+	.calls	'TrngWarnHandle','',0
+	.calls	'TrngErrorHandle','',0
+	.calls	'TrngChangeDataBlockSize','',0
+	.extern	NVIC_EnableIRQ
+	.extern	NVIC_ClearPendingIRQ
+	.extern	__INDIRECT__
+	.section	.debug_info
+.L51:
+	.dw	1713
+	.dh	3
+	.dw	.L52
+	.db	4
+.L50:
+	.db	1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L53
+.L112:
+	.db	2
+	.db	'unsigned char',0,1,8,3,1,36,9,1,4
+	.db	'TrngPolling',0
+	.dw	30
+	.db	1,2,35,0,0,5
+	.dw	47
+	.db	6
+	.dw	74
+.L110:
+	.db	5
+	.dw	79
+.L114:
+	.db	5
+	.dw	79
+	.db	7
+	.db	'void',0,6
+	.dw	94
+	.db	5
+	.dw	.L144-.L51
+	.db	6
+	.dw	105
+	.db	8,1,1,9
+	.dw	110
+	.db	0,6
+	.dw	115
+.L144:
+	.db	10
+	.db	'TrngDataSingleRequestType',0,2,110,8,12,4
+	.db	'PtrSingleRandomData',0
+	.dw	100
+	.db	4,2,35,0,4
+	.db	'RandomDataSize',0
+	.dw	30
+	.db	1,2,35,4,4
+	.db	'TrngCallbackSingle',0
+	.dw	124
+	.db	4,2,35,8,0,6
+	.dw	129
+.L116:
+	.db	5
+	.dw	242
+.L119:
+	.db	2
+	.db	'unsigned int',0,4,7,11
+	.db	'IRQn',0,3,34,14,4,12
+	.db	'NonMaskableInt_IRQn',0,114,12
+	.db	'HardFault_IRQn',0,115,12
+	.db	'MemoryManagement_IR',0,116,12
+	.db	'BusFault_IRQn',0,117,12
+	.db	'UsageFault_IRQn',0,118,12
+	.db	'SVCall_IRQn',0,123,12
+	.db	'DebugMonitor_IRQn',0,124,12
+	.db	'PendSV_IRQn',0,126,12
+	.db	'SysTick_IRQn',0,127,12
+	.db	'TIM0_IRQn',0,0,12
+	.db	'TIM1_IRQn',0,1,12
+	.db	'TRNG_IRQn',0,2,12
+	.db	'Bridge_IRQn',0,3,12
+	.db	'BridgeErr_IRQn',0,4,12
+	.db	'SensInt_IRQn',0,5,12
+	.db	'ExtInt_IRQn',0,6,12
+	.db	'PKCRdy_IRQn',0,8,12
+	.db	'PKCErr_IRQn',0,9,0,13
+	.db	'NVIC_EnableIRQ',0,3,106,13,1,1,1,1,14
+	.db	'IRQn',0,3,106,38
+	.dw	268
+	.db	0,13
+	.db	'NVIC_ClearPendingIRQ',0,3,168,1,13,1,1,1,1,14
+	.db	'IRQn',0,3,168,1,44
+	.dw	268
+	.db	0,15
+	.db	'__INDIRECT__',0,4,1,1,1,1,1,16,1,6
+	.dw	663
+	.db	17
+	.db	'__codeptr',0,4,1,1
+	.dw	665
+	.db	17
+	.db	'boolean',0,5,242,1,23
+	.dw	30
+	.db	17
+	.db	'uint8',0,5,247,1,23
+	.dw	30
+	.db	2
+	.db	'unsigned short int',0,2,7,17
+	.db	'uint16',0,5,252,1,24
+	.dw	720
+	.db	17
+	.db	'uint32',0,5,129,2,22
+	.dw	252
+	.db	17
+	.db	'Std_ReturnType',0,6,235,2,15
+	.dw	30
+	.db	17
+	.db	'Std_TransformerClass',0,6,238,2,15
+	.dw	30
+	.db	17
+	.db	'Std_TransformerForwardCode',0,6,241,2,15
+	.dw	30
+	.db	18
+	.dw	720
+	.db	3,7,45,2,2,19
+	.db	'DTA_RDY',0,2
+	.dw	720
+	.db	1,15,2,35,0,20,2
+	.dw	720
+	.db	1,14,2,35,0,19
+	.db	'FIPS_ERR',0,2
+	.dw	720
+	.db	1,13,2,35,0,19
+	.db	'UNLOCK_FIPS_ERR',0,2
+	.dw	720
+	.db	1,12,2,35,0,20,2
+	.dw	720
+	.db	5,7,2,35,0,19
+	.db	'WARN',0,2
+	.dw	720
+	.db	1,6,2,35,0,19
+	.db	'UNLOCK_WARN',0,2
+	.dw	720
+	.db	1,5,2,35,0,20,2
+	.dw	720
+	.db	5,0,2,35,0,0,21,7,42,9,2,4
+	.db	'REG',0
+	.dw	864
+	.db	2,2,35,0,4
+	.db	'BF',0
+	.dw	869
+	.db	2,2,35,0,0,17
+	.db	'TRNG_STAT_u',0,7,56,2
+	.dw	1013
+	.db	18
+	.dw	720
+	.db	3,7,61,2,2,19
+	.db	'DBS',0,2
+	.dw	720
+	.db	2,14,2,35,0,19
+	.db	'DIS',0,2
+	.dw	720
+	.db	1,13,2,35,0,20,2
+	.dw	720
+	.db	13,0,2,35,0,0,21,7,58,9,2,4
+	.db	'REG',0
+	.dw	1064
+	.db	2,2,35,0,4
+	.db	'BF',0
+	.dw	1069
+	.db	2,2,35,0,0,17
+	.db	'TRNG_CTRL_u',0,7,67,2
+	.dw	1116
+	.db	17
+	.db	'TrngStatusType',0,2,82,15
+	.dw	30
+	.db	5
+	.dw	.L145-.L51
+	.db	6
+	.dw	1190
+	.db	8,1,1,9
+	.dw	1195
+	.db	0,6
+	.dw	1200
+.L145:
+	.db	10
+	.db	'TrngDataBufferRequestType',0,2,90,8,24,4
+	.db	'PtrBufferRandomData',0
+	.dw	100
+	.db	4,2,35,0,4
+	.db	'Result',0
+	.dw	252
+	.db	4,2,35,4,4
+	.db	'Max',0
+	.dw	252
+	.db	4,2,35,8,4
+	.db	'Count',0
+	.dw	252
+	.db	4,2,35,12,4
+	.db	'RandomDataSize',0
+	.dw	30
+	.db	1,2,35,16,4
+	.db	'TrngCallbackBuffer',0
+	.dw	1209
+	.db	4,2,35,20,0,17
+	.db	'TrngDataBufferRequestType',0,2,84,42
+	.dw	1214
+	.db	17
+	.db	'TrngDataSingleRequestType',0,2,86,42
+	.dw	129
+	.db	6
+	.dw	252
+	.db	5
+	.dw	129
+	.db	6
+	.dw	1444
+	.db	5
+	.dw	1214
+	.db	6
+	.dw	1454
+.L122:
+	.db	3,2,137,1,9,24,4
+	.db	'PtrRandomDataSingle',0
+	.dw	1439
+	.db	4,2,35,0,4
+	.db	'PtrTrngDataSingleRequest',0
+	.dw	1449
+	.db	4,2,35,4,4
+	.db	'TrngCallbackSingle',0
+	.dw	124
+	.db	4,2,35,8,4
+	.db	'PtrRandomDataBuffer',0
+	.dw	1439
+	.db	4,2,35,12,4
+	.db	'PtrTrngDataBufferRequest',0
+	.dw	1459
+	.db	4,2,35,16,4
+	.db	'TrngCallbackBuffer',0
+	.dw	1209
+	.db	4,2,35,20,0,17
+	.db	'TrngDataType',0,2,160,1,3
+	.dw	1464
+	.db	17
+	.db	'TrngConfigType',0,1,41,3
+	.dw	47
+	.db	17
+	.db	'IRQn_Type',0,3,57,3
+	.dw	268
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L52:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,19,1,58,15,59,15,57,15,11
+	.db	15,0,0,4,13,0,3,8,73,19,11,15,56,9,0,0,5,38,0,73,19,0,0,6,15,0,73,19,0,0,7,59,0,3,8,0,0,8,21,1,54,15,39
+	.db	12,0,0,9,5,0,73,19,0,0,10,19,1,3,8,58,15,59,15,57,15,11,15,0,0,11,4,1,3,8,58,15,59,15,57,15,11,15,0,0
+	.db	12,40,0,3,8,28,13,0,0,13,46,1,3,8,58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,14,5,0,3,8,58,15,59,15
+	.db	57,15,73,19,0,0,15,46,0,3,8,58,15,59,15,57,15,54,15,63,12,60,12,0,0,16,21,0,54,15,0,0,17,22,0,3,8,58,15
+	.db	59,15,57,15,73,19,0,0,18,53,0,73,19,0,0,19,13,0,3,8,11,15,73,19,13,15,12,15,56,9,0,0,20,13,0,11,15,73
+	.db	19,13,15,12,15,56,9,0,0,21,23,1,58,15,59,15,57,15,11,15,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L53:
+	.dw	.L147-.L146
+.L146:
+	.dh	3
+	.dw	.L149-.L148
+.L148:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\TRNG\\inc\\TRNG_Cfg.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\TRNG\\inc\\TRNG_Types.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\NVIC\\inc\\NVIC.h',0,0,0,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\..\\TC399x\\HSM\\Reg\\TRNG_Reg.h',0,0,0,0,0
+.L149:
+.L147:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngInit')
+.L54:
+	.dw	100
+	.dh	3
+	.dw	.L55
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L57,.L56
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngInit',0,1,76,1,1,1,1
+	.dw	.L33,.L59,.L32
+	.db	4
+	.db	'PtrTrngConfig',0,1,76,62
+	.dw	.L110,.L111
+	.db	5
+	.dw	.L33,.L59
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngInit')
+.L55:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngInit')
+.L56:
+	.dw	.L151-.L150
+.L150:
+	.dh	3
+	.dw	.L153-.L152
+.L152:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L153:
+	.db	5,1,7,0,5,2
+	.dw	.L33
+	.db	3,203,0,1,5,16,9
+	.dh	.L125-.L33
+	.db	3,2,1,5,24,9
+	.dh	.L124-.L125
+	.db	3,2,1,5,10,9
+	.dh	.L154-.L124
+	.db	1,5,30,7,9
+	.dh	.L155-.L154
+	.db	3,2,1,5,24,9
+	.dh	.L126-.L155
+	.db	3,1,1,5,14,9
+	.dh	.L2-.L126
+	.db	3,3,1,5,10,9
+	.dh	.L156-.L2
+	.db	3,1,1,5,1,9
+	.dh	.L157-.L156
+	.db	3,1,1,7,9
+	.dh	.L59-.L157
+	.db	0,1,1
+.L151:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngInit')
+.L57:
+	.dw	-1,.L58,0,.L59-.L58,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngGetData')
+.L60:
+	.dw	151
+	.dh	3
+	.dw	.L61
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L63,.L62
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngGetData',0,1,116,1
+	.dw	.L112
+	.db	1,1,1
+	.dw	.L35,.L113,.L34
+	.db	4
+	.db	'PtrTrngConfig',0,1,118,56
+	.dw	.L114,.L115
+	.db	4
+	.db	'PtrTrngData',0,1,119,65
+	.dw	.L116,.L117
+	.db	5
+	.dw	.L35,.L113
+	.db	6
+	.db	'RetVal',0,1,122,36
+	.dw	.L112,.L118
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngGetData')
+.L61:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngGetData')
+.L62:
+	.dw	.L159-.L158
+.L158:
+	.dh	3
+	.dw	.L161-.L160
+.L160:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L161:
+	.db	5,1,7,0,5,2
+	.dw	.L35
+	.db	3,243,0,1,5,45,9
+	.dh	.L132-.L35
+	.db	3,6,1,5,48,9
+	.dh	.L133-.L132
+	.db	3,3,1,5,5,9
+	.dh	.L129-.L133
+	.db	1,5,34,9
+	.dh	.L128-.L129
+	.db	1,5,39,9
+	.dh	.L162-.L128
+	.db	3,3,1,5,46,9
+	.dh	.L163-.L162
+	.db	3,3,1,5,33,9
+	.dh	.L164-.L163
+	.db	1,5,31,9
+	.dh	.L165-.L164
+	.db	3,3,1,5,50,9
+	.dh	.L166-.L165
+	.db	1,5,5,9
+	.dh	.L167-.L166
+	.db	1,5,44,9
+	.dh	.L168-.L167
+	.db	3,3,1,5,18,9
+	.dh	.L134-.L168
+	.db	3,4,1,5,61,9
+	.dh	.L135-.L134
+	.db	3,124,1,5,33,9
+	.dh	.L3-.L135
+	.db	3,6,1,5,10,9
+	.dh	.L169-.L3
+	.db	1,5,31,7,9
+	.dh	.L170-.L169
+	.db	3,3,1,5,64,9
+	.dh	.L171-.L170
+	.db	1,5,54,9
+	.dh	.L172-.L171
+	.db	1,5,18,9
+	.dh	.L173-.L172
+	.db	3,2,1,5,66,9
+	.dh	.L174-.L173
+	.db	3,126,1,5,17,9
+	.dh	.L4-.L174
+	.db	3,7,1,5,22,9
+	.dh	.L6-.L4
+	.db	3,4,1,5,5,9
+	.dh	.L175-.L6
+	.db	1,5,33,7,9
+	.dh	.L176-.L175
+	.db	3,114,1,5,35,9
+	.dh	.L9-.L176
+	.db	3,17,1,5,58,9
+	.dh	.L177-.L9
+	.db	1,5,65,9
+	.dh	.L178-.L177
+	.db	3,3,1,5,27,9
+	.dh	.L11-.L178
+	.db	3,2,1,5,39,9
+	.dh	.L13-.L11
+	.db	3,1,1,5,62,9
+	.dh	.L179-.L13
+	.db	1,5,38,9
+	.dh	.L10-.L179
+	.db	3,125,1,5,65,9
+	.dh	.L180-.L10
+	.db	1,5,35,9
+	.dh	.L181-.L180
+	.db	3,7,1,5,9,9
+	.dh	.L182-.L181
+	.db	1,5,24,9
+	.dh	.L183-.L182
+	.db	3,2,1,5,28,9
+	.dh	.L184-.L183
+	.db	3,1,1,5,26,9
+	.dh	.L185-.L184
+	.db	3,127,1,5,37,9
+	.dh	.L14-.L185
+	.db	3,4,1,5,14,9
+	.dh	.L186-.L14
+	.db	1,5,28,9
+	.dh	.L187-.L186
+	.db	3,2,1,5,13,9
+	.dh	.L188-.L187
+	.db	1,5,72,7,9
+	.dh	.L189-.L188
+	.db	3,3,1,5,62,9
+	.dh	.L190-.L189
+	.db	1,5,26,9
+	.dh	.L191-.L190
+	.db	3,2,1,5,5,9
+	.dh	.L7-.L191
+	.db	3,5,1,5,1,9
+	.dh	.L136-.L7
+	.db	3,2,1,7,9
+	.dh	.L65-.L136
+	.db	0,1,1
+.L159:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngGetData')
+.L63:
+	.dw	-1,.L64,0,.L65-.L64,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngReset')
+.L66:
+	.dw	76
+	.dh	3
+	.dw	.L67
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L69,.L68
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngReset',0,1,238,1,1,1,1,1
+	.dw	.L39,.L71,.L38
+	.db	4
+	.dw	.L39,.L71
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngReset')
+.L67:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngReset')
+.L68:
+	.dw	.L193-.L192
+.L192:
+	.dh	3
+	.dw	.L195-.L194
+.L194:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L195:
+	.db	5,31,7,0,5,2
+	.dw	.L39
+	.db	3,239,1,1,5,24,9
+	.dh	.L196-.L39
+	.db	1,5,29,9
+	.dh	.L197-.L196
+	.db	1,5,1,9
+	.dh	.L198-.L197
+	.db	3,1,1,7,9
+	.dh	.L71-.L198
+	.db	0,1,1
+.L193:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngReset')
+.L69:
+	.dw	-1,.L70,0,.L71-.L70,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngDisable')
+.L72:
+	.dw	78
+	.dh	3
+	.dw	.L73
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L75,.L74
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngDisable',0,1,244,1,1,1,1,1
+	.dw	.L41,.L77,.L40
+	.db	4
+	.dw	.L41,.L77
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngDisable')
+.L73:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngDisable')
+.L74:
+	.dw	.L200-.L199
+.L199:
+	.dh	3
+	.dw	.L202-.L201
+.L201:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L202:
+	.db	5,31,7,0,5,2
+	.dw	.L41
+	.db	3,245,1,1,5,24,9
+	.dh	.L203-.L41
+	.db	1,5,29,9
+	.dh	.L204-.L203
+	.db	1,5,1,9
+	.dh	.L205-.L204
+	.db	3,1,1,7,9
+	.dh	.L77-.L205
+	.db	0,1,1
+.L200:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngDisable')
+.L75:
+	.dw	-1,.L76,0,.L77-.L76,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngRead')
+.L78:
+	.dw	79
+	.dh	3
+	.dw	.L79
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L81,.L80
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngRead',0,1,250,1,1
+	.dw	.L119
+	.db	1,1,1
+	.dw	.L43,.L83,.L42
+	.db	4
+	.dw	.L43,.L83
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngRead')
+.L79:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngRead')
+.L80:
+	.dw	.L207-.L206
+.L206:
+	.dh	3
+	.dw	.L209-.L208
+.L208:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L209:
+	.db	5,20,7,0,5,2
+	.dw	.L43
+	.db	3,251,1,1,5,1,9
+	.dh	.L210-.L43
+	.db	3,1,1,7,9
+	.dh	.L83-.L210
+	.db	0,1,1
+.L207:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngRead')
+.L81:
+	.dw	-1,.L82,0,.L83-.L82,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngWarnHandle')
+.L84:
+	.dw	81
+	.dh	3
+	.dw	.L85
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L87,.L86
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngWarnHandle',0,1,128,2,1,1,1,1
+	.dw	.L45,.L89,.L44
+	.db	4
+	.dw	.L45,.L89
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngWarnHandle')
+.L85:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngWarnHandle')
+.L86:
+	.dw	.L212-.L211
+.L211:
+	.dh	3
+	.dw	.L214-.L213
+.L213:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L214:
+	.db	5,31,7,0,5,2
+	.dw	.L45
+	.db	3,129,2,1,5,24,9
+	.dh	.L215-.L45
+	.db	1,5,29,9
+	.dh	.L216-.L215
+	.db	1,5,1,9
+	.dh	.L217-.L216
+	.db	3,1,1,7,9
+	.dh	.L89-.L217
+	.db	0,1,1
+.L212:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngWarnHandle')
+.L87:
+	.dw	-1,.L88,0,.L89-.L88,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngErrorHandle')
+.L90:
+	.dw	82
+	.dh	3
+	.dw	.L91
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L93,.L92
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngErrorHandle',0,1,134,2,1,1,1,1
+	.dw	.L47,.L95,.L46
+	.db	4
+	.dw	.L47,.L95
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngErrorHandle')
+.L91:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngErrorHandle')
+.L92:
+	.dw	.L219-.L218
+.L218:
+	.dh	3
+	.dw	.L221-.L220
+.L220:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L221:
+	.db	5,31,7,0,5,2
+	.dw	.L47
+	.db	3,135,2,1,5,24,9
+	.dh	.L222-.L47
+	.db	1,5,29,9
+	.dh	.L223-.L222
+	.db	1,5,1,9
+	.dh	.L224-.L223
+	.db	3,1,1,7,9
+	.dh	.L95-.L224
+	.db	0,1,1
+.L219:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngErrorHandle')
+.L93:
+	.dw	-1,.L94,0,.L95-.L94,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngChangeDataBlockSize')
+.L96:
+	.dw	112
+	.dh	3
+	.dw	.L97
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L99,.L98
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'TrngChangeDataBlockSize',0,1,140,2,1,1,1,1
+	.dw	.L49,.L101,.L48
+	.db	4
+	.db	'DBS_Size',0,1,140,2,48
+	.dw	.L112,.L120
+	.db	5
+	.dw	.L49,.L101
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngChangeDataBlockSize')
+.L97:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_TrngChangeDataBlockSize')
+.L98:
+	.dw	.L226-.L225
+.L225:
+	.dh	3
+	.dw	.L228-.L227
+.L227:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L228:
+	.db	5,27,7,0,5,2
+	.dw	.L49
+	.db	3,141,2,1,5,32,9
+	.dh	.L229-.L49
+	.db	1,5,1,9
+	.dh	.L230-.L229
+	.db	3,1,1,7,9
+	.dh	.L101-.L230
+	.db	0,1,1
+.L226:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_TrngChangeDataBlockSize')
+.L99:
+	.dw	-1,.L100,0,.L101-.L100,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_Trng_Handler')
+.L102:
+	.dw	79
+	.dh	3
+	.dw	.L103
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1
+	.dw	.L105,.L104
+	.db	2
+	.dw	.L50
+	.db	3
+	.db	'Trng_Handler',0,1,197,1,6,1,1,1
+	.dw	.L37,.L121,.L36
+	.db	4
+	.dw	.L37,.L121
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_Trng_Handler')
+.L103:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_Trng_Handler')
+.L104:
+	.dw	.L232-.L231
+.L231:
+	.dh	3
+	.dw	.L234-.L233
+.L233:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0,0,0,0,0
+.L234:
+	.db	5,6,7,0,5,2
+	.dw	.L37
+	.db	3,196,1,1,5,31,9
+	.dh	.L137-.L37
+	.db	3,2,1,5,5,9
+	.dh	.L235-.L137
+	.db	1,5,23,9
+	.dh	.L236-.L235
+	.db	3,2,1,5,25,9
+	.dh	.L237-.L236
+	.db	1,5,36,7,9
+	.dh	.L19-.L237
+	.db	3,2,1,5,10,9
+	.dh	.L238-.L19
+	.db	1,5,20,9
+	.dh	.L239-.L238
+	.db	3,2,1,5,24,9
+	.dh	.L240-.L239
+	.db	3,1,1,5,22,9
+	.dh	.L241-.L240
+	.db	3,127,1,5,13,7,9
+	.dh	.L21-.L241
+	.db	3,6,1,5,21,9
+	.dh	.L242-.L21
+	.db	1,5,9,9
+	.dh	.L243-.L242
+	.db	1,5,55,7,9
+	.dh	.L244-.L243
+	.db	3,2,1,5,45,9
+	.dh	.L245-.L244
+	.db	1,5,25,9
+	.dh	.L246-.L245
+	.db	3,2,1,5,13,9
+	.dh	.L247-.L246
+	.db	1,5,53,9
+	.dh	.L138-.L247
+	.db	3,2,1,5,13,9
+	.dh	.L248-.L138
+	.db	3,126,1,5,26,7,9
+	.dh	.L23-.L248
+	.db	3,5,1,5,14,9
+	.dh	.L249-.L23
+	.db	1,5,55,9
+	.dh	.L139-.L249
+	.db	3,2,1,5,45,9
+	.dh	.L250-.L139
+	.db	1,5,25,9
+	.dh	.L251-.L250
+	.db	3,2,1,5,13,9
+	.dh	.L252-.L251
+	.db	1,5,53,9
+	.dh	.L140-.L252
+	.db	3,2,1,5,1,9
+	.dh	.L20-.L140
+	.db	3,5,1,7,9
+	.dh	.L107-.L20
+	.db	0,1,1
+.L232:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_Trng_Handler')
+.L105:
+	.dw	-1,.L106,0,.L107-.L106,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_TrngData')
+.L108:
+	.dw	52
+	.dh	3
+	.dw	.L109
+	.db	4,1
+	.dw	.L141,.L142,.L143
+	.db	12,1,2
+	.dw	.L50
+	.db	3
+	.db	'TrngData',0,4,50,30
+	.dw	.L122
+	.db	1,5,3
+	.dw	TrngData
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_TrngData')
+.L109:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,63,12
+	.db	2,9,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L143:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L142:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L141:
+	.db	'../../TC399x/HSM/Mcal/TRNG/src/TRNG.c',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngChangeDataBlockSize')
+.L120:
+	.dw	-1,.L49,0,.L101-.L49
+	.dh	1
+	.db	80
+	.dw	0,0
+.L48:
+	.dw	-1,.L49,0,.L101-.L49
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngDisable')
+.L40:
+	.dw	-1,.L41,0,.L77-.L41
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngErrorHandle')
+.L46:
+	.dw	-1,.L47,0,.L95-.L47
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngGetData')
+.L115:
+	.dw	-1,.L35,0,.L128-.L35
+	.dh	1
+	.db	80
+	.dw	.L130-.L35,.L131-.L35
+	.dh	1
+	.db	84
+	.dw	0,0
+.L117:
+	.dw	-1,.L35,0,.L129-.L35
+	.dh	1
+	.db	81
+	.dw	.L132-.L35,.L113-.L35
+	.dh	1
+	.db	83
+	.dw	0,0
+.L118:
+	.dw	-1,.L35,.L133-.L35,.L134-.L35
+	.dh	1
+	.db	82
+	.dw	.L135-.L35,.L113-.L35
+	.dh	1
+	.db	82
+	.dw	.L136-.L35,.L113-.L35
+	.dh	1
+	.db	80
+	.dw	0,0
+.L34:
+	.dw	-1,.L35,0,.L127-.L35
+	.dh	2
+	.db	125,0
+	.dw	.L127-.L35,.L113-.L35
+	.dh	2
+	.db	125,8
+	.dw	.L113-.L35,.L113-.L35
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngInit')
+.L111:
+	.dw	-1,.L33,0,.L124-.L33
+	.dh	1
+	.db	80
+	.dw	.L125-.L33,.L126-.L33
+	.dh	1
+	.db	82
+	.dw	0,0
+.L32:
+	.dw	-1,.L33,0,.L123-.L33
+	.dh	2
+	.db	125,0
+	.dw	.L123-.L33,.L59-.L33
+	.dh	2
+	.db	125,4
+	.dw	.L59-.L33,.L59-.L33
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngRead')
+.L42:
+	.dw	-1,.L43,0,.L83-.L43
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngReset')
+.L38:
+	.dw	-1,.L39,0,.L71-.L39
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_TrngWarnHandle')
+.L44:
+	.dw	-1,.L45,0,.L89-.L45
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_Trng_Handler')
+.L36:
+	.dw	-1,.L37,0,.L137-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L137-.L37,.L19-.L37
+	.dh	2
+	.db	125,8
+	.dw	.L19-.L37,.L19-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L19-.L37,.L21-.L37
+	.dh	2
+	.db	125,8
+	.dw	.L21-.L37,.L21-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L21-.L37,.L23-.L37
+	.dh	2
+	.db	125,8
+	.dw	.L23-.L37,.L23-.L37
+	.dh	2
+	.db	125,0
+	.dw	.L23-.L37,.L121-.L37
+	.dh	2
+	.db	125,8
+	.dw	.L121-.L37,.L121-.L37
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L253:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngInit')
+	.dw	40
+	.dw	.L253,.L33,.L59-.L33
+	.db	4
+	.dw	(.L123-.L33)/2
+	.db	19,2,22,13,3,19,125,4,17,14,126,4
+	.dw	(.L59-.L123)/2
+	.db	19,0,8,13,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngGetData')
+	.dw	68
+	.dw	.L253,.L35,.L113-.L35
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L127-.L35)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L113-.L127)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_Trng_Handler')
+	.dw	116
+	.dw	.L253,.L37,.L121-.L37
+	.db	4
+	.dw	(.L137-.L37)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L19-.L137)/2
+	.db	19,0,8,13,196,19,4,22,13,3,19,125,8,4
+	.dw	(.L21-.L19)/2
+	.db	19,0,8,13,196,19,4,22,13,3,19,125,8,4
+	.dw	(.L138-.L21)/2
+	.db	196,4
+	.dw	(.L23-.L138)/2
+	.db	19,0,8,13,196,19,4,22,13,3,19,125,8,4
+	.dw	(.L139-.L23)/2
+	.db	196,4
+	.dw	(.L140-.L139)/2
+	.db	196,4
+	.dw	(.L121-.L140)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngReset')
+	.dw	40
+	.dw	.L253,.L39,.L71-.L39
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngDisable')
+	.dw	40
+	.dw	.L253,.L41,.L77-.L41
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngRead')
+	.dw	44
+	.dw	.L253,.L43,.L83-.L43
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngWarnHandle')
+	.dw	40
+	.dw	.L253,.L45,.L89-.L45
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngErrorHandle')
+	.dw	40
+	.dw	.L253,.L47,.L95-.L47
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_TrngChangeDataBlockSize')
+	.dw	40
+	.dw	.L253,.L49,.L101-.L49
+	.db	8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   272  
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   273  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   274  /*				                 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/TRNG/src/TRNG.c	   275  /***********************************************************************************/
+
+	; Module end
+	.end

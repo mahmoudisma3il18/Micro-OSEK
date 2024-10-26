@@ -1,0 +1,1041 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.SetEvent.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/SetEvent.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\SetEvent.src ../src/kernel/SetEvent.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/SetEvent.c'
+
+	.section	.text ,cluster('$group_OS_SetEvent')
+	.global	OS_SetEvent
+
+; ../src/kernel/SetEvent.c	     1  /**
+; ../src/kernel/SetEvent.c	     2  * @file 					SetEvent.c
+; ../src/kernel/SetEvent.c	     3  * @author 					Hana Ashraf
+; ../src/kernel/SetEvent.c	     4  * @version 					1.0.0
+; ../src/kernel/SetEvent.c	     5  * @date 					16/03/2023
+; ../src/kernel/SetEvent.c	     6  * @platform   					NA
+; ../src/kernel/SetEvent.c	     7  * @variant					NA
+; ../src/kernel/SetEvent.c	     8  * @vendor					CryptOS
+; ../src/kernel/SetEvent.c	     9  * @specification		 		OSEK-VDX
+; ../src/kernel/SetEvent.c	    10  * @brief SetEvent		 		Task API source code implementation .
+; ../src/kernel/SetEvent.c	    11  *
+; ../src/kernel/SetEvent.c	    12  *Detailed description of the service:
+; ../src/kernel/SetEvent.c	    13     -The service may be called from an interrupt service routine and from the task level, but not from hook routines.
+; ../src/kernel/SetEvent.c	    14     -The events of task <TaskID> are set according to the event mask <Mask>. 
+; ../src/kernel/SetEvent.c	    15     -Calling SetEvent causes the task <TaskID> to be transferred to the ready state, if it was waiting for at least one of the events specified in <Mask>.
+; ../src/kernel/SetEvent.c	    16     -Any events not set in the event mask remain unchanged.
+; ../src/kernel/SetEvent.c	    17     -The service only returns in the extended status state when an error occurs, otherwise E_OK is returned.
+; ../src/kernel/SetEvent.c	    18  
+; ../src/kernel/SetEvent.c	    19  *
+; ../src/kernel/SetEvent.c	    20  */
+; ../src/kernel/SetEvent.c	    21  
+; ../src/kernel/SetEvent.c	    22  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/SetEvent.c	    23  
+; ../src/kernel/SetEvent.c	    24  /**********************************************************************************/
+; ../src/kernel/SetEvent.c	    25  /**				    			Include Headers			         				 **/
+; ../src/kernel/SetEvent.c	    26  /**********************************************************************************/
+; ../src/kernel/SetEvent.c	    27  #include <OS_kernel.h>
+; ../src/kernel/SetEvent.c	    28  #include <SchedulingQueues.h>
+; ../src/kernel/SetEvent.c	    29  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    30  /*  			    			    Macros				         				   */
+; ../src/kernel/SetEvent.c	    31  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    32  
+; ../src/kernel/SetEvent.c	    33  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/SetEvent.c	    34  
+; ../src/kernel/SetEvent.c	    35  /***************************** Autosar version Check ********************************/
+; ../src/kernel/SetEvent.c	    36  
+; ../src/kernel/SetEvent.c	    37  /******************************* DET Version Check **********************************/
+; ../src/kernel/SetEvent.c	    38  
+; ../src/kernel/SetEvent.c	    39  /************************** Internal Module Specific Macros ********************************/
+; ../src/kernel/SetEvent.c	    40  /**
+; ../src/kernel/SetEvent.c	    41   * @name InternalModuleSpecificMacros
+; ../src/kernel/SetEvent.c	    42   * @{
+; ../src/kernel/SetEvent.c	    43   */
+; ../src/kernel/SetEvent.c	    44  
+; ../src/kernel/SetEvent.c	    45  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/kernel/SetEvent.c	    46  
+; ../src/kernel/SetEvent.c	    47  /************************************************************************************/
+; ../src/kernel/SetEvent.c	    48  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/SetEvent.c	    49  /************************************************************************************/
+; ../src/kernel/SetEvent.c	    50  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/SetEvent.c	    51  /**
+; ../src/kernel/SetEvent.c	    52   * @name InternalModuleSpecificTypeDefinitions
+; ../src/kernel/SetEvent.c	    53   * @{
+; ../src/kernel/SetEvent.c	    54   */
+; ../src/kernel/SetEvent.c	    55  
+; ../src/kernel/SetEvent.c	    56  /** @} */ /*End of InternalModuleSpecificTypeDefinitions*/
+; ../src/kernel/SetEvent.c	    57  
+; ../src/kernel/SetEvent.c	    58  /***************************************************************************************/
+; ../src/kernel/SetEvent.c	    59  /*                            External Global Variables                                */
+; ../src/kernel/SetEvent.c	    60  /***************************************************************************************/
+; ../src/kernel/SetEvent.c	    61  /**
+; ../src/kernel/SetEvent.c	    62   * @name ExternalGlobalVariables
+; ../src/kernel/SetEvent.c	    63   * @{
+; ../src/kernel/SetEvent.c	    64   */
+; ../src/kernel/SetEvent.c	    65  
+; ../src/kernel/SetEvent.c	    66  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/kernel/SetEvent.c	    67  
+; ../src/kernel/SetEvent.c	    68  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    69  /*				    			External constants		         				   */
+; ../src/kernel/SetEvent.c	    70  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    71  /**
+; ../src/kernel/SetEvent.c	    72   * @name External constants
+; ../src/kernel/SetEvent.c	    73   * @{
+; ../src/kernel/SetEvent.c	    74   */
+; ../src/kernel/SetEvent.c	    75  
+; ../src/kernel/SetEvent.c	    76  /** @} */ /*End of External constants*/
+; ../src/kernel/SetEvent.c	    77  
+; ../src/kernel/SetEvent.c	    78  /***************************************************************************************/
+; ../src/kernel/SetEvent.c	    79  /*                              Internal Global Variables                              */
+; ../src/kernel/SetEvent.c	    80  /***************************************************************************************/
+; ../src/kernel/SetEvent.c	    81  /**
+; ../src/kernel/SetEvent.c	    82   * @name InternalGlobalVariables
+; ../src/kernel/SetEvent.c	    83   * @{
+; ../src/kernel/SetEvent.c	    84   */
+; ../src/kernel/SetEvent.c	    85  
+; ../src/kernel/SetEvent.c	    86  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/kernel/SetEvent.c	    87  
+; ../src/kernel/SetEvent.c	    88  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    89  /*				    			Internal constants		         				   */
+; ../src/kernel/SetEvent.c	    90  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    91  /**
+; ../src/kernel/SetEvent.c	    92   * @name InternalConstants
+; ../src/kernel/SetEvent.c	    93   * @{
+; ../src/kernel/SetEvent.c	    94   */
+; ../src/kernel/SetEvent.c	    95  
+; ../src/kernel/SetEvent.c	    96  /** @} */ /*End of InternalConstants*/
+; ../src/kernel/SetEvent.c	    97  
+; ../src/kernel/SetEvent.c	    98  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	    99  /*                        External Function Declration                             */
+; ../src/kernel/SetEvent.c	   100  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   101  /**
+; ../src/kernel/SetEvent.c	   102   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/SetEvent.c	   103   * @{
+; ../src/kernel/SetEvent.c	   104   */
+; ../src/kernel/SetEvent.c	   105  
+; ../src/kernel/SetEvent.c	   106  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/kernel/SetEvent.c	   107  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   108  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/SetEvent.c	   109  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   110  /**   
+; ../src/kernel/SetEvent.c	   111   *
+; ../src/kernel/SetEvent.c	   112   * Detailed Description : The events of task <TaskID> are set according to the event mask <Mask>. Calling SetEvent causes the task <TaskID> to be transferred to the ready state, 
+; ../src/kernel/SetEvent.c	   113   * if it was waiting for at least one of the events specified in <Mask>.
+; ../src/kernel/SetEvent.c	   114   *
+; ../src/kernel/SetEvent.c	   115   * @service name	SetEvent
+; ../src/kernel/SetEvent.c	   116   * @syntax			 FUNC(StatusType, OS_CODE) SetEvent
+; ../src/kernel/SetEvent.c	   117   *               (
+; ../src/kernel/SetEvent.c	   118   *	            CONST(TaskType, AUTOMATIC) TaskID,
+; ../src/kernel/SetEvent.c	   119   *                  CONST(EventTaskType, AUTOMATIC) Mask
+; ../src/kernel/SetEvent.c	   120   *               )
+; ../src/kernel/SetEvent.c	   121   *
+; ../src/kernel/SetEvent.c	   122   * @service ID		-
+; ../src/kernel/SetEvent.c	   123   * @sync/async		Synchronous
+; ../src/kernel/SetEvent.c	   124   * @reentrancy		Non-Reentrant
+; ../src/kernel/SetEvent.c	   125   * @param[in]  		MASK    -  Mask of the events to be set
+; ../src/kernel/SetEvent.c	   126   * @param[out] 		None
+; ../src/kernel/SetEvent.c	   127   * @return          StatusType     Returns the status which differs according to error checking type
+; ../src/kernel/SetEvent.c	   128   *     			 	Standard:      No error, E_OK
+; ../src/kernel/SetEvent.c	   129   *     				Extended:      If TaskID is invalid, E_OS_ID is returned
+; ../src/kernel/SetEvent.c	   130   *                                	       If referenced task is not extended task, E_OS_ACCESS is returned
+; ../src/kernel/SetEvent.c	   131   *                                 	       If referenced task is in the suspended state, E_OS_STATE is returned           
+; ../src/kernel/SetEvent.c	   132   * @see             NA
+; ../src/kernel/SetEvent.c	   133   * @note            Conformance:        ECC1, ECC2
+; ../src/kernel/SetEvent.c	   134   * @warning         NA
+; ../src/kernel/SetEvent.c	   135   */
+; ../src/kernel/SetEvent.c	   136  
+; ../src/kernel/SetEvent.c	   137  
+; ../src/kernel/SetEvent.c	   138  /*[SWS_OS_12030]On calling the SetEvent service, the events of the task whos (TaskID) is given as a parameter to service are set according to the (Mask) parameter given as well.*/
+; ../src/kernel/SetEvent.c	   139  
+; ../src/kernel/SetEvent.c	   140  FUNC(StatusType, OS_CODE) OS_SetEvent
+; Function OS_SetEvent
+.L23:
+	.thumb
+	.align	4
+OS_SetEvent:	.type	func
+
+.L14:
+	push	{r4,r5,lr}
+.L32:
+
+; ../src/kernel/SetEvent.c	   141  (
+; ../src/kernel/SetEvent.c	   142      CONST(TaskType, AUTOMATIC) TaskID,
+; ../src/kernel/SetEvent.c	   143      CONST(EventMaskType, AUTOMATIC) Mask
+; ../src/kernel/SetEvent.c	   144  )
+; ../src/kernel/SetEvent.c	   145  {
+; ../src/kernel/SetEvent.c	   146    
+; ../src/kernel/SetEvent.c	   147  
+; ../src/kernel/SetEvent.c	   148  VAR(StatusType, AUTOMATIC) ReturnVal = E_OK;
+	movs	r5,#0
+.L35:
+
+; ../src/kernel/SetEvent.c	   149  	
+; ../src/kernel/SetEvent.c	   150  	
+; ../src/kernel/SetEvent.c	   151  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/SetEvent.c	   152  
+; ../src/kernel/SetEvent.c	   153  	/*[SWS_OS_12035] On calling the SetEvent service, if the error checking was extended and the passed (TaskID) parameter is invalid, then it shall return E_OS_ID error code.*/
+; ../src/kernel/SetEvent.c	   154  	if (TaskID >= TASK_COUNT) 
+; ../src/kernel/SetEvent.c	   155  		{ 
+; ../src/kernel/SetEvent.c	   156  			ReturnVal = E_OS_ID;
+; ../src/kernel/SetEvent.c	   157  		}
+; ../src/kernel/SetEvent.c	   158  
+; ../src/kernel/SetEvent.c	   159  	/*[SWS_OS_12037] On calling the SetEvent service, if the error checking was extended and the passed (TaskID) reference a task that is in the suspended state, then it shall return E_OS_STATE error code. */
+; ../src/kernel/SetEvent.c	   160  	else if ((TaskStateType)SUSPENDED == Tasks[TaskID].TaskDynamics->TaskState)
+; ../src/kernel/SetEvent.c	   161  		{
+; ../src/kernel/SetEvent.c	   162  			ReturnVal = E_OS_STATE;
+; ../src/kernel/SetEvent.c	   163  		}
+; ../src/kernel/SetEvent.c	   164  
+; ../src/kernel/SetEvent.c	   165  	/*[SWS_OS_12036] On calling the SetEvent service, if the error checking was extended and the passed (TaskID) reference a task that is not extended, then it shall return E_OS_ACCESS error code.*/
+; ../src/kernel/SetEvent.c	   166  	else if (EXTENDED != Tasks[TaskID].TaskFlags->Type)  
+; ../src/kernel/SetEvent.c	   167  		{
+; ../src/kernel/SetEvent.c	   168  			ReturnVal = E_OS_ACCESS;
+; ../src/kernel/SetEvent.c	   169  		}
+; ../src/kernel/SetEvent.c	   170  
+; ../src/kernel/SetEvent.c	   171  	/*[SWS_OS_12039] SetEvent service can be called from an Interrupt Service Routine.*/
+; ../src/kernel/SetEvent.c	   172  	/*[SWS_OS_12040] SetEvent service can be called from Task Level.*/
+; ../src/kernel/SetEvent.c	   173  	/*[SWS_OS_12041] SetEvent service can't be called from Hook Routines.*/	
+; ../src/kernel/SetEvent.c	   174  	else if ((Kernel.OsState != OS_STATE_TASK) && (Kernel.OsState != OS_STATE_CAT2)) 
+; ../src/kernel/SetEvent.c	   175  		{
+; ../src/kernel/SetEvent.c	   176  			ReturnVal = E_OS_CALLEVEL;
+; ../src/kernel/SetEvent.c	   177  		}
+; ../src/kernel/SetEvent.c	   178  			
+; ../src/kernel/SetEvent.c	   179  	/* Set the return value to OS_ACCESS error state in case of setting an event that is not owned by the task */
+; ../src/kernel/SetEvent.c	   180  	else if(!(Tasks[TaskID].EventsOwned &= Mask ))
+; ../src/kernel/SetEvent.c	   181  		{
+; ../src/kernel/SetEvent.c	   182  				ReturnVal = E_OS_ACCESS;
+; ../src/kernel/SetEvent.c	   183  		}	
+; ../src/kernel/SetEvent.c	   184  
+; ../src/kernel/SetEvent.c	   185  	/*ReturnVal = E_OK;*/ 	 
+; ../src/kernel/SetEvent.c	   186  	else 
+; ../src/kernel/SetEvent.c	   187  		{
+; ../src/kernel/SetEvent.c	   188  			ReturnVal = E_OK;
+; ../src/kernel/SetEvent.c	   189  		}
+; ../src/kernel/SetEvent.c	   190  #endif   /* ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/SetEvent.c	   191  
+; ../src/kernel/SetEvent.c	   192  	if(E_OK == ReturnVal)
+	bne	.L2
+.L49:
+
+; ../src/kernel/SetEvent.c	   193  	{	
+; ../src/kernel/SetEvent.c	   194  		/*Start of critical section*/
+; ../src/kernel/SetEvent.c	   195  
+; ../src/kernel/SetEvent.c	   196  		if ( (Tasks[TaskID].TaskDynamics->TaskState == RUNNING) || (Tasks[TaskID].TaskDynamics->TaskState == READY) || (Tasks[TaskID].TaskDynamics->TaskState == WAITING))
+	movs	r2,#28
+.L50:
+	ldr	r3,.L12
+.L51:
+	mla	r4,r0,r2,r3
+.L52:
+	ldr	r0,[r4,#20]
+.L34:
+	ldrb	r2,[r0,#21]
+.L53:
+	cmp	r2,#0
+.L54:
+	it	ne
+	cmpne	r2,#2
+	beq	.L4
+.L55:
+	cmp	r2,#1
+	bne	.L5
+.L4:
+
+; ../src/kernel/SetEvent.c	   197  		{
+; ../src/kernel/SetEvent.c	   198  			/*[SWS_OS_12033] On calling the SetEvent service, any events not set in the event mask remains unchanged.*/
+; ../src/kernel/SetEvent.c	   199  			Tasks[TaskID].TaskDynamics->EventsSet |= ( Mask & Tasks[TaskID].EventsOwned) ;
+	ldr	r2,[r4,#24]
+.L56:
+	ands	r1,r1,r2
+.L33:
+	ldr	r2,[r0,#12]
+.L57:
+	orrs	r2,r2,r1
+	str	r2,[r0,#12]
+.L58:
+
+; ../src/kernel/SetEvent.c	   200  		
+; ../src/kernel/SetEvent.c	   201  			/*[SWS_OS_12031]On calling the SetEvent service, If the task whose (TaskID) is passed as a parameter was waiting for at least one of the events specified in (Mask) parameter then this task is transferred to the ready state.*/
+; ../src/kernel/SetEvent.c	   202  			/*[SWS_OS_12032]If the task whose (TaskID) is passed as a parameter was waiting for at least one of the events specified in (Mask) parameter then this task is transferred to the ready state., hence, scheduler must be invoked.*/
+; ../src/kernel/SetEvent.c	   203  			if ((WAITING == Tasks[TaskID].TaskDynamics->TaskState) && (Tasks[TaskID].TaskDynamics->EventsWaiting & Tasks[TaskID].TaskDynamics->EventsSet)) 
+	ldr	r0,[r4,#20]
+.L59:
+	ldrb	r1,[r0,#21]
+.L60:
+	cmp	r1,#1
+	bne	.L6
+.L61:
+	ldr	r1,[r0,#16]
+.L62:
+	ldr	r0,[r0,#12]
+.L63:
+	ands	r1,r1,r0
+	beq	.L7
+.L64:
+
+; ../src/kernel/SetEvent.c	   204  			{
+; ../src/kernel/SetEvent.c	   205  				/* Add the task to the ready queue */
+; ../src/kernel/SetEvent.c	   206  				ReadyQueueAddRear(&Tasks[TaskID]);
+	mov	r0,r4
+	bl	ReadyQueueAddRear
+.L65:
+
+; ../src/kernel/SetEvent.c	   207  				
+; ../src/kernel/SetEvent.c	   208  				/* Change the task state to ready */
+; ../src/kernel/SetEvent.c	   209  				Tasks[TaskID].TaskDynamics->TaskState = READY;
+	ldr	r0,[r4,#20]
+.L66:
+	movs	r1,#2
+.L67:
+	strb	r1,[r0,#21]
+.L68:
+
+; ../src/kernel/SetEvent.c	   210  
+; ../src/kernel/SetEvent.c	   211  				/* Call the scheduler */
+; ../src/kernel/SetEvent.c	   212  				Kernel.SchedulerNeeded = TRUE;
+	movs	r0,#1
+.L69:
+	ldr	r1,.L12+4
+.L70:
+	strb	r0,[r1,#18]
+.L7:
+.L6:
+.L5:
+.L2:
+
+; ../src/kernel/SetEvent.c	   213  				
+; ../src/kernel/SetEvent.c	   214  			}
+; ../src/kernel/SetEvent.c	   215  			else
+; ../src/kernel/SetEvent.c	   216  			{
+; ../src/kernel/SetEvent.c	   217  				/*In order not to violate Misra Rules*/
+; ../src/kernel/SetEvent.c	   218  				/* End of Critical Section */
+; ../src/kernel/SetEvent.c	   219  			}
+; ../src/kernel/SetEvent.c	   220  		}
+; ../src/kernel/SetEvent.c	   221  		else
+; ../src/kernel/SetEvent.c	   222  		{
+; ../src/kernel/SetEvent.c	   223  			/*In order not to violate Misra Rules*/
+; ../src/kernel/SetEvent.c	   224  		}
+; ../src/kernel/SetEvent.c	   225  	}
+; ../src/kernel/SetEvent.c	   226  	else
+; ../src/kernel/SetEvent.c	   227  	{
+; ../src/kernel/SetEvent.c	   228  		/*In order not to violate Misra Rules*/
+; ../src/kernel/SetEvent.c	   229  	}
+; ../src/kernel/SetEvent.c	   230  
+; ../src/kernel/SetEvent.c	   231  	/* Check for HOOK_ERRORHOOK */
+; ../src/kernel/SetEvent.c	   232  
+; ../src/kernel/SetEvent.c	   233  	return ReturnVal;
+	mov	r0,r5
+.L36:
+
+; ../src/kernel/SetEvent.c	   234  }
+	pop	{r4,r5,pc}
+.L26:
+	.align	4
+.L12:
+	.dw	Tasks
+	.dw	Kernel
+.L24:
+	.size	OS_SetEvent,$-OS_SetEvent
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_SetEvent','ReadyQueueAddRear'
+	.calls	'OS_SetEvent','',12
+	.extern	Tasks
+	.extern	Kernel
+	.extern	ReadyQueueAddRear
+	.section	.debug_info
+.L16:
+	.dw	3490
+	.dh	3
+	.dw	.L17
+	.db	4
+.L15:
+	.db	1
+	.db	'../src/kernel/SetEvent.c',0
+	.dw	.L37,.L38
+	.db	12,1
+	.dw	.L18
+.L25:
+	.db	2
+	.db	'unsigned char',0,1,8
+.L27:
+	.db	3
+	.dw	51
+	.db	2
+	.db	'unsigned int',0,4,7
+.L29:
+	.db	3
+	.dw	73
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	4
+	.db	'TaskFlagsType_s',0,2,172,1,8,2,5
+	.db	'Type',0
+	.dw	51
+	.db	1,2,35,0,5
+	.db	'TaskSchedulingPolicy',0
+	.dw	51
+	.db	1,2,35,1,0,6
+	.dw	114
+	.db	6
+	.dw	73
+	.db	7
+	.db	'StackPtrType',0,2,143,1,30
+	.dw	186
+	.db	4
+	.db	'TaskStackType_s',0,2,243,1,8,12,5
+	.db	'StackBase',0
+	.dw	191
+	.db	4,2,35,0,5
+	.db	'CurrentStackPtr',0
+	.dw	191
+	.db	4,2,35,4,5
+	.db	'StackSize',0
+	.dw	73
+	.db	4,2,35,8,0,6
+	.dw	213
+	.db	8,1,1,6
+	.dw	304
+	.db	7
+	.db	'EntryFunctionPtrType',0,2,151,1,9
+	.dw	307
+	.db	3
+	.dw	312
+	.db	3
+	.dw	51
+	.db	4
+	.db	'Os_InernalResourceDynamic_s',0,3,66,8,2,5
+	.db	'TakenTaskPriority',0
+	.dw	51
+	.db	1,2,35,0,5
+	.db	'TakenFlag',0
+	.dw	51
+	.db	1,2,35,1,0,6
+	.dw	352
+	.db	4
+	.db	'Os_InteranlResource_s',0,3,79,8,8,5
+	.db	'CeilingPriority',0
+	.dw	347
+	.db	1,2,35,0,5
+	.db	'InternalResourceDynamics',0
+	.dw	432
+	.db	4,2,35,4,0,6
+	.dw	437
+	.db	2
+	.db	'int',0,4,5,9,4,87,10,4,5
+	.db	'x',0
+	.dw	529
+	.db	4,2,35,0,0,6
+	.dw	536
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	4
+	.db	'Os_ResourceDynamic_s',0,3,105,8,8,5
+	.db	'OwnerTaskPriority',0
+	.dw	51
+	.db	1,2,35,0,5
+	.db	'OwnerTaskID',0
+	.dw	51
+	.db	1,2,35,1,5
+	.db	'LinkedResource',0
+	.dw	.L39-.L16
+	.db	4,2,35,4,0,6
+	.dw	568
+	.db	4
+	.db	'Os_Resource_s',0,3,92,8,8,5
+	.db	'CeilingPriority',0
+	.dw	558
+	.db	1,2,35,0,5
+	.db	'ResourceID',0
+	.dw	563
+	.db	1,2,35,1,5
+	.db	'ResourceDynamics',0
+	.dw	667
+	.db	4,2,35,4,0
+.L39:
+	.db	6
+	.dw	672
+	.db	4
+	.db	'Os_TaskDynamic_s',0,2,214,1,8,24,5
+	.db	'Context',0
+	.dw	553
+	.db	4,2,35,0,5
+	.db	'Resources',0
+	.dw	763
+	.db	4,2,35,4,5
+	.db	'PriorityQueueIndex',0
+	.dw	51
+	.db	1,2,35,8,5
+	.db	'EventsSet',0
+	.dw	73
+	.db	4,2,35,12,5
+	.db	'EventsWaiting',0
+	.dw	73
+	.db	4,2,35,16,5
+	.db	'TaskCurrentPriority',0
+	.dw	51
+	.db	1,2,35,20,5
+	.db	'TaskState',0
+	.dw	51
+	.db	1,2,35,21,5
+	.db	'PendingActivationRequests',0
+	.dw	51
+	.db	1,2,35,22,0,6
+	.dw	768
+	.db	4
+	.db	'Os_Task_s',0,2,186,1,8,28,5
+	.db	'TaskStaticPriority',0
+	.dw	94
+	.db	1,2,35,0,5
+	.db	'TaskID',0
+	.dw	99
+	.db	1,2,35,1,5
+	.db	'ApplicationMode',0
+	.dw	104
+	.db	1,2,35,2,5
+	.db	'NumOfActivationRequests',0
+	.dw	109
+	.db	1,2,35,3,5
+	.db	'TaskFlags',0
+	.dw	181
+	.db	4,2,35,4,5
+	.db	'TaskStack',0
+	.dw	299
+	.db	4,2,35,8,5
+	.db	'EntryPoint',0
+	.dw	342
+	.db	4,2,35,12,5
+	.db	'InternalResource',0
+	.dw	524
+	.db	4,2,35,16,5
+	.db	'TaskDynamics',0
+	.dw	981
+	.db	4,2,35,20,5
+	.db	'EventsOwned',0
+	.dw	73
+	.db	4,2,35,24,0,6
+	.dw	986
+	.db	10
+	.db	'ReadyQueueAddRear',0,1,188,1,34
+	.dw	51
+	.db	1,1,1,1,11
+	.db	'TaskRef',0,1,190,1,43
+	.dw	1232
+	.db	0,6
+	.dw	73
+	.db	6
+	.dw	304
+	.db	12,1,6
+	.dw	1296
+	.db	7
+	.db	'__codeptr',0,5,1,1
+	.dw	1298
+	.db	7
+	.db	'Os_ContexType',0,4,90,2
+	.dw	536
+	.db	7
+	.db	'boolean',0,6,242,1,23
+	.dw	51
+	.db	7
+	.db	'uint8',0,6,247,1,23
+	.dw	51
+	.db	2
+	.db	'unsigned short int',0,2,7,7
+	.db	'uint16',0,6,252,1,24
+	.dw	1375
+	.db	7
+	.db	'uint32',0,6,129,2,22
+	.dw	73
+	.db	7
+	.db	'StatusType',0,7,191,1,23
+	.dw	51
+	.db	7
+	.db	'Std_ReturnType',0,7,235,2,15
+	.dw	51
+	.db	7
+	.db	'Std_TransformerClass',0,7,238,2,15
+	.dw	51
+	.db	7
+	.db	'Std_TransformerForwardCode',0,7,241,2,15
+	.dw	51
+	.db	7
+	.db	'TaskType',0,8,183,1,29
+	.dw	51
+	.db	7
+	.db	'TaskStateType',0,8,189,1,29
+	.dw	51
+	.db	7
+	.db	'TaskPriorityType',0,8,195,1,29
+	.dw	51
+	.db	7
+	.db	'ResourceType',0,8,198,1,29
+	.dw	51
+	.db	7
+	.db	'EventMaskType',0,8,201,1,30
+	.dw	73
+	.db	7
+	.db	'AppModeType',0,8,207,1,28
+	.dw	51
+	.db	7
+	.db	'OsStateType',0,8,210,1,28
+	.dw	51
+	.db	7
+	.db	'TickType',0,8,214,1,30
+	.dw	73
+	.db	4
+	.db	'AlarmBaseType_s',0,8,230,1,8,12,5
+	.db	'maxallowedvalue',0
+	.dw	73
+	.db	4,2,35,0,5
+	.db	'ticksperbase',0
+	.dw	73
+	.db	4,2,35,4,5
+	.db	'mincycle',0
+	.dw	73
+	.db	4,2,35,8,0,7
+	.db	'AlarmBaseType',0,8,220,1,32
+	.dw	1711
+	.db	7
+	.db	'AlarmType',0,8,226,1,28
+	.dw	51
+	.db	7
+	.db	'Os_InernalResourceDynamic',0,3,55,44
+	.dw	352
+	.db	7
+	.db	'Os_InteranlResource',0,3,57,38
+	.dw	437
+	.db	7
+	.db	'Os_Resource',0,3,59,30
+	.dw	672
+	.db	7
+	.db	'Os_ResourceDynamic',0,3,61,37
+	.dw	568
+	.db	7
+	.db	'StackSizeType',0,2,145,1,31
+	.dw	73
+	.db	7
+	.db	'TaskActivationCounterType',0,2,147,1,30
+	.dw	51
+	.db	7
+	.db	'QueueIndexType',0,2,149,1,30
+	.dw	51
+	.db	7
+	.db	'TaskFlagsType',0,2,155,1,32
+	.dw	114
+	.db	7
+	.db	'TaskStackType',0,2,157,1,32
+	.dw	213
+	.db	7
+	.db	'Os_TaskDynamic',0,2,159,1,33
+	.dw	768
+	.db	7
+	.db	'Os_Task',0,2,161,1,26
+	.dw	986
+	.db	4
+	.db	'Os_CpuLoad_s',0,2,155,2,8,8,5
+	.db	'IdleTime',0
+	.dw	73
+	.db	4,2,35,0,5
+	.db	'CurrentCpuLoad',0
+	.dw	51
+	.db	1,2,35,4,5
+	.db	'PeakCpuLoad',0
+	.dw	51
+	.db	1,2,35,5,0,6
+	.dw	2119
+	.db	4
+	.db	'Os_Kernel_s',0,2,129,2,8,24,5
+	.db	'TaskQueueHead',0
+	.dw	1232
+	.db	4,2,35,0,5
+	.db	'TaskRunning',0
+	.dw	1232
+	.db	4,2,35,4,5
+	.db	'TaskPreempted',0
+	.dw	1232
+	.db	4,2,35,8,5
+	.db	'CpuLoad',0
+	.dw	2202
+	.db	4,2,35,12,5
+	.db	'OsState',0
+	.dw	51
+	.db	1,2,35,16,5
+	.db	'ForceScheduling',0
+	.dw	51
+	.db	1,2,35,17,5
+	.db	'SchedulerNeeded',0
+	.dw	51
+	.db	1,2,35,18,5
+	.db	'DispatcherNeeded',0
+	.dw	51
+	.db	1,2,35,19,5
+	.db	'NewContext',0
+	.dw	51
+	.db	1,2,35,20,0,7
+	.db	'Os_Kernel',0,2,163,1,28
+	.dw	2207
+	.db	7
+	.db	'Os_CpuLoad',0,2,165,1,29
+	.dw	2119
+	.db	3
+	.dw	73
+	.db	3
+	.dw	73
+	.db	3
+	.dw	73
+	.db	3
+	.dw	51
+	.db	3
+	.dw	73
+	.db	4
+	.db	'Os_Counter_s',0,9,44,8,28,5
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2462
+	.db	4,2,35,0,5
+	.db	'OsCounterMinCycle',0
+	.dw	2467
+	.db	4,2,35,4,5
+	.db	'OsCounterTicksPerBase',0
+	.dw	2472
+	.db	4,2,35,8,5
+	.db	'OsCounterType',0
+	.dw	2477
+	.db	1,2,35,12,5
+	.db	'OsSecondsPerTick',0
+	.dw	2482
+	.db	4,2,35,16,5
+	.db	'OsCounterCurrentTicks',0
+	.dw	73
+	.db	4,2,35,20,5
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	51
+	.db	1,2,35,24,0,7
+	.db	'Os_Counter',0,9,42,29
+	.dw	2487
+	.db	4
+	.db	'Os_AlarmActivateTask_s',0,10,140,1,8,1,5
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	51
+	.db	1,2,35,0,0,6
+	.dw	2731
+	.db	4
+	.db	'Os_AlarmSetEvent_s',0,10,146,1,8,8,5
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	51
+	.db	1,2,35,0,5
+	.db	'OsAlarmSetEventRef',0
+	.dw	73
+	.db	4,2,35,4,0,6
+	.dw	2798
+	.db	7
+	.db	'CallbackFuncPtrType',0,10,88,9
+	.dw	307
+	.db	3
+	.dw	2889
+	.db	13
+	.db	'Os_AlarmAction_u',0,10,92,7,4,5
+	.db	'OsAlarmActivateTask',0
+	.dw	2793
+	.db	4,2,35,0,5
+	.db	'OsAlarmSetEventTask',0
+	.dw	2884
+	.db	4,2,35,0,5
+	.db	'OsAlarmCallbackName',0
+	.dw	2917
+	.db	4,2,35,0,0,6
+	.dw	2487
+	.db	6
+	.dw	.L40-.L16
+.L40:
+	.db	4
+	.db	'Os_Alarm_s',0,10,104,8,36,5
+	.db	'OsAlarmAction',0
+	.dw	2922
+	.db	4,2,35,0,5
+	.db	'OsAlarmActionType',0
+	.dw	51
+	.db	1,2,35,4,5
+	.db	'OsAlarmExpiryTime',0
+	.dw	73
+	.db	4,2,35,8,5
+	.db	'OsAlarmCycleTime',0
+	.dw	73
+	.db	4,2,35,12,5
+	.db	'OsAlarmState',0
+	.dw	51
+	.db	1,2,35,16,5
+	.db	'OsAlarmCounterRef',0
+	.dw	3032
+	.db	4,2,35,20,5
+	.db	'OsAlarmNext',0
+	.dw	3037
+	.db	4,2,35,24,5
+	.db	'OsAlarmPrevious',0
+	.dw	3037
+	.db	4,2,35,28,5
+	.db	'OsAlarmAlarmTime',0
+	.dw	51
+	.db	1,2,35,32,5
+	.db	'OsAlarmAutoStartType',0
+	.dw	51
+	.db	1,2,35,33,0,7
+	.db	'Os_Alarm',0,10,73,45
+	.dw	3042
+	.db	6
+	.dw	304
+	.db	7
+	.db	'Os_AlarmAction',0,10,76,45
+	.dw	2922
+	.db	7
+	.db	'Os_AlarmActivateTask',0,10,79,41
+	.dw	2731
+	.db	7
+	.db	'Os_AlarmSetEvent',0,10,82,38
+	.dw	2798
+	.db	14,112
+	.dw	986
+	.db	15,3,0,16
+	.db	'Tasks',0,11,38,20
+	.dw	3412
+	.db	1,1,16
+	.db	'Kernel',0,11,40,18
+	.dw	2207
+	.db	1,1,7
+	.db	'QueueSize',0,12,183,1,29
+	.dw	51
+	.db	7
+	.db	'QueueIndex',0,12,186,1,29
+	.dw	51
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L17:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,19,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,5,13,0,3,8,73,19,11,15,56,9,0,0,6,15,0,73,19,0,0,7,22,0,3,8,58,15,59,15,57
+	.db	15,73,19,0,0,8,21,0,54,15,39,12,0,0,9,19,1,58,15,59,15,57,15,11,15,0,0,10,46,1,3,8,58,15,59,15,57,15,73
+	.db	19,54,15,39,12,63,12,60,12,0,0,11,5,0,3,8,58,15,59,15,57,15,73,19,0,0,12,21,0,54,15,0,0,13,23,1,3,8,58
+	.db	15,59,15,57,15,11,15,0,0,14,1,1,11,15,73,19,0,0,15,33,0,47,15,0,0,16,52,0,3,8,58,15,59,15,57,15,73,19
+	.db	63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L18:
+	.dw	.L42-.L41
+.L41:
+	.dh	3
+	.dw	.L44-.L43
+.L43:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\SchedulingQueues.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'../src/kernel/SetEvent.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L44:
+.L42:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_SetEvent')
+.L19:
+	.dw	165
+	.dh	3
+	.dw	.L20
+	.db	4,1
+	.db	'../src/kernel/SetEvent.c',0
+	.dw	.L37,.L38
+	.db	12,1
+	.dw	.L22,.L21
+	.db	2
+	.dw	.L15
+	.db	3
+	.db	'OS_SetEvent',0,1,140,1,27
+	.dw	.L25
+	.db	1,1,1
+	.dw	.L14,.L26,.L13
+	.db	4
+	.db	'TaskID',0,1,142,1,32
+	.dw	.L27,.L28
+	.db	4
+	.db	'Mask',0,1,143,1,37
+	.dw	.L29,.L30
+	.db	5
+	.dw	.L14,.L26
+	.db	6
+	.db	'ReturnVal',0,1,148,1,28
+	.dw	.L25,.L31
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_SetEvent')
+.L20:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_SetEvent')
+.L21:
+	.dw	.L46-.L45
+.L45:
+	.dh	3
+	.dw	.L48-.L47
+.L47:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/SetEvent.c',0,0,0,0,0
+.L48:
+	.db	5,27,7,0,5,2
+	.dw	.L14
+	.db	3,139,1,1,5,40,9
+	.dh	.L32-.L14
+	.db	3,8,1,5,2,9
+	.dh	.L35-.L32
+	.db	3,44,1,5,14,7,9
+	.dh	.L49-.L35
+	.db	3,4,1,5,9,9
+	.dh	.L50-.L49
+	.db	1,5,14,9
+	.dh	.L51-.L50
+	.db	1,5,22,9
+	.dh	.L52-.L51
+	.db	1,5,35,9
+	.dh	.L34-.L52
+	.db	1,5,8,9
+	.dh	.L53-.L34
+	.db	1,5,101,9
+	.dh	.L54-.L53
+	.db	1,5,153,1,9
+	.dh	.L55-.L54
+	.db	1,5,67,9
+	.dh	.L4-.L55
+	.db	3,3,1,5,52,9
+	.dh	.L56-.L4
+	.db	1,5,30,9
+	.dh	.L33-.L56
+	.db	1,5,42,9
+	.dh	.L57-.L33
+	.db	1,5,33,9
+	.dh	.L58-.L57
+	.db	3,4,1,5,46,9
+	.dh	.L59-.L58
+	.db	1,5,8,9
+	.dh	.L60-.L59
+	.db	1,5,89,9
+	.dh	.L61-.L60
+	.db	1,5,133,1,9
+	.dh	.L62-.L61
+	.db	1,5,105,9
+	.dh	.L63-.L62
+	.db	1,5,29,9
+	.dh	.L64-.L63
+	.db	3,3,1,5,18,9
+	.dh	.L65-.L64
+	.db	3,3,1,5,45,9
+	.dh	.L66-.L65
+	.db	1,5,43,9
+	.dh	.L67-.L66
+	.db	1,5,30,9
+	.dh	.L68-.L67
+	.db	3,3,1,5,11,9
+	.dh	.L69-.L68
+	.db	1,5,28,9
+	.dh	.L70-.L69
+	.db	1,5,2,9
+	.dh	.L2-.L70
+	.db	3,21,1,5,1,9
+	.dh	.L36-.L2
+	.db	3,1,1,7,9
+	.dh	.L24-.L36
+	.db	0,1,1
+.L46:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_SetEvent')
+.L22:
+	.dw	-1,.L23,0,.L24-.L23,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L38:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L37:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_SetEvent')
+.L30:
+	.dw	-1,.L14,0,.L33-.L14
+	.dh	1
+	.db	81
+	.dw	0,0
+.L13:
+	.dw	-1,.L14,0,.L32-.L14
+	.dh	2
+	.db	125,0
+	.dw	.L32-.L14,.L26-.L14
+	.dh	2
+	.db	125,12
+	.dw	.L26-.L14,.L26-.L14
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L31:
+	.dw	-1,.L14,.L35-.L14,.L26-.L14
+	.dh	1
+	.db	85
+	.dw	.L36-.L14,.L26-.L14
+	.dh	1
+	.db	80
+	.dw	0,0
+.L28:
+	.dw	-1,.L14,0,.L34-.L14
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L71:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_SetEvent')
+	.dw	48
+	.dw	.L71,.L14,.L26-.L14
+	.db	4
+	.dw	(.L32-.L14)/2
+	.db	19,6,22,13,3,19,125,12,17,14,126,17,5,124,17,4,122,4
+	.dw	(.L26-.L32)/2
+	.db	19,0,8,13,197,196,0,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/SetEvent.c	   235  
+; ../src/kernel/SetEvent.c	   236  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   237  /*                        Internal Function Declration                             */
+; ../src/kernel/SetEvent.c	   238  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   239  
+; ../src/kernel/SetEvent.c	   240  /***********************************************************************************/
+; ../src/kernel/SetEvent.c	   241  /*				              End Of File			         				       */
+; ../src/kernel/SetEvent.c	   242  /***********************************************************************************/
+
+	; Module end
+	.end

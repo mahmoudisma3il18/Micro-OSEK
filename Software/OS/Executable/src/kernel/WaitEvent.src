@@ -1,0 +1,989 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.WaitEvent.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/WaitEvent.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\WaitEvent.src ../src/kernel/WaitEvent.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/WaitEvent.c'
+
+	.section	.text ,cluster('$group_OS_WaitEvent')
+	.global	OS_WaitEvent
+
+; ../src/kernel/WaitEvent.c	     1  /**
+; ../src/kernel/WaitEvent.c	     2  * @file 					WaitEvent.c
+; ../src/kernel/WaitEvent.c	     3  * @author 					Ahmed Aref Omaira
+; ../src/kernel/WaitEvent.c	     4  * @version 					1.0.0
+; ../src/kernel/WaitEvent.c	     5  * @date 					23/03/2023
+; ../src/kernel/WaitEvent.c	     6  * @platform   				NA
+; ../src/kernel/WaitEvent.c	     7  * @variant					NA
+; ../src/kernel/WaitEvent.c	     8  * @vendor					CryptOS
+; ../src/kernel/WaitEvent.c	     9  * @specification		 	OSEK-VDX
+; ../src/kernel/WaitEvent.c	    10  * @brief SetEvent		 	Task API source code implementation .
+; ../src/kernel/WaitEvent.c	    11  *
+; ../src/kernel/WaitEvent.c	    12  * Detailed description of the service:
+; ../src/kernel/WaitEvent.c	    13  * -The service may only be called from the extended task owning the event.
+; ../src/kernel/WaitEvent.c	    14  * -The state of the calling task is set to waiting unless at least one of the events specified in <Mask> has already been set.
+; ../src/kernel/WaitEvent.c	    15  * -This call enforces rescheduling if the wait condition occurs. If rescheduling takes place, the internal resource of the task is released while the task is in the waiting state.
+; ../src/kernel/WaitEvent.c	    16  * -Standard: 
+; ../src/kernel/WaitEvent.c	    17              Returns E_OK if successful, indicating no error.
+; ../src/kernel/WaitEvent.c	    18  * -Extended:
+; ../src/kernel/WaitEvent.c	    19  *           E_OS_ACCESS: If the calling task is not an extended task.
+; ../src/kernel/WaitEvent.c	    20  *           E_OS_RESOURCE: If the calling task occupies resources.
+; ../src/kernel/WaitEvent.c	    21  *           E_OS_CALLEVEL: If called at interrupt level.
+; ../src/kernel/WaitEvent.c	    22  *           Conformance: Adheres to the conformance requirements specified by ECC1 and ECC2.
+; ../src/kernel/WaitEvent.c	    23  *
+; ../src/kernel/WaitEvent.c	    24  */
+; ../src/kernel/WaitEvent.c	    25  
+; ../src/kernel/WaitEvent.c	    26  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/WaitEvent.c	    27  
+; ../src/kernel/WaitEvent.c	    28  /**********************************************************************************/
+; ../src/kernel/WaitEvent.c	    29  /**				    			Include Headers			         				 **/
+; ../src/kernel/WaitEvent.c	    30  /**********************************************************************************/
+; ../src/kernel/WaitEvent.c	    31  #include <OS_kernel.h>
+; ../src/kernel/WaitEvent.c	    32  
+; ../src/kernel/WaitEvent.c	    33  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    34  /*  			    			    Macros				         				   */
+; ../src/kernel/WaitEvent.c	    35  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    36  
+; ../src/kernel/WaitEvent.c	    37  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/WaitEvent.c	    38  
+; ../src/kernel/WaitEvent.c	    39  /***************************** Autosar version Check ********************************/
+; ../src/kernel/WaitEvent.c	    40  
+; ../src/kernel/WaitEvent.c	    41  /******************************* DET Version Check **********************************/
+; ../src/kernel/WaitEvent.c	    42  
+; ../src/kernel/WaitEvent.c	    43  /************************** Internal Module Specific Macros ********************************/
+; ../src/kernel/WaitEvent.c	    44  /**
+; ../src/kernel/WaitEvent.c	    45   * @name InternalModuleSpecificMacros
+; ../src/kernel/WaitEvent.c	    46   * @{
+; ../src/kernel/WaitEvent.c	    47   */
+; ../src/kernel/WaitEvent.c	    48  
+; ../src/kernel/WaitEvent.c	    49  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/kernel/WaitEvent.c	    50  
+; ../src/kernel/WaitEvent.c	    51  /************************************************************************************/
+; ../src/kernel/WaitEvent.c	    52  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/WaitEvent.c	    53  /************************************************************************************/
+; ../src/kernel/WaitEvent.c	    54  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/WaitEvent.c	    55  /**
+; ../src/kernel/WaitEvent.c	    56   * @name InternalModuleSpecificTypeDefinitions
+; ../src/kernel/WaitEvent.c	    57   * @{
+; ../src/kernel/WaitEvent.c	    58   */
+; ../src/kernel/WaitEvent.c	    59  
+; ../src/kernel/WaitEvent.c	    60  /** @} */ /*End of InternalModuleSpecificTypeDefinitions*/
+; ../src/kernel/WaitEvent.c	    61  
+; ../src/kernel/WaitEvent.c	    62  /***************************************************************************************/
+; ../src/kernel/WaitEvent.c	    63  /*                            External Global Variables                                */
+; ../src/kernel/WaitEvent.c	    64  /***************************************************************************************/
+; ../src/kernel/WaitEvent.c	    65  /**
+; ../src/kernel/WaitEvent.c	    66   * @name ExternalGlobalVariables
+; ../src/kernel/WaitEvent.c	    67   * @{
+; ../src/kernel/WaitEvent.c	    68   */
+; ../src/kernel/WaitEvent.c	    69  
+; ../src/kernel/WaitEvent.c	    70  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/kernel/WaitEvent.c	    71  
+; ../src/kernel/WaitEvent.c	    72  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    73  /*				    			External constants		         				   */
+; ../src/kernel/WaitEvent.c	    74  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    75  /**
+; ../src/kernel/WaitEvent.c	    76   * @name External constants
+; ../src/kernel/WaitEvent.c	    77   * @{
+; ../src/kernel/WaitEvent.c	    78   */
+; ../src/kernel/WaitEvent.c	    79  
+; ../src/kernel/WaitEvent.c	    80  /** @} */ /*End of External constants*/
+; ../src/kernel/WaitEvent.c	    81  
+; ../src/kernel/WaitEvent.c	    82  /***************************************************************************************/
+; ../src/kernel/WaitEvent.c	    83  /*                              Internal Global Variables                              */
+; ../src/kernel/WaitEvent.c	    84  /***************************************************************************************/
+; ../src/kernel/WaitEvent.c	    85  /**
+; ../src/kernel/WaitEvent.c	    86   * @name InternalGlobalVariables
+; ../src/kernel/WaitEvent.c	    87   * @{
+; ../src/kernel/WaitEvent.c	    88   */
+; ../src/kernel/WaitEvent.c	    89  
+; ../src/kernel/WaitEvent.c	    90  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/kernel/WaitEvent.c	    91  
+; ../src/kernel/WaitEvent.c	    92  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    93  /*				    			Internal constants		         				   */
+; ../src/kernel/WaitEvent.c	    94  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	    95  /**
+; ../src/kernel/WaitEvent.c	    96   * @name InternalConstants
+; ../src/kernel/WaitEvent.c	    97   * @{
+; ../src/kernel/WaitEvent.c	    98   */
+; ../src/kernel/WaitEvent.c	    99  
+; ../src/kernel/WaitEvent.c	   100  /** @} */ /*End of InternalConstants*/
+; ../src/kernel/WaitEvent.c	   101  
+; ../src/kernel/WaitEvent.c	   102  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	   103  /*                        External Function Declration                             */
+; ../src/kernel/WaitEvent.c	   104  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	   105  /**
+; ../src/kernel/WaitEvent.c	   106   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/WaitEvent.c	   107   * @{
+; ../src/kernel/WaitEvent.c	   108   */
+; ../src/kernel/WaitEvent.c	   109  /**
+; ../src/kernel/WaitEvent.c	   110   *
+; ../src/kernel/WaitEvent.c	   111   * Detailed Description : This function suspends the calling task until at least one of the events specified in <Mask> occurs.
+; ../src/kernel/WaitEvent.c	   112   *
+; ../src/kernel/WaitEvent.c	   113   * @service name    WaitEvent
+; ../src/kernel/WaitEvent.c	   114   * @syntax          FUNC(StatusType, OS_CODE) WaitEvent
+; ../src/kernel/WaitEvent.c	   115   *                  (
+; ../src/kernel/WaitEvent.c	   116   *                      CONST(EventTaskType, AUTOMATIC) Mask
+; ../src/kernel/WaitEvent.c	   117   *                  )
+; ../src/kernel/WaitEvent.c	   118   *
+; ../src/kernel/WaitEvent.c	   119   * @service ID      -
+; ../src/kernel/WaitEvent.c	   120   * @sync/async      Synchronous
+; ../src/kernel/WaitEvent.c	   121   * @reentrancy      Non-Reentrant
+; ../src/kernel/WaitEvent.c	   122   * @param[in]       Mask    -   Mask of the events to wait for
+; ../src/kernel/WaitEvent.c	   123   * @param[out]      None
+; ../src/kernel/WaitEvent.c	   124   * @return          StatusType     Returns the status which differs according to error checking type
+; ../src/kernel/WaitEvent.c	   125   *                                   Standard:      No error, E_OK
+; ../src/kernel/WaitEvent.c	   126   *                                   Extended:      If OS is not in the task state, E_OS_CALLEVEL is returned
+; ../src/kernel/WaitEvent.c	   127   *                                                  If calling task is not an extended task, E_OS_ACCESS is returned
+; ../src/kernel/WaitEvent.c	   128   *                                                  If calling task is not the owner of the event, E_OS_ACCESS is returned
+; ../src/kernel/WaitEvent.c	   129   *                                                  If calling task is occupying resources, E_OS_RESOURCE is returned
+; ../src/kernel/WaitEvent.c	   130   * @see             NA
+; ../src/kernel/WaitEvent.c	   131   * @note            Conformance:        ECC1, ECC2
+; ../src/kernel/WaitEvent.c	   132   * @warning         NA
+; ../src/kernel/WaitEvent.c	   133   */
+; ../src/kernel/WaitEvent.c	   134  FUNC(StatusType,OS_CODE) OS_WaitEvent
+; ../src/kernel/WaitEvent.c	   135  (
+; ../src/kernel/WaitEvent.c	   136      CONST(EventMaskType, AUTOMATIC) Mask
+; ../src/kernel/WaitEvent.c	   137  );
+; ../src/kernel/WaitEvent.c	   138  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/kernel/WaitEvent.c	   139  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	   140  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/WaitEvent.c	   141  /***********************************************************************************/
+; ../src/kernel/WaitEvent.c	   142  FUNC(StatusType,OS_CODE) OS_WaitEvent
+; Function OS_WaitEvent
+.L18:
+	.thumb
+	.align	4
+OS_WaitEvent:	.type	func
+
+.L9:
+	push	{r4,r5,r6,lr}
+.L25:
+
+; ../src/kernel/WaitEvent.c	   143  (
+; ../src/kernel/WaitEvent.c	   144      CONST(EventMaskType, AUTOMATIC) Mask
+; ../src/kernel/WaitEvent.c	   145  )
+; ../src/kernel/WaitEvent.c	   146  {
+; ../src/kernel/WaitEvent.c	   147      /* Local Variables Declaration */
+; ../src/kernel/WaitEvent.c	   148      /* Init the return value to E_OK error state */
+; ../src/kernel/WaitEvent.c	   149      VAR(StatusType, AUTOMATIC) ReturnVal = E_OK;
+	movs	r5,#0
+.L27:
+
+; ../src/kernel/WaitEvent.c	   150  
+; ../src/kernel/WaitEvent.c	   151      /* [SWS_OS_12115] */ 
+; ../src/kernel/WaitEvent.c	   152      /* On calling the WaitEvent service, if the error checking was standard 
+; ../src/kernel/WaitEvent.c	   153      then it shall return E_OK indicating that there is no error occurred.*/
+; ../src/kernel/WaitEvent.c	   154  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/WaitEvent.c	   155  
+; ../src/kernel/WaitEvent.c	   156      /* [SWS_OS_12118] */
+; ../src/kernel/WaitEvent.c	   157      /* On calling the WaitEvent service, if the error checking was extended and the OS is not in the task state, 
+; ../src/kernel/WaitEvent.c	   158      then it shall return E_OS_CALLEVEL error code. */
+; ../src/kernel/WaitEvent.c	   159      if((OsStateType)OS_STATE_TASK != Kernel.OsState){
+; ../src/kernel/WaitEvent.c	   160          /* Set the return value to OS_STATE error state */
+; ../src/kernel/WaitEvent.c	   161          ReturnVal = E_OS_CALLEVEL;
+; ../src/kernel/WaitEvent.c	   162      }
+; ../src/kernel/WaitEvent.c	   163      /* [SWS_OS_12116] */
+; ../src/kernel/WaitEvent.c	   164      /* On calling the WaitEvent service, if the error checking was extended and the calling task is not extended, 
+; ../src/kernel/WaitEvent.c	   165      then it shall return E_OS_ACCESS error code. */
+; ../src/kernel/WaitEvent.c	   166      else if(EXTENDED != Kernel.TaskRunning->TaskFlags->Type)
+; ../src/kernel/WaitEvent.c	   167      {
+; ../src/kernel/WaitEvent.c	   168          /* Set the return value to OS_ACCESS error state */
+; ../src/kernel/WaitEvent.c	   169          ReturnVal = E_OS_ACCESS;
+; ../src/kernel/WaitEvent.c	   170      }
+; ../src/kernel/WaitEvent.c	   171      /* Check if the calling task is not an owner of the event */
+; ../src/kernel/WaitEvent.c	   172      else if(!(Mask & Kernel.TaskRunning->EventsOwned))
+; ../src/kernel/WaitEvent.c	   173      {
+; ../src/kernel/WaitEvent.c	   174          /* Set the return value to OS_ACCESS error state */
+; ../src/kernel/WaitEvent.c	   175          ReturnVal = E_OS_ACCESS;
+; ../src/kernel/WaitEvent.c	   176      }
+; ../src/kernel/WaitEvent.c	   177      /* [SWS_OS_12117] */
+; ../src/kernel/WaitEvent.c	   178      /* On calling WaitEvent service, if the calling task occupies resources, 
+; ../src/kernel/WaitEvent.c	   179      then it shall return E_OS_RESOURCE error code. */
+; ../src/kernel/WaitEvent.c	   180      else if (NULL_PTR != Kernel.TaskRunning->TaskDynamics->Resources)
+; ../src/kernel/WaitEvent.c	   181      {
+; ../src/kernel/WaitEvent.c	   182          /* Set the return value to OS_RESOURCE error state */
+; ../src/kernel/WaitEvent.c	   183          ReturnVal = E_OS_RESOURCE;
+; ../src/kernel/WaitEvent.c	   184      }
+; ../src/kernel/WaitEvent.c	   185      else
+; ../src/kernel/WaitEvent.c	   186      {
+; ../src/kernel/WaitEvent.c	   187           ReturnVal = E_OK;
+; ../src/kernel/WaitEvent.c	   188      }
+; ../src/kernel/WaitEvent.c	   189  #endif /* (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED) */
+; ../src/kernel/WaitEvent.c	   190  	
+; ../src/kernel/WaitEvent.c	   191      if (E_OK == ReturnVal)
+	bne	.L2
+.L41:
+
+; ../src/kernel/WaitEvent.c	   192      {
+; ../src/kernel/WaitEvent.c	   193          /*	SuspendAllInterrupts(); */
+; ../src/kernel/WaitEvent.c	   194  
+; ../src/kernel/WaitEvent.c	   195          /* [SWS_OS_12111], [SWS_OS_12114]*/
+; ../src/kernel/WaitEvent.c	   196          /* On calling WaitEvent service, if at least one of the events specified in (Mask) is set. */
+; ../src/kernel/WaitEvent.c	   197          /* On calling WaitEvent service, the call must be from the task owning the event. */
+; ../src/kernel/WaitEvent.c	   198          if(Mask & Kernel.TaskRunning->TaskDynamics->EventsSet)
+	ldr	r4,.L7
+.L42:
+	ldr	r1,[r4,#4]
+.L43:
+	ldr	r1,[r1,#20]
+.L44:
+	ldr	r2,[r1,#12]
+.L45:
+	ands	r2,r0,r2
+.L46:
+	beq	.L3
+.L47:
+	b	.L4
+.L3:
+
+; ../src/kernel/WaitEvent.c	   199          {
+; ../src/kernel/WaitEvent.c	   200              /* [SWS_OS_12111] */
+; ../src/kernel/WaitEvent.c	   201              /* The state of the calling task is not changed and no scheduler call takes place. */
+; ../src/kernel/WaitEvent.c	   202  
+; ../src/kernel/WaitEvent.c	   203              /* ResumeAllInterrupts(); */
+; ../src/kernel/WaitEvent.c	   204          }
+; ../src/kernel/WaitEvent.c	   205          /* [SWS_OS_12110] */ 
+; ../src/kernel/WaitEvent.c	   206          /* On calling WaitEvent service,if no one of the events specified in (Mask) is set*/ 
+; ../src/kernel/WaitEvent.c	   207          else
+; ../src/kernel/WaitEvent.c	   208          {
+; ../src/kernel/WaitEvent.c	   209              /* [SWS_OS_12110] */ 
+; ../src/kernel/WaitEvent.c	   210              /* then the state of the calling task is set to waiting.*/
+; ../src/kernel/WaitEvent.c	   211              Kernel.TaskRunning->TaskDynamics->TaskState = (TaskStateType)WAITING;
+	movs	r6,#1
+.L48:
+	strb	r6,[r1,#21]
+.L49:
+
+; ../src/kernel/WaitEvent.c	   212              
+; ../src/kernel/WaitEvent.c	   213              /* Set the event mask */
+; ../src/kernel/WaitEvent.c	   214              Kernel.TaskRunning->TaskDynamics->EventsWaiting = Mask;
+	ldr	r1,[r4,#4]
+.L50:
+	ldr	r1,[r1,#20]
+.L51:
+	str	r0,[r1,#16]
+.L52:
+
+; ../src/kernel/WaitEvent.c	   215  
+; ../src/kernel/WaitEvent.c	   216  			/* [SWS_OS_12113] */
+; ../src/kernel/WaitEvent.c	   217              /* On calling WaitEvent service, if rescheduling takes place, 
+; ../src/kernel/WaitEvent.c	   218              then the task will release its internal resource while it's in the waiting state. */
+; ../src/kernel/WaitEvent.c	   219              OS_ReleaseInternalResource(Kernel.TaskRunning->TaskID);
+	ldr	r0,[r4,#4]
+.L26:
+	ldrb	r0,[r0,#1]
+	bl	OS_ReleaseInternalResource
+.L53:
+
+; ../src/kernel/WaitEvent.c	   220  
+; ../src/kernel/WaitEvent.c	   221              /* set the preempted task to the task that was running */			
+; ../src/kernel/WaitEvent.c	   222  			Kernel.TaskPreempted = Kernel.TaskRunning;
+	ldr	r0,[r4,#4]
+.L54:
+	str	r0,[r4,#8]
+.L55:
+
+; ../src/kernel/WaitEvent.c	   223  			
+; ../src/kernel/WaitEvent.c	   224              /* set the task that is running to be NULL */
+; ../src/kernel/WaitEvent.c	   225              Kernel.TaskRunning = NULL_PTR;
+	movs	r0,#0
+.L56:
+	str	r0,[r4,#4]
+.L57:
+
+; ../src/kernel/WaitEvent.c	   226  					
+; ../src/kernel/WaitEvent.c	   227              /* [SWS_OS_12112] */
+; ../src/kernel/WaitEvent.c	   228              /* On calling WaitEvent service, if the wait condition occurs, 
+; ../src/kernel/WaitEvent.c	   229              then rescheduling will take place. */
+; ../src/kernel/WaitEvent.c	   230              Kernel.SchedulerNeeded = TRUE;
+	strb	r6,[r4,#18]
+.L4:
+.L2:
+
+; ../src/kernel/WaitEvent.c	   231          }
+; ../src/kernel/WaitEvent.c	   232      }
+; ../src/kernel/WaitEvent.c	   233      else
+; ../src/kernel/WaitEvent.c	   234      {
+; ../src/kernel/WaitEvent.c	   235          /*In order not to violate Misra Rules*/
+; ../src/kernel/WaitEvent.c	   236      }
+; ../src/kernel/WaitEvent.c	   237          
+; ../src/kernel/WaitEvent.c	   238          /* Check for HOOK_ERRORHOOK */
+; ../src/kernel/WaitEvent.c	   239          
+; ../src/kernel/WaitEvent.c	   240          /* Return the return value */
+; ../src/kernel/WaitEvent.c	   241          return ReturnVal;
+	mov	r0,r5
+.L28:
+
+; ../src/kernel/WaitEvent.c	   241  }
+
+	pop	{r4,r5,r6,pc}
+.L21:
+	.align	4
+.L7:
+	.dw	Kernel
+.L19:
+	.size	OS_WaitEvent,$-OS_WaitEvent
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_WaitEvent','OS_ReleaseInternalResource'
+	.calls	'OS_WaitEvent','',16
+	.extern	OS_ReleaseInternalResource
+	.extern	Kernel
+	.section	.debug_info
+.L11:
+	.dw	3470
+	.dh	3
+	.dw	.L12
+	.db	4
+.L10:
+	.db	1
+	.db	'../src/kernel/WaitEvent.c',0
+	.dw	.L29,.L30
+	.db	12,1
+	.dw	.L13
+.L20:
+	.db	2
+	.db	'unsigned char',0,1,8,3
+	.dw	52
+	.db	4
+	.db	'OS_ReleaseInternalResource',0,1,196,2,13,1,1,1,1,5
+	.db	'TaskID',0,1,198,2,28
+	.dw	69
+	.db	0,2
+	.db	'unsigned int',0,4,7
+.L22:
+	.db	3
+	.dw	127
+	.db	6,1,7
+	.dw	148
+	.db	8
+	.db	'__codeptr',0,2,1,1
+	.dw	150
+	.db	2
+	.db	'int',0,4,5,9,3,87,10,4,10
+	.db	'x',0
+	.dw	173
+	.db	4,2,35,0,0,8
+	.db	'Os_ContexType',0,3,90,2
+	.dw	180
+	.db	8
+	.db	'boolean',0,4,242,1,23
+	.dw	52
+	.db	8
+	.db	'uint8',0,4,247,1,23
+	.dw	52
+	.db	2
+	.db	'unsigned short int',0,2,7,8
+	.db	'uint16',0,4,252,1,24
+	.dw	251
+	.db	8
+	.db	'uint32',0,4,129,2,22
+	.dw	127
+	.db	8
+	.db	'StatusType',0,5,191,1,23
+	.dw	52
+	.db	8
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	52
+	.db	8
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	52
+	.db	8
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	52
+	.db	8
+	.db	'TaskType',0,6,183,1,29
+	.dw	52
+	.db	8
+	.db	'TaskStateType',0,6,189,1,29
+	.dw	52
+	.db	8
+	.db	'TaskPriorityType',0,6,195,1,29
+	.dw	52
+	.db	8
+	.db	'ResourceType',0,6,198,1,29
+	.dw	52
+	.db	8
+	.db	'EventMaskType',0,6,201,1,30
+	.dw	127
+	.db	8
+	.db	'AppModeType',0,6,207,1,28
+	.dw	52
+	.db	8
+	.db	'OsStateType',0,6,210,1,28
+	.dw	52
+	.db	8
+	.db	'TickType',0,6,214,1,30
+	.dw	127
+	.db	11
+	.db	'AlarmBaseType_s',0,6,230,1,8,12,10
+	.db	'maxallowedvalue',0
+	.dw	127
+	.db	4,2,35,0,10
+	.db	'ticksperbase',0
+	.dw	127
+	.db	4,2,35,4,10
+	.db	'mincycle',0
+	.dw	127
+	.db	4,2,35,8,0,8
+	.db	'AlarmBaseType',0,6,220,1,32
+	.dw	587
+	.db	8
+	.db	'AlarmType',0,6,226,1,28
+	.dw	52
+	.db	11
+	.db	'Os_InernalResourceDynamic_s',0,7,66,8,2,10
+	.db	'TakenTaskPriority',0
+	.dw	52
+	.db	1,2,35,0,10
+	.db	'TakenFlag',0
+	.dw	52
+	.db	1,2,35,1,0,8
+	.db	'Os_InernalResourceDynamic',0,7,55,44
+	.dw	717
+	.db	3
+	.dw	52
+	.db	7
+	.dw	717
+	.db	11
+	.db	'Os_InteranlResource_s',0,7,79,8,8,10
+	.db	'CeilingPriority',0
+	.dw	831
+	.db	1,2,35,0,10
+	.db	'InternalResourceDynamics',0
+	.dw	836
+	.db	4,2,35,4,0,8
+	.db	'Os_InteranlResource',0,7,57,38
+	.dw	841
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	7
+	.dw	.L31-.L11
+	.db	11
+	.db	'Os_ResourceDynamic_s',0,7,105,8,8,10
+	.db	'OwnerTaskPriority',0
+	.dw	52
+	.db	1,2,35,0,10
+	.db	'OwnerTaskID',0
+	.dw	52
+	.db	1,2,35,1,10
+	.db	'LinkedResource',0
+	.dw	966
+	.db	4,2,35,4,0,7
+	.dw	971
+.L31:
+	.db	11
+	.db	'Os_Resource_s',0,7,92,8,8,10
+	.db	'CeilingPriority',0
+	.dw	956
+	.db	1,2,35,0,10
+	.db	'ResourceID',0
+	.dw	961
+	.db	1,2,35,1,10
+	.db	'ResourceDynamics',0
+	.dw	1070
+	.db	4,2,35,4,0,8
+	.db	'Os_Resource',0,7,59,30
+	.dw	1075
+	.db	8
+	.db	'Os_ResourceDynamic',0,7,61,37
+	.dw	971
+	.db	7
+	.dw	127
+	.db	8
+	.db	'StackPtrType',0,1,143,1,30
+	.dw	1213
+	.db	8
+	.db	'StackSizeType',0,1,145,1,31
+	.dw	127
+	.db	8
+	.db	'TaskActivationCounterType',0,1,147,1,30
+	.dw	52
+	.db	8
+	.db	'QueueIndexType',0,1,149,1,30
+	.dw	52
+	.db	12,1,1,7
+	.dw	1322
+	.db	8
+	.db	'EntryFunctionPtrType',0,1,151,1,9
+	.dw	1325
+	.db	11
+	.db	'TaskFlagsType_s',0,1,172,1,8,2,10
+	.db	'Type',0
+	.dw	52
+	.db	1,2,35,0,10
+	.db	'TaskSchedulingPolicy',0
+	.dw	52
+	.db	1,2,35,1,0,8
+	.db	'TaskFlagsType',0,1,155,1,32
+	.dw	1360
+	.db	11
+	.db	'TaskStackType_s',0,1,243,1,8,12,10
+	.db	'StackBase',0
+	.dw	1218
+	.db	4,2,35,0,10
+	.db	'CurrentStackPtr',0
+	.dw	1218
+	.db	4,2,35,4,10
+	.db	'StackSize',0
+	.dw	127
+	.db	4,2,35,8,0,8
+	.db	'TaskStackType',0,1,157,1,32
+	.dw	1450
+	.db	7
+	.dw	127
+	.db	7
+	.dw	180
+	.db	11
+	.db	'Os_TaskDynamic_s',0,1,214,1,8,24,10
+	.db	'Context',0
+	.dw	1564
+	.db	4,2,35,0,10
+	.db	'Resources',0
+	.dw	966
+	.db	4,2,35,4,10
+	.db	'PriorityQueueIndex',0
+	.dw	52
+	.db	1,2,35,8,10
+	.db	'EventsSet',0
+	.dw	127
+	.db	4,2,35,12,10
+	.db	'EventsWaiting',0
+	.dw	127
+	.db	4,2,35,16,10
+	.db	'TaskCurrentPriority',0
+	.dw	52
+	.db	1,2,35,20,10
+	.db	'TaskState',0
+	.dw	52
+	.db	1,2,35,21,10
+	.db	'PendingActivationRequests',0
+	.dw	52
+	.db	1,2,35,22,0,8
+	.db	'Os_TaskDynamic',0,1,159,1,33
+	.dw	1569
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	7
+	.dw	1360
+	.db	7
+	.dw	1450
+	.db	3
+	.dw	1330
+	.db	7
+	.dw	841
+	.db	7
+	.dw	1569
+	.db	11
+	.db	'Os_Task_s',0,1,186,1,8,28,10
+	.db	'TaskStaticPriority',0
+	.dw	1806
+	.db	1,2,35,0,10
+	.db	'TaskID',0
+	.dw	1811
+	.db	1,2,35,1,10
+	.db	'ApplicationMode',0
+	.dw	1816
+	.db	1,2,35,2,10
+	.db	'NumOfActivationRequests',0
+	.dw	1821
+	.db	1,2,35,3,10
+	.db	'TaskFlags',0
+	.dw	1826
+	.db	4,2,35,4,10
+	.db	'TaskStack',0
+	.dw	1831
+	.db	4,2,35,8,10
+	.db	'EntryPoint',0
+	.dw	1836
+	.db	4,2,35,12,10
+	.db	'InternalResource',0
+	.dw	1841
+	.db	4,2,35,16,10
+	.db	'TaskDynamics',0
+	.dw	1846
+	.db	4,2,35,20,10
+	.db	'EventsOwned',0
+	.dw	127
+	.db	4,2,35,24,0,8
+	.db	'Os_Task',0,1,161,1,26
+	.dw	1851
+	.db	7
+	.dw	1322
+	.db	7
+	.dw	1851
+	.db	11
+	.db	'Os_CpuLoad_s',0,1,155,2,8,8,10
+	.db	'IdleTime',0
+	.dw	127
+	.db	4,2,35,0,10
+	.db	'CurrentCpuLoad',0
+	.dw	52
+	.db	1,2,35,4,10
+	.db	'PeakCpuLoad',0
+	.dw	52
+	.db	1,2,35,5,0,7
+	.dw	2124
+	.db	11
+	.db	'Os_Kernel_s',0,1,129,2,8,24,10
+	.db	'TaskQueueHead',0
+	.dw	2119
+	.db	4,2,35,0,10
+	.db	'TaskRunning',0
+	.dw	2119
+	.db	4,2,35,4,10
+	.db	'TaskPreempted',0
+	.dw	2119
+	.db	4,2,35,8,10
+	.db	'CpuLoad',0
+	.dw	2207
+	.db	4,2,35,12,10
+	.db	'OsState',0
+	.dw	52
+	.db	1,2,35,16,10
+	.db	'ForceScheduling',0
+	.dw	52
+	.db	1,2,35,17,10
+	.db	'SchedulerNeeded',0
+	.dw	52
+	.db	1,2,35,18,10
+	.db	'DispatcherNeeded',0
+	.dw	52
+	.db	1,2,35,19,10
+	.db	'NewContext',0
+	.dw	52
+	.db	1,2,35,20,0,8
+	.db	'Os_Kernel',0,1,163,1,28
+	.dw	2212
+	.db	8
+	.db	'Os_CpuLoad',0,1,165,1,29
+	.dw	2124
+	.db	3
+	.dw	127
+	.db	3
+	.dw	127
+	.db	3
+	.dw	127
+	.db	3
+	.dw	52
+	.db	3
+	.dw	127
+	.db	11
+	.db	'Os_Counter_s',0,8,44,8,28,10
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2467
+	.db	4,2,35,0,10
+	.db	'OsCounterMinCycle',0
+	.dw	2472
+	.db	4,2,35,4,10
+	.db	'OsCounterTicksPerBase',0
+	.dw	2477
+	.db	4,2,35,8,10
+	.db	'OsCounterType',0
+	.dw	2482
+	.db	1,2,35,12,10
+	.db	'OsSecondsPerTick',0
+	.dw	2487
+	.db	4,2,35,16,10
+	.db	'OsCounterCurrentTicks',0
+	.dw	127
+	.db	4,2,35,20,10
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	52
+	.db	1,2,35,24,0,8
+	.db	'Os_Counter',0,8,42,29
+	.dw	2492
+	.db	11
+	.db	'Os_AlarmActivateTask_s',0,9,140,1,8,1,10
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	52
+	.db	1,2,35,0,0,7
+	.dw	2736
+	.db	11
+	.db	'Os_AlarmSetEvent_s',0,9,146,1,8,8,10
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	52
+	.db	1,2,35,0,10
+	.db	'OsAlarmSetEventRef',0
+	.dw	127
+	.db	4,2,35,4,0,7
+	.dw	2803
+	.db	8
+	.db	'CallbackFuncPtrType',0,9,88,9
+	.dw	1325
+	.db	3
+	.dw	2894
+	.db	13
+	.db	'Os_AlarmAction_u',0,9,92,7,4,10
+	.db	'OsAlarmActivateTask',0
+	.dw	2798
+	.db	4,2,35,0,10
+	.db	'OsAlarmSetEventTask',0
+	.dw	2889
+	.db	4,2,35,0,10
+	.db	'OsAlarmCallbackName',0
+	.dw	2922
+	.db	4,2,35,0,0,7
+	.dw	2492
+	.db	7
+	.dw	.L32-.L11
+.L32:
+	.db	11
+	.db	'Os_Alarm_s',0,9,104,8,36,10
+	.db	'OsAlarmAction',0
+	.dw	2927
+	.db	4,2,35,0,10
+	.db	'OsAlarmActionType',0
+	.dw	52
+	.db	1,2,35,4,10
+	.db	'OsAlarmExpiryTime',0
+	.dw	127
+	.db	4,2,35,8,10
+	.db	'OsAlarmCycleTime',0
+	.dw	127
+	.db	4,2,35,12,10
+	.db	'OsAlarmState',0
+	.dw	52
+	.db	1,2,35,16,10
+	.db	'OsAlarmCounterRef',0
+	.dw	3037
+	.db	4,2,35,20,10
+	.db	'OsAlarmNext',0
+	.dw	3042
+	.db	4,2,35,24,10
+	.db	'OsAlarmPrevious',0
+	.dw	3042
+	.db	4,2,35,28,10
+	.db	'OsAlarmAlarmTime',0
+	.dw	52
+	.db	1,2,35,32,10
+	.db	'OsAlarmAutoStartType',0
+	.dw	52
+	.db	1,2,35,33,0,8
+	.db	'Os_Alarm',0,9,73,45
+	.dw	3047
+	.db	7
+	.dw	1322
+	.db	8
+	.db	'Os_AlarmAction',0,9,76,45
+	.dw	2927
+	.db	8
+	.db	'Os_AlarmActivateTask',0,9,79,41
+	.dw	2736
+	.db	8
+	.db	'Os_AlarmSetEvent',0,9,82,38
+	.dw	2803
+	.db	14
+	.db	'Kernel',0,10,40,18
+	.dw	2212
+	.db	1,1,8
+	.db	'QueueSize',0,11,183,1,29
+	.dw	52
+	.db	8
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	52
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L12:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,46,1,3,8
+	.db	58,15,59,15,57,15,54,15,39,12,63,12,60,12,0,0,5,5,0,3,8,58,15,59,15,57,15,73,19,0,0,6,21,0,54,15,0,0,7
+	.db	15,0,73,19,0,0,8,22,0,3,8,58,15,59,15,57,15,73,19,0,0,9,19,1,58,15,59,15,57,15,11,15,0,0,10,13,0,3,8,73
+	.db	19,11,15,56,9,0,0,11,19,1,3,8,58,15,59,15,57,15,11,15,0,0,12,21,0,54,15,39,12,0,0,13,23,1,3,8,58,15,59
+	.db	15,57,15,11,15,0,0,14,52,0,3,8,58,15,59,15,57,15,73,19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L13:
+	.dw	.L34-.L33
+.L33:
+	.dh	3
+	.dw	.L36-.L35
+.L35:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'../src/kernel/WaitEvent.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L36:
+.L34:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_WaitEvent')
+.L14:
+	.dw	147
+	.dh	3
+	.dw	.L15
+	.db	4,1
+	.db	'../src/kernel/WaitEvent.c',0
+	.dw	.L29,.L30
+	.db	12,1
+	.dw	.L17,.L16
+	.db	2
+	.dw	.L10
+	.db	3
+	.db	'OS_WaitEvent',0,1,142,1,26
+	.dw	.L20
+	.db	1,1,1
+	.dw	.L9,.L21,.L8
+	.db	4
+	.db	'Mask',0,1,144,1,37
+	.dw	.L22,.L23
+	.db	5
+	.dw	.L9,.L21
+	.db	6
+	.db	'ReturnVal',0,1,149,1,32
+	.dw	.L20,.L24
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_WaitEvent')
+.L15:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_WaitEvent')
+.L16:
+	.dw	.L38-.L37
+.L37:
+	.dh	3
+	.dw	.L40-.L39
+.L39:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/WaitEvent.c',0,0,0,0,0
+.L40:
+	.db	5,26,7,0,5,2
+	.dw	.L9
+	.db	3,141,1,1,5,44,9
+	.dh	.L25-.L9
+	.db	3,7,1,5,5,9
+	.dh	.L27-.L25
+	.db	3,42,1,5,19,7,9
+	.dh	.L41-.L27
+	.db	3,7,1,5,25,9
+	.dh	.L42-.L41
+	.db	1,5,37,9
+	.dh	.L43-.L42
+	.db	1,5,51,9
+	.dh	.L44-.L43
+	.db	1,5,17,9
+	.dh	.L45-.L44
+	.db	1,5,9,9
+	.dh	.L46-.L45
+	.db	1,7,9
+	.dh	.L47-.L46
+	.db	1,5,59,9
+	.dh	.L3-.L47
+	.db	3,13,1,5,57,9
+	.dh	.L48-.L3
+	.db	1,5,19,9
+	.dh	.L49-.L48
+	.db	3,3,1,5,31,9
+	.dh	.L50-.L49
+	.db	1,5,61,9
+	.dh	.L51-.L50
+	.db	1,5,46,9
+	.dh	.L52-.L51
+	.db	3,5,1,5,58,9
+	.dh	.L26-.L52
+	.db	1,5,33,9
+	.dh	.L53-.L26
+	.db	3,3,1,5,25,9
+	.dh	.L54-.L53
+	.db	1,5,34,9
+	.dh	.L55-.L54
+	.db	3,3,1,5,32,9
+	.dh	.L56-.L55
+	.db	1,5,36,9
+	.dh	.L57-.L56
+	.db	3,5,1,5,9,9
+	.dh	.L2-.L57
+	.db	3,11,1,5,1,9
+	.dh	.L28-.L2
+	.db	3,1,1,7,9
+	.dh	.L19-.L28
+	.db	0,1,1
+.L38:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_WaitEvent')
+.L17:
+	.dw	-1,.L18,0,.L19-.L18,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L29:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L30:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_WaitEvent')
+.L23:
+	.dw	-1,.L9,0,.L26-.L9
+	.dh	1
+	.db	80
+	.dw	0,0
+.L8:
+	.dw	-1,.L9,0,.L25-.L9
+	.dh	2
+	.db	125,0
+	.dw	.L25-.L9,.L21-.L9
+	.dh	2
+	.db	125,16
+	.dw	.L21-.L9,.L21-.L9
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L24:
+	.dw	-1,.L9,.L27-.L9,.L21-.L9
+	.dh	1
+	.db	85
+	.dw	.L28-.L9,.L21-.L9
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L58:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_WaitEvent')
+	.dw	52
+	.dw	.L58,.L9,.L21-.L9
+	.db	4
+	.dw	(.L25-.L9)/2
+	.db	19,8,22,13,3,19,125,16,17,14,126,17,6,124,17,5,122,17,4,120,4
+	.dw	(.L21-.L25)/2
+	.db	19,0,8,13,198,197,196,0,0,0
+	.endsec	; End of section
+
+
+
+	; Module end
+	.end

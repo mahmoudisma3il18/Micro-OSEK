@@ -1,0 +1,1682 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.Resources.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/Resources.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\Resources.src ../src/kernel/Resources.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/Resources.c'
+
+	.section	.text ,cluster('$group_OS_ReleaseAllResources')
+	.global	OS_ReleaseAllResources
+
+; ../src/kernel/Resources.c	     1  /** 
+; ../src/kernel/Resources.c	     2   * @file 	Resources.c
+; ../src/kernel/Resources.c	     3   * @author  Mohamed Sayed
+; ../src/kernel/Resources.c	     4   * @version 1.0.0
+; ../src/kernel/Resources.c	     5   * @date	6-12-2023
+; ../src/kernel/Resources.c	     6   * @platform    -- 	
+; ../src/kernel/Resources.c	     7   * @variant		--
+; ../src/kernel/Resources.c	     8   * @vendor		--
+; ../src/kernel/Resources.c	     9   * @specification --
+; ../src/kernel/Resources.c	    10   * @brief   Os Resources main source file.
+; ../src/kernel/Resources.c	    11   * 
+; ../src/kernel/Resources.c	    12   * 
+; ../src/kernel/Resources.c	    13   * 
+; ../src/kernel/Resources.c	    14  */
+; ../src/kernel/Resources.c	    15  
+; ../src/kernel/Resources.c	    16  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/Resources.c	    17  
+; ../src/kernel/Resources.c	    18  
+; ../src/kernel/Resources.c	    19  /**********************************************************************************/
+; ../src/kernel/Resources.c	    20  /*                               INCLUDE HEADERS	                              */  
+; ../src/kernel/Resources.c	    21  /**********************************************************************************/
+; ../src/kernel/Resources.c	    22  
+; ../src/kernel/Resources.c	    23  /* Kernel main header file inclusion */
+; ../src/kernel/Resources.c	    24  #include <Os_kernel.h>
+; ../src/kernel/Resources.c	    25  #include <SchedulingQueues.h>
+; ../src/kernel/Resources.c	    26  
+; ../src/kernel/Resources.c	    27  
+; ../src/kernel/Resources.c	    28  /***********************************************************************************/
+; ../src/kernel/Resources.c	    29  /*                                  MACROS                                         */
+; ../src/kernel/Resources.c	    30  /***********************************************************************************/
+; ../src/kernel/Resources.c	    31  
+; ../src/kernel/Resources.c	    32  
+; ../src/kernel/Resources.c	    33  
+; ../src/kernel/Resources.c	    34  
+; ../src/kernel/Resources.c	    35  /************************** Resources Specific Macros ******************************/
+; ../src/kernel/Resources.c	    36  /**
+; ../src/kernel/Resources.c	    37   * @name ResourcesSpecificMacros
+; ../src/kernel/Resources.c	    38   * @{
+; ../src/kernel/Resources.c	    39   */
+; ../src/kernel/Resources.c	    40  
+; ../src/kernel/Resources.c	    41  
+; ../src/kernel/Resources.c	    42  /** @} */  /* End of ResourcesSPECIFICMACRO */
+; ../src/kernel/Resources.c	    43  
+; ../src/kernel/Resources.c	    44  
+; ../src/kernel/Resources.c	    45  /*************************************************************************************/
+; ../src/kernel/Resources.c	    46  /*                                 TypeDefnitions                                    */
+; ../src/kernel/Resources.c	    47  /*************************************************************************************/
+; ../src/kernel/Resources.c	    48  /***************************  Configuration Types     ********************************/
+; ../src/kernel/Resources.c	    49  /**
+; ../src/kernel/Resources.c	    50   * @name ConfigurationTypedefs
+; ../src/kernel/Resources.c	    51   * @{
+; ../src/kernel/Resources.c	    52   */
+; ../src/kernel/Resources.c	    53  
+; ../src/kernel/Resources.c	    54  
+; ../src/kernel/Resources.c	    55  
+; ../src/kernel/Resources.c	    56  /** @} */  /*End of ConfigurationTypedefs*/
+; ../src/kernel/Resources.c	    57  
+; ../src/kernel/Resources.c	    58  /*************************** Resources Specific Typedefs ********************************/
+; ../src/kernel/Resources.c	    59  /**
+; ../src/kernel/Resources.c	    60   * @name ResourcesSpecificTypedefs
+; ../src/kernel/Resources.c	    61   * @{
+; ../src/kernel/Resources.c	    62   */
+; ../src/kernel/Resources.c	    63  
+; ../src/kernel/Resources.c	    64  
+; ../src/kernel/Resources.c	    65  /** @} */  /*End of ResourcesSpecificTypedefs*/
+; ../src/kernel/Resources.c	    66  
+; ../src/kernel/Resources.c	    67  
+; ../src/kernel/Resources.c	    68  /***********************************************************************************/
+; ../src/kernel/Resources.c	    69  /*                        Internal Function Declration                             */
+; ../src/kernel/Resources.c	    70  /***********************************************************************************/
+; ../src/kernel/Resources.c	    71  /**
+; ../src/kernel/Resources.c	    72   * @defgroup InternalFunctionsDeclration
+; ../src/kernel/Resources.c	    73   * @{
+; ../src/kernel/Resources.c	    74   */
+; ../src/kernel/Resources.c	    75  
+; ../src/kernel/Resources.c	    76  
+; ../src/kernel/Resources.c	    77  
+; ../src/kernel/Resources.c	    78  /***********************************************************************************/
+; ../src/kernel/Resources.c	    79  /*                        External Function Declration                             */
+; ../src/kernel/Resources.c	    80  /***********************************************************************************/
+; ../src/kernel/Resources.c	    81  
+; ../src/kernel/Resources.c	    82  /**
+; ../src/kernel/Resources.c	    83   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/Resources.c	    84   * @{
+; ../src/kernel/Resources.c	    85   */
+; ../src/kernel/Resources.c	    86  
+; ../src/kernel/Resources.c	    87  
+; ../src/kernel/Resources.c	    88  
+; ../src/kernel/Resources.c	    89  
+; ../src/kernel/Resources.c	    90  /** @} */  /*End of ExternalFunctionsDeclration*/ 
+; ../src/kernel/Resources.c	    91  
+; ../src/kernel/Resources.c	    92  
+; ../src/kernel/Resources.c	    93  
+; ../src/kernel/Resources.c	    94  /***********************************************************************************/
+; ../src/kernel/Resources.c	    95  /*				    			External constants		         				   */
+; ../src/kernel/Resources.c	    96  /***********************************************************************************/
+; ../src/kernel/Resources.c	    97  /**
+; ../src/kernel/Resources.c	    98   * @name ExternalConstants
+; ../src/kernel/Resources.c	    99   * @{
+; ../src/kernel/Resources.c	   100   */
+; ../src/kernel/Resources.c	   101  
+; ../src/kernel/Resources.c	   102  
+; ../src/kernel/Resources.c	   103  /** @} */  /*End of ExternalConstants*/
+; ../src/kernel/Resources.c	   104  
+; ../src/kernel/Resources.c	   105  
+; ../src/kernel/Resources.c	   106  /***********************************************************************************/
+; ../src/kernel/Resources.c	   107  /*				    	  External data	shared global varaibles	         	       */
+; ../src/kernel/Resources.c	   108  /***********************************************************************************/
+; ../src/kernel/Resources.c	   109  /**
+; ../src/kernel/Resources.c	   110   * @name ExternalGlobalVariables
+; ../src/kernel/Resources.c	   111   * @{
+; ../src/kernel/Resources.c	   112   */
+; ../src/kernel/Resources.c	   113  
+; ../src/kernel/Resources.c	   114  
+; ../src/kernel/Resources.c	   115  
+; ../src/kernel/Resources.c	   116  /** @} */  /*End of ExternalGlobalVariables*/
+; ../src/kernel/Resources.c	   117  
+; ../src/kernel/Resources.c	   118  /***********************************************************************************/
+; ../src/kernel/Resources.c	   119  /*				    	  External data	shared global varaibles	         	       */
+; ../src/kernel/Resources.c	   120  /***********************************************************************************/
+; ../src/kernel/Resources.c	   121  
+; ../src/kernel/Resources.c	   122  
+; ../src/kernel/Resources.c	   123  
+; ../src/kernel/Resources.c	   124  /***********************************************************************************/
+; ../src/kernel/Resources.c	   125  /*                        External Function Definition                             */
+; ../src/kernel/Resources.c	   126  /***********************************************************************************/
+; ../src/kernel/Resources.c	   127  
+; ../src/kernel/Resources.c	   128  /**
+; ../src/kernel/Resources.c	   129   * @defgroup ExternalFunctionDefinition
+; ../src/kernel/Resources.c	   130   * @{
+; ../src/kernel/Resources.c	   131   */
+; ../src/kernel/Resources.c	   132  
+; ../src/kernel/Resources.c	   133  FUNC(void,OS_CODE) OS_ReleaseAllResources
+; Function OS_ReleaseAllResources
+.L43:
+	.thumb
+	.align	4
+OS_ReleaseAllResources:	.type	func
+
+.L14:
+	push	{r4}
+.L81:
+
+; ../src/kernel/Resources.c	   134  (
+; ../src/kernel/Resources.c	   135  	CONST(TaskType, AUTOMATIC) TaskID
+; ../src/kernel/Resources.c	   136  )
+; ../src/kernel/Resources.c	   137  {
+; ../src/kernel/Resources.c	   138  
+; ../src/kernel/Resources.c	   139  	P2VAR(Os_Task, memclass ,ptrclass) Task = NULL_PTR;
+; ../src/kernel/Resources.c	   140  	Os_Resource* CurrentRes = NULL_PTR;
+; ../src/kernel/Resources.c	   141  	Os_Resource* NextRes = NULL_PTR;
+; ../src/kernel/Resources.c	   142  	
+; ../src/kernel/Resources.c	   143  #if (TASK_COUNT > 0)
+; ../src/kernel/Resources.c	   144  	Task = &Tasks[TaskID];
+	movs	r1,#28
+.L148:
+	ldr	r2,.L10
+.L149:
+	mla	r0,r0,r1,r2
+.L83:
+
+; ../src/kernel/Resources.c	   145  	
+; ../src/kernel/Resources.c	   146  	CurrentRes = Task->TaskDynamics->Resources;
+	ldr	r1,[r0,#20]
+.L150:
+	ldr	r1,[r1,#4]
+.L85:
+
+; ../src/kernel/Resources.c	   147  	
+; ../src/kernel/Resources.c	   148  	while(CurrentRes != NULL_PTR)
+; ../src/kernel/Resources.c	   149  	{
+; ../src/kernel/Resources.c	   150  		NextRes = CurrentRes->ResourceDynamics->LinkedResource;
+; ../src/kernel/Resources.c	   151  		
+; ../src/kernel/Resources.c	   152  		CurrentRes->ResourceDynamics->OwnerTaskID = 0;
+	movs	r3,#0
+.L151:
+	b	.L2
+.L3:
+	ldr	r2,[r1,#4]
+.L152:
+	ldr	r4,[r2,#4]
+.L87:
+	strb	r3,[r2,#1]
+.L153:
+
+; ../src/kernel/Resources.c	   153  		CurrentRes->ResourceDynamics->LinkedResource = NULL_PTR;
+	ldr	r1,[r1,#4]
+.L86:
+	str	r3,[r1,#4]
+.L154:
+
+; ../src/kernel/Resources.c	   154  		
+; ../src/kernel/Resources.c	   155  		CurrentRes = NextRes;
+	mov	r1,r4
+.L2:
+	cmp	r1,#0
+	bne	.L3
+.L155:
+
+; ../src/kernel/Resources.c	   156  	}
+; ../src/kernel/Resources.c	   157  	
+; ../src/kernel/Resources.c	   158  	Task->TaskDynamics->Resources = CurrentRes;
+	ldr	r0,[r0,#20]
+.L84:
+	str	r1,[r0,#4]
+.L156:
+
+; ../src/kernel/Resources.c	   159  #endif /*#if (TASK_COUNT > 0)*/
+; ../src/kernel/Resources.c	   160  	
+; ../src/kernel/Resources.c	   161  }
+	pop	{r4}
+.L82:
+	bx	lr
+.L66:
+	.align	4
+.L10:
+	.dw	Tasks
+.L44:
+	.size	OS_ReleaseAllResources,$-OS_ReleaseAllResources
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_GetResource')
+	.global	OS_GetResource
+
+; ../src/kernel/Resources.c	   162  
+; ../src/kernel/Resources.c	   163  FUNC(StatusType,OS_CODE) OS_GetResource
+; Function OS_GetResource
+.L49:
+	.thumb
+	.align	4
+OS_GetResource:	.type	func
+
+.L16:
+
+; ../src/kernel/Resources.c	   164  (
+; ../src/kernel/Resources.c	   165  	CONST(ResourceType,AUTOMATIC)	ResID
+; ../src/kernel/Resources.c	   166  )
+; ../src/kernel/Resources.c	   167  {
+; ../src/kernel/Resources.c	   168  	StatusType RetVal = (StatusType)E_OK;
+	mov	r0,#0
+.L88:
+
+; ../src/kernel/Resources.c	   169  
+; ../src/kernel/Resources.c	   170  #if (RESOURCE_COUNT > 0)
+; ../src/kernel/Resources.c	   171  	Os_Resource* Res = &Resources[ResID];
+; ../src/kernel/Resources.c	   172  	
+; ../src/kernel/Resources.c	   173  #if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/Resources.c	   174  
+; ../src/kernel/Resources.c	   175  	if ((ResID >= RESOURCE_COUNT)) 
+; ../src/kernel/Resources.c	   176  	{
+; ../src/kernel/Resources.c	   177  		RetVal = (StatusType)E_OS_ID;
+; ../src/kernel/Resources.c	   178  	}
+; ../src/kernel/Resources.c	   179  	else if((Res->ResourceDynamics->OwnerTaskID != 0) || \ 
+; ../src/kernel/Resources.c	   180  			(Kernel.TaskRunning->TaskStaticPriority > Res->CeilingPriority))
+; ../src/kernel/Resources.c	   181  	{
+; ../src/kernel/Resources.c	   182  		/* we should add intterupt calling priorty during isr implemntaion */
+; ../src/kernel/Resources.c	   183  		RetVal = (StatusType)E_OS_ACCESS;
+; ../src/kernel/Resources.c	   184  	}
+; ../src/kernel/Resources.c	   185  	else
+; ../src/kernel/Resources.c	   186  	{
+; ../src/kernel/Resources.c	   187  		
+; ../src/kernel/Resources.c	   188  	}
+; ../src/kernel/Resources.c	   189  	
+; ../src/kernel/Resources.c	   190  #endif /*#if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/Resources.c	   191  
+; ../src/kernel/Resources.c	   192  #if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/Resources.c	   193  	if(E_OK == RetVal)
+; ../src/kernel/Resources.c	   194  #endif /*#if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/Resources.c	   195  	{
+; ../src/kernel/Resources.c	   196  		/*	SuspendAllInterrupts(); */
+; ../src/kernel/Resources.c	   197  		Res->ResourceDynamics->LinkedResource = Kernel.TaskRunning->TaskDynamics->Resources;
+; ../src/kernel/Resources.c	   198  		
+; ../src/kernel/Resources.c	   199  		Kernel.TaskRunning->TaskDynamics->Resources = Res;
+; ../src/kernel/Resources.c	   200  						
+; ../src/kernel/Resources.c	   201  		Res->ResourceDynamics->OwnerTaskID = Kernel.TaskRunning->TaskID;
+; ../src/kernel/Resources.c	   202  		
+; ../src/kernel/Resources.c	   203  		Res->ResourceDynamics->OwnerTaskPriority = Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority;
+; ../src/kernel/Resources.c	   204  			
+; ../src/kernel/Resources.c	   205  		if(Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority < Res->CeilingPriority)
+; ../src/kernel/Resources.c	   206  		{
+; ../src/kernel/Resources.c	   207  			Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority = Res->CeilingPriority;
+; ../src/kernel/Resources.c	   208  			Kernel.TaskRunning->TaskDynamics->PriorityQueueIndex = ReadyQueueGetQueueIndexByPriority(Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority);
+; ../src/kernel/Resources.c	   209  		}		
+; ../src/kernel/Resources.c	   210  	}
+; ../src/kernel/Resources.c	   211  #endif /* (RESOURCE_COUNT > 0) */
+; ../src/kernel/Resources.c	   212  	/* ResumeAllInterrupts();*/
+; ../src/kernel/Resources.c	   213  	
+; ../src/kernel/Resources.c	   214  	return RetVal;
+; ../src/kernel/Resources.c	   215  }
+	bx	lr
+.L50:
+	.size	OS_GetResource,$-OS_GetResource
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_ReleaseResource')
+	.global	OS_ReleaseResource
+
+; ../src/kernel/Resources.c	   216  
+; ../src/kernel/Resources.c	   217  
+; ../src/kernel/Resources.c	   218  FUNC(StatusType,OS_CODE) OS_ReleaseResource
+; Function OS_ReleaseResource
+.L55:
+	.thumb
+	.align	4
+OS_ReleaseResource:	.type	func
+
+.L18:
+
+; ../src/kernel/Resources.c	   219  (
+; ../src/kernel/Resources.c	   220  	CONST(ResourceType,AUTOMATIC)	ResID
+; ../src/kernel/Resources.c	   221  )
+; ../src/kernel/Resources.c	   222  {
+; ../src/kernel/Resources.c	   223  	StatusType RetVal = (StatusType)E_OK;
+	mov	r0,#0
+.L89:
+
+; ../src/kernel/Resources.c	   224  
+; ../src/kernel/Resources.c	   225  #if (RESOURCE_COUNT > 0)
+; ../src/kernel/Resources.c	   226  	Os_Resource* Res = &Resources[ResID];
+; ../src/kernel/Resources.c	   227  	
+; ../src/kernel/Resources.c	   228  #if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/Resources.c	   229  
+; ../src/kernel/Resources.c	   230  	if ((ResID >= RESOURCE_COUNT)) 
+; ../src/kernel/Resources.c	   231  	{
+; ../src/kernel/Resources.c	   232  		RetVal = (StatusType)E_OS_ID;
+; ../src/kernel/Resources.c	   233  	}
+; ../src/kernel/Resources.c	   234  	else if((Kernel.TaskRunning->TaskStaticPriority > Res->CeilingPriority))
+; ../src/kernel/Resources.c	   235  	{
+; ../src/kernel/Resources.c	   236  		/* we should add intterupt calling priorty during isr implemntaion */
+; ../src/kernel/Resources.c	   237  		RetVal = (StatusType)E_OS_ACCESS;
+; ../src/kernel/Resources.c	   238  	}
+; ../src/kernel/Resources.c	   239  	else if((Kernel.TaskRunning->TaskDynamics->Resources != Res))
+; ../src/kernel/Resources.c	   240  	{
+; ../src/kernel/Resources.c	   241  		RetVal = (StatusType)E_OS_NOFUNC;
+; ../src/kernel/Resources.c	   242  	}
+; ../src/kernel/Resources.c	   243  	else
+; ../src/kernel/Resources.c	   244  	{
+; ../src/kernel/Resources.c	   245  		
+; ../src/kernel/Resources.c	   246  	}
+; ../src/kernel/Resources.c	   247  	
+; ../src/kernel/Resources.c	   248  #endif /*#if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/Resources.c	   249  
+; ../src/kernel/Resources.c	   250  #if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/Resources.c	   251  	if(E_OK == RetVal)
+; ../src/kernel/Resources.c	   252  #endif /*#if ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/Resources.c	   253  	{
+; ../src/kernel/Resources.c	   254  		/*	SuspendAllInterrupts(); */
+; ../src/kernel/Resources.c	   255  
+; ../src/kernel/Resources.c	   256  		Res->ResourceDynamics->OwnerTaskID = 0;
+; ../src/kernel/Resources.c	   257  					
+; ../src/kernel/Resources.c	   258  		Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority = Res->ResourceDynamics->OwnerTaskPriority ;
+; ../src/kernel/Resources.c	   259  		
+; ../src/kernel/Resources.c	   260  		Kernel.TaskRunning->TaskDynamics->Resources = Res->ResourceDynamics->LinkedResource;
+; ../src/kernel/Resources.c	   261  		
+; ../src/kernel/Resources.c	   262  		Res->ResourceDynamics->LinkedResource = NULL_PTR;
+; ../src/kernel/Resources.c	   263  		/*Non preemptive tasks?*/
+; ../src/kernel/Resources.c	   264  		Kernel.TaskRunning->TaskDynamics->PriorityQueueIndex = ReadyQueueGetQueueIndexByPriority(Kernel.TaskRunning->TaskDynamics->TaskCurrentPriority);
+; ../src/kernel/Resources.c	   265  		
+; ../src/kernel/Resources.c	   266  		Kernel.SchedulerNeeded = TRUE;
+; ../src/kernel/Resources.c	   267  	}
+; ../src/kernel/Resources.c	   268  	
+; ../src/kernel/Resources.c	   269  	/* ResumeAllInterrupts();*/
+; ../src/kernel/Resources.c	   270  #endif /* (RESOURCE_COUNT > 0) */
+; ../src/kernel/Resources.c	   271  	return RetVal;
+; ../src/kernel/Resources.c	   272  }
+	bx	lr
+.L56:
+	.size	OS_ReleaseResource,$-OS_ReleaseResource
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_GetInternalResource')
+	.global	OS_GetInternalResource
+
+; ../src/kernel/Resources.c	   273  
+; ../src/kernel/Resources.c	   274  
+; ../src/kernel/Resources.c	   275  void OS_GetInternalResource
+; Function OS_GetInternalResource
+.L31:
+	.thumb
+	.align	4
+OS_GetInternalResource:	.type	func
+
+.L20:
+	push	{r4,lr}
+.L90:
+
+; ../src/kernel/Resources.c	   276  (
+; ../src/kernel/Resources.c	   277  	CONST(TaskType,AUTOMATIC)	TaskID
+; ../src/kernel/Resources.c	   278  )
+; ../src/kernel/Resources.c	   279  {
+; ../src/kernel/Resources.c	   280  	P2VAR(Os_InteranlResource, AUTOMATIC, OS_APPL_DATA) IntRes;
+; ../src/kernel/Resources.c	   281  #if (TASK_COUNT > 0)
+; ../src/kernel/Resources.c	   282  
+; ../src/kernel/Resources.c	   283  	IntRes = (Tasks[TaskID].InternalResource);
+	movs	r1,#28
+.L114:
+	ldr	r2,.L11
+.L115:
+	mla	r0,r0,r1,r2
+.L93:
+	ldr	r1,[r0,#16]
+.L94:
+
+; ../src/kernel/Resources.c	   284  
+; ../src/kernel/Resources.c	   285  	if((NULL_PTR != IntRes) && (FALSE == IntRes->InternalResourceDynamics->TakenFlag))
+	movs	r2,#0
+.L116:
+	cmp	r2,r1
+	it	eq
+	popeq	{r4,pc}
+.L91:
+	ldr	r2,[r1,#4]
+.L117:
+	ldrb	r3,[r2,#1]
+.L118:
+	cmp	r3,#0
+	it	ne
+	popne	{r4,pc}
+.L92:
+
+; ../src/kernel/Resources.c	   286  	{
+; ../src/kernel/Resources.c	   287  		Tasks[TaskID].InternalResource->InternalResourceDynamics->TakenTaskPriority = Tasks[TaskID].TaskStaticPriority;
+	ldrb	r3,[r0,#0]
+.L119:
+	strb	r3,[r2,#0]
+.L120:
+
+; ../src/kernel/Resources.c	   288  		Tasks[TaskID].TaskDynamics->TaskCurrentPriority = Tasks[TaskID].InternalResource->CeilingPriority;
+	ldr	r2,[r0,#20]
+.L121:
+	ldr	r3,[r0,#16]
+.L122:
+	ldrb	r3,[r3,#0]
+.L123:
+	strb	r3,[r2,#20]
+.L124:
+
+; ../src/kernel/Resources.c	   289  		IntRes->InternalResourceDynamics->TakenFlag = TRUE;
+	ldr	r1,[r1,#4]
+.L95:
+	movs	r2,#1
+.L125:
+	strb	r2,[r1,#1]
+.L126:
+
+; ../src/kernel/Resources.c	   290  		Tasks[TaskID].TaskDynamics->PriorityQueueIndex = ReadyQueueGetQueueIndexByPriority(Tasks[TaskID].TaskDynamics->TaskCurrentPriority);		
+	ldr	r4,[r0,#20]
+.L127:
+	ldrb	r0,[r4,#20]
+	bl	ReadyQueueGetQueueIndexByPriority
+.L128:
+	strb	r0,[r4,#8]
+.L7:
+.L6:
+
+; ../src/kernel/Resources.c	   291  	}
+; ../src/kernel/Resources.c	   292  #endif /*#if (TASK_COUNT > 0)*/
+; ../src/kernel/Resources.c	   293  }
+	pop	{r4,pc}
+.L57:
+	.align	4
+.L11:
+	.dw	Tasks
+.L32:
+	.size	OS_GetInternalResource,$-OS_GetInternalResource
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_OS_ReleaseInternalResource')
+	.global	OS_ReleaseInternalResource
+
+; ../src/kernel/Resources.c	   294  
+; ../src/kernel/Resources.c	   295  void OS_ReleaseInternalResource
+; Function OS_ReleaseInternalResource
+.L37:
+	.thumb
+	.align	4
+OS_ReleaseInternalResource:	.type	func
+
+.L22:
+	push	{r4,lr}
+.L96:
+
+; ../src/kernel/Resources.c	   296  (
+; ../src/kernel/Resources.c	   297  	CONST(TaskType,AUTOMATIC)	TaskID
+; ../src/kernel/Resources.c	   298  )
+; ../src/kernel/Resources.c	   299  {
+; ../src/kernel/Resources.c	   300  	P2VAR(Os_InteranlResource, AUTOMATIC, OS_APPL_DATA) IntRes;
+; ../src/kernel/Resources.c	   301  
+; ../src/kernel/Resources.c	   302  #if (TASK_COUNT > 0)
+; ../src/kernel/Resources.c	   303  	IntRes = (Tasks[TaskID].InternalResource);
+	movs	r1,#28
+.L133:
+	ldr	r2,.L12
+.L134:
+	mla	r0,r0,r1,r2
+.L99:
+	ldr	r1,[r0,#16]
+.L100:
+
+; ../src/kernel/Resources.c	   304  
+; ../src/kernel/Resources.c	   305  	if((NULL_PTR != IntRes) && (TRUE == IntRes->InternalResourceDynamics->TakenFlag))
+	movs	r3,#0
+.L135:
+	cmp	r3,r1
+	it	eq
+	popeq	{r4,pc}
+.L97:
+	ldr	r2,[r1,#4]
+.L136:
+	ldrb	r4,[r2,#1]
+.L137:
+	cmp	r4,#1
+	it	ne
+	popne	{r4,pc}
+.L98:
+
+; ../src/kernel/Resources.c	   306  	{
+; ../src/kernel/Resources.c	   307  		Tasks[TaskID].TaskDynamics->TaskCurrentPriority = Tasks[TaskID].InternalResource->InternalResourceDynamics->TakenTaskPriority;
+	ldr	r4,[r0,#20]
+.L138:
+	ldrb	r2,[r2,#0]
+.L139:
+	strb	r2,[r4,#20]
+.L140:
+
+; ../src/kernel/Resources.c	   308  		IntRes->InternalResourceDynamics->TakenFlag = FALSE; 
+	ldr	r1,[r1,#4]
+.L101:
+	strb	r3,[r1,#1]
+.L141:
+
+; ../src/kernel/Resources.c	   309  		Tasks[TaskID].TaskDynamics->PriorityQueueIndex = ReadyQueueGetQueueIndexByPriority(Tasks[TaskID].TaskDynamics->TaskCurrentPriority);
+	ldr	r4,[r0,#20]
+.L142:
+	ldrb	r0,[r4,#20]
+	bl	ReadyQueueGetQueueIndexByPriority
+.L143:
+	strb	r0,[r4,#8]
+.L9:
+.L8:
+
+; ../src/kernel/Resources.c	   310  	}
+; ../src/kernel/Resources.c	   311  #endif /*#if (TASK_COUNT > 0)*/
+; ../src/kernel/Resources.c	   312  }
+	pop	{r4,pc}
+.L62:
+	.align	4
+.L12:
+	.dw	Tasks
+.L38:
+	.size	OS_ReleaseInternalResource,$-OS_ReleaseInternalResource
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_GetInternalResource','ReadyQueueGetQueueIndexByPriority'
+	.calls	'OS_ReleaseInternalResource','ReadyQueueGetQueueIndexByPriority'
+	.calls	'OS_ReleaseAllResources','',4
+	.calls	'OS_GetResource','',0
+	.calls	'OS_ReleaseResource','',0
+	.calls	'OS_GetInternalResource','',8
+	.calls	'OS_ReleaseInternalResource','',8
+	.extern	Tasks
+	.extern	ReadyQueueGetQueueIndexByPriority
+	.section	.debug_info
+.L24:
+	.dw	3262
+	.dh	3
+	.dw	.L25
+	.db	4
+.L23:
+	.db	1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L26
+.L74:
+	.db	2
+	.db	'unsigned char',0,1,8
+.L58:
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	4
+	.db	'Os_InernalResourceDynamic_s',0,1,66,8,2,5
+	.db	'TakenTaskPriority',0
+	.dw	52
+	.db	1,2,35,0,5
+	.db	'TakenFlag',0
+	.dw	52
+	.db	1,2,35,1,0,6
+	.dw	79
+	.db	4
+	.db	'Os_InteranlResource_s',0,1,79,8,8,5
+	.db	'CeilingPriority',0
+	.dw	74
+	.db	1,2,35,0,5
+	.db	'InternalResourceDynamics',0
+	.dw	159
+	.db	4,2,35,4,0
+.L60:
+	.db	6
+	.dw	164
+.L63:
+	.db	3
+	.dw	52
+.L67:
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	4
+	.db	'TaskFlagsType_s',0,2,172,1,8,2,5
+	.db	'Type',0
+	.dw	52
+	.db	1,2,35,0,5
+	.db	'TaskSchedulingPolicy',0
+	.dw	52
+	.db	1,2,35,1,0,6
+	.dw	286
+	.db	2
+	.db	'unsigned int',0,4,7,6
+	.dw	358
+	.db	7
+	.db	'StackPtrType',0,2,143,1,30
+	.dw	374
+	.db	4
+	.db	'TaskStackType_s',0,2,243,1,8,12,5
+	.db	'StackBase',0
+	.dw	379
+	.db	4,2,35,0,5
+	.db	'CurrentStackPtr',0
+	.dw	379
+	.db	4,2,35,4,5
+	.db	'StackSize',0
+	.dw	358
+	.db	4,2,35,8,0,6
+	.dw	401
+	.db	8,1,1,6
+	.dw	492
+	.db	7
+	.db	'EntryFunctionPtrType',0,2,151,1,9
+	.dw	495
+	.db	3
+	.dw	500
+	.db	2
+	.db	'int',0,4,5,9,3,87,10,4,5
+	.db	'x',0
+	.dw	535
+	.db	4,2,35,0,0,6
+	.dw	542
+	.db	3
+	.dw	52
+	.db	3
+	.dw	52
+	.db	4
+	.db	'Os_ResourceDynamic_s',0,1,105,8,8,5
+	.db	'OwnerTaskPriority',0
+	.dw	52
+	.db	1,2,35,0,5
+	.db	'OwnerTaskID',0
+	.dw	52
+	.db	1,2,35,1,5
+	.db	'LinkedResource',0
+	.dw	.L71-.L24
+	.db	4,2,35,4,0,6
+	.dw	574
+	.db	4
+	.db	'Os_Resource_s',0,1,92,8,8,5
+	.db	'CeilingPriority',0
+	.dw	564
+	.db	1,2,35,0,5
+	.db	'ResourceID',0
+	.dw	569
+	.db	1,2,35,1,5
+	.db	'ResourceDynamics',0
+	.dw	673
+	.db	4,2,35,4,0
+.L71:
+	.db	6
+	.dw	678
+	.db	4
+	.db	'Os_TaskDynamic_s',0,2,214,1,8,24,5
+	.db	'Context',0
+	.dw	559
+	.db	4,2,35,0,5
+	.db	'Resources',0
+	.dw	769
+	.db	4,2,35,4,5
+	.db	'PriorityQueueIndex',0
+	.dw	52
+	.db	1,2,35,8,5
+	.db	'EventsSet',0
+	.dw	358
+	.db	4,2,35,12,5
+	.db	'EventsWaiting',0
+	.dw	358
+	.db	4,2,35,16,5
+	.db	'TaskCurrentPriority',0
+	.dw	52
+	.db	1,2,35,20,5
+	.db	'TaskState',0
+	.dw	52
+	.db	1,2,35,21,5
+	.db	'PendingActivationRequests',0
+	.dw	52
+	.db	1,2,35,22,0,6
+	.dw	774
+	.db	4
+	.db	'Os_Task_s',0,2,186,1,8,28,5
+	.db	'TaskStaticPriority',0
+	.dw	266
+	.db	1,2,35,0,5
+	.db	'TaskID',0
+	.dw	271
+	.db	1,2,35,1,5
+	.db	'ApplicationMode',0
+	.dw	276
+	.db	1,2,35,2,5
+	.db	'NumOfActivationRequests',0
+	.dw	281
+	.db	1,2,35,3,5
+	.db	'TaskFlags',0
+	.dw	353
+	.db	4,2,35,4,5
+	.db	'TaskStack',0
+	.dw	487
+	.db	4,2,35,8,5
+	.db	'EntryPoint',0
+	.dw	530
+	.db	4,2,35,12,5
+	.db	'InternalResource',0
+	.dw	251
+	.db	4,2,35,16,5
+	.db	'TaskDynamics',0
+	.dw	987
+	.db	4,2,35,20,5
+	.db	'EventsOwned',0
+	.dw	358
+	.db	4,2,35,24,0
+.L69:
+	.db	6
+	.dw	992
+	.db	6
+	.dw	358
+	.db	6
+	.dw	492
+.L75:
+	.db	3
+	.dw	52
+.L78:
+	.db	3
+	.dw	52
+	.db	10
+	.db	'ReadyQueueGetQueueIndexByPriority',0,4,132,2,1
+	.dw	52
+	.db	1,1,1,1,11
+	.db	'Prio',0,4,132,2,52
+	.dw	52
+	.db	0,12,1,6
+	.dw	1325
+	.db	7
+	.db	'__codeptr',0,5,1,1
+	.dw	1327
+	.db	7
+	.db	'Os_ContexType',0,3,90,2
+	.dw	542
+	.db	7
+	.db	'boolean',0,6,242,1,23
+	.dw	52
+	.db	7
+	.db	'uint8',0,6,247,1,23
+	.dw	52
+	.db	2
+	.db	'unsigned short int',0,2,7,7
+	.db	'uint16',0,6,252,1,24
+	.dw	1404
+	.db	7
+	.db	'uint32',0,6,129,2,22
+	.dw	358
+	.db	7
+	.db	'StatusType',0,7,191,1,23
+	.dw	52
+	.db	7
+	.db	'Std_ReturnType',0,7,235,2,15
+	.dw	52
+	.db	7
+	.db	'Std_TransformerClass',0,7,238,2,15
+	.dw	52
+	.db	7
+	.db	'Std_TransformerForwardCode',0,7,241,2,15
+	.dw	52
+	.db	7
+	.db	'TaskType',0,8,183,1,29
+	.dw	52
+	.db	7
+	.db	'TaskStateType',0,8,189,1,29
+	.dw	52
+	.db	7
+	.db	'TaskPriorityType',0,8,195,1,29
+	.dw	52
+	.db	7
+	.db	'ResourceType',0,8,198,1,29
+	.dw	52
+	.db	7
+	.db	'EventMaskType',0,8,201,1,30
+	.dw	358
+	.db	7
+	.db	'AppModeType',0,8,207,1,28
+	.dw	52
+	.db	7
+	.db	'OsStateType',0,8,210,1,28
+	.dw	52
+	.db	7
+	.db	'TickType',0,8,214,1,30
+	.dw	358
+	.db	4
+	.db	'AlarmBaseType_s',0,8,230,1,8,12,5
+	.db	'maxallowedvalue',0
+	.dw	358
+	.db	4,2,35,0,5
+	.db	'ticksperbase',0
+	.dw	358
+	.db	4,2,35,4,5
+	.db	'mincycle',0
+	.dw	358
+	.db	4,2,35,8,0,7
+	.db	'AlarmBaseType',0,8,220,1,32
+	.dw	1740
+	.db	7
+	.db	'AlarmType',0,8,226,1,28
+	.dw	52
+	.db	7
+	.db	'Os_InernalResourceDynamic',0,1,55,44
+	.dw	79
+	.db	7
+	.db	'Os_InteranlResource',0,1,57,38
+	.dw	164
+	.db	7
+	.db	'Os_Resource',0,1,59,30
+	.dw	678
+	.db	7
+	.db	'Os_ResourceDynamic',0,1,61,37
+	.dw	574
+	.db	7
+	.db	'StackSizeType',0,2,145,1,31
+	.dw	358
+	.db	7
+	.db	'TaskActivationCounterType',0,2,147,1,30
+	.dw	52
+	.db	7
+	.db	'QueueIndexType',0,2,149,1,30
+	.dw	52
+	.db	7
+	.db	'TaskFlagsType',0,2,155,1,32
+	.dw	286
+	.db	7
+	.db	'TaskStackType',0,2,157,1,32
+	.dw	401
+	.db	7
+	.db	'Os_TaskDynamic',0,2,159,1,33
+	.dw	774
+	.db	7
+	.db	'Os_Task',0,2,161,1,26
+	.dw	992
+	.db	4
+	.db	'Os_CpuLoad_s',0,2,155,2,8,8,5
+	.db	'IdleTime',0
+	.dw	358
+	.db	4,2,35,0,5
+	.db	'CurrentCpuLoad',0
+	.dw	52
+	.db	1,2,35,4,5
+	.db	'PeakCpuLoad',0
+	.dw	52
+	.db	1,2,35,5,0,7
+	.db	'Os_CpuLoad',0,2,165,1,29
+	.dw	2148
+	.db	3
+	.dw	358
+	.db	3
+	.dw	358
+	.db	3
+	.dw	358
+	.db	3
+	.dw	52
+	.db	3
+	.dw	358
+	.db	4
+	.db	'Os_Counter_s',0,9,44,8,28,5
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2251
+	.db	4,2,35,0,5
+	.db	'OsCounterMinCycle',0
+	.dw	2256
+	.db	4,2,35,4,5
+	.db	'OsCounterTicksPerBase',0
+	.dw	2261
+	.db	4,2,35,8,5
+	.db	'OsCounterType',0
+	.dw	2266
+	.db	1,2,35,12,5
+	.db	'OsSecondsPerTick',0
+	.dw	2271
+	.db	4,2,35,16,5
+	.db	'OsCounterCurrentTicks',0
+	.dw	358
+	.db	4,2,35,20,5
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	52
+	.db	1,2,35,24,0,7
+	.db	'Os_Counter',0,9,42,29
+	.dw	2276
+	.db	4
+	.db	'Os_AlarmActivateTask_s',0,10,140,1,8,1,5
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	52
+	.db	1,2,35,0,0,6
+	.dw	2520
+	.db	4
+	.db	'Os_AlarmSetEvent_s',0,10,146,1,8,8,5
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	52
+	.db	1,2,35,0,5
+	.db	'OsAlarmSetEventRef',0
+	.dw	358
+	.db	4,2,35,4,0,6
+	.dw	2587
+	.db	7
+	.db	'CallbackFuncPtrType',0,10,88,9
+	.dw	495
+	.db	3
+	.dw	2678
+	.db	13
+	.db	'Os_AlarmAction_u',0,10,92,7,4,5
+	.db	'OsAlarmActivateTask',0
+	.dw	2582
+	.db	4,2,35,0,5
+	.db	'OsAlarmSetEventTask',0
+	.dw	2673
+	.db	4,2,35,0,5
+	.db	'OsAlarmCallbackName',0
+	.dw	2706
+	.db	4,2,35,0,0,6
+	.dw	2276
+	.db	6
+	.dw	.L105-.L24
+.L105:
+	.db	4
+	.db	'Os_Alarm_s',0,10,104,8,36,5
+	.db	'OsAlarmAction',0
+	.dw	2711
+	.db	4,2,35,0,5
+	.db	'OsAlarmActionType',0
+	.dw	52
+	.db	1,2,35,4,5
+	.db	'OsAlarmExpiryTime',0
+	.dw	358
+	.db	4,2,35,8,5
+	.db	'OsAlarmCycleTime',0
+	.dw	358
+	.db	4,2,35,12,5
+	.db	'OsAlarmState',0
+	.dw	52
+	.db	1,2,35,16,5
+	.db	'OsAlarmCounterRef',0
+	.dw	2821
+	.db	4,2,35,20,5
+	.db	'OsAlarmNext',0
+	.dw	2826
+	.db	4,2,35,24,5
+	.db	'OsAlarmPrevious',0
+	.dw	2826
+	.db	4,2,35,28,5
+	.db	'OsAlarmAlarmTime',0
+	.dw	52
+	.db	1,2,35,32,5
+	.db	'OsAlarmAutoStartType',0
+	.dw	52
+	.db	1,2,35,33,0,7
+	.db	'Os_Alarm',0,10,73,45
+	.dw	2831
+	.db	6
+	.dw	492
+	.db	7
+	.db	'Os_AlarmAction',0,10,76,45
+	.dw	2711
+	.db	7
+	.db	'Os_AlarmActivateTask',0,10,79,41
+	.dw	2520
+	.db	7
+	.db	'Os_AlarmSetEvent',0,10,82,38
+	.dw	2587
+	.db	14,112
+	.dw	992
+	.db	15,3,0,16
+	.db	'Tasks',0,11,38,20
+	.dw	3201
+	.db	1,1,7
+	.db	'QueueSize',0,12,183,1,29
+	.dw	52
+	.db	7
+	.db	'QueueIndex',0,12,186,1,29
+	.dw	52
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L25:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,19,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,5,13,0,3,8,73,19,11,15,56,9,0,0,6,15,0,73,19,0,0,7,22,0,3,8,58,15,59,15,57
+	.db	15,73,19,0,0,8,21,0,54,15,39,12,0,0,9,19,1,58,15,59,15,57,15,11,15,0,0,10,46,1,3,8,58,15,59,15,57,15,73
+	.db	19,54,15,39,12,63,12,60,12,0,0,11,5,0,3,8,58,15,59,15,57,15,73,19,0,0,12,21,0,54,15,0,0,13,23,1,3,8,58
+	.db	15,59,15,57,15,11,15,0,0,14,1,1,11,15,73,19,0,0,15,33,0,47,15,0,0,16,52,0,3,8,58,15,59,15,57,15,73,19
+	.db	63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L26:
+	.dw	.L107-.L106
+.L106:
+	.dh	3
+	.dw	.L109-.L108
+.L108:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\include\\Internal\\SchedulingQueues.h',0,0,0,0
+	.db	'../src/kernel/Resources.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L109:
+.L107:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_GetInternalResource')
+.L27:
+	.dw	152
+	.dh	3
+	.dw	.L28
+	.db	4,1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L30,.L29
+	.db	2
+	.dw	.L23
+	.db	3
+	.db	'OS_GetInternalResource',0,1,147,2,6,1,1,1
+	.dw	.L20,.L57,.L19
+	.db	4
+	.db	'TaskID',0,1,149,2,28
+	.dw	.L58,.L59
+	.db	5
+	.dw	.L20,.L57
+	.db	6
+	.db	'IntRes',0,1,152,2,54
+	.dw	.L60,.L61
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_GetInternalResource')
+.L28:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52
+	.db	0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_GetInternalResource')
+.L29:
+	.dw	.L111-.L110
+.L110:
+	.dh	3
+	.dw	.L113-.L112
+.L112:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Resources.c',0,0,0,0,0
+.L113:
+	.db	5,6,7,0,5,2
+	.dw	.L20
+	.db	3,146,2,1,5,17,9
+	.dh	.L90-.L20
+	.db	3,8,1,5,12,9
+	.dh	.L114-.L90
+	.db	1,5,17,9
+	.dh	.L115-.L114
+	.db	1,5,25,9
+	.dh	.L93-.L115
+	.db	1,5,6,9
+	.dh	.L94-.L93
+	.db	3,2,1,5,5,9
+	.dh	.L116-.L94
+	.db	1,5,45,9
+	.dh	.L91-.L116
+	.db	1,5,71,9
+	.dh	.L117-.L91
+	.db	1,5,36,9
+	.dh	.L118-.L117
+	.db	1,5,94,9
+	.dh	.L92-.L118
+	.db	3,2,1,5,79,9
+	.dh	.L119-.L92
+	.db	1,5,16,9
+	.dh	.L120-.L119
+	.db	3,1,1,5,66,9
+	.dh	.L121-.L120
+	.db	1,5,83,9
+	.dh	.L122-.L121
+	.db	1,5,51,9
+	.dh	.L123-.L122
+	.db	1,5,9,9
+	.dh	.L124-.L123
+	.db	3,1,1,5,49,9
+	.dh	.L95-.L124
+	.db	1,5,47,9
+	.dh	.L125-.L95
+	.db	1,5,99,9
+	.dh	.L126-.L125
+	.db	3,1,1,5,112,9
+	.dh	.L127-.L126
+	.db	1,5,50,9
+	.dh	.L128-.L127
+	.db	1,5,1,9
+	.dh	.L6-.L128
+	.db	3,3,1,7,9
+	.dh	.L32-.L6
+	.db	0,1,1
+.L111:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_GetInternalResource')
+.L30:
+	.dw	-1,.L31,0,.L32-.L31,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ReleaseInternalResource')
+.L33:
+	.dw	156
+	.dh	3
+	.dw	.L34
+	.db	4,1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L36,.L35
+	.db	2
+	.dw	.L23
+	.db	3
+	.db	'OS_ReleaseInternalResource',0,1,167,2,6,1,1,1
+	.dw	.L22,.L62,.L21
+	.db	4
+	.db	'TaskID',0,1,169,2,28
+	.dw	.L63,.L64
+	.db	5
+	.dw	.L22,.L62
+	.db	6
+	.db	'IntRes',0,1,172,2,54
+	.dw	.L60,.L65
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ReleaseInternalResource')
+.L34:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52
+	.db	0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ReleaseInternalResource')
+.L35:
+	.dw	.L130-.L129
+.L129:
+	.dh	3
+	.dw	.L132-.L131
+.L131:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Resources.c',0,0,0,0,0
+.L132:
+	.db	5,6,7,0,5,2
+	.dw	.L22
+	.db	3,166,2,1,5,17,9
+	.dh	.L96-.L22
+	.db	3,8,1,5,12,9
+	.dh	.L133-.L96
+	.db	1,5,17,9
+	.dh	.L134-.L133
+	.db	1,5,25,9
+	.dh	.L99-.L134
+	.db	1,5,6,9
+	.dh	.L100-.L99
+	.db	3,2,1,5,5,9
+	.dh	.L135-.L100
+	.db	1,5,44,9
+	.dh	.L97-.L135
+	.db	1,5,70,9
+	.dh	.L136-.L97
+	.db	1,5,35,9
+	.dh	.L137-.L136
+	.db	1,5,16,9
+	.dh	.L98-.L137
+	.db	3,2,1,5,109,9
+	.dh	.L138-.L98
+	.db	1,5,51,9
+	.dh	.L139-.L138
+	.db	1,5,9,9
+	.dh	.L140-.L139
+	.db	3,1,1,5,47,9
+	.dh	.L101-.L140
+	.db	1,5,99,9
+	.dh	.L141-.L101
+	.db	3,1,1,5,112,9
+	.dh	.L142-.L141
+	.db	1,5,50,9
+	.dh	.L143-.L142
+	.db	1,5,1,9
+	.dh	.L8-.L143
+	.db	3,3,1,7,9
+	.dh	.L38-.L8
+	.db	0,1,1
+.L130:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ReleaseInternalResource')
+.L36:
+	.dw	-1,.L37,0,.L38-.L37,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ReleaseAllResources')
+.L39:
+	.dw	195
+	.dh	3
+	.dw	.L40
+	.db	4,1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L42,.L41
+	.db	2
+	.dw	.L23
+	.db	3
+	.db	'OS_ReleaseAllResources',0,1,133,1,20,1,1,1
+	.dw	.L14,.L66,.L13
+	.db	4
+	.db	'TaskID',0,1,135,1,29
+	.dw	.L67,.L68
+	.db	5
+	.dw	.L14,.L66
+	.db	6
+	.db	'Task',0,1,139,1,37
+	.dw	.L69,.L70
+	.db	6
+	.db	'CurrentRes',0,1,140,1,15
+	.dw	.L71,.L72
+	.db	6
+	.db	'NextRes',0,1,141,1,15
+	.dw	.L71,.L73
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ReleaseAllResources')
+.L40:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0,6,52
+	.db	0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ReleaseAllResources')
+.L41:
+	.dw	.L145-.L144
+.L144:
+	.dh	3
+	.dw	.L147-.L146
+.L146:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Resources.c',0,0,0,0,0
+.L147:
+	.db	5,20,7,0,5,2
+	.dw	.L14
+	.db	3,132,1,1,5,15,9
+	.dh	.L81-.L14
+	.db	3,11,1,5,10,9
+	.dh	.L148-.L81
+	.db	1,5,15,9
+	.dh	.L149-.L148
+	.db	1,5,19,9
+	.dh	.L83-.L149
+	.db	3,2,1,5,33,9
+	.dh	.L150-.L83
+	.db	1,5,47,9
+	.dh	.L85-.L150
+	.db	3,6,1,5,30,9
+	.dh	.L151-.L85
+	.db	3,124,1,5,23,9
+	.dh	.L3-.L151
+	.db	3,2,1,5,41,9
+	.dh	.L152-.L3
+	.db	1,5,45,9
+	.dh	.L87-.L152
+	.db	3,2,1,5,13,9
+	.dh	.L153-.L87
+	.db	3,1,1,5,48,9
+	.dh	.L86-.L153
+	.db	1,5,14,9
+	.dh	.L154-.L86
+	.db	3,2,1,5,30,9
+	.dh	.L2-.L154
+	.db	3,121,1,5,6,9
+	.dh	.L155-.L2
+	.db	3,10,1,5,32,9
+	.dh	.L84-.L155
+	.db	1,5,1,9
+	.dh	.L156-.L84
+	.db	3,3,1,9
+	.dh	.L44-.L156
+	.db	0,1,1
+.L145:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ReleaseAllResources')
+.L42:
+	.dw	-1,.L43,0,.L44-.L43,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_GetResource')
+.L45:
+	.dw	147
+	.dh	3
+	.dw	.L46
+	.db	4,1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L48,.L47
+	.db	2
+	.dw	.L23
+	.db	3
+	.db	'OS_GetResource',0,1,163,1,26
+	.dw	.L74
+	.db	1,1,1
+	.dw	.L16,.L50,.L15
+	.db	4
+	.db	'ResID',0,1,165,1,32
+	.dw	.L75,.L76
+	.db	5
+	.dw	.L16,.L50
+	.db	6
+	.db	'RetVal',0,1,168,1,13
+	.dw	.L74,.L77
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_GetResource')
+.L46:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_GetResource')
+.L47:
+	.dw	.L158-.L157
+.L157:
+	.dh	3
+	.dw	.L160-.L159
+.L159:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Resources.c',0,0,0,0,0
+.L160:
+	.db	5,22,7,0,5,2
+	.dw	.L16
+	.db	3,167,1,1,5,1,9
+	.dh	.L88-.L16
+	.db	3,47,1,7,9
+	.dh	.L50-.L88
+	.db	0,1,1
+.L158:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_GetResource')
+.L48:
+	.dw	-1,.L49,0,.L50-.L49,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_ReleaseResource')
+.L51:
+	.dw	151
+	.dh	3
+	.dw	.L52
+	.db	4,1
+	.db	'../src/kernel/Resources.c',0
+	.dw	.L102,.L103
+	.db	12,1
+	.dw	.L54,.L53
+	.db	2
+	.dw	.L23
+	.db	3
+	.db	'OS_ReleaseResource',0,1,218,1,26
+	.dw	.L74
+	.db	1,1,1
+	.dw	.L18,.L56,.L17
+	.db	4
+	.db	'ResID',0,1,220,1,32
+	.dw	.L78,.L79
+	.db	5
+	.dw	.L18,.L56
+	.db	6
+	.db	'RetVal',0,1,223,1,13
+	.dw	.L74,.L80
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_ReleaseResource')
+.L52:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_ReleaseResource')
+.L53:
+	.dw	.L162-.L161
+.L161:
+	.dh	3
+	.dw	.L164-.L163
+.L163:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/Resources.c',0,0,0,0,0
+.L164:
+	.db	5,22,7,0,5,2
+	.dw	.L18
+	.db	3,222,1,1,5,1,9
+	.dh	.L89-.L18
+	.db	3,49,1,7,9
+	.dh	.L56-.L89
+	.db	0,1,1
+.L162:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_ReleaseResource')
+.L54:
+	.dw	-1,.L55,0,.L56-.L55,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L103:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L102:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_GetInternalResource')
+.L61:
+	.dw	-1,.L20,.L94-.L20,.L95-.L20
+	.dh	1
+	.db	81
+	.dw	0,0
+.L19:
+	.dw	-1,.L20,0,.L90-.L20
+	.dh	2
+	.db	125,0
+	.dw	.L90-.L20,.L57-.L20
+	.dh	2
+	.db	125,8
+	.dw	.L57-.L20,.L57-.L20
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L59:
+	.dw	-1,.L20,0,.L93-.L20
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_GetResource')
+.L15:
+	.dw	-1,.L16,0,.L50-.L16
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L76:
+	.dw	-1,.L16,0,.L88-.L16
+	.dh	1
+	.db	80
+	.dw	0,0
+.L77:
+	.dw	-1,.L16,.L88-.L16,.L50-.L16
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ReleaseAllResources')
+.L72:
+	.dw	-1,.L14,.L85-.L14,.L86-.L14
+	.dh	1
+	.db	81
+	.dw	.L2-.L14,.L66-.L14
+	.dh	1
+	.db	81
+	.dw	0,0
+.L73:
+	.dw	-1,.L14,.L87-.L14,.L2-.L14
+	.dh	1
+	.db	84
+	.dw	0,0
+.L13:
+	.dw	-1,.L14,0,.L81-.L14
+	.dh	2
+	.db	125,0
+	.dw	.L81-.L14,.L82-.L14
+	.dh	2
+	.db	125,4
+	.dw	.L82-.L14,.L66-.L14
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L70:
+	.dw	-1,.L14,.L83-.L14,.L84-.L14
+	.dh	1
+	.db	80
+	.dw	0,0
+.L68:
+	.dw	-1,.L14,0,.L83-.L14
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ReleaseInternalResource')
+.L65:
+	.dw	-1,.L22,.L100-.L22,.L101-.L22
+	.dh	1
+	.db	81
+	.dw	0,0
+.L21:
+	.dw	-1,.L22,0,.L96-.L22
+	.dh	2
+	.db	125,0
+	.dw	.L96-.L22,.L62-.L22
+	.dh	2
+	.db	125,8
+	.dw	.L62-.L22,.L62-.L22
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L64:
+	.dw	-1,.L22,0,.L99-.L22
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_ReleaseResource')
+.L17:
+	.dw	-1,.L18,0,.L56-.L18
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L79:
+	.dw	-1,.L18,0,.L89-.L18
+	.dh	1
+	.db	80
+	.dw	0,0
+.L80:
+	.dw	-1,.L18,.L89-.L18,.L56-.L18
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L165:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ReleaseAllResources')
+	.dw	64
+	.dw	.L165,.L14,.L66-.L14
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L81-.L14)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L82-.L81)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_GetResource')
+	.dw	44
+	.dw	.L165,.L16,.L50-.L16
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ReleaseResource')
+	.dw	44
+	.dw	.L165,.L18,.L56-.L18
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_GetInternalResource')
+	.dw	56
+	.dw	.L165,.L20,.L57-.L20
+	.db	4
+	.dw	(.L90-.L20)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L91-.L90)/2
+	.db	196,4
+	.dw	(.L92-.L91)/2
+	.db	196,4
+	.dw	(.L57-.L92)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_ReleaseInternalResource')
+	.dw	56
+	.dw	.L165,.L22,.L62-.L22
+	.db	4
+	.dw	(.L96-.L22)/2
+	.db	19,4,22,13,3,19,125,8,17,14,126,17,4,124,4
+	.dw	(.L97-.L96)/2
+	.db	196,4
+	.dw	(.L98-.L97)/2
+	.db	196,4
+	.dw	(.L62-.L98)/2
+	.db	19,0,8,13,196,0,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/Resources.c	   313  
+; ../src/kernel/Resources.c	   314  /** @} */  /*End of ExternalFunctionDefinition */
+; ../src/kernel/Resources.c	   315  
+; ../src/kernel/Resources.c	   316  
+; ../src/kernel/Resources.c	   317  
+; ../src/kernel/Resources.c	   318  /***********************************************************************************/
+; ../src/kernel/Resources.c	   319  /*                        Internal Function Definition                             */
+; ../src/kernel/Resources.c	   320  /***********************************************************************************/
+; ../src/kernel/Resources.c	   321  
+; ../src/kernel/Resources.c	   322  /**
+; ../src/kernel/Resources.c	   323   * @defgroup InternalFunctionDefinition
+; ../src/kernel/Resources.c	   324   * @{
+; ../src/kernel/Resources.c	   325   */
+; ../src/kernel/Resources.c	   326  
+; ../src/kernel/Resources.c	   327  
+; ../src/kernel/Resources.c	   328  /** @} */  /*End of InternalFunctionDefinition*/
+; ../src/kernel/Resources.c	   329  
+; ../src/kernel/Resources.c	   330  
+; ../src/kernel/Resources.c	   331  /***********************************************************************************/
+; ../src/kernel/Resources.c	   332  /*				    			 End Of File			         				   */
+; ../src/kernel/Resources.c	   333  /***********************************************************************************/
+; ../src/kernel/Resources.c	   334  
+; ../src/kernel/Resources.c	   335  
+
+	; Module end
+	.end

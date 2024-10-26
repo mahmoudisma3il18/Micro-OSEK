@@ -1,0 +1,2174 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/user/.queue.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/user/queue.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\user\\queue.src ../src/user/queue.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/user/queue.c'
+
+	.section	.text ,cluster('$group_QueueCreate')
+	.global	QueueCreate
+
+; ../src/user/queue.c	     1  /**
+; ../src/user/queue.c	     2   * @file queue.c
+; ../src/user/queue.c	     3   * @author Mahmoud Ismail , Bahaa Sherif
+; ../src/user/queue.c	     4   * @version 1.0.0
+; ../src/user/queue.c	     5   * @date 7-12-2023
+; ../src/user/queue.c	     6   * @platform
+; ../src/user/queue.c	     7   * @variant
+; ../src/user/queue.c	     8   * @vendor
+; ../src/user/queue.c	     9   * @specification
+; ../src/user/queue.c	    10   * @brief Queue Data Structure Implementation.
+; ../src/user/queue.c	    11   */
+; ../src/user/queue.c	    12  
+; ../src/user/queue.c	    13  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/user/queue.c	    14  
+; ../src/user/queue.c	    15  /**********************************************************************************/
+; ../src/user/queue.c	    16  /**				    			Include Headers			         				 **/
+; ../src/user/queue.c	    17  /**********************************************************************************/
+; ../src/user/queue.c	    18  #include <Os_kernel.h>
+; ../src/user/queue.c	    19  
+; ../src/user/queue.c	    20  /***********************************************************************************/
+; ../src/user/queue.c	    21  /*  			    			    Macros				         				   */
+; ../src/user/queue.c	    22  /***********************************************************************************/
+; ../src/user/queue.c	    23  
+; ../src/user/queue.c	    24  /****************************** Moudle Version Check ******************************/
+; ../src/user/queue.c	    25  /* QUEUE Software Release major version check */
+; ../src/user/queue.c	    26  #if (!defined QUEUE_SW_MAJOR_VERSION)
+; ../src/user/queue.c	    27  #error QUEUE_SW_MAJOR_VERSION must be defined
+; ../src/user/queue.c	    28  #endif /*#if( !defined QUEUE_SW_MAJOR_VERSION)*/
+; ../src/user/queue.c	    29  
+; ../src/user/queue.c	    30  /* QUEUE Software Release minor version check */
+; ../src/user/queue.c	    31  #if (!defined QUEUE_SW_MINOR_VERSION)
+; ../src/user/queue.c	    32  #error QUEUE_SW_MINOR_VERSION must be defined
+; ../src/user/queue.c	    33  #endif /*#if( defined QUEUE_SW_MINOR_VERSION)*/
+; ../src/user/queue.c	    34  
+; ../src/user/queue.c	    35  /* QUEUE Software Release patch version check */
+; ../src/user/queue.c	    36  #if (!defined QUEUE_SW_PATCH_VERSION)
+; ../src/user/queue.c	    37  #error QUEUE_SW_PATCH_VERSION must be defined
+; ../src/user/queue.c	    38  #endif /*#if( defined QUEUE_SW_PATCH_VERSION)*/
+; ../src/user/queue.c	    39  
+; ../src/user/queue.c	    40  /***************************** Autosar version Check ********************************/
+; ../src/user/queue.c	    41  /* Module AUTOSAR Release major version check */
+; ../src/user/queue.c	    42  #if (!defined QUEUE_AR_RELEASE_MAJOR_VERSION)
+; ../src/user/queue.c	    43  #error QUEUE_AR_RELEASE_MAJOR_VERSION must be defined
+; ../src/user/queue.c	    44  #endif /*#if( defined QUEUE_AR_RELEASE_MAJOR_VERSION)*/
+; ../src/user/queue.c	    45  
+; ../src/user/queue.c	    46  /******************************* DET Version Check **********************************/
+; ../src/user/queue.c	    47  
+; ../src/user/queue.c	    48  /************************** Internal Module Specific Macros ********************************/
+; ../src/user/queue.c	    49  /**
+; ../src/user/queue.c	    50   * @name InternalModuleSpecificMacros
+; ../src/user/queue.c	    51   * @{
+; ../src/user/queue.c	    52   */
+; ../src/user/queue.c	    53  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/user/queue.c	    54  
+; ../src/user/queue.c	    55  /************************************************************************************/
+; ../src/user/queue.c	    56  /*				    	Internal Type Definitions		         			        */
+; ../src/user/queue.c	    57  /************************************************************************************/
+; ../src/user/queue.c	    58  /*********************** Internal Module Specific Types *****************************/
+; ../src/user/queue.c	    59  
+; ../src/user/queue.c	    60  
+; ../src/user/queue.c	    61  /***************************************************************************************/
+; ../src/user/queue.c	    62  /*                            External Global Variables                                */
+; ../src/user/queue.c	    63  /***************************************************************************************/
+; ../src/user/queue.c	    64  /**
+; ../src/user/queue.c	    65   * @name ExternalGlobalVariables
+; ../src/user/queue.c	    66   * @{
+; ../src/user/queue.c	    67   */
+; ../src/user/queue.c	    68  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/user/queue.c	    69  
+; ../src/user/queue.c	    70  /***********************************************************************************/
+; ../src/user/queue.c	    71  /*				    			External constants		         				   */
+; ../src/user/queue.c	    72  /***********************************************************************************/
+; ../src/user/queue.c	    73  /**
+; ../src/user/queue.c	    74   * @name External constants
+; ../src/user/queue.c	    75   * @{
+; ../src/user/queue.c	    76   */
+; ../src/user/queue.c	    77  /** @} */ /*End of External constants*/
+; ../src/user/queue.c	    78  
+; ../src/user/queue.c	    79  /***************************************************************************************/
+; ../src/user/queue.c	    80  /*                              Internal Global Variables                              */
+; ../src/user/queue.c	    81  /***************************************************************************************/
+; ../src/user/queue.c	    82  /**
+; ../src/user/queue.c	    83   * @name InternalGlobalVariables
+; ../src/user/queue.c	    84   * @{
+; ../src/user/queue.c	    85   */
+; ../src/user/queue.c	    86  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/user/queue.c	    87  
+; ../src/user/queue.c	    88  /***********************************************************************************/
+; ../src/user/queue.c	    89  /*				    			Internal constants		         				   */
+; ../src/user/queue.c	    90  /***********************************************************************************/
+; ../src/user/queue.c	    91  /**
+; ../src/user/queue.c	    92   * @name InternalConstants
+; ../src/user/queue.c	    93   * @{
+; ../src/user/queue.c	    94   */
+; ../src/user/queue.c	    95  /** @} */ /*End of InternalConstants*/
+; ../src/user/queue.c	    96  
+; ../src/user/queue.c	    97  /***********************************************************************************/
+; ../src/user/queue.c	    98  /*                        External Function Declration                             */
+; ../src/user/queue.c	    99  /***********************************************************************************/
+; ../src/user/queue.c	   100  /**
+; ../src/user/queue.c	   101   * @defgroup ExternalFunctionsDeclration
+; ../src/user/queue.c	   102   * @{
+; ../src/user/queue.c	   103   */
+; ../src/user/queue.c	   104  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/user/queue.c	   105  /***********************************************************************************/
+; ../src/user/queue.c	   106  /*				    	 External Functions Definition		      				   */
+; ../src/user/queue.c	   107  /***********************************************************************************/
+; ../src/user/queue.c	   108  
+; ../src/user/queue.c	   109  /***********************************************************************************/
+; ../src/user/queue.c	   110  /*                        Internal Function Declration                             */
+; ../src/user/queue.c	   111  /***********************************************************************************/
+; ../src/user/queue.c	   112  /**
+; ../src/user/queue.c	   113   * @defgroup InternalFunctionsDeclration
+; ../src/user/queue.c	   114   * @{
+; ../src/user/queue.c	   115   */
+; ../src/user/queue.c	   116  /** @} */ /*End of InternalFunctionsDeclration*/
+; ../src/user/queue.c	   117  /***********************************************************************************/
+; ../src/user/queue.c	   118  /*				    	 Internal Functions Definition		      				   */
+; ../src/user/queue.c	   119  /***********************************************************************************/
+; ../src/user/queue.c	   120  
+; ../src/user/queue.c	   121  /**
+; ../src/user/queue.c	   122   * @brief Creating a new Queue (FIFO)
+; ../src/user/queue.c	   123   *
+; ../src/user/queue.c	   124   * This API is responsible for creating a Queue (FIFO) with the parameters
+; ../src/user/queue.c	   125   * specifying the Queue Handler , array of pointers and maximum Queue size
+; ../src/user/queue.c	   126   * @service name    QueueCreate
+; ../src/user/queue.c	   127   * @syntax          FUNC(StatusType, OS_CODE) QueueCreate
+; ../src/user/queue.c	   128   *                  (
+; ../src/user/queue.c	   129   *                      P2VAR(QueueHandler, AUTOMATIC, OS_CODE) Queue,
+; ../src/user/queue.c	   130   *                      P2VAR(Os_Task *, AUTOMATIC, OS_APPL_DATA) QueueBuffer,
+; ../src/user/queue.c	   131   *                      VAR(QueueSize, AUTOMATIC) MaxQueueSize
+; ../src/user/queue.c	   132   *                  );
+; ../src/user/queue.c	   133   * @service ID      -
+; ../src/user/queue.c	   134   * @sync/async      -
+; ../src/user/queue.c	   135   * @reentrancy      -
+; ../src/user/queue.c	   136   * @param[in]       Queue               Pointer to Address of Queue Handler
+; ../src/user/queue.c	   137   * @param[in]       QueueBuffer         Pointer to Array of Os_Tasks
+; ../src/user/queue.c	   138   * @param[in]       MaxQueueSize        Maximum Queue Size
+; ../src/user/queue.c	   139   * @param[out]      -
+; ../src/user/queue.c	   140   * @return          StatusType          Indicates the error status
+; ../src/user/queue.c	   141   *                  E_FIFO_OK           FIFO is OK
+; ../src/user/queue.c	   142   *                  E_FIFO_FULL         FIFO is FULL
+; ../src/user/queue.c	   143   *                  E_FIFO_EMPTY        FIFO is Empty
+; ../src/user/queue.c	   144   *                  E_FIFO_NULL         FIFO points to NULL
+; ../src/user/queue.c	   145   * @see             -
+; ../src/user/queue.c	   146   * @note            -
+; ../src/user/queue.c	   147   * @warning         -
+; ../src/user/queue.c	   148   */
+; ../src/user/queue.c	   149  FUNC(StatusType, OS_CODE) QueueCreate
+; Function QueueCreate
+.L67:
+	.thumb
+	.align	4
+QueueCreate:	.type	func
+
+.L50:
+	push	{r4}
+.L113:
+
+; ../src/user/queue.c	   150  (
+; ../src/user/queue.c	   151      P2VAR(QueueHandler, AUTOMATIC, OS_CODE) Queue,
+; ../src/user/queue.c	   152      P2VAR(Os_Task *, AUTOMATIC, OS_APPL_DATA) QueueBuffer,
+; ../src/user/queue.c	   153      VAR(QueueSize, AUTOMATIC) MaxQueueSize
+; ../src/user/queue.c	   154  )
+; ../src/user/queue.c	   155  {
+; ../src/user/queue.c	   156      /* Set Error state of Queue */
+; ../src/user/queue.c	   157      VAR(uint8, AUTOMATIC) ErrorState = E_FIFO_OK;
+	movs	r3,#0
+.L117:
+
+; ../src/user/queue.c	   158  
+; ../src/user/queue.c	   159      if (NULL_PTR == Queue)
+	cmp	r3,r0
+	bne	.L2
+.L152:
+
+; ../src/user/queue.c	   160      {
+; ../src/user/queue.c	   161          /* Pointer is NULL */
+; ../src/user/queue.c	   162          ErrorState = E_FIFO_NULL;
+	b	.L3
+.L2:
+
+; ../src/user/queue.c	   163      }
+; ../src/user/queue.c	   164      else if (NULL_PTR == QueueBuffer)
+	cmp	r3,r1
+	bne	.L4
+.L3:
+
+; ../src/user/queue.c	   165      {
+; ../src/user/queue.c	   166          /* Pointer is NULL */
+; ../src/user/queue.c	   167          ErrorState = E_FIFO_NULL;
+	movs	r3,#3
+.L153:
+	b	.L5
+.L4:
+
+; ../src/user/queue.c	   168      }
+; ../src/user/queue.c	   169      else if (0 == MaxQueueSize)
+	cbnz	r2,.L6
+.L154:
+
+; ../src/user/queue.c	   170      {
+; ../src/user/queue.c	   171          /* Size is 0 */
+; ../src/user/queue.c	   172          ErrorState = E_FIFO_EMPTY;
+	movs	r3,#2
+.L155:
+	b	.L7
+.L6:
+
+; ../src/user/queue.c	   173      }
+; ../src/user/queue.c	   174      else
+; ../src/user/queue.c	   175      {
+; ../src/user/queue.c	   176          /* Set Base of Queue to array of pointers(buffer) */
+; ../src/user/queue.c	   177          Queue->Base = QueueBuffer;
+	str	r1,[r0,#0]
+.L156:
+
+; ../src/user/queue.c	   178  
+; ../src/user/queue.c	   179          /*Set Head Index*/
+; ../src/user/queue.c	   180          Queue->HeadIndex = 0;
+	movs	r1,#0
+.L116:
+	strb	r1,[r0,#6]
+.L157:
+
+; ../src/user/queue.c	   181  
+; ../src/user/queue.c	   182          /*Set Tail Index*/
+; ../src/user/queue.c	   183          Queue->TailIndex = 0;
+	strb	r1,[r0,#7]
+.L158:
+
+; ../src/user/queue.c	   184  
+; ../src/user/queue.c	   185          /* Set Queue Current size to 0 */
+; ../src/user/queue.c	   186          Queue->CurrentQueueSize = 0;
+	strb	r1,[r0,#4]
+.L159:
+
+; ../src/user/queue.c	   187  
+; ../src/user/queue.c	   188          /* Set Queue Maximum Size */
+; ../src/user/queue.c	   189          Queue->MaxQueueSize = MaxQueueSize;
+	strb	r2,[r0,#5]
+.L7:
+.L5:
+
+; ../src/user/queue.c	   190      }
+; ../src/user/queue.c	   191  
+; ../src/user/queue.c	   192      /*Return Error State*/
+; ../src/user/queue.c	   193      return ErrorState;
+	mov	r0,r3
+.L115:
+
+; ../src/user/queue.c	   194  }
+	pop	{r4}
+.L114:
+	bx	lr
+.L68:
+	.size	QueueCreate,$-QueueCreate
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_QueueEnqueueRear')
+	.global	QueueEnqueueRear
+
+; ../src/user/queue.c	   195  
+; ../src/user/queue.c	   196  /**
+; ../src/user/queue.c	   197   * @brief Enqueues a Queue element at the rear of the Queue
+; ../src/user/queue.c	   198   *
+; ../src/user/queue.c	   199   * This API is responsible for enqueuing an element at the rear of the queue. It takes
+; ../src/user/queue.c	   200   * a QueueHandler pointer (Queue) to identify the queue and a void* pointer (QueueElement)
+; ../src/user/queue.c	   201   * to represent the element being enqueued
+; ../src/user/queue.c	   202   * @service name    QueueEnqueueRear
+; ../src/user/queue.c	   203   * @syntax          FUNC(StatusType, OS_CODE) QueueEnqueueRear
+; ../src/user/queue.c	   204   *                  (
+; ../src/user/queue.c	   205   *                      P2VAR(QueueHandler, AUTOMATIC ,OS_CODE) Queue,
+; ../src/user/queue.c	   206   *                      P2VAR(Os_Task, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   207   *                  );
+; ../src/user/queue.c	   208   * @service ID      -
+; ../src/user/queue.c	   209   * @sync/async      -
+; ../src/user/queue.c	   210   * @reentrancy      -
+; ../src/user/queue.c	   211   * @param[in]       Queue               Pointer to Address of Queue Handler
+; ../src/user/queue.c	   212   * @param[in]       QueueElement        Pointer to Os_Task to be enqueued
+; ../src/user/queue.c	   213   * @param[out]      -
+; ../src/user/queue.c	   214   * @return          StatusType          Indicates the error status
+; ../src/user/queue.c	   215   *                  E_FIFO_OK           FIFO is OK
+; ../src/user/queue.c	   216   *                  E_FIFO_FULL         FIFO is FULL
+; ../src/user/queue.c	   217   *                  E_FIFO_EMPTY        FIFO is Empty
+; ../src/user/queue.c	   218   *                  E_FIFO_NULL         FIFO points to NULL
+; ../src/user/queue.c	   219   * @see             -
+; ../src/user/queue.c	   220   * @note            -
+; ../src/user/queue.c	   221   * @warning         -
+; ../src/user/queue.c	   222   */
+; ../src/user/queue.c	   223  FUNC(StatusType, OS_CODE) QueueEnqueueRear
+; Function QueueEnqueueRear
+.L73:
+	.thumb
+	.align	4
+QueueEnqueueRear:	.type	func
+
+.L52:
+	push	{r4,r5,r6}
+.L118:
+	mov	r5,r0
+.L121:
+
+; ../src/user/queue.c	   224  (
+; ../src/user/queue.c	   225      P2VAR(QueueHandler, AUTOMATIC, OS_CODE) Queue,
+; ../src/user/queue.c	   226      P2VAR(Os_Task, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   227  )
+; ../src/user/queue.c	   228  {
+; ../src/user/queue.c	   229      /* Set Error state of Queue */
+; ../src/user/queue.c	   230      VAR(uint8, AUTOMATIC) ErrorState = E_OK;
+	movs	r6,#0
+.L122:
+
+; ../src/user/queue.c	   231  
+; ../src/user/queue.c	   232      if (NULL_PTR == QueueElement)
+	cmp	r6,r1
+	bne	.L9
+.L164:
+
+; ../src/user/queue.c	   233      {
+; ../src/user/queue.c	   234          /*Element is Empty*/
+; ../src/user/queue.c	   235          ErrorState = E_FIFO_NULL;
+	b	.L10
+.L9:
+
+; ../src/user/queue.c	   236      }
+; ../src/user/queue.c	   237      else if (NULL_PTR == Queue)
+	cmp	r6,r5
+	bne	.L11
+.L10:
+
+; ../src/user/queue.c	   238      {
+; ../src/user/queue.c	   239          /* Queue Handler is NULL */
+; ../src/user/queue.c	   240          ErrorState = E_FIFO_NULL;
+	movs	r6,#3
+.L165:
+	b	.L12
+.L11:
+
+; ../src/user/queue.c	   241      }
+; ../src/user/queue.c	   242      else if ((Queue->CurrentQueueSize) == (Queue->MaxQueueSize))
+	ldrb	r0,[r5,#5]
+.L120:
+	ldrb	r3,[r5,#4]
+.L166:
+	cmp	r3,r0
+	bne	.L13
+.L167:
+
+; ../src/user/queue.c	   243      {
+; ../src/user/queue.c	   244          /*Queue is FULL*/
+; ../src/user/queue.c	   245          ErrorState = E_FIFO_FULL;
+	movs	r6,#1
+.L168:
+	b	.L14
+.L13:
+
+; ../src/user/queue.c	   246      }
+; ../src/user/queue.c	   247      else if ((Queue->CurrentQueueSize) == 0)
+; ../src/user/queue.c	   248      {
+; ../src/user/queue.c	   249          /*Enqueue First Element in Array */
+; ../src/user/queue.c	   250          Queue->Base[Queue->TailIndex] = QueueElement;
+	ldrb	r2,[r5,#7]
+.L169:
+	ldr	r4,[r5,#0]
+.L170:
+	cbnz	r3,.L15
+.L171:
+	str	r1,[r4,r2,lsl #2]
+.L172:
+	b	.L16
+.L15:
+
+; ../src/user/queue.c	   251  
+; ../src/user/queue.c	   252          /*Increment Queue Size*/
+; ../src/user/queue.c	   253          (Queue->CurrentQueueSize)++;
+; ../src/user/queue.c	   254      }
+; ../src/user/queue.c	   255      else
+; ../src/user/queue.c	   256      {
+; ../src/user/queue.c	   257          /*Cicular buffer condition */
+; ../src/user/queue.c	   258          if((Queue->TailIndex) == ((Queue->MaxQueueSize) - 1))
+	subs	r0,r0,#1
+.L173:
+	cmp	r2,r0
+.L174:
+
+; ../src/user/queue.c	   259          {
+; ../src/user/queue.c	   260              /*Set TailIndex to 0*/
+; ../src/user/queue.c	   261              Queue->TailIndex = 0;
+	ittee	eq
+	moveq	r0,#0
+.L175:
+	strbeq	r0,[r5,#7]
+.L176:
+
+; ../src/user/queue.c	   262          }
+; ../src/user/queue.c	   263          else
+; ../src/user/queue.c	   264          {
+; ../src/user/queue.c	   265              /*Increment Tail Index */
+; ../src/user/queue.c	   266              Queue->TailIndex++;
+	addne	r2,r2,#1
+	strbne	r2,[r5,#7]
+.L18:
+
+; ../src/user/queue.c	   267          }
+; ../src/user/queue.c	   268  
+; ../src/user/queue.c	   269          /*Enqueue elments in array accroding to last element  */
+; ../src/user/queue.c	   270          Queue->Base[Queue->TailIndex] = QueueElement;
+	ldrb	r0,[r5,#7]
+.L177:
+	str	r1,[r4,r0,lsl #2]
+.L16:
+
+; ../src/user/queue.c	   271  
+; ../src/user/queue.c	   272          /*Increment Queue Size*/
+; ../src/user/queue.c	   273          (Queue->CurrentQueueSize)++;
+	ldrb	r0,[r5,#4]
+.L178:
+	adds	r0,r0,#1
+	strb	r0,[r5,#4]
+.L14:
+.L12:
+
+; ../src/user/queue.c	   274      }
+; ../src/user/queue.c	   275  
+; ../src/user/queue.c	   276      return ErrorState;
+	mov	r0,r6
+.L123:
+
+; ../src/user/queue.c	   277  }
+	pop	{r4,r5,r6}
+.L119:
+	bx	lr
+.L74:
+	.size	QueueEnqueueRear,$-QueueEnqueueRear
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_QueueEnqueueFront')
+	.global	QueueEnqueueFront
+
+; ../src/user/queue.c	   278  
+; ../src/user/queue.c	   279  /**
+; ../src/user/queue.c	   280   * @brief Enqueues a Queue element at the front of the Queue
+; ../src/user/queue.c	   281   *
+; ../src/user/queue.c	   282   * This API is responsible for enqueuing an element at the from of the queue. It takes
+; ../src/user/queue.c	   283   * a QueueHandler pointer (Queue) to identify the queue and a void* pointer (QueueElement)
+; ../src/user/queue.c	   284   * to represent the element being enqueued
+; ../src/user/queue.c	   285   * @service name    QueueEnqueueFront
+; ../src/user/queue.c	   286   * @syntax          FUNC(StatusType, OS_CODE) QueueEnqueueFront
+; ../src/user/queue.c	   287   *                  (
+; ../src/user/queue.c	   288   *                      P2VAR(QueueHandler, AUTOMATIC ,OS_CODE) Queue,
+; ../src/user/queue.c	   289   *                      P2VAR(Os_Task, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   290   *                  );
+; ../src/user/queue.c	   291   * @service ID      -
+; ../src/user/queue.c	   292   * @sync/async      -
+; ../src/user/queue.c	   293   * @reentrancy      -
+; ../src/user/queue.c	   294   * @param[in]       Queue               Pointer to Address of Queue Handler
+; ../src/user/queue.c	   295   * @param[in]       QueueElement        Pointer to Os_Task to be enqueued
+; ../src/user/queue.c	   296   * @param[out]      -
+; ../src/user/queue.c	   297   * @return          StatusType          Indicates the error status
+; ../src/user/queue.c	   298   *                  E_FIFO_OK           FIFO is OK
+; ../src/user/queue.c	   299   *                  E_FIFO_FULL         FIFO is FULL
+; ../src/user/queue.c	   300   *                  E_FIFO_EMPTY        FIFO is Empty
+; ../src/user/queue.c	   301   *                  E_FIFO_NULL         FIFO points to NULL
+; ../src/user/queue.c	   302   * @see             -
+; ../src/user/queue.c	   303   * @note            -
+; ../src/user/queue.c	   304   * @warning         -
+; ../src/user/queue.c	   305   */
+; ../src/user/queue.c	   306  FUNC(StatusType, OS_CODE) QueueEnqueueFront
+; Function QueueEnqueueFront
+.L79:
+	.thumb
+	.align	4
+QueueEnqueueFront:	.type	func
+
+.L54:
+	push	{r4,r5,r6}
+.L124:
+	mov	r5,r0
+.L127:
+
+; ../src/user/queue.c	   307  (
+; ../src/user/queue.c	   308      P2VAR(QueueHandler, AUTOMATIC, OS_CODE) Queue,
+; ../src/user/queue.c	   309      P2VAR(Os_Task, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   310  )
+; ../src/user/queue.c	   311  {
+; ../src/user/queue.c	   312      /* Varaible to Hold Error State */
+; ../src/user/queue.c	   313      VAR(uint8, AUTOMATIC) ErrorState = E_OK;
+	movs	r6,#0
+.L128:
+
+; ../src/user/queue.c	   314  
+; ../src/user/queue.c	   315      if (NULL_PTR == QueueElement)
+	cmp	r6,r1
+	bne	.L20
+.L183:
+
+; ../src/user/queue.c	   316      {
+; ../src/user/queue.c	   317          /*Element is Empty*/
+; ../src/user/queue.c	   318          ErrorState = E_FIFO_NULL;
+	b	.L21
+.L20:
+
+; ../src/user/queue.c	   319      }
+; ../src/user/queue.c	   320      else if (NULL_PTR == Queue)
+	cmp	r6,r5
+	bne	.L22
+.L21:
+
+; ../src/user/queue.c	   321      {
+; ../src/user/queue.c	   322          /* Queue Handler is NULL */
+; ../src/user/queue.c	   323          ErrorState = E_FIFO_NULL;
+	movs	r6,#3
+.L184:
+	b	.L23
+.L22:
+
+; ../src/user/queue.c	   324      }
+; ../src/user/queue.c	   325      else if ((Queue->CurrentQueueSize) == (Queue->MaxQueueSize))
+	ldrb	r0,[r5,#5]
+.L126:
+	ldrb	r3,[r5,#4]
+.L185:
+	cmp	r3,r0
+	bne	.L24
+.L186:
+
+; ../src/user/queue.c	   326      {
+; ../src/user/queue.c	   327          /*Queue is FULL*/
+; ../src/user/queue.c	   328          ErrorState = E_FIFO_FULL;
+	movs	r6,#1
+.L187:
+	b	.L25
+.L24:
+
+; ../src/user/queue.c	   329      }
+; ../src/user/queue.c	   330      else if ((Queue->CurrentQueueSize) == 0)
+; ../src/user/queue.c	   331      {
+; ../src/user/queue.c	   332          /*Enqueue First Element in Array */
+; ../src/user/queue.c	   333          Queue->Base[Queue->HeadIndex] = QueueElement;
+	ldrb	r2,[r5,#6]
+.L188:
+	ldr	r4,[r5,#0]
+.L189:
+	cbnz	r3,.L26
+.L190:
+	str	r1,[r4,r2,lsl #2]
+.L191:
+	b	.L27
+.L26:
+
+; ../src/user/queue.c	   334  
+; ../src/user/queue.c	   335          /*Increment Queue Size*/
+; ../src/user/queue.c	   336          (Queue->CurrentQueueSize)++;
+; ../src/user/queue.c	   337      }
+; ../src/user/queue.c	   338      else
+; ../src/user/queue.c	   339      {
+; ../src/user/queue.c	   340          /*Cicular buffer condition */
+; ../src/user/queue.c	   341          if (Queue->HeadIndex == 0)
+	cbnz	r2,.L28
+.L192:
+
+; ../src/user/queue.c	   342          {
+; ../src/user/queue.c	   343              /*Set HeadIndex to last element in array */
+; ../src/user/queue.c	   344              Queue->HeadIndex = Queue->MaxQueueSize - 1;
+	subs	r0,r0,#1
+.L193:
+	strb	r0,[r5,#6]
+.L194:
+	b	.L29
+.L28:
+
+; ../src/user/queue.c	   345          }
+; ../src/user/queue.c	   346          else
+; ../src/user/queue.c	   347          {
+; ../src/user/queue.c	   348              /*Decrement HeadIndex */
+; ../src/user/queue.c	   349              (Queue->HeadIndex)--;
+	subs	r2,r2,#1
+	strb	r2,[r5,#6]
+.L29:
+
+; ../src/user/queue.c	   350          }
+; ../src/user/queue.c	   351          
+; ../src/user/queue.c	   352          /*Enqueue element in array*/
+; ../src/user/queue.c	   353          Queue->Base[Queue->HeadIndex] = QueueElement;
+	ldrb	r0,[r5,#6]
+.L195:
+	str	r1,[r4,r0,lsl #2]
+.L27:
+
+; ../src/user/queue.c	   354  
+; ../src/user/queue.c	   355          /*Increment Queue Size*/
+; ../src/user/queue.c	   356          (Queue->CurrentQueueSize)++;
+	ldrb	r0,[r5,#4]
+.L196:
+	adds	r0,r0,#1
+	strb	r0,[r5,#4]
+.L25:
+.L23:
+
+; ../src/user/queue.c	   357      }
+; ../src/user/queue.c	   358  
+; ../src/user/queue.c	   359      return ErrorState;
+	mov	r0,r6
+.L129:
+
+; ../src/user/queue.c	   360  }
+	pop	{r4,r5,r6}
+.L125:
+	bx	lr
+.L80:
+	.size	QueueEnqueueFront,$-QueueEnqueueFront
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_QueueDequeue')
+	.global	QueueDequeue
+
+; ../src/user/queue.c	   361  
+; ../src/user/queue.c	   362  /**
+; ../src/user/queue.c	   363   * @brief Dequeue a Queue element from the front of the Queue
+; ../src/user/queue.c	   364   *
+; ../src/user/queue.c	   365   * This API is responsible for dequeueing an element from the front of the queue. It takes
+; ../src/user/queue.c	   366   * a QueueHandler pointer (Queue) to identify the queue and a void* pointer (QueueElement)
+; ../src/user/queue.c	   367   * to store the dequeued element
+; ../src/user/queue.c	   368   * @service name    QueueDequeue
+; ../src/user/queue.c	   369   * @syntax          FUNC(StatusType, OS_CODE) QueueDequeue
+; ../src/user/queue.c	   370   *                  (
+; ../src/user/queue.c	   371   *                      P2VAR(QueueHandler, AUTOMATIC ,OS_CODE) Queue,
+; ../src/user/queue.c	   372   *                      P2VAR(Os_Task*, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   373   *                  );
+; ../src/user/queue.c	   374   * @service ID      -
+; ../src/user/queue.c	   375   * @sync/async      -
+; ../src/user/queue.c	   376   * @reentrancy      -
+; ../src/user/queue.c	   377   * @param[in]       Queue               Pointer to Address of Queue Handler
+; ../src/user/queue.c	   378   * @param[in]       QueueElement        Pointer to Pointer of Os_Task to store the dequeued element
+; ../src/user/queue.c	   379   * @param[out]      -
+; ../src/user/queue.c	   380   * @return          StatusType          Indicates the error status
+; ../src/user/queue.c	   381   *                  E_FIFO_OK           FIFO is OK
+; ../src/user/queue.c	   382   *                  E_FIFO_FULL         FIFO is FULL
+; ../src/user/queue.c	   383   *                  E_FIFO_EMPTY        FIFO is Empty
+; ../src/user/queue.c	   384   *                  E_FIFO_NULL         FIFO points to NULL
+; ../src/user/queue.c	   385   * @see             -
+; ../src/user/queue.c	   386   * @note            -
+; ../src/user/queue.c	   387   * @warning         -
+; ../src/user/queue.c	   388   */
+; ../src/user/queue.c	   389  FUNC(StatusType, OS_CODE) QueueDequeue
+; Function QueueDequeue
+.L85:
+	.thumb
+	.align	4
+QueueDequeue:	.type	func
+
+.L56:
+	push	{r4}
+.L130:
+	mov	r3,r0
+.L134:
+
+; ../src/user/queue.c	   390  (
+; ../src/user/queue.c	   391      P2VAR(QueueHandler, AUTOMATIC, OS_CODE) Queue,
+; ../src/user/queue.c	   392      P2VAR(Os_Task *, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   393  )
+; ../src/user/queue.c	   394  {
+; ../src/user/queue.c	   395      /* Varaible to Hold Error State */
+; ../src/user/queue.c	   396      VAR(uint8, AUTOMATIC) ErrorState = E_OK;
+	movs	r4,#0
+.L135:
+
+; ../src/user/queue.c	   397  
+; ../src/user/queue.c	   398      if (NULL_PTR == QueueElement)
+	cmp	r4,r1
+	bne	.L31
+.L201:
+
+; ../src/user/queue.c	   399      {
+; ../src/user/queue.c	   400          /*Element is Empty*/
+; ../src/user/queue.c	   401          ErrorState = E_FIFO_NULL;
+	b	.L32
+.L31:
+
+; ../src/user/queue.c	   402      }
+; ../src/user/queue.c	   403      else if (NULL_PTR == Queue)
+	cmp	r4,r3
+	bne	.L33
+.L32:
+
+; ../src/user/queue.c	   404      {
+; ../src/user/queue.c	   405          /* Queue Handler is NULL */
+; ../src/user/queue.c	   406          ErrorState = E_FIFO_NULL;
+	movs	r4,#3
+.L202:
+	b	.L34
+.L33:
+
+; ../src/user/queue.c	   407      }
+; ../src/user/queue.c	   408      else if ((Queue->CurrentQueueSize) == 0)
+	ldrb	r0,[r3,#4]
+.L132:
+	cbnz	r0,.L35
+.L203:
+
+; ../src/user/queue.c	   409      {
+; ../src/user/queue.c	   410          /* Error Status , Fifo is Empty */
+; ../src/user/queue.c	   411          ErrorState = E_FIFO_EMPTY;
+	movs	r4,#2
+.L204:
+	b	.L36
+.L35:
+
+; ../src/user/queue.c	   412      }
+; ../src/user/queue.c	   413      else
+; ../src/user/queue.c	   414      {
+; ../src/user/queue.c	   415  
+; ../src/user/queue.c	   416          /*Pass the first elemnt in queue to the pointer */
+; ../src/user/queue.c	   417          *QueueElement = Queue->Base[Queue->HeadIndex];
+	ldr	r0,[r3,#0]
+.L205:
+	ldrb	r2,[r3,#6]
+.L206:
+	ldr	r0,[r0,r2,lsl #2]
+.L207:
+	str	r0,[r1,#0]
+.L208:
+
+; ../src/user/queue.c	   418           
+; ../src/user/queue.c	   419           /*Only one element in queue so HeadIndex and TailIndex should point to same place*/
+; ../src/user/queue.c	   420           if(Queue->CurrentQueueSize == 1)
+	ldrb	r0,[r3,#4]
+.L209:
+	cmp	r0,#1
+	bne	.L37
+.L210:
+	b	.L38
+.L37:
+
+; ../src/user/queue.c	   421           {
+; ../src/user/queue.c	   422              /*Do nothing */
+; ../src/user/queue.c	   423           }
+; ../src/user/queue.c	   424           /*Cicular buffer condition */
+; ../src/user/queue.c	   425           else if (Queue->HeadIndex == (Queue->CurrentQueueSize - 1))
+	subs	r2,r0,#1
+.L211:
+	ldrb	r1,[r3,#6]
+.L133:
+	cmp	r1,r2
+.L212:
+
+; ../src/user/queue.c	   426           {
+; ../src/user/queue.c	   427              /*Set Head Index to 0*/
+; ../src/user/queue.c	   428              Queue->HeadIndex = 0;
+	ite	eq
+	moveq	r1,#0
+.L213:
+
+; ../src/user/queue.c	   429           }
+; ../src/user/queue.c	   430           else 
+; ../src/user/queue.c	   431           {
+; ../src/user/queue.c	   432              /*Increment HeadIndex */
+; ../src/user/queue.c	   433              (Queue->HeadIndex)++;
+	addne	r1,r1,#1
+.L40:
+	strb	r1,[r3,#6]
+.L38:
+
+; ../src/user/queue.c	   434           }
+; ../src/user/queue.c	   435           
+; ../src/user/queue.c	   436           
+; ../src/user/queue.c	   437          /*Update Queue Size*/
+; ../src/user/queue.c	   438          (Queue->CurrentQueueSize)--;
+	subs	r0,r0,#1
+	strb	r0,[r3,#4]
+.L36:
+.L34:
+
+; ../src/user/queue.c	   439      }
+; ../src/user/queue.c	   440  
+; ../src/user/queue.c	   441      return ErrorState;
+	mov	r0,r4
+.L136:
+
+; ../src/user/queue.c	   442  }
+	pop	{r4}
+.L131:
+	bx	lr
+.L86:
+	.size	QueueDequeue,$-QueueDequeue
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_QueuePeek')
+	.global	QueuePeek
+
+; ../src/user/queue.c	   443  
+; ../src/user/queue.c	   444  
+; ../src/user/queue.c	   445  
+; ../src/user/queue.c	   446  /**
+; ../src/user/queue.c	   447   * @brief Return  a Queue element from the front of the Queue without removing it
+; ../src/user/queue.c	   448   *
+; ../src/user/queue.c	   449   * This API is responsible for peeking an element from the front of the queue. It takes
+; ../src/user/queue.c	   450   * a QueueHandler pointer (Queue) to identify the queue and a void* pointer (QueueElement)
+; ../src/user/queue.c	   451   * to store the dequeued element 
+; ../src/user/queue.c	   452   * @service name    QueuePeek
+; ../src/user/queue.c	   453   * @syntax          FUNC(StatusType, OS_CODE) QueuePeek
+; ../src/user/queue.c	   454   *                  (
+; ../src/user/queue.c	   455   *                      P2VAR(QueueHandler, AUTOMATIC ,OS_CODE) Queue,
+; ../src/user/queue.c	   456   *                      P2VAR(Os_Task*, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   457   *                  );
+; ../src/user/queue.c	   458   * @service ID      -
+; ../src/user/queue.c	   459   * @sync/async      -
+; ../src/user/queue.c	   460   * @reentrancy      -
+; ../src/user/queue.c	   461   * @param[in]       Queue               Pointer to Address of Queue Handler
+; ../src/user/queue.c	   462   * @param[in]       QueueElement        Pointer to Pointer of Os_Task to store the dequeued element
+; ../src/user/queue.c	   463   * @param[out]      -
+; ../src/user/queue.c	   464   * @return          StatusType          Indicates the error status
+; ../src/user/queue.c	   465   *                  E_FIFO_OK           FIFO is OK
+; ../src/user/queue.c	   466   *                  E_FIFO_FULL         FIFO is FULL
+; ../src/user/queue.c	   467   *                  E_FIFO_EMPTY        FIFO is Empty
+; ../src/user/queue.c	   468   *                  E_FIFO_NULL         FIFO points to NULL
+; ../src/user/queue.c	   469   * @see             -
+; ../src/user/queue.c	   470   * @note            -
+; ../src/user/queue.c	   471   * @warning         -
+; ../src/user/queue.c	   472   */
+; ../src/user/queue.c	   473  FUNC(StatusType, OS_CODE) QueuePeek
+; Function QueuePeek
+.L91:
+	.thumb
+	.align	4
+QueuePeek:	.type	func
+
+.L58:
+
+; ../src/user/queue.c	   474  (
+; ../src/user/queue.c	   475      P2VAR(QueueHandler, AUTOMATIC ,OS_CODE) Queue,
+; ../src/user/queue.c	   476      P2VAR(Os_Task*, AUTOMATIC, OS_APPL_DATA) QueueElement
+; ../src/user/queue.c	   477  )
+; ../src/user/queue.c	   478  {
+; ../src/user/queue.c	   479       /* Varaible to Hold Error State */
+; ../src/user/queue.c	   480      VAR(uint8, AUTOMATIC) ErrorState = E_OK;
+	movs	r2,#0
+.L138:
+
+; ../src/user/queue.c	   481  
+; ../src/user/queue.c	   482      if (NULL_PTR == QueueElement)
+	cmp	r2,r1
+	bne	.L42
+.L218:
+
+; ../src/user/queue.c	   483      {
+; ../src/user/queue.c	   484          /*Element is Empty*/
+; ../src/user/queue.c	   485          ErrorState = E_FIFO_NULL;
+	b	.L43
+.L42:
+
+; ../src/user/queue.c	   486      }
+; ../src/user/queue.c	   487      else if (NULL_PTR == Queue)
+	cmp	r2,r0
+	bne	.L44
+.L43:
+
+; ../src/user/queue.c	   488      {
+; ../src/user/queue.c	   489          /* Queue Handler is NULL */
+; ../src/user/queue.c	   490          ErrorState = E_FIFO_NULL;
+	movs	r2,#3
+.L219:
+	b	.L45
+.L44:
+
+; ../src/user/queue.c	   491      }
+; ../src/user/queue.c	   492      else if ((Queue->CurrentQueueSize) == 0)
+	ldrb	r3,[r0,#4]
+.L220:
+	cbnz	r3,.L46
+.L221:
+
+; ../src/user/queue.c	   493      {
+; ../src/user/queue.c	   494          /* Error Status , Fifo is Empty */
+; ../src/user/queue.c	   495          ErrorState = E_FIFO_EMPTY;
+	movs	r2,#2
+.L222:
+	b	.L47
+.L46:
+
+; ../src/user/queue.c	   496      }
+; ../src/user/queue.c	   497      else
+; ../src/user/queue.c	   498      {
+; ../src/user/queue.c	   499  
+; ../src/user/queue.c	   500          /*Pass the first elemnt in queue to the pointer */
+; ../src/user/queue.c	   501          *QueueElement = Queue->Base[Queue->HeadIndex];
+	ldr	r3,[r0,#0]
+.L223:
+	ldrb	r0,[r0,#6]
+.L137:
+	ldr	r0,[r3,r0,lsl #2]
+.L224:
+	str	r0,[r1,#0]
+.L47:
+.L45:
+
+; ../src/user/queue.c	   502      }
+; ../src/user/queue.c	   503      
+; ../src/user/queue.c	   504      /*Return Error state */
+; ../src/user/queue.c	   505      return ErrorState;
+	mov	r0,r2
+.L139:
+
+; ../src/user/queue.c	   506  }
+	bx	lr
+.L92:
+	.size	QueuePeek,$-QueuePeek
+	; End of function
+	.endsec	; End of section
+
+	.calls	'QueueCreate','',4
+	.calls	'QueueEnqueueRear','',12
+	.calls	'QueueEnqueueFront','',12
+	.calls	'QueueDequeue','',4
+	.calls	'QueuePeek','',0
+	.section	.debug_info
+.L60:
+	.dw	3300
+	.dh	3
+	.dw	.L61
+	.db	4
+.L59:
+	.db	1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L62
+.L93:
+	.db	2
+	.db	'unsigned char',0,1,8,3
+	.dw	46
+	.db	3
+	.dw	46
+	.db	3
+	.dw	46
+	.db	3
+	.dw	46
+	.db	4
+	.db	'TaskFlagsType_s',0,2,172,1,8,2,5
+	.db	'Type',0
+	.dw	46
+	.db	1,2,35,0,5
+	.db	'TaskSchedulingPolicy',0
+	.dw	46
+	.db	1,2,35,1,0,6
+	.dw	83
+	.db	2
+	.db	'unsigned int',0,4,7,6
+	.dw	155
+	.db	7
+	.db	'StackPtrType',0,2,143,1,30
+	.dw	171
+	.db	4
+	.db	'TaskStackType_s',0,2,243,1,8,12,5
+	.db	'StackBase',0
+	.dw	176
+	.db	4,2,35,0,5
+	.db	'CurrentStackPtr',0
+	.dw	176
+	.db	4,2,35,4,5
+	.db	'StackSize',0
+	.dw	155
+	.db	4,2,35,8,0,6
+	.dw	198
+	.db	8,1,1,6
+	.dw	289
+	.db	7
+	.db	'EntryFunctionPtrType',0,2,151,1,9
+	.dw	292
+	.db	3
+	.dw	297
+	.db	3
+	.dw	46
+	.db	4
+	.db	'Os_InernalResourceDynamic_s',0,3,66,8,2,5
+	.db	'TakenTaskPriority',0
+	.dw	46
+	.db	1,2,35,0,5
+	.db	'TakenFlag',0
+	.dw	46
+	.db	1,2,35,1,0,6
+	.dw	337
+	.db	4
+	.db	'Os_InteranlResource_s',0,3,79,8,8,5
+	.db	'CeilingPriority',0
+	.dw	332
+	.db	1,2,35,0,5
+	.db	'InternalResourceDynamics',0
+	.dw	417
+	.db	4,2,35,4,0,6
+	.dw	422
+	.db	2
+	.db	'int',0,4,5,9,4,87,10,4,5
+	.db	'x',0
+	.dw	514
+	.db	4,2,35,0,0,6
+	.dw	521
+	.db	3
+	.dw	46
+	.db	3
+	.dw	46
+	.db	4
+	.db	'Os_ResourceDynamic_s',0,3,105,8,8,5
+	.db	'OwnerTaskPriority',0
+	.dw	46
+	.db	1,2,35,0,5
+	.db	'OwnerTaskID',0
+	.dw	46
+	.db	1,2,35,1,5
+	.db	'LinkedResource',0
+	.dw	.L142-.L60
+	.db	4,2,35,4,0,6
+	.dw	553
+	.db	4
+	.db	'Os_Resource_s',0,3,92,8,8,5
+	.db	'CeilingPriority',0
+	.dw	543
+	.db	1,2,35,0,5
+	.db	'ResourceID',0
+	.dw	548
+	.db	1,2,35,1,5
+	.db	'ResourceDynamics',0
+	.dw	652
+	.db	4,2,35,4,0
+.L142:
+	.db	6
+	.dw	657
+	.db	4
+	.db	'Os_TaskDynamic_s',0,2,214,1,8,24,5
+	.db	'Context',0
+	.dw	538
+	.db	4,2,35,0,5
+	.db	'Resources',0
+	.dw	748
+	.db	4,2,35,4,5
+	.db	'PriorityQueueIndex',0
+	.dw	46
+	.db	1,2,35,8,5
+	.db	'EventsSet',0
+	.dw	155
+	.db	4,2,35,12,5
+	.db	'EventsWaiting',0
+	.dw	155
+	.db	4,2,35,16,5
+	.db	'TaskCurrentPriority',0
+	.dw	46
+	.db	1,2,35,20,5
+	.db	'TaskState',0
+	.dw	46
+	.db	1,2,35,21,5
+	.db	'PendingActivationRequests',0
+	.dw	46
+	.db	1,2,35,22,0,6
+	.dw	753
+	.db	4
+	.db	'Os_Task_s',0,2,186,1,8,28,5
+	.db	'TaskStaticPriority',0
+	.dw	63
+	.db	1,2,35,0,5
+	.db	'TaskID',0
+	.dw	68
+	.db	1,2,35,1,5
+	.db	'ApplicationMode',0
+	.dw	73
+	.db	1,2,35,2,5
+	.db	'NumOfActivationRequests',0
+	.dw	78
+	.db	1,2,35,3,5
+	.db	'TaskFlags',0
+	.dw	150
+	.db	4,2,35,4,5
+	.db	'TaskStack',0
+	.dw	284
+	.db	4,2,35,8,5
+	.db	'EntryPoint',0
+	.dw	327
+	.db	4,2,35,12,5
+	.db	'InternalResource',0
+	.dw	509
+	.db	4,2,35,16,5
+	.db	'TaskDynamics',0
+	.dw	966
+	.db	4,2,35,20,5
+	.db	'EventsOwned',0
+	.dw	155
+	.db	4,2,35,24,0
+.L101:
+	.db	6
+	.dw	971
+.L96:
+	.db	6
+	.dw	1217
+	.db	4
+	.db	'QueueHandlerType',0,1,194,1,8,8,5
+	.db	'Base',0
+	.dw	1222
+	.db	4,2,35,0,5
+	.db	'CurrentQueueSize',0
+	.dw	46
+	.db	1,2,35,4,5
+	.db	'MaxQueueSize',0
+	.dw	46
+	.db	1,2,35,5,5
+	.db	'HeadIndex',0
+	.dw	46
+	.db	1,2,35,6,5
+	.db	'TailIndex',0
+	.dw	46
+	.db	1,2,35,7,0
+.L94:
+	.db	6
+	.dw	1227
+	.db	6
+	.dw	155
+	.db	6
+	.dw	289
+	.db	10,1,6
+	.dw	1366
+	.db	7
+	.db	'__codeptr',0,5,1,1
+	.dw	1368
+	.db	7
+	.db	'Os_ContexType',0,4,90,2
+	.dw	521
+	.db	7
+	.db	'boolean',0,6,242,1,23
+	.dw	46
+	.db	7
+	.db	'uint8',0,6,247,1,23
+	.dw	46
+	.db	2
+	.db	'unsigned short int',0,2,7,7
+	.db	'uint16',0,6,252,1,24
+	.dw	1445
+	.db	7
+	.db	'uint32',0,6,129,2,22
+	.dw	155
+	.db	7
+	.db	'StatusType',0,7,191,1,23
+	.dw	46
+	.db	7
+	.db	'Std_ReturnType',0,7,235,2,15
+	.dw	46
+	.db	7
+	.db	'Std_TransformerClass',0,7,238,2,15
+	.dw	46
+	.db	7
+	.db	'Std_TransformerForwardCode',0,7,241,2,15
+	.dw	46
+	.db	7
+	.db	'TaskType',0,8,183,1,29
+	.dw	46
+	.db	7
+	.db	'TaskStateType',0,8,189,1,29
+	.dw	46
+	.db	7
+	.db	'TaskPriorityType',0,8,195,1,29
+	.dw	46
+	.db	7
+	.db	'ResourceType',0,8,198,1,29
+	.dw	46
+	.db	7
+	.db	'EventMaskType',0,8,201,1,30
+	.dw	155
+	.db	7
+	.db	'AppModeType',0,8,207,1,28
+	.dw	46
+	.db	7
+	.db	'OsStateType',0,8,210,1,28
+	.dw	46
+	.db	7
+	.db	'TickType',0,8,214,1,30
+	.dw	155
+	.db	4
+	.db	'AlarmBaseType_s',0,8,230,1,8,12,5
+	.db	'maxallowedvalue',0
+	.dw	155
+	.db	4,2,35,0,5
+	.db	'ticksperbase',0
+	.dw	155
+	.db	4,2,35,4,5
+	.db	'mincycle',0
+	.dw	155
+	.db	4,2,35,8,0,7
+	.db	'AlarmBaseType',0,8,220,1,32
+	.dw	1781
+	.db	7
+	.db	'AlarmType',0,8,226,1,28
+	.dw	46
+	.db	7
+	.db	'Os_InernalResourceDynamic',0,3,55,44
+	.dw	337
+	.db	7
+	.db	'Os_InteranlResource',0,3,57,38
+	.dw	422
+	.db	7
+	.db	'Os_Resource',0,3,59,30
+	.dw	657
+	.db	7
+	.db	'Os_ResourceDynamic',0,3,61,37
+	.dw	553
+	.db	7
+	.db	'StackSizeType',0,2,145,1,31
+	.dw	155
+	.db	7
+	.db	'TaskActivationCounterType',0,2,147,1,30
+	.dw	46
+	.db	7
+	.db	'QueueIndexType',0,2,149,1,30
+	.dw	46
+	.db	7
+	.db	'TaskFlagsType',0,2,155,1,32
+	.dw	83
+	.db	7
+	.db	'TaskStackType',0,2,157,1,32
+	.dw	198
+	.db	7
+	.db	'Os_TaskDynamic',0,2,159,1,33
+	.dw	753
+	.db	7
+	.db	'Os_Task',0,2,161,1,26
+	.dw	971
+	.db	4
+	.db	'Os_CpuLoad_s',0,2,155,2,8,8,5
+	.db	'IdleTime',0
+	.dw	155
+	.db	4,2,35,0,5
+	.db	'CurrentCpuLoad',0
+	.dw	46
+	.db	1,2,35,4,5
+	.db	'PeakCpuLoad',0
+	.dw	46
+	.db	1,2,35,5,0,7
+	.db	'Os_CpuLoad',0,2,165,1,29
+	.dw	2189
+	.db	3
+	.dw	155
+	.db	3
+	.dw	155
+	.db	3
+	.dw	155
+	.db	3
+	.dw	46
+	.db	3
+	.dw	155
+	.db	4
+	.db	'Os_Counter_s',0,9,44,8,28,5
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2292
+	.db	4,2,35,0,5
+	.db	'OsCounterMinCycle',0
+	.dw	2297
+	.db	4,2,35,4,5
+	.db	'OsCounterTicksPerBase',0
+	.dw	2302
+	.db	4,2,35,8,5
+	.db	'OsCounterType',0
+	.dw	2307
+	.db	1,2,35,12,5
+	.db	'OsSecondsPerTick',0
+	.dw	2312
+	.db	4,2,35,16,5
+	.db	'OsCounterCurrentTicks',0
+	.dw	155
+	.db	4,2,35,20,5
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	46
+	.db	1,2,35,24,0,7
+	.db	'Os_Counter',0,9,42,29
+	.dw	2317
+	.db	4
+	.db	'Os_AlarmActivateTask_s',0,10,140,1,8,1,5
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	46
+	.db	1,2,35,0,0,6
+	.dw	2561
+	.db	4
+	.db	'Os_AlarmSetEvent_s',0,10,146,1,8,8,5
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	46
+	.db	1,2,35,0,5
+	.db	'OsAlarmSetEventRef',0
+	.dw	155
+	.db	4,2,35,4,0,6
+	.dw	2628
+	.db	7
+	.db	'CallbackFuncPtrType',0,10,88,9
+	.dw	292
+	.db	3
+	.dw	2719
+	.db	11
+	.db	'Os_AlarmAction_u',0,10,92,7,4,5
+	.db	'OsAlarmActivateTask',0
+	.dw	2623
+	.db	4,2,35,0,5
+	.db	'OsAlarmSetEventTask',0
+	.dw	2714
+	.db	4,2,35,0,5
+	.db	'OsAlarmCallbackName',0
+	.dw	2747
+	.db	4,2,35,0,0,6
+	.dw	2317
+	.db	6
+	.dw	.L143-.L60
+.L143:
+	.db	4
+	.db	'Os_Alarm_s',0,10,104,8,36,5
+	.db	'OsAlarmAction',0
+	.dw	2752
+	.db	4,2,35,0,5
+	.db	'OsAlarmActionType',0
+	.dw	46
+	.db	1,2,35,4,5
+	.db	'OsAlarmExpiryTime',0
+	.dw	155
+	.db	4,2,35,8,5
+	.db	'OsAlarmCycleTime',0
+	.dw	155
+	.db	4,2,35,12,5
+	.db	'OsAlarmState',0
+	.dw	46
+	.db	1,2,35,16,5
+	.db	'OsAlarmCounterRef',0
+	.dw	2862
+	.db	4,2,35,20,5
+	.db	'OsAlarmNext',0
+	.dw	2867
+	.db	4,2,35,24,5
+	.db	'OsAlarmPrevious',0
+	.dw	2867
+	.db	4,2,35,28,5
+	.db	'OsAlarmAlarmTime',0
+	.dw	46
+	.db	1,2,35,32,5
+	.db	'OsAlarmAutoStartType',0
+	.dw	46
+	.db	1,2,35,33,0,7
+	.db	'Os_Alarm',0,10,73,45
+	.dw	2872
+	.db	6
+	.dw	289
+	.db	7
+	.db	'Os_AlarmAction',0,10,76,45
+	.dw	2752
+	.db	7
+	.db	'Os_AlarmActivateTask',0,10,79,41
+	.dw	2561
+	.db	7
+	.db	'Os_AlarmSetEvent',0,10,82,38
+	.dw	2628
+	.db	7
+	.db	'QueueSize',0,1,183,1,29
+	.dw	46
+	.db	7
+	.db	'QueueIndex',0,1,186,1,29
+	.dw	46
+	.db	7
+	.db	'QueueHandler',0,1,189,1,33
+	.dw	1227
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L61:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,19,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,5,13,0,3,8,73,19,11,15,56,9,0,0,6,15,0,73,19,0,0,7,22,0,3,8,58,15,59,15,57
+	.db	15,73,19,0,0,8,21,0,54,15,39,12,0,0,9,19,1,58,15,59,15,57,15,11,15,0,0,10,21,0,54,15,0,0,11,23,1,3,8,58
+	.db	15,59,15,57,15,11,15,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L62:
+	.dw	.L145-.L144
+.L144:
+	.dh	3
+	.dw	.L147-.L146
+.L146:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'../src/user/queue.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0,0
+.L147:
+.L145:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_QueueCreate')
+.L63:
+	.dw	193
+	.dh	3
+	.dw	.L64
+	.db	4,1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L66,.L65
+	.db	2
+	.dw	.L59
+	.db	3
+	.db	'QueueCreate',0,1,149,1,27
+	.dw	.L93
+	.db	1,1,1
+	.dw	.L50,.L68,.L49
+	.db	4
+	.db	'Queue',0,1,151,1,45
+	.dw	.L94,.L95
+	.db	4
+	.db	'QueueBuffer',0,1,152,1,47
+	.dw	.L96,.L97
+	.db	4
+	.db	'MaxQueueSize',0,1,153,1,31
+	.dw	.L93,.L98
+	.db	5
+	.dw	.L50,.L68
+	.db	6
+	.db	'ErrorState',0,1,157,1,27
+	.dw	.L93,.L99
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_QueueCreate')
+.L64:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_QueueCreate')
+.L65:
+	.dw	.L149-.L148
+.L148:
+	.dh	3
+	.dw	.L151-.L150
+.L150:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/user/queue.c',0,0,0,0,0
+.L151:
+	.db	5,27,7,0,5,2
+	.dw	.L50
+	.db	3,148,1,1,5,40,9
+	.dh	.L113-.L50
+	.db	3,8,1,5,5,9
+	.dh	.L117-.L113
+	.db	3,2,1,5,33,9
+	.dh	.L152-.L117
+	.db	3,3,1,5,10,9
+	.dh	.L2-.L152
+	.db	3,2,1,5,22,9
+	.dh	.L3-.L2
+	.db	3,3,1,5,33,9
+	.dh	.L153-.L3
+	.db	1,5,10,9
+	.dh	.L4-.L153
+	.db	3,2,1,5,22,7,9
+	.dh	.L154-.L4
+	.db	3,3,1,5,34,9
+	.dh	.L155-.L154
+	.db	1,5,21,9
+	.dh	.L6-.L155
+	.db	3,5,1,5,28,9
+	.dh	.L156-.L6
+	.db	3,3,1,5,26,9
+	.dh	.L116-.L156
+	.db	1,9
+	.dh	.L157-.L116
+	.db	3,3,1,5,33,9
+	.dh	.L158-.L157
+	.db	3,3,1,5,29,9
+	.dh	.L159-.L158
+	.db	3,3,1,5,5,9
+	.dh	.L5-.L159
+	.db	3,4,1,5,1,9
+	.dh	.L115-.L5
+	.db	3,1,1,9
+	.dh	.L68-.L115
+	.db	0,1,1
+.L149:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_QueueCreate')
+.L66:
+	.dw	-1,.L67,0,.L68-.L67,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_QueueEnqueueRear')
+.L69:
+	.dw	173
+	.dh	3
+	.dw	.L70
+	.db	4,1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L72,.L71
+	.db	2
+	.dw	.L59
+	.db	3
+	.db	'QueueEnqueueRear',0,1,223,1,27
+	.dw	.L93
+	.db	1,1,1
+	.dw	.L52,.L74,.L51
+	.db	4
+	.db	'Queue',0,1,225,1,45
+	.dw	.L94,.L100
+	.db	4
+	.db	'QueueElement',0,1,226,1,45
+	.dw	.L101,.L102
+	.db	5
+	.dw	.L52,.L74
+	.db	6
+	.db	'ErrorState',0,1,230,1,27
+	.dw	.L93,.L103
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_QueueEnqueueRear')
+.L70:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_QueueEnqueueRear')
+.L71:
+	.dw	.L161-.L160
+.L160:
+	.dh	3
+	.dw	.L163-.L162
+.L162:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/user/queue.c',0,0,0,0,0
+.L163:
+	.db	5,27,7,0,5,2
+	.dw	.L52
+	.db	3,222,1,1,5,40,9
+	.dh	.L121-.L52
+	.db	3,7,1,5,5,9
+	.dh	.L122-.L121
+	.db	3,2,1,5,33,9
+	.dh	.L164-.L122
+	.db	3,3,1,5,10,9
+	.dh	.L9-.L164
+	.db	3,2,1,5,22,9
+	.dh	.L10-.L9
+	.db	3,3,1,5,33,9
+	.dh	.L165-.L10
+	.db	1,5,49,9
+	.dh	.L11-.L165
+	.db	3,2,1,5,20,9
+	.dh	.L120-.L11
+	.db	1,5,10,9
+	.dh	.L166-.L120
+	.db	1,5,22,9
+	.dh	.L167-.L166
+	.db	3,3,1,5,33,9
+	.dh	.L168-.L167
+	.db	1,5,26,9
+	.dh	.L13-.L168
+	.db	3,5,1,5,14,9
+	.dh	.L169-.L13
+	.db	1,5,10,9
+	.dh	.L170-.L169
+	.db	3,125,1,5,39,7,9
+	.dh	.L171-.L170
+	.db	3,3,1,5,53,9
+	.dh	.L172-.L171
+	.db	1,5,57,9
+	.dh	.L15-.L172
+	.db	3,8,1,5,9,9
+	.dh	.L173-.L15
+	.db	1,5,32,9
+	.dh	.L174-.L173
+	.db	3,3,1,5,30,9
+	.dh	.L175-.L174
+	.db	1,5,29,9
+	.dh	.L176-.L175
+	.db	3,5,1,5,26,9
+	.dh	.L18-.L176
+	.db	3,4,1,5,39,9
+	.dh	.L177-.L18
+	.db	1,5,15,9
+	.dh	.L16-.L177
+	.db	3,3,1,5,34,9
+	.dh	.L178-.L16
+	.db	1,5,5,9
+	.dh	.L12-.L178
+	.db	3,3,1,5,1,9
+	.dh	.L123-.L12
+	.db	3,1,1,9
+	.dh	.L74-.L123
+	.db	0,1,1
+.L161:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_QueueEnqueueRear')
+.L72:
+	.dw	-1,.L73,0,.L74-.L73,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_QueueEnqueueFront')
+.L75:
+	.dw	174
+	.dh	3
+	.dw	.L76
+	.db	4,1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L78,.L77
+	.db	2
+	.dw	.L59
+	.db	3
+	.db	'QueueEnqueueFront',0,1,178,2,27
+	.dw	.L93
+	.db	1,1,1
+	.dw	.L54,.L80,.L53
+	.db	4
+	.db	'Queue',0,1,180,2,45
+	.dw	.L94,.L104
+	.db	4
+	.db	'QueueElement',0,1,181,2,45
+	.dw	.L101,.L105
+	.db	5
+	.dw	.L54,.L80
+	.db	6
+	.db	'ErrorState',0,1,185,2,27
+	.dw	.L93,.L106
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_QueueEnqueueFront')
+.L76:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_QueueEnqueueFront')
+.L77:
+	.dw	.L180-.L179
+.L179:
+	.dh	3
+	.dw	.L182-.L181
+.L181:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/user/queue.c',0,0,0,0,0
+.L182:
+	.db	5,27,7,0,5,2
+	.dw	.L54
+	.db	3,177,2,1,5,40,9
+	.dh	.L127-.L54
+	.db	3,7,1,5,5,9
+	.dh	.L128-.L127
+	.db	3,2,1,5,33,9
+	.dh	.L183-.L128
+	.db	3,3,1,5,10,9
+	.dh	.L20-.L183
+	.db	3,2,1,5,22,9
+	.dh	.L21-.L20
+	.db	3,3,1,5,33,9
+	.dh	.L184-.L21
+	.db	1,5,49,9
+	.dh	.L22-.L184
+	.db	3,2,1,5,20,9
+	.dh	.L126-.L22
+	.db	1,5,10,9
+	.dh	.L185-.L126
+	.db	1,5,22,9
+	.dh	.L186-.L185
+	.db	3,3,1,5,33,9
+	.dh	.L187-.L186
+	.db	1,5,26,9
+	.dh	.L24-.L187
+	.db	3,5,1,5,14,9
+	.dh	.L188-.L24
+	.db	1,5,10,9
+	.dh	.L189-.L188
+	.db	3,125,1,5,39,7,9
+	.dh	.L190-.L189
+	.db	3,3,1,5,53,9
+	.dh	.L191-.L190
+	.db	1,5,9,9
+	.dh	.L26-.L191
+	.db	3,8,1,5,52,7,9
+	.dh	.L192-.L26
+	.db	3,3,1,5,30,9
+	.dh	.L193-.L192
+	.db	1,5,55,9
+	.dh	.L194-.L193
+	.db	1,5,31,9
+	.dh	.L28-.L194
+	.db	3,5,1,5,26,9
+	.dh	.L29-.L28
+	.db	3,4,1,5,39,9
+	.dh	.L195-.L29
+	.db	1,5,15,9
+	.dh	.L27-.L195
+	.db	3,3,1,5,34,9
+	.dh	.L196-.L27
+	.db	1,5,5,9
+	.dh	.L23-.L196
+	.db	3,3,1,5,1,9
+	.dh	.L129-.L23
+	.db	3,1,1,9
+	.dh	.L80-.L129
+	.db	0,1,1
+.L180:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_QueueEnqueueFront')
+.L78:
+	.dw	-1,.L79,0,.L80-.L79,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_QueueDequeue')
+.L81:
+	.dw	169
+	.dh	3
+	.dw	.L82
+	.db	4,1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L84,.L83
+	.db	2
+	.dw	.L59
+	.db	3
+	.db	'QueueDequeue',0,1,133,3,27
+	.dw	.L93
+	.db	1,1,1
+	.dw	.L56,.L86,.L55
+	.db	4
+	.db	'Queue',0,1,135,3,45
+	.dw	.L94,.L107
+	.db	4
+	.db	'QueueElement',0,1,136,3,47
+	.dw	.L96,.L108
+	.db	5
+	.dw	.L56,.L86
+	.db	6
+	.db	'ErrorState',0,1,140,3,27
+	.dw	.L93,.L109
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_QueueDequeue')
+.L82:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_QueueDequeue')
+.L83:
+	.dw	.L198-.L197
+.L197:
+	.dh	3
+	.dw	.L200-.L199
+.L199:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/user/queue.c',0,0,0,0,0
+.L200:
+	.db	5,27,7,0,5,2
+	.dw	.L56
+	.db	3,132,3,1,5,40,9
+	.dh	.L134-.L56
+	.db	3,7,1,5,5,9
+	.dh	.L135-.L134
+	.db	3,2,1,5,33,9
+	.dh	.L201-.L135
+	.db	3,3,1,5,10,9
+	.dh	.L31-.L201
+	.db	3,2,1,5,22,9
+	.dh	.L32-.L31
+	.db	3,3,1,5,33,9
+	.dh	.L202-.L32
+	.db	1,5,20,9
+	.dh	.L33-.L202
+	.db	3,2,1,5,10,9
+	.dh	.L132-.L33
+	.db	1,5,22,7,9
+	.dh	.L203-.L132
+	.db	3,3,1,5,34,9
+	.dh	.L204-.L203
+	.db	1,5,30,9
+	.dh	.L35-.L204
+	.db	3,6,1,5,42,9
+	.dh	.L205-.L35
+	.db	1,5,36,9
+	.dh	.L206-.L205
+	.db	1,5,23,9
+	.dh	.L207-.L206
+	.db	1,5,18,9
+	.dh	.L208-.L207
+	.db	3,3,1,5,10,9
+	.dh	.L209-.L208
+	.db	1,5,54,9
+	.dh	.L210-.L209
+	.db	3,125,1,5,64,9
+	.dh	.L37-.L210
+	.db	3,8,1,5,24,9
+	.dh	.L211-.L37
+	.db	1,5,15,9
+	.dh	.L133-.L211
+	.db	1,5,32,9
+	.dh	.L212-.L133
+	.db	3,3,1,5,31,9
+	.dh	.L213-.L212
+	.db	3,5,1,5,34,9
+	.dh	.L38-.L213
+	.db	3,5,1,5,5,9
+	.dh	.L34-.L38
+	.db	3,3,1,5,1,9
+	.dh	.L136-.L34
+	.db	3,1,1,9
+	.dh	.L86-.L136
+	.db	0,1,1
+.L198:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_QueueDequeue')
+.L84:
+	.dw	-1,.L85,0,.L86-.L85,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_QueuePeek')
+.L87:
+	.dw	166
+	.dh	3
+	.dw	.L88
+	.db	4,1
+	.db	'../src/user/queue.c',0
+	.dw	.L140,.L141
+	.db	12,1
+	.dw	.L90,.L89
+	.db	2
+	.dw	.L59
+	.db	3
+	.db	'QueuePeek',0,1,217,3,27
+	.dw	.L93
+	.db	1,1,1
+	.dw	.L58,.L92,.L57
+	.db	4
+	.db	'Queue',0,1,219,3,45
+	.dw	.L94,.L110
+	.db	4
+	.db	'QueueElement',0,1,220,3,46
+	.dw	.L96,.L111
+	.db	5
+	.dw	.L58,.L92
+	.db	6
+	.db	'ErrorState',0,1,224,3,27
+	.dw	.L93,.L112
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_QueuePeek')
+.L88:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_QueuePeek')
+.L89:
+	.dw	.L215-.L214
+.L214:
+	.dh	3
+	.dw	.L217-.L216
+.L216:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/user/queue.c',0,0,0,0,0
+.L217:
+	.db	5,40,7,0,5,2
+	.dw	.L58
+	.db	3,223,3,1,5,5,9
+	.dh	.L138-.L58
+	.db	3,2,1,5,33,9
+	.dh	.L218-.L138
+	.db	3,3,1,5,10,9
+	.dh	.L42-.L218
+	.db	3,2,1,5,22,9
+	.dh	.L43-.L42
+	.db	3,3,1,5,33,9
+	.dh	.L219-.L43
+	.db	1,5,20,9
+	.dh	.L44-.L219
+	.db	3,2,1,5,10,9
+	.dh	.L220-.L44
+	.db	1,5,22,7,9
+	.dh	.L221-.L220
+	.db	3,3,1,5,34,9
+	.dh	.L222-.L221
+	.db	1,5,30,9
+	.dh	.L46-.L222
+	.db	3,6,1,5,42,9
+	.dh	.L223-.L46
+	.db	1,5,36,9
+	.dh	.L137-.L223
+	.db	1,5,23,9
+	.dh	.L224-.L137
+	.db	1,5,5,9
+	.dh	.L45-.L224
+	.db	3,4,1,5,1,9
+	.dh	.L139-.L45
+	.db	3,1,1,7,9
+	.dh	.L92-.L139
+	.db	0,1,1
+.L215:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_QueuePeek')
+.L90:
+	.dw	-1,.L91,0,.L92-.L91,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L141:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L140:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_QueueCreate')
+.L99:
+	.dw	-1,.L50,.L117-.L50,.L68-.L50
+	.dh	1
+	.db	83
+	.dw	.L115-.L50,.L68-.L50
+	.dh	1
+	.db	80
+	.dw	0,0
+.L98:
+	.dw	-1,.L50,0,.L68-.L50
+	.dh	1
+	.db	82
+	.dw	0,0
+.L95:
+	.dw	-1,.L50,0,.L115-.L50
+	.dh	1
+	.db	80
+	.dw	0,0
+.L97:
+	.dw	-1,.L50,0,.L116-.L50
+	.dh	1
+	.db	81
+	.dw	0,0
+.L49:
+	.dw	-1,.L50,0,.L113-.L50
+	.dh	2
+	.db	125,0
+	.dw	.L113-.L50,.L114-.L50
+	.dh	2
+	.db	125,4
+	.dw	.L114-.L50,.L68-.L50
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_QueueDequeue')
+.L109:
+	.dw	-1,.L56,.L135-.L56,.L131-.L56
+	.dh	1
+	.db	84
+	.dw	.L136-.L56,.L86-.L56
+	.dh	1
+	.db	80
+	.dw	0,0
+.L107:
+	.dw	-1,.L56,0,.L132-.L56
+	.dh	1
+	.db	80
+	.dw	.L134-.L56,.L86-.L56
+	.dh	1
+	.db	83
+	.dw	0,0
+.L55:
+	.dw	-1,.L56,0,.L130-.L56
+	.dh	2
+	.db	125,0
+	.dw	.L130-.L56,.L131-.L56
+	.dh	2
+	.db	125,4
+	.dw	.L131-.L56,.L86-.L56
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L108:
+	.dw	-1,.L56,0,.L133-.L56
+	.dh	1
+	.db	81
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_QueueEnqueueFront')
+.L106:
+	.dw	-1,.L54,.L128-.L54,.L125-.L54
+	.dh	1
+	.db	86
+	.dw	.L129-.L54,.L80-.L54
+	.dh	1
+	.db	80
+	.dw	0,0
+.L104:
+	.dw	-1,.L54,0,.L126-.L54
+	.dh	1
+	.db	80
+	.dw	.L127-.L54,.L125-.L54
+	.dh	1
+	.db	85
+	.dw	0,0
+.L105:
+	.dw	-1,.L54,0,.L80-.L54
+	.dh	1
+	.db	81
+	.dw	0,0
+.L53:
+	.dw	-1,.L54,0,.L124-.L54
+	.dh	2
+	.db	125,0
+	.dw	.L124-.L54,.L125-.L54
+	.dh	2
+	.db	125,12
+	.dw	.L125-.L54,.L80-.L54
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_QueueEnqueueRear')
+.L103:
+	.dw	-1,.L52,.L122-.L52,.L119-.L52
+	.dh	1
+	.db	86
+	.dw	.L123-.L52,.L74-.L52
+	.dh	1
+	.db	80
+	.dw	0,0
+.L100:
+	.dw	-1,.L52,0,.L120-.L52
+	.dh	1
+	.db	80
+	.dw	.L121-.L52,.L119-.L52
+	.dh	1
+	.db	85
+	.dw	0,0
+.L102:
+	.dw	-1,.L52,0,.L74-.L52
+	.dh	1
+	.db	81
+	.dw	0,0
+.L51:
+	.dw	-1,.L52,0,.L118-.L52
+	.dh	2
+	.db	125,0
+	.dw	.L118-.L52,.L119-.L52
+	.dh	2
+	.db	125,12
+	.dw	.L119-.L52,.L74-.L52
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_QueuePeek')
+.L112:
+	.dw	-1,.L58,.L138-.L58,.L92-.L58
+	.dh	1
+	.db	82
+	.dw	.L139-.L58,.L92-.L58
+	.dh	1
+	.db	80
+	.dw	0,0
+.L110:
+	.dw	-1,.L58,0,.L137-.L58
+	.dh	1
+	.db	80
+	.dw	0,0
+.L111:
+	.dw	-1,.L58,0,.L92-.L58
+	.dh	1
+	.db	81
+	.dw	0,0
+.L57:
+	.dw	-1,.L58,0,.L92-.L58
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L225:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_QueueCreate')
+	.dw	64
+	.dw	.L225,.L50,.L68-.L50
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L113-.L50)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L114-.L113)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_QueueEnqueueRear')
+	.dw	72
+	.dw	.L225,.L52,.L74-.L52
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L118-.L52)/2
+	.db	19,6,22,13,3,19,125,12,17,6,126,17,5,124,17,4,122,4
+	.dw	(.L119-.L118)/2
+	.db	19,0,8,13,198,197,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_QueueEnqueueFront')
+	.dw	72
+	.dw	.L225,.L54,.L80-.L54
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L124-.L54)/2
+	.db	19,6,22,13,3,19,125,12,17,6,126,17,5,124,17,4,122,4
+	.dw	(.L125-.L124)/2
+	.db	19,0,8,13,198,197,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_QueueDequeue')
+	.dw	64
+	.dw	.L225,.L56,.L86-.L56
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L130-.L56)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L131-.L130)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_QueuePeek')
+	.dw	36
+	.dw	.L225,.L58,.L92-.L58
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+
+; ../src/user/queue.c	   507  
+; ../src/user/queue.c	   508  /***********************************************************************************/
+; ../src/user/queue.c	   509  /*				    			 End Of File			         				   */
+; ../src/user/queue.c	   510  /***********************************************************************************/
+
+	; Module end
+	.end

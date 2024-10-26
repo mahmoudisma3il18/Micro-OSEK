@@ -1,0 +1,879 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/src/kernel/.GetEvent.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/src/kernel/GetEvent.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\src\\kernel\\GetEvent.src ../src/kernel/GetEvent.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../src/kernel/GetEvent.c'
+
+	.section	.text ,cluster('$group_OS_GetEvent')
+	.global	OS_GetEvent
+
+; ../src/kernel/GetEvent.c	     1  /**
+; ../src/kernel/GetEvent.c	     2  * @file 					GetEvent.c
+; ../src/kernel/GetEvent.c	     3  * @author 					Hana Ashraf
+; ../src/kernel/GetEvent.c	     4  * @version 					1.0.0
+; ../src/kernel/GetEvent.c	     5  * @date 					16/03/2023
+; ../src/kernel/GetEvent.c	     6  * @platform   					NA
+; ../src/kernel/GetEvent.c	     7  * @variant					NA
+; ../src/kernel/GetEvent.c	     8  * @vendor					CryptOS
+; ../src/kernel/GetEvent.c	     9  * @specification		 		OSEK-VDX
+; ../src/kernel/GetEvent.c	    10  * @brief SetEvent		 		Task API source code implementation .
+; ../src/kernel/GetEvent.c	    11  *
+; ../src/kernel/GetEvent.c	    12  *Detailed description of the service:
+; ../src/kernel/GetEvent.c	    13     -The service may be called from an interrupt service routine and from the task level, but not from hook routines.
+; ../src/kernel/GetEvent.c	    14     -This service returns the current state of all event bits of the task, not the events that the task is waiting for.
+; ../src/kernel/GetEvent.c	    15     -The current status of the event mask of task is copied to <Event>.
+; ../src/kernel/GetEvent.c	    16     -The service only returns in the extended status state when an error occurs, otherwise E_OK is returned.
+; ../src/kernel/GetEvent.c	    17     -The service may be called from interrupt service routines, task level and some hook routines.
+; ../src/kernel/GetEvent.c	    18  *
+; ../src/kernel/GetEvent.c	    19  */
+; ../src/kernel/GetEvent.c	    20  
+; ../src/kernel/GetEvent.c	    21  
+; ../src/kernel/GetEvent.c	    22  
+; ../src/kernel/GetEvent.c	    23  
+; ../src/kernel/GetEvent.c	    24  
+; ../src/kernel/GetEvent.c	    25  
+; ../src/kernel/GetEvent.c	    26  
+; ../src/kernel/GetEvent.c	    27  /*------------------------- MISRA-C vailoations in c files -----------------------*/
+; ../src/kernel/GetEvent.c	    28  
+; ../src/kernel/GetEvent.c	    29  /**********************************************************************************/
+; ../src/kernel/GetEvent.c	    30  /**				    			Include Headers			         				 **/
+; ../src/kernel/GetEvent.c	    31  /**********************************************************************************/
+; ../src/kernel/GetEvent.c	    32  #include <OS_kernel.h>
+; ../src/kernel/GetEvent.c	    33  
+; ../src/kernel/GetEvent.c	    34  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    35  /*  			    			    Macros				         				   */
+; ../src/kernel/GetEvent.c	    36  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    37  
+; ../src/kernel/GetEvent.c	    38  /****************************** Moudle Version Check ******************************/
+; ../src/kernel/GetEvent.c	    39  
+; ../src/kernel/GetEvent.c	    40  /***************************** Autosar version Check ********************************/
+; ../src/kernel/GetEvent.c	    41  
+; ../src/kernel/GetEvent.c	    42  /******************************* DET Version Check **********************************/
+; ../src/kernel/GetEvent.c	    43  
+; ../src/kernel/GetEvent.c	    44  /************************** Internal Module Specific Macros ********************************/
+; ../src/kernel/GetEvent.c	    45  /**
+; ../src/kernel/GetEvent.c	    46   * @name InternalModuleSpecificMacros
+; ../src/kernel/GetEvent.c	    47   * @{
+; ../src/kernel/GetEvent.c	    48   */
+; ../src/kernel/GetEvent.c	    49  
+; ../src/kernel/GetEvent.c	    50  /** @} */ /*End of InternalModuleSpecificMacros*/
+; ../src/kernel/GetEvent.c	    51  
+; ../src/kernel/GetEvent.c	    52  /************************************************************************************/
+; ../src/kernel/GetEvent.c	    53  /*				    	Internal Type Definitions		         			        */
+; ../src/kernel/GetEvent.c	    54  /************************************************************************************/
+; ../src/kernel/GetEvent.c	    55  /*********************** Internal Module Specific Types *****************************/
+; ../src/kernel/GetEvent.c	    56  /**
+; ../src/kernel/GetEvent.c	    57   * @name InternalModuleSpecificTypeDefinitions
+; ../src/kernel/GetEvent.c	    58   * @{
+; ../src/kernel/GetEvent.c	    59   */
+; ../src/kernel/GetEvent.c	    60  
+; ../src/kernel/GetEvent.c	    61  /** @} */ /*End of InternalModuleSpecificTypeDefinitions*/
+; ../src/kernel/GetEvent.c	    62  
+; ../src/kernel/GetEvent.c	    63  /***************************************************************************************/
+; ../src/kernel/GetEvent.c	    64  /*                            External Global Variables                                */
+; ../src/kernel/GetEvent.c	    65  /***************************************************************************************/
+; ../src/kernel/GetEvent.c	    66  /**
+; ../src/kernel/GetEvent.c	    67   * @name ExternalGlobalVariables
+; ../src/kernel/GetEvent.c	    68   * @{
+; ../src/kernel/GetEvent.c	    69   */
+; ../src/kernel/GetEvent.c	    70  
+; ../src/kernel/GetEvent.c	    71  /** @} */ /*End of ExternGlobalVariables*/
+; ../src/kernel/GetEvent.c	    72  
+; ../src/kernel/GetEvent.c	    73  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    74  /*				    			External constants		         				   */
+; ../src/kernel/GetEvent.c	    75  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    76  /**
+; ../src/kernel/GetEvent.c	    77   * @name External constants
+; ../src/kernel/GetEvent.c	    78   * @{
+; ../src/kernel/GetEvent.c	    79   */
+; ../src/kernel/GetEvent.c	    80  
+; ../src/kernel/GetEvent.c	    81  /** @} */ /*End of External constants*/
+; ../src/kernel/GetEvent.c	    82  
+; ../src/kernel/GetEvent.c	    83  /***************************************************************************************/
+; ../src/kernel/GetEvent.c	    84  /*                              Internal Global Variables                              */
+; ../src/kernel/GetEvent.c	    85  /***************************************************************************************/
+; ../src/kernel/GetEvent.c	    86  /**
+; ../src/kernel/GetEvent.c	    87   * @name InternalGlobalVariables
+; ../src/kernel/GetEvent.c	    88   * @{
+; ../src/kernel/GetEvent.c	    89   */
+; ../src/kernel/GetEvent.c	    90  
+; ../src/kernel/GetEvent.c	    91  /** @} */ /*End of InternalGlobalVariables*/
+; ../src/kernel/GetEvent.c	    92  
+; ../src/kernel/GetEvent.c	    93  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    94  /*				    			Internal constants		         				   */
+; ../src/kernel/GetEvent.c	    95  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	    96  /**
+; ../src/kernel/GetEvent.c	    97   * @name InternalConstants
+; ../src/kernel/GetEvent.c	    98   * @{
+; ../src/kernel/GetEvent.c	    99   */
+; ../src/kernel/GetEvent.c	   100  
+; ../src/kernel/GetEvent.c	   101  /** @} */ /*End of InternalConstants*/
+; ../src/kernel/GetEvent.c	   102  
+; ../src/kernel/GetEvent.c	   103  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   104  /*                        External Function Declration                             */
+; ../src/kernel/GetEvent.c	   105  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   106  /**
+; ../src/kernel/GetEvent.c	   107   * @defgroup ExternalFunctionsDeclration
+; ../src/kernel/GetEvent.c	   108   * @{
+; ../src/kernel/GetEvent.c	   109   */
+; ../src/kernel/GetEvent.c	   110  
+; ../src/kernel/GetEvent.c	   111  /** @} */ /*End of ExternalFunctionsDeclration*/
+; ../src/kernel/GetEvent.c	   112  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   113  /*				    	 External Functions Definition		      				   */
+; ../src/kernel/GetEvent.c	   114  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   115  /**  
+; ../src/kernel/GetEvent.c	   116   *
+; ../src/kernel/GetEvent.c	   117   * Detailed Description : The service copies current status of the event mask of task to <Event>.
+; ../src/kernel/GetEvent.c	   118   *
+; ../src/kernel/GetEvent.c	   119   * @service name	SetEvent
+; ../src/kernel/GetEvent.c	   120   * @syntax			 FUNC(StatusType, OS_CODE) GetEvent
+; ../src/kernel/GetEvent.c	   121   *               (
+; ../src/kernel/GetEvent.c	   122   *	                CONST(TaskType, AUTOMATIC) TaskID,
+; ../src/kernel/GetEvent.c	   123   *                  CONST(EventMaskRefType, AUTOMATIC) Event
+; ../src/kernel/GetEvent.c	   124   *               )
+; ../src/kernel/GetEvent.c	   125   *
+; ../src/kernel/GetEvent.c	   126   * @service ID		-
+; ../src/kernel/GetEvent.c	   127   * @sync/async		Synchronous
+; ../src/kernel/GetEvent.c	   128   * @reentrancy		Non-Reentrant
+; ../src/kernel/GetEvent.c	   129   * @param[in]  		TaskID    -   Task whose event mask is to be returned.
+; ../src/kernel/GetEvent.c	   130   * @param[out] 		Event     -   Reference to the memory of the return data.  
+; ../src/kernel/GetEvent.c	   131   * @return          	StatusType    Returns the status which differs according to error checking type
+; ../src/kernel/GetEvent.c	   132   *     			 	Standard:      No error, E_OK
+; ../src/kernel/GetEvent.c	   133   *     				Extended:      If TaskID is invalid, E_OS_ID is returned
+; ../src/kernel/GetEvent.c	   134   *                                 	       If referenced task is not extended task, E_OS_ACCESS is returned
+; ../src/kernel/GetEvent.c	   135   *                                             If referenced task is in the suspended state, E_OS_STATE is returned           
+; ../src/kernel/GetEvent.c	   136   * @see             NA
+; ../src/kernel/GetEvent.c	   137   * @note            Conformance:        ECC1, ECC2
+; ../src/kernel/GetEvent.c	   138   * @warning         NA
+; ../src/kernel/GetEvent.c	   139   */
+; ../src/kernel/GetEvent.c	   140  
+; ../src/kernel/GetEvent.c	   141  
+; ../src/kernel/GetEvent.c	   142  FUNC(StatusType, OS_CODE) OS_GetEvent
+; Function OS_GetEvent
+.L16:
+	.thumb
+	.align	4
+OS_GetEvent:	.type	func
+
+.L7:
+	push	{r4}
+.L25:
+
+; ../src/kernel/GetEvent.c	   143  (
+; ../src/kernel/GetEvent.c	   144  	        CONST(TaskType, AUTOMATIC) TaskID,
+; ../src/kernel/GetEvent.c	   145            	CONST(EventMaskRefType, AUTOMATIC) Event
+; ../src/kernel/GetEvent.c	   146  )
+; ../src/kernel/GetEvent.c	   147  {
+; ../src/kernel/GetEvent.c	   148  
+; ../src/kernel/GetEvent.c	   149     
+; ../src/kernel/GetEvent.c	   150  
+; ../src/kernel/GetEvent.c	   151  VAR(StatusType, AUTOMATIC) ReturnVal = E_OK;
+	movs	r2,#0
+.L28:
+
+; ../src/kernel/GetEvent.c	   152  	
+; ../src/kernel/GetEvent.c	   153  	
+; ../src/kernel/GetEvent.c	   154  #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
+; ../src/kernel/GetEvent.c	   155  
+; ../src/kernel/GetEvent.c	   156  	/*[SWS_OS_12084] On calling the GetEvent service, if the error checking was extended and the passed (TaskID) parameter is invalid, then it shall return E_OS_ID error code.*/
+; ../src/kernel/GetEvent.c	   157  	if (TaskID >= TASK_COUNT) 
+; ../src/kernel/GetEvent.c	   158  		{ 
+; ../src/kernel/GetEvent.c	   159  			ReturnVal = E_OS_ID;
+; ../src/kernel/GetEvent.c	   160  		}
+; ../src/kernel/GetEvent.c	   161  
+; ../src/kernel/GetEvent.c	   162  	/*[SWS_OS_12086] On calling the GetEvent service, if the error checking was extended and the passed (TaskID) reference a task that is in the suspended state, then it shall return E_OS_STATE error code.*/
+; ../src/kernel/GetEvent.c	   163  	else if ((TaskStateType)SUSPENDED == Tasks[TaskID].TaskDynamics->TaskState)
+; ../src/kernel/GetEvent.c	   164  		{
+; ../src/kernel/GetEvent.c	   165  			ReturnVal = E_OS_STATE;
+; ../src/kernel/GetEvent.c	   166  		}
+; ../src/kernel/GetEvent.c	   167  
+; ../src/kernel/GetEvent.c	   168  	/*[SWS_OS_12085] On calling the GetEvent service, if the error checking was extended and the passed (TaskID) reference a task that is not extended, then it shall return E_OS_ACCESS error code.*/
+; ../src/kernel/GetEvent.c	   169  	else if (EXTENDED != Tasks[TaskID].TaskFlags->Type)  
+; ../src/kernel/GetEvent.c	   170  		{
+; ../src/kernel/GetEvent.c	   171  			ReturnVal = E_OS_ACCESS;
+; ../src/kernel/GetEvent.c	   172  		}
+; ../src/kernel/GetEvent.c	   173  
+; ../src/kernel/GetEvent.c	   174  	/*[SWS_OS_12088],[SWS_OS_12089],[SWS_OS_12090],[SWS_OS_12091],[SWS_OS_12092]*/	
+; ../src/kernel/GetEvent.c	   175  	/*If the service was called from any other level other than interrupt service routine and from the task level , E_OS_CALLEVEL is returned , that's an assumed requirement*/
+; ../src/kernel/GetEvent.c	   176  	else if ((Kernel.OsState != (OsStateType)OS_STATE_TASK) && (Kernel.OsState != (OsStateType)OS_STATE_CAT2) && (Kernel.OsState != (OsStateType)OS_STATE_ERRORHOOK) && (Kernel.OsState != (OsStateType)OS_STATE_PRETASKHOOK) && (Kernel.OsState != (OsStateType)OS_STATE_POSTTASKHOOK))
+; ../src/kernel/GetEvent.c	   177  		{
+; ../src/kernel/GetEvent.c	   178  			ReturnVal = E_OS_CALLEVEL;
+; ../src/kernel/GetEvent.c	   179  		}
+; ../src/kernel/GetEvent.c	   180  
+; ../src/kernel/GetEvent.c	   181  	/*ReturnVal = E_OK;*/ 
+; ../src/kernel/GetEvent.c	   182  	else 			
+; ../src/kernel/GetEvent.c	   183  		{
+; ../src/kernel/GetEvent.c	   184  			ReturnVal = E_OK;
+; ../src/kernel/GetEvent.c	   185  		}
+; ../src/kernel/GetEvent.c	   186  #endif   /* ( ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)*/
+; ../src/kernel/GetEvent.c	   187  
+; ../src/kernel/GetEvent.c	   188   
+; ../src/kernel/GetEvent.c	   189  	if(E_OK == ReturnVal)
+	bne	.L2
+.L42:
+
+; ../src/kernel/GetEvent.c	   190  	{
+; ../src/kernel/GetEvent.c	   191  		/*Start of critical section*/	
+; ../src/kernel/GetEvent.c	   192  		
+; ../src/kernel/GetEvent.c	   193  		/*[SWS_OS_12080] On calling the GetEvent service, it returns the current state of all event bits of the task whose (TaskID) is passed as a parameter to the service and not only the events that the task is waiting for.*/
+; ../src/kernel/GetEvent.c	   194  		/*[SWS_OS_12081] On calling the GetEvent service, the current status of the event mask of the task whose (TaskID) is passed as a parameter is copied to (Event).*/
+; ../src/kernel/GetEvent.c	   195  		*Event = Tasks[TaskID].TaskDynamics->EventsSet ;
+	movs	r3,#28
+.L43:
+	ldr	r4,.L5
+.L44:
+	mla	r0,r0,r3,r4
+.L27:
+	ldr	r0,[r0,#20]
+.L45:
+	ldr	r0,[r0,#12]
+.L46:
+	str	r0,[r1,#0]
+.L2:
+
+; ../src/kernel/GetEvent.c	   196  
+; ../src/kernel/GetEvent.c	   197  		/*End of critical section*/	
+; ../src/kernel/GetEvent.c	   198  	}
+; ../src/kernel/GetEvent.c	   199  	else
+; ../src/kernel/GetEvent.c	   200  	{
+; ../src/kernel/GetEvent.c	   201  		/*In order not to violate Misra Rules*/	
+; ../src/kernel/GetEvent.c	   202  	}
+; ../src/kernel/GetEvent.c	   203  						
+; ../src/kernel/GetEvent.c	   204  		/* Check for HOOK_ERRORHOOK */
+; ../src/kernel/GetEvent.c	   205  		return ReturnVal;
+	mov	r0,r2
+.L29:
+
+; ../src/kernel/GetEvent.c	   206  }
+	pop	{r4}
+.L26:
+	bx	lr
+.L19:
+	.align	4
+.L5:
+	.dw	Tasks
+.L17:
+	.size	OS_GetEvent,$-OS_GetEvent
+	; End of function
+	.endsec	; End of section
+
+	.calls	'OS_GetEvent','',4
+	.extern	Tasks
+	.section	.debug_info
+.L9:
+	.dw	3215
+	.dh	3
+	.dw	.L10
+	.db	4
+.L8:
+	.db	1
+	.db	'../src/kernel/GetEvent.c',0
+	.dw	.L30,.L31
+	.db	12,1
+	.dw	.L11
+.L18:
+	.db	2
+	.db	'unsigned char',0,1,8
+.L20:
+	.db	3
+	.dw	51
+	.db	2
+	.db	'unsigned int',0,4,7,4
+	.dw	73
+	.db	5
+	.db	'EventMaskRefType',0,1,204,1,53
+	.dw	89
+.L22:
+	.db	3
+	.dw	94
+	.db	4
+	.dw	73
+	.db	6,1,4
+	.dw	130
+	.db	5
+	.db	'__codeptr',0,2,1,1
+	.dw	132
+	.db	2
+	.db	'int',0,4,5,7,3,87,10,4,8
+	.db	'x',0
+	.dw	155
+	.db	4,2,35,0,0,5
+	.db	'Os_ContexType',0,3,90,2
+	.dw	162
+	.db	5
+	.db	'boolean',0,4,242,1,23
+	.dw	51
+	.db	5
+	.db	'uint8',0,4,247,1,23
+	.dw	51
+	.db	2
+	.db	'unsigned short int',0,2,7,5
+	.db	'uint16',0,4,252,1,24
+	.dw	233
+	.db	5
+	.db	'uint32',0,4,129,2,22
+	.dw	73
+	.db	5
+	.db	'StatusType',0,5,191,1,23
+	.dw	51
+	.db	5
+	.db	'Std_ReturnType',0,5,235,2,15
+	.dw	51
+	.db	5
+	.db	'Std_TransformerClass',0,5,238,2,15
+	.dw	51
+	.db	5
+	.db	'Std_TransformerForwardCode',0,5,241,2,15
+	.dw	51
+	.db	5
+	.db	'TaskType',0,1,183,1,29
+	.dw	51
+	.db	5
+	.db	'TaskStateType',0,1,189,1,29
+	.dw	51
+	.db	5
+	.db	'TaskPriorityType',0,1,195,1,29
+	.dw	51
+	.db	5
+	.db	'ResourceType',0,1,198,1,29
+	.dw	51
+	.db	5
+	.db	'EventMaskType',0,1,201,1,30
+	.dw	73
+	.db	5
+	.db	'AppModeType',0,1,207,1,28
+	.dw	51
+	.db	5
+	.db	'OsStateType',0,1,210,1,28
+	.dw	51
+	.db	5
+	.db	'TickType',0,1,214,1,30
+	.dw	73
+	.db	9
+	.db	'AlarmBaseType_s',0,1,230,1,8,12,8
+	.db	'maxallowedvalue',0
+	.dw	73
+	.db	4,2,35,0,8
+	.db	'ticksperbase',0
+	.dw	73
+	.db	4,2,35,4,8
+	.db	'mincycle',0
+	.dw	73
+	.db	4,2,35,8,0,5
+	.db	'AlarmBaseType',0,1,220,1,32
+	.dw	569
+	.db	5
+	.db	'AlarmType',0,1,226,1,28
+	.dw	51
+	.db	9
+	.db	'Os_InernalResourceDynamic_s',0,6,66,8,2,8
+	.db	'TakenTaskPriority',0
+	.dw	51
+	.db	1,2,35,0,8
+	.db	'TakenFlag',0
+	.dw	51
+	.db	1,2,35,1,0,5
+	.db	'Os_InernalResourceDynamic',0,6,55,44
+	.dw	699
+	.db	3
+	.dw	51
+	.db	4
+	.dw	699
+	.db	9
+	.db	'Os_InteranlResource_s',0,6,79,8,8,8
+	.db	'CeilingPriority',0
+	.dw	813
+	.db	1,2,35,0,8
+	.db	'InternalResourceDynamics',0
+	.dw	818
+	.db	4,2,35,4,0,5
+	.db	'Os_InteranlResource',0,6,57,38
+	.dw	823
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	4
+	.dw	.L32-.L9
+	.db	9
+	.db	'Os_ResourceDynamic_s',0,6,105,8,8,8
+	.db	'OwnerTaskPriority',0
+	.dw	51
+	.db	1,2,35,0,8
+	.db	'OwnerTaskID',0
+	.dw	51
+	.db	1,2,35,1,8
+	.db	'LinkedResource',0
+	.dw	948
+	.db	4,2,35,4,0,4
+	.dw	953
+.L32:
+	.db	9
+	.db	'Os_Resource_s',0,6,92,8,8,8
+	.db	'CeilingPriority',0
+	.dw	938
+	.db	1,2,35,0,8
+	.db	'ResourceID',0
+	.dw	943
+	.db	1,2,35,1,8
+	.db	'ResourceDynamics',0
+	.dw	1052
+	.db	4,2,35,4,0,5
+	.db	'Os_Resource',0,6,59,30
+	.dw	1057
+	.db	5
+	.db	'Os_ResourceDynamic',0,6,61,37
+	.dw	953
+	.db	4
+	.dw	73
+	.db	5
+	.db	'StackPtrType',0,7,143,1,30
+	.dw	1195
+	.db	5
+	.db	'StackSizeType',0,7,145,1,31
+	.dw	73
+	.db	5
+	.db	'TaskActivationCounterType',0,7,147,1,30
+	.dw	51
+	.db	5
+	.db	'QueueIndexType',0,7,149,1,30
+	.dw	51
+	.db	10,1,1,4
+	.dw	1304
+	.db	5
+	.db	'EntryFunctionPtrType',0,7,151,1,9
+	.dw	1307
+	.db	9
+	.db	'TaskFlagsType_s',0,7,172,1,8,2,8
+	.db	'Type',0
+	.dw	51
+	.db	1,2,35,0,8
+	.db	'TaskSchedulingPolicy',0
+	.dw	51
+	.db	1,2,35,1,0,5
+	.db	'TaskFlagsType',0,7,155,1,32
+	.dw	1342
+	.db	9
+	.db	'TaskStackType_s',0,7,243,1,8,12,8
+	.db	'StackBase',0
+	.dw	1200
+	.db	4,2,35,0,8
+	.db	'CurrentStackPtr',0
+	.dw	1200
+	.db	4,2,35,4,8
+	.db	'StackSize',0
+	.dw	73
+	.db	4,2,35,8,0,5
+	.db	'TaskStackType',0,7,157,1,32
+	.dw	1432
+	.db	4
+	.dw	73
+	.db	4
+	.dw	162
+	.db	9
+	.db	'Os_TaskDynamic_s',0,7,214,1,8,24,8
+	.db	'Context',0
+	.dw	1546
+	.db	4,2,35,0,8
+	.db	'Resources',0
+	.dw	948
+	.db	4,2,35,4,8
+	.db	'PriorityQueueIndex',0
+	.dw	51
+	.db	1,2,35,8,8
+	.db	'EventsSet',0
+	.dw	73
+	.db	4,2,35,12,8
+	.db	'EventsWaiting',0
+	.dw	73
+	.db	4,2,35,16,8
+	.db	'TaskCurrentPriority',0
+	.dw	51
+	.db	1,2,35,20,8
+	.db	'TaskState',0
+	.dw	51
+	.db	1,2,35,21,8
+	.db	'PendingActivationRequests',0
+	.dw	51
+	.db	1,2,35,22,0,5
+	.db	'Os_TaskDynamic',0,7,159,1,33
+	.dw	1551
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	3
+	.dw	51
+	.db	4
+	.dw	1342
+	.db	4
+	.dw	1432
+	.db	3
+	.dw	1312
+	.db	4
+	.dw	823
+	.db	4
+	.dw	1551
+	.db	9
+	.db	'Os_Task_s',0,7,186,1,8,28,8
+	.db	'TaskStaticPriority',0
+	.dw	1788
+	.db	1,2,35,0,8
+	.db	'TaskID',0
+	.dw	1793
+	.db	1,2,35,1,8
+	.db	'ApplicationMode',0
+	.dw	1798
+	.db	1,2,35,2,8
+	.db	'NumOfActivationRequests',0
+	.dw	1803
+	.db	1,2,35,3,8
+	.db	'TaskFlags',0
+	.dw	1808
+	.db	4,2,35,4,8
+	.db	'TaskStack',0
+	.dw	1813
+	.db	4,2,35,8,8
+	.db	'EntryPoint',0
+	.dw	1818
+	.db	4,2,35,12,8
+	.db	'InternalResource',0
+	.dw	1823
+	.db	4,2,35,16,8
+	.db	'TaskDynamics',0
+	.dw	1828
+	.db	4,2,35,20,8
+	.db	'EventsOwned',0
+	.dw	73
+	.db	4,2,35,24,0,5
+	.db	'Os_Task',0,7,161,1,26
+	.dw	1833
+	.db	4
+	.dw	1304
+	.db	9
+	.db	'Os_CpuLoad_s',0,7,155,2,8,8,8
+	.db	'IdleTime',0
+	.dw	73
+	.db	4,2,35,0,8
+	.db	'CurrentCpuLoad',0
+	.dw	51
+	.db	1,2,35,4,8
+	.db	'PeakCpuLoad',0
+	.dw	51
+	.db	1,2,35,5,0,5
+	.db	'Os_CpuLoad',0,7,165,1,29
+	.dw	2101
+	.db	3
+	.dw	73
+	.db	3
+	.dw	73
+	.db	3
+	.dw	73
+	.db	3
+	.dw	51
+	.db	3
+	.dw	73
+	.db	9
+	.db	'Os_Counter_s',0,8,44,8,28,8
+	.db	'OsCounterMaxAllowedValue',0
+	.dw	2204
+	.db	4,2,35,0,8
+	.db	'OsCounterMinCycle',0
+	.dw	2209
+	.db	4,2,35,4,8
+	.db	'OsCounterTicksPerBase',0
+	.dw	2214
+	.db	4,2,35,8,8
+	.db	'OsCounterType',0
+	.dw	2219
+	.db	1,2,35,12,8
+	.db	'OsSecondsPerTick',0
+	.dw	2224
+	.db	4,2,35,16,8
+	.db	'OsCounterCurrentTicks',0
+	.dw	73
+	.db	4,2,35,20,8
+	.db	'OsCounterAlarmsHeadIndex',0
+	.dw	51
+	.db	1,2,35,24,0,5
+	.db	'Os_Counter',0,8,42,29
+	.dw	2229
+	.db	9
+	.db	'Os_AlarmActivateTask_s',0,9,140,1,8,1,8
+	.db	'OsAlarmActivateTaskRef',0
+	.dw	51
+	.db	1,2,35,0,0,4
+	.dw	2473
+	.db	9
+	.db	'Os_AlarmSetEvent_s',0,9,146,1,8,8,8
+	.db	'OsAlarmSetEventTaskRef',0
+	.dw	51
+	.db	1,2,35,0,8
+	.db	'OsAlarmSetEventRef',0
+	.dw	73
+	.db	4,2,35,4,0,4
+	.dw	2540
+	.db	5
+	.db	'CallbackFuncPtrType',0,9,88,9
+	.dw	1307
+	.db	3
+	.dw	2631
+	.db	11
+	.db	'Os_AlarmAction_u',0,9,92,7,4,8
+	.db	'OsAlarmActivateTask',0
+	.dw	2535
+	.db	4,2,35,0,8
+	.db	'OsAlarmSetEventTask',0
+	.dw	2626
+	.db	4,2,35,0,8
+	.db	'OsAlarmCallbackName',0
+	.dw	2659
+	.db	4,2,35,0,0,4
+	.dw	2229
+	.db	4
+	.dw	.L33-.L9
+.L33:
+	.db	9
+	.db	'Os_Alarm_s',0,9,104,8,36,8
+	.db	'OsAlarmAction',0
+	.dw	2664
+	.db	4,2,35,0,8
+	.db	'OsAlarmActionType',0
+	.dw	51
+	.db	1,2,35,4,8
+	.db	'OsAlarmExpiryTime',0
+	.dw	73
+	.db	4,2,35,8,8
+	.db	'OsAlarmCycleTime',0
+	.dw	73
+	.db	4,2,35,12,8
+	.db	'OsAlarmState',0
+	.dw	51
+	.db	1,2,35,16,8
+	.db	'OsAlarmCounterRef',0
+	.dw	2774
+	.db	4,2,35,20,8
+	.db	'OsAlarmNext',0
+	.dw	2779
+	.db	4,2,35,24,8
+	.db	'OsAlarmPrevious',0
+	.dw	2779
+	.db	4,2,35,28,8
+	.db	'OsAlarmAlarmTime',0
+	.dw	51
+	.db	1,2,35,32,8
+	.db	'OsAlarmAutoStartType',0
+	.dw	51
+	.db	1,2,35,33,0,5
+	.db	'Os_Alarm',0,9,73,45
+	.dw	2784
+	.db	4
+	.dw	1304
+	.db	5
+	.db	'Os_AlarmAction',0,9,76,45
+	.dw	2664
+	.db	5
+	.db	'Os_AlarmActivateTask',0,9,79,41
+	.dw	2473
+	.db	5
+	.db	'Os_AlarmSetEvent',0,9,82,38
+	.dw	2540
+	.db	12,112
+	.dw	1833
+	.db	13,3,0,14
+	.db	'Tasks',0,10,38,20
+	.dw	3154
+	.db	1,1,5
+	.db	'QueueSize',0,11,183,1,29
+	.dw	51
+	.db	5
+	.db	'QueueIndex',0,11,186,1,29
+	.dw	51
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L10:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,38,0,73,19,0,0,4,15,0,73
+	.db	19,0,0,5,22,0,3,8,58,15,59,15,57,15,73,19,0,0,6,21,0,54,15,0,0,7,19,1,58,15,59,15,57,15,11,15,0,0,8,13
+	.db	0,3,8,73,19,11,15,56,9,0,0,9,19,1,3,8,58,15,59,15,57,15,11,15,0,0,10,21,0,54,15,39,12,0,0,11,23,1,3,8
+	.db	58,15,59,15,57,15,11,15,0,0,12,1,1,11,15,73,19,0,0,13,33,0,47,15,0,0,14,52,0,3,8,58,15,59,15,57,15,73
+	.db	19,63,12,60,12,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L11:
+	.dw	.L35-.L34
+.L34:
+	.dh	3
+	.dw	.L37-.L36
+.L36:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\include\\External\\Os_Types.h',0,0,0,0
+	.db	'../src/kernel/GetEvent.c',0,0,0,0
+	.db	'..\\Port\\Cortex-M4\\inc\\Os_kernel_cm4.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_resource.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_task.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_counter.h',0,0,0,0
+	.db	'..\\include\\Internal\\Os_kernel_alarm.h',0,0,0,0
+	.db	'..\\generate\\Os_Int_Cfg.h',0,0,0,0
+	.db	'..\\include\\Internal\\queue.h',0,0,0,0,0
+.L37:
+.L35:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_OS_GetEvent')
+.L12:
+	.dw	166
+	.dh	3
+	.dw	.L13
+	.db	4,1
+	.db	'../src/kernel/GetEvent.c',0
+	.dw	.L30,.L31
+	.db	12,1
+	.dw	.L15,.L14
+	.db	2
+	.dw	.L8
+	.db	3
+	.db	'OS_GetEvent',0,1,142,1,27
+	.dw	.L18
+	.db	1,1,1
+	.dw	.L7,.L19,.L6
+	.db	4
+	.db	'TaskID',0,1,144,1,37
+	.dw	.L20,.L21
+	.db	4
+	.db	'Event',0,1,145,1,47
+	.dw	.L22,.L23
+	.db	5
+	.dw	.L7,.L19
+	.db	6
+	.db	'ReturnVal',0,1,151,1,28
+	.dw	.L18,.L24
+	.db	0,0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_OS_GetEvent')
+.L13:
+	.db	1,17,1,3,8,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,1,17,1,18,1,0,0
+	.db	6,52,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_OS_GetEvent')
+.L14:
+	.dw	.L39-.L38
+.L38:
+	.dh	3
+	.dw	.L41-.L40
+.L40:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../src/kernel/GetEvent.c',0,0,0,0,0
+.L41:
+	.db	5,27,7,0,5,2
+	.dw	.L7
+	.db	3,141,1,1,5,40,9
+	.dh	.L25-.L7
+	.db	3,9,1,5,2,9
+	.dh	.L28-.L25
+	.db	3,38,1,5,17,7,9
+	.dh	.L42-.L28
+	.db	3,6,1,5,12,9
+	.dh	.L43-.L42
+	.db	1,5,17,9
+	.dh	.L44-.L43
+	.db	1,5,25,9
+	.dh	.L27-.L44
+	.db	1,5,38,9
+	.dh	.L45-.L27
+	.db	1,5,10,9
+	.dh	.L46-.L45
+	.db	1,5,3,9
+	.dh	.L2-.L46
+	.db	3,10,1,5,1,9
+	.dh	.L29-.L2
+	.db	3,1,1,9
+	.dh	.L17-.L29
+	.db	0,1,1
+.L39:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_OS_GetEvent')
+.L15:
+	.dw	-1,.L16,0,.L17-.L16,0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L30:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+.L31:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_OS_GetEvent')
+.L23:
+	.dw	-1,.L7,0,.L19-.L7
+	.dh	1
+	.db	81
+	.dw	0,0
+.L6:
+	.dw	-1,.L7,0,.L25-.L7
+	.dh	2
+	.db	125,0
+	.dw	.L25-.L7,.L26-.L7
+	.dh	2
+	.db	125,4
+	.dw	.L26-.L7,.L19-.L7
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L24:
+	.dw	-1,.L7,.L28-.L7,.L19-.L7
+	.dh	1
+	.db	82
+	.dw	.L29-.L7,.L19-.L7
+	.dh	1
+	.db	80
+	.dw	0,0
+.L21:
+	.dw	-1,.L7,0,.L27-.L7
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L47:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_OS_GetEvent')
+	.dw	64
+	.dw	.L47,.L7,.L19-.L7
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,4
+	.dw	(.L25-.L7)/2
+	.db	19,2,22,13,3,19,125,4,17,4,126,4
+	.dw	(.L26-.L25)/2
+	.db	19,0,8,13,196,0,0
+	.endsec	; End of section
+
+
+; ../src/kernel/GetEvent.c	   207  
+; ../src/kernel/GetEvent.c	   208  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   209  /*                        Internal Function Declration                             */
+; ../src/kernel/GetEvent.c	   210  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   211  
+; ../src/kernel/GetEvent.c	   212  /***********************************************************************************/
+; ../src/kernel/GetEvent.c	   213  /*				              End Of File			         				       */
+; ../src/kernel/GetEvent.c	   214  /***********************************************************************************/
+
+	; Module end
+	.end

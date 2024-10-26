@@ -1,0 +1,957 @@
+	; Module start
+	.compiler_version	"TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235"
+	.compiler_invocation	"carm --dep-file=../Executable/Mcal/Timer/src/.SysTick.o.d -CARMv7M -D__PROC_CORTEX_M3__ --iso=11 -I../../TC399x/HSM/ -I../../TC399x/HSM/Main -I../../TC399x/HSM/Ssw/inc -I../../TC399x/HSM/Reg -I../../TC399x/HSM/Mcal/Bridge/inc -I../../TC399x/HSM/Mcal/TRNG/inc -I../../TC399x/HSM/Mcal/NVIC/inc -I../../TC399x/HSM/Mcal/Timer/inc -I../../TC399x/HSM/Application/inc -I../../TC399x/HSM/Mcal/AES/inc -I../../TC399x/HSM/Mcal/CMAC/inc -I../../TC399x/HSM/Mcal/Hash/inc -I../../TC399x/HSM/Mcal/HMAC/inc -I../../AutoSar/BSW/static/MCAL/Infrastructure/Platform -I../include/External -I../include/Internal -I../include/memmap -I../generate -I../Port/Cortex-M4/inc -g2 --global-type-checking -t4 -O0 --make-target=../Executable/Mcal/Timer/src/SysTick.o --language=-gcc,-volatile,+strings,-kanji -O1 --source --error-limit=42 -o ..\\Executable\\Mcal\\Timer\\src\\SysTick.src ../../TC399x/HSM/Mcal/Timer/src/SysTick.c"
+	.compiler_name		"carm"
+	;.ident 'TASKING VX-toolset for ARM Cortex: C compiler v6.3r1 Build 19041558 SN 09455235'
+	.source '../../TC399x/HSM/Mcal/Timer/src/SysTick.c'
+
+	.section	.text ,cluster('$group_SysTick_Init')
+	.global	SysTick_Init
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     1  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     2  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     3   * @file 	SYSTICK.c
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     4   * @author  Radwa Mahmoud
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     5   * @version 1.0.0
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     6   * @date	7-3-2024
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     7   * @platform    --
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     8   * @variant		--
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	     9   * @vendor		CryptOS
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    10   * @specification --
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    11   * @brief   SYSTICK Source File.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    12   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    13   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    14   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    15   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    16  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    17  /*------------------------- MISRA-C violations in c files -----------------------*/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    18  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    19  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    20  /*                               INCLUDE HEADERS	                              */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    21  /**********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    22  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    23  #include "SysTick.h"
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    24  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    25  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    26  /*                                  MACROS                                         */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    27  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    28  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    29  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    30  /*                                 Type Definitions                                  */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    31  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    32  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    33  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    34  /*                        Internal Function Declaration                             */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    35  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    36  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    37  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    38  /*                        External Function Declaration                             */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    39  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    40  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    41  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    42  /*				    			External constants		         				   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    43  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    44  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    45  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    46  /*                      	  External Function Definition                         */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    47  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    48  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    49  static void (*g_SysTick_Call_Back_Ptr)(void) = NULL_PTR;
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    50  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    51  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    52   * @brief Initializes the HSM Systick with the provided configuration.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    53   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    54   * This function configures various aspects of the HSM Systick based on the provided configuration,
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    55   * such as enabling interrupts, configuring the Clock whether it's the core clock or external one , setting the required callback function.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    56   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    57   * @service name    SYSTICK_Init
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    58   * @syntax          extern void 		SYSTICK_Init(SYSTICK_CFG* sys_cfg);
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    59   * @service ID      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    60   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    61   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    62   * @param[in]       SYSTICK_CFG   Pointer to the HSM SYSTICK configuration structure
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    63   * @param[out]      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    64   * @return          void
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    65   * @see             Interrupt flag --> INT, Clock flag --> CLK, ptr to systick callback func --> Ptr2Func.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    66   * @note            This function initializes the HSM SYSTICK with the provided configuration.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    67   * @warning         -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    68   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    69  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    70  /*
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    71   * Initializes the SysTick timer with the provided configuration.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    72   * - Sets the program reload value.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    73   * - Clears the current value.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    74   * - Configures the clock source based on the sys_cfg parameter.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    75   * - Configures the SysTick exception request based on the sys_cfg parameter.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    76   * - Sets the callback function.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    77   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    78  void SysTick_Init(SysTickCfg *SysCfg)
+; Function SysTick_Init
+.L27:
+	.thumb
+	.align	4
+SysTick_Init:	.type	func
+
+.L10:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    79  {
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    80  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    81  	/*  Program reload value */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    82  	SYSTICK_RELOAD->RELOAD_S.RELOAD = 0xFFFFFF;
+	movs	r1,#-536813568
+	ldr	r2,[r1,#20]
+.L74:
+	mvn	r3,#-16777216
+.L75:
+	bfi	r2,r3,#0,#24
+	str	r2,[r1,#20]
+.L76:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    83  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    84  	/*  Clear current value */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    85  	SYSTICK_VALUE->VALUE_S.CURRENT = 0x0;
+	ldr	r2,[r1,#24]
+.L77:
+	bfc	r2,#0,#24
+	str	r2,[r1,#24]
+.L78:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    86  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    87  	/* Program Control and Status register */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    88  	/* check for clock source */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    89  	if (SysCfg->CLK == SYSTICK_CORE_CLK)
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    90  	{
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    91  		/*  Core system clock */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    92  		SYSTICK_CTRL->CTRL_S.CLKSOURCE = 1;
+	movw	r1,#@lsh(-536813552)
+	movt	r1,#@msh(-536813552)
+.L79:
+	ldr	r2,[r0,#0]
+.L80:
+	tst	r2,#2
+.L81:
+	ittee	ne
+	ldrne	r2,[r1,#0]
+.L82:
+	orrne	r2,r2,#4
+.L83:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    93  	}
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    94  	/*  external clock */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    95  	else
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    96  	{
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    97  		/*  external clock */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    98  		SYSTICK_CTRL->CTRL_S.CLKSOURCE = 0;
+	ldreq	r2,[r1,#0]
+.L84:
+	biceq	r2,r2,#4
+.L3:
+	str	r2,[r1,#0]
+.L85:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	    99  	}
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   100  	/*  check for SysTick exception request */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   101  	if (SysCfg->INT == SYSTICK_INT_ENABLE)
+	ldr	r2,[r0,#0]
+.L86:
+	tst	r2,#1
+.L87:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   102  	{
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   103  		/*  Enables SysTick exception request */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   104  		SYSTICK_CTRL->CTRL_S.TICKINT = 1;
+	ittee	ne
+	ldrne	r2,[r1,#0]
+.L88:
+	orrne	r2,r2,#2
+.L89:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   105  	}
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   106  	else
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   107  	{
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   108  		/*   SysTick exception request disabled */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   109  		SYSTICK_CTRL->CTRL_S.TICKINT = 0;
+	ldreq	r2,[r1,#0]
+.L90:
+	biceq	r2,r2,#2
+.L5:
+	str	r2,[r1,#0]
+.L91:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   110  	}
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   111  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   112  	/*   Set Callback function */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   113  	g_SysTick_Call_Back_Ptr = SysCfg->Ptr2Func;
+	ldr	r0,[r0,#4]
+.L61:
+	ldr	r1,.L8
+.L92:
+	str	r0,[r1,#0]
+.L93:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   114  }
+	bx	lr
+.L55:
+	.align	4
+.L8:
+	.dw	g_SysTick_Call_Back_Ptr
+.L28:
+	.size	SysTick_Init,$-SysTick_Init
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_SysTick_DeInit')
+	.global	SysTick_DeInit
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   115  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   116  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   117   * @brief disables the HSM systick.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   118   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   119   * This function  Deinitializes the HSM systick by disabling it.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   120   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   121   * @service name    SYSTICK_DeInit
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   122   * @syntax          extern void 		SYSTICK_DeInit(void);
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   123   * @service ID      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   124   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   125   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   126   * @param[in]       -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   127   * @param[out]      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   128   * @return          void
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   129   * @see             -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   130   * @note            This function Deinitializes and disables the HSM systick.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   131   * @warning         -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   132   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   133  /*
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   134   * Deinitializes the SysTick timer by disabling it.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   135   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   136  void SysTick_DeInit(void)
+; Function SysTick_DeInit
+.L33:
+	.thumb
+	.align	4
+SysTick_DeInit:	.type	func
+
+.L12:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   137  {
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   138  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   139  	/*  Disable the SysTick */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   140  	SYSTICK_CTRL->CTRL_S.ENABLE = 0;
+	mov	r0,#-536813568
+	ldr	r1,[r0,#16]
+.L98:
+	bic	r1,r1,#1
+	str	r1,[r0,#16]
+.L99:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   141  }
+	bx	lr
+.L34:
+	.size	SysTick_DeInit,$-SysTick_DeInit
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_SysTick_GetTimeElapsed')
+	.global	SysTick_GetTimeElapsed
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   142  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   143  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   144   * @brief Returns the time elapsed in ticks.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   145   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   146   * This function returns the ticks passed until this moment since last time the reload register was loaded to the current register.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   147   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   148   * @service name    SYSTICK_GetTimeElapsed
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   149   * @syntax          extern uint32 	SYSTICK_GetTimeElapsed(void);
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   150   * @service ID      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   151   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   152   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   153   * @param[in]       -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   154   * @param[out]      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   155   * @return          uint32 ->ticks passed since last time the reload register was loaded to the current register.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   156   * @see             Systick reload register , Systick current register.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   157   * @note            This function returns the ticks passed until this moment.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   158   * @warning         -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   159   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   160  /*
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   161   * Returns the time elapsed in ticks.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   162   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   163  uint32 SysTick_GetTimeElapsed(void)
+; Function SysTick_GetTimeElapsed
+.L39:
+	.thumb
+	.align	4
+SysTick_GetTimeElapsed:	.type	func
+
+.L14:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   164  {
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   165  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   166  	/*  Time passed in ticks */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   167  	return ((SYSTICK_RELOAD->RELOAD_S.RELOAD) - (SYSTICK_VALUE->VALUE_S.CURRENT));
+	mov	r0,#-536813568
+	ldr	r1,[r0,#20]
+	bic	r1,r1,#-16777216
+.L104:
+	ldr	r0,[r0,#24]
+	bic	r0,r0,#-16777216
+.L105:
+	sub	r0,r1,r0
+.L106:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   168  }
+	bx	lr
+.L40:
+	.size	SysTick_GetTimeElapsed,$-SysTick_GetTimeElapsed
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_SysTick_GetTimeRemaining')
+	.global	SysTick_GetTimeRemaining
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   169  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   170  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   171   * @brief  Returns the time remaining in ticks.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   172   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   173   * This function returns the ticks remaining till the current register reaches 0 and count flag is set.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   174   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   175   * @service name    SYSTICK__GetTimeRemaining
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   176   * @syntax          extern uint32 	SYSTICK__GetTimeRemaining(void);
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   177   * @service ID      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   178   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   179   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   180   * @param[in]       -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   181   * @param[out]      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   182   * @return          uint32 ->ticks remaining till the current register reaches 0.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   183   * @see             Systick current register.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   184   * @note            This function returns the ticks remaining till the current register reaches 0 and count flag is set.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   185   * @warning         -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   186   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   187  /*
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   188   * Returns the time remaining in ticks.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   189   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   190  uint32 SysTick_GetTimeRemaining(void)
+; Function SysTick_GetTimeRemaining
+.L45:
+	.thumb
+	.align	4
+SysTick_GetTimeRemaining:	.type	func
+
+.L16:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   191  {
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   192  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   193  	/*  Time left in ticks */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   194  	return (SYSTICK_VALUE->VALUE_S.CURRENT);
+	mov	r0,#-536813568
+	ldr	r0,[r0,#24]
+	bic	r0,r0,#-16777216
+.L111:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   195  }
+	bx	lr
+.L46:
+	.size	SysTick_GetTimeRemaining,$-SysTick_GetTimeRemaining
+	; End of function
+	.endsec	; End of section
+
+	.section	.text ,cluster('$group_SysTick_StartTimer')
+	.global	SysTick_StartTimer
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   196  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   197  /**
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   198   * @brief Starts the SysTick timer with the provided reload value.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   199   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   200   * This function starts the timer with the desired value to be decremented until it reaches 0.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   201   *
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   202   * @service name    SYSTICK_StartTimer
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   203   * @syntax          extern void 		SYSTICK_StartTimer(uint32 reload_val);
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   204   * @service ID      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   205   * @sync/async      Synchronous
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   206   * @reentrancy      Non-Reentrant
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   207   * @param[in]       reload_val : desired value for the timer.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   208   * @param[out]      -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   209   * @return          void
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   210   * @see             Systick reload register , Systick ctrl register.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   211   * @note            This function starts the timer with the desired value to be decremented until it reaches 0.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   212   * @warning         -
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   213   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   214  /*
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   215   * Starts the SysTick timer with the provided reload value.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   216   * - Sets the desired reload value.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   217   * - Enables the SysTick.
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   218   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   219  void SysTick_StartTimer(uint32 reload_val)
+; Function SysTick_StartTimer
+.L51:
+	.thumb
+	.align	4
+SysTick_StartTimer:	.type	func
+
+.L18:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   220  {
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   221  	/*  Set desired reload value  */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   222  	SYSTICK_RELOAD->RELOAD_S.RELOAD = (reload_val & 0x00FFFFFF);
+	mov	r1,#-536813568
+	ldr	r2,[r1,#20]
+.L116:
+	bfi	r2,r0,#0,#24
+	str	r2,[r1,#20]
+.L117:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   223  	/*  Enable SysTick */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   224  	SYSTICK_CTRL->CTRL_S.ENABLE = 1;
+	ldr	r0,[r1,#16]
+.L62:
+	orr	r0,r0,#1
+	str	r0,[r1,#16]
+.L118:
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   225  }
+	bx	lr
+.L52:
+	.size	SysTick_StartTimer,$-SysTick_StartTimer
+	; End of function
+	.endsec	; End of section
+
+	.section	.bss ,cluster('$group_g_SysTick_Call_Back_Ptr')
+	.align	4
+g_SysTick_Call_Back_Ptr:	.type	object
+	.size	g_SysTick_Call_Back_Ptr,4
+	.ds	4
+	.endsec	; End of section
+
+	.calls	'SysTick_Init','',0
+	.calls	'SysTick_DeInit','',0
+	.calls	'SysTick_GetTimeElapsed','',0
+	.calls	'SysTick_GetTimeRemaining','',0
+	.calls	'SysTick_StartTimer','',0
+	.section	.debug_info
+.L20:
+	.dw	330
+	.dh	3
+	.dw	.L21
+	.db	4
+.L19:
+	.db	1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L22
+.L58:
+	.db	2
+	.db	'unsigned int',0,4,7,3,1,1
+.L60:
+	.db	4
+	.dw	46
+	.db	5,1,49,9,8,6
+	.db	'INT',0,4
+	.dw	30
+	.db	1,31,2,35,0,6
+	.db	'CLK',0,4
+	.dw	30
+	.db	1,30,2,35,0,7
+	.db	'Ptr2Func',0
+	.dw	49
+	.db	4,2,35,4,0
+.L56:
+	.db	4
+	.dw	54
+	.db	8,1,4
+	.dw	113
+	.db	9
+	.db	'__codeptr',0,2,1,1
+	.dw	115
+	.db	2
+	.db	'unsigned char',0,1,8,9
+	.db	'uint8',0,3,247,1,23
+	.dw	138
+	.db	2
+	.db	'unsigned short int',0,2,7,9
+	.db	'uint16',0,3,252,1,24
+	.dw	170
+	.db	9
+	.db	'uint32',0,3,129,2,22
+	.dw	30
+	.db	9
+	.db	'Std_ReturnType',0,4,235,2,15
+	.dw	138
+	.db	9
+	.db	'Std_TransformerClass',0,4,238,2,15
+	.dw	138
+	.db	9
+	.db	'Std_TransformerForwardCode',0,4,241,2,15
+	.dw	138
+	.db	9
+	.db	'SysTickCfg',0,1,53,3
+	.dw	54
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev
+.L21:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,16,6,0,0,2,36,0,3,8,11,15,62,15,0,0,3,21,0,54,15,39,12,0,0,4,15
+	.db	0,73,19,0,0,5,19,1,58,15,59,15,57,15,11,15,0,0,6,13,0,3,8,11,15,73,19,13,15,12,15,56,9,0,0,7,13,0,3,8
+	.db	73,19,11,15,56,9,0,0,8,21,0,54,15,0,0,9,22,0,3,8,58,15,59,15,57,15,73,19,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line
+.L22:
+	.dw	.L67-.L66
+.L66:
+	.dh	3
+	.dw	.L69-.L68
+.L68:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'..\\..\\TC399x\\HSM\\Mcal\\Timer\\inc\\SysTick_Cfg.h',0,0,0,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Platform_Types.h',0,0,0,0
+	.db	'..\\..\\AutoSar\\BSW\\static\\MCAL\\Infrastructure\\Platform\\Std_Types.h',0,0,0,0,0
+.L69:
+.L67:
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_Init')
+.L23:
+	.dw	97
+	.dh	3
+	.dw	.L24
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L26,.L25
+	.db	2
+	.dw	.L19
+	.db	3
+	.db	'SysTick_Init',0,1,78,6,1,1,1
+	.dw	.L10,.L55,.L9
+	.db	4
+	.db	'SysCfg',0,1,78,31
+	.dw	.L56,.L57
+	.db	5
+	.dw	.L10,.L55
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_Init')
+.L24:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_Init')
+.L25:
+	.dw	.L71-.L70
+.L70:
+	.dh	3
+	.dw	.L73-.L72
+.L72:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0,0
+.L73:
+	.db	5,26,7,0,5,2
+	.dw	.L10
+	.db	3,209,0,1,5,36,9
+	.dh	.L74-.L10
+	.db	1,5,34,9
+	.dh	.L75-.L74
+	.db	1,5,24,9
+	.dh	.L76-.L75
+	.db	3,3,1,5,33,9
+	.dh	.L77-.L76
+	.db	1,5,23,9
+	.dh	.L78-.L77
+	.db	3,7,1,5,12,9
+	.dh	.L79-.L78
+	.db	3,125,1,5,2,9
+	.dh	.L80-.L79
+	.db	1,5,23,9
+	.dh	.L81-.L80
+	.db	3,3,1,5,34,9
+	.dh	.L82-.L81
+	.db	1,5,23,9
+	.dh	.L83-.L82
+	.db	3,6,1,5,34,9
+	.dh	.L84-.L83
+	.db	1,5,12,9
+	.dh	.L85-.L84
+	.db	3,3,1,5,2,9
+	.dh	.L86-.L85
+	.db	1,5,23,9
+	.dh	.L87-.L86
+	.db	3,3,1,5,32,9
+	.dh	.L88-.L87
+	.db	1,5,23,9
+	.dh	.L89-.L88
+	.db	3,5,1,5,32,9
+	.dh	.L90-.L89
+	.db	1,5,34,9
+	.dh	.L91-.L90
+	.db	3,4,1,5,2,9
+	.dh	.L61-.L91
+	.db	1,5,26,9
+	.dh	.L92-.L61
+	.db	1,5,1,9
+	.dh	.L93-.L92
+	.db	3,1,1,7,9
+	.dh	.L28-.L93
+	.db	0,1,1
+.L71:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_Init')
+.L26:
+	.dw	-1,.L27,0,.L28-.L27,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_DeInit')
+.L29:
+	.dw	81
+	.dh	3
+	.dw	.L30
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L32,.L31
+	.db	2
+	.dw	.L19
+	.db	3
+	.db	'SysTick_DeInit',0,1,136,1,6,1,1,1
+	.dw	.L12,.L34,.L11
+	.db	4
+	.dw	.L12,.L34
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_DeInit')
+.L30:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_DeInit')
+.L31:
+	.dw	.L95-.L94
+.L94:
+	.dh	3
+	.dw	.L97-.L96
+.L96:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0,0
+.L97:
+	.db	5,22,7,0,5,2
+	.dw	.L12
+	.db	3,139,1,1,5,30,9
+	.dh	.L98-.L12
+	.db	1,5,1,9
+	.dh	.L99-.L98
+	.db	3,1,1,7,9
+	.dh	.L34-.L99
+	.db	0,1,1
+.L95:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_DeInit')
+.L32:
+	.dw	-1,.L33,0,.L34-.L33,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_GetTimeElapsed')
+.L35:
+	.dw	93
+	.dh	3
+	.dw	.L36
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L38,.L37
+	.db	2
+	.dw	.L19
+	.db	3
+	.db	'SysTick_GetTimeElapsed',0,1,163,1,8
+	.dw	.L58
+	.db	1,1,1
+	.dw	.L14,.L40,.L13
+	.db	4
+	.dw	.L14,.L40
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_GetTimeElapsed')
+.L36:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_GetTimeElapsed')
+.L37:
+	.dw	.L101-.L100
+.L100:
+	.dh	3
+	.dw	.L103-.L102
+.L102:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0,0
+.L103:
+	.db	5,35,7,0,5,2
+	.dw	.L14
+	.db	3,166,1,1,5,69,9
+	.dh	.L104-.L14
+	.db	1,5,44,9
+	.dh	.L105-.L104
+	.db	1,5,1,9
+	.dh	.L106-.L105
+	.db	3,1,1,7,9
+	.dh	.L40-.L106
+	.db	0,1,1
+.L101:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_GetTimeElapsed')
+.L38:
+	.dw	-1,.L39,0,.L40-.L39,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_GetTimeRemaining')
+.L41:
+	.dw	95
+	.dh	3
+	.dw	.L42
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L44,.L43
+	.db	2
+	.dw	.L19
+	.db	3
+	.db	'SysTick_GetTimeRemaining',0,1,190,1,8
+	.dw	.L58
+	.db	1,1,1
+	.dw	.L16,.L46,.L15
+	.db	4
+	.dw	.L16,.L46
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_GetTimeRemaining')
+.L42:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,73
+	.db	16,54,15,39,12,63,12,17,1,18,1,64,6,0,0,4,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_GetTimeRemaining')
+.L43:
+	.dw	.L108-.L107
+.L107:
+	.dh	3
+	.dw	.L110-.L109
+.L109:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0,0
+.L110:
+	.db	5,32,7,0,5,2
+	.dw	.L16
+	.db	3,193,1,1,5,1,9
+	.dh	.L111-.L16
+	.db	3,1,1,7,9
+	.dh	.L46-.L111
+	.db	0,1,1
+.L108:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_GetTimeRemaining')
+.L44:
+	.dw	-1,.L45,0,.L46-.L45,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_SysTick_StartTimer')
+.L47:
+	.dw	109
+	.dh	3
+	.dw	.L48
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1
+	.dw	.L50,.L49
+	.db	2
+	.dw	.L19
+	.db	3
+	.db	'SysTick_StartTimer',0,1,219,1,6,1,1,1
+	.dw	.L18,.L52,.L17
+	.db	4
+	.db	'reload_val',0,1,219,1,32
+	.dw	.L58,.L59
+	.db	5
+	.dw	.L18,.L52
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_SysTick_StartTimer')
+.L48:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,85,6,16,6,0,0,2,61,0,24,16,0,0,3,46,1,3,8,58,15,59,15,57,15,54
+	.db	15,39,12,63,12,17,1,18,1,64,6,0,0,4,5,0,3,8,58,15,59,15,57,15,73,16,2,6,0,0,5,11,0,17,1,18,1,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_line ,cluster('$group_SysTick_StartTimer')
+.L49:
+	.dw	.L113-.L112
+.L112:
+	.dh	3
+	.dw	.L115-.L114
+.L114:
+	.db	2,1,-4,9,10,0,1,1,1,1,0,0,0,1,0
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0,0,0,0,0
+.L115:
+	.db	5,26,7,0,5,2
+	.dw	.L18
+	.db	3,221,1,1,5,34,9
+	.dh	.L116-.L18
+	.db	1,5,22,9
+	.dh	.L117-.L116
+	.db	3,2,1,5,30,9
+	.dh	.L62-.L117
+	.db	1,5,1,9
+	.dh	.L118-.L62
+	.db	3,1,1,7,9
+	.dh	.L52-.L118
+	.db	0,1,1
+.L113:
+	.endsec	; End of section
+
+	.section	.debug_ranges ,cluster('$group_SysTick_StartTimer')
+.L50:
+	.dw	-1,.L51,0,.L52-.L51,0,0
+	.endsec	; End of section
+
+	.section	.debug_info ,cluster('$group_g_SysTick_Call_Back_Ptr')
+.L53:
+	.dw	66
+	.dh	3
+	.dw	.L54
+	.db	4,1
+	.dw	.L63,.L64,.L65
+	.db	12,1,2
+	.dw	.L19
+	.db	3
+	.db	'g_SysTick_Call_Back_Ptr',0,2,49,15
+	.dw	.L60
+	.db	5,3
+	.dw	g_SysTick_Call_Back_Ptr
+	.db	0
+	.endsec	; End of section
+
+	.section	.debug_abbrev ,cluster('$group_g_SysTick_Call_Back_Ptr')
+.L54:
+	.db	1,17,1,3,14,37,14,27,14,19,15,128,70,12,0,0,2,61,0,24,16,0,0,3,52,0,3,8,58,15,59,15,57,15,73,16,2,9,0
+	.db	0,0
+	.endsec	; End of section
+
+	.section	.debug_str
+.L65:
+	.db	'D:\\Embedded Systems\\Graduation Project\\Implementation-of-an-AUTOSAR-compliant-Operating-System-for-Hardware-Security-Module\\Software\\OS\\Makefile\\',0
+.L63:
+	.db	'../../TC399x/HSM/Mcal/Timer/src/SysTick.c',0
+.L64:
+	.db	'TASKING VX-toolset for ARM Cortex: C compiler',0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_DeInit')
+.L11:
+	.dw	-1,.L12,0,.L34-.L12
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_GetTimeElapsed')
+.L13:
+	.dw	-1,.L14,0,.L40-.L14
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_GetTimeRemaining')
+.L15:
+	.dw	-1,.L16,0,.L46-.L16
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_Init')
+.L57:
+	.dw	-1,.L10,0,.L61-.L10
+	.dh	1
+	.db	80
+	.dw	0,0
+.L9:
+	.dw	-1,.L10,0,.L55-.L10
+	.dh	2
+	.db	125,0
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_loc ,cluster('$group_SysTick_StartTimer')
+.L17:
+	.dw	-1,.L18,0,.L52-.L18
+	.dh	2
+	.db	125,0
+	.dw	0,0
+.L59:
+	.dw	-1,.L18,0,.L62-.L18
+	.dh	1
+	.db	80
+	.dw	0,0
+	.endsec	; End of section
+
+	.section	.debug_frame
+.L119:
+	.dw	64
+	.dw	-1
+	.db	3,0,2,2,14,12,13,0,8,4,8,5,8,6,8,7,8,8,8,9,8,10,8,11,8,13,8,14,8,15,8,128,1,8,136,2,8,137,2,8,138,2,8
+	.db	139,2,8,140,2,8,141,2,8,142,2,8,143,2,0,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_Init')
+	.dw	36
+	.dw	.L119,.L10,.L55-.L10
+	.db	8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_DeInit')
+	.dw	40
+	.dw	.L119,.L12,.L34-.L12
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_GetTimeElapsed')
+	.dw	40
+	.dw	.L119,.L14,.L40-.L14
+	.db	8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_GetTimeRemaining')
+	.dw	44
+	.dw	.L119,.L16,.L46-.L16
+	.db	8,1,8,2,8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+	.section	.debug_frame ,cluster('$group_SysTick_StartTimer')
+	.dw	40
+	.dw	.L119,.L18,.L52-.L18
+	.db	8,3,8,128,2,8,129,2,8,130,2,8,131,2,8,132,2,8,133,2,8,134,2,8,135,2,0,0
+	.endsec	; End of section
+
+
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   226  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   227  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   228  /*                       	  Internal Function Definition                         */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   229  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   230  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   231  
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   232  /***********************************************************************************/
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   233  /*				    			 End Of File			         				   */
+; ../../TC399x/HSM/Mcal/Timer/src/SysTick.c	   234  /***********************************************************************************/
+
+	; Module end
+	.end
