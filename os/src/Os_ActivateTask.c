@@ -1,66 +1,41 @@
 /**
- * @file ActivateTask.c
- * @author Qamar Elgohary
- * @version 1.0.0
- * @date 02-12-2023
- * @platform
- * @variant
- * @vendor Siemens
- * @specification
+ * @file Os_ActivateTask.c
+ * @author Mahmoud Ismail
+ * @version 1.0.1
+ * @date 16/11/2024
  * @brief ActivateTask Service transfers the task specified from suspended state to ready state.
  *
 */
 
 
-/**********************************************************************************/
-/**				    			Include Headers			         				 **/
-/**********************************************************************************/
-#include <OS_kernel.h>
+/***********************************************************************************/
+/**				    			Include Headers			         				   */
+/***********************************************************************************/
+#include <Os_kernel.h>
 
 /***********************************************************************************/
-/*  			    			    Macros				         				   */
+/*  			    			  Macros				         				   */
 /***********************************************************************************/
 
-
-/****************************** Moudle Version Check ******************************/
-
-
-/************************** Module Specific Macros ********************************/
-
-
-/************************************************************************************/
-/*				    			Type Definitions		         			        */
-/************************************************************************************/
-
-
-
-
-/***************************************************************************************/
-/*                              Extern Global Variables                                */
-/***************************************************************************************/
-
-
-/***************************************************************************************/
-/*                              Internal Global Variables                              */
-/***************************************************************************************/
-
-
 /***********************************************************************************/
-/*				    			Internal constants		         				   */
+/*                       Extern Global Variables                                   */
 /***********************************************************************************/
 
+/***********************************************************************************/
+/*                      Internal Global Variables                                  */
+/***********************************************************************************/
 
-/************************************************************************************/
-/*				    		Internal function declarations         				    */
-/************************************************************************************/
+/***********************************************************************************/
+/*				    	Internal Function Declarations         		    		   */
+/***********************************************************************************/
 
-
+/***********************************************************************************/
+/*				    	External Function Declarations         			    	   */
+/***********************************************************************************/
 
 /***********************************************************************************/
 /*				    	 Internal Functions Definition		      				   */
 /***********************************************************************************/
-
-
 
 /***********************************************************************************/
 /*				    	 External Functions Definition		      				   */
@@ -71,8 +46,8 @@
  * The task <TaskID> is transferred from the suspended state into the ready state
  *
  *
- * @service name    OS_ActivateTask
- * @syntax          FUNC(StatusType, OS_CODE) OS_ActivateTask
+ * @service name    Os_ActivateTask
+ * @syntax          FUNC(StatusType, OS_CODE) Os_ActivateTask
  *                  (
  *                      CONST(TaskType, AUTOMATIC) TaskID
  *                  );
@@ -92,14 +67,14 @@
  * @warning         -
  */
 
-FUNC(StatusType, OS_CODE) OS_ActivateTask
+FUNC(StatusType, OS_CODE) Os_ActivateTask
 (
     CONST(TaskType, AUTOMATIC) TaskID
 )
 {
-    /* init the error to no error */
+    /* Init the error to no error */
     VAR(StatusType, memclass) ErrorState 		= E_OK;
-	  /* Create pointer to an instance of Os_Task struct*/
+	/* Create pointer to an instance of Os_Task struct*/
     P2VAR(Os_Task, memclass ,ptrclass) Task = NULL_PTR;
 
     /* Lock the kernel to
@@ -110,7 +85,7 @@ FUNC(StatusType, OS_CODE) OS_ActivateTask
 
     /* Store information for error hook routine  */
 
-    /* [SWS_OS_00005] If the ID is invalid, E_OS_ID is returned */
+    /* If the ID is invalid, E_OS_ID is returned */
 #if (ERROR_CHECKING_TYPE == ERROR_CHECKING_EXTENDED)
 
 		if(TaskID >= TASK_COUNT)
@@ -147,10 +122,6 @@ FUNC(StatusType, OS_CODE) OS_ActivateTask
                     }
 
             }
-//						if(Task->TaskDynamics->PendingActivationRequests == 1)
-//						{
-//							ReadyQueueAddRear(Task);
-//						}
 
             /*[SWS_OS_10038], [SWS_OS_10041] If Task is not suspended, the activation will only be recorded and performed later. */
             Task->TaskDynamics->PendingActivationRequests++;

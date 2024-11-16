@@ -4,13 +4,7 @@
 * @author            Hana Ashraf
 * @version           1.0.0
 * @date              05-12-2023
-* @platform          NA
-* @variant           NA
-* @vendor            CryptOS	
-* @specification     OSEK/VDX
 * @brief             Source file for GetTaskID.
-* Implementation of GetTaskID which is a system service for Task Management.
-*
 */
 
 /*------------------------- MISRA-C vailoations in c files -----------------------*/
@@ -18,29 +12,22 @@
 
 
 /**********************************************************************************/
-/*				  Include Headers	                          */
+/*				  Include Headers	                                              */
 /**********************************************************************************/
 
 #include <OS_kernel.h>
 
 /***********************************************************************************/
-/*  			    	 Macros			                           */
+/*  			    	 Macros			                                        */
 /***********************************************************************************/
 
 
-/****************************** Moudle Version Check ******************************/
-
-/***************************** Autosar version Check ********************************/
-
-/******************************* DET Version Check **********************************/
-
-/************************** Internal Module Specific Macros ********************************/
 
 /************************************************************************************/
 /*				    	Internal Type Definitions		    */
 /************************************************************************************/
 
-/*********************** Internal Module Specific Types *****************************/
+
 
 /***************************************************************************************/
 /*                            External Global Variables                                */
@@ -68,7 +55,7 @@
 /**
  * @brief GetTaskID returns the information about the TaskID of the task which is currently running.
  *
- * GetTaskID returns the nformation about the TaskID of the task which is currently running 
+ * GetTaskID returns the formation about the TaskID of the task which is currently running 
  * If <TaskID> cannot be evaluated (no task currently running), the service returns INVALID_TASK as TaskType 
  *
  * @service 				          GetTaskID
